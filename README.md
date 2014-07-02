@@ -8,16 +8,22 @@ All the code will be contributed to the Eclipse Concierge project when Gerrit is
 
 1. First check out Concierge
 
-	git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
+```Shell
+git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
+```
 	
 1. Check out Concierge tests
 
-	git clone https://github.com/JochenHiller/concierge-tests.git
+```Shell
+git clone https://github.com/JochenHiller/concierge-tests.git
+```
 	
 1. Copy all files from concierge-tests to Concierge project (as tests will be running with Concierge project)
 
-	cd concierge-tests
-	./copy-to-concierge.sh
+```Shell
+cd concierge-tests
+./copy-to-concierge.sh
+```
 
 ## Overview of testing framework
 
@@ -66,20 +72,24 @@ TODO
 
 See https://github.com/eclipse/kura for details how to build.
 
-	// build target platform
-	$ git clone -b develop https://github.com/eclipse/kura.git
-	$ cd kura/target-platform
-	$ mvn clean install
-	// build kura core
-	$ cd ../kura/
-	$ mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
-	$ mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
-	$ mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
+```Shell
+// build target platform
+$ git clone -b develop https://github.com/eclipse/kura.git
+$ cd kura/target-platform
+$ mvn clean install
+// build kura core
+$ cd ../kura/
+$ mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
+$ mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
+$ mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
+```
 
 2. Unpack distribution file
 
-	$ cd distrib/target
-	$ unzip kura-raspberry-pi-jars_0.2.0-SNAPSHOT.zip
+```Shell
+$ cd distrib/target
+$ unzip kura-raspberry-pi-jars_0.2.0-SNAPSHOT.zip
+```
 	
 3. Add the directory with unpacked files to file test/concierge-test.properties
 
@@ -87,10 +97,12 @@ This will extend the paths to be searched for bundles to lookup into Kura distri
 If we assume that kura is on same directory level as org.eclipse.concierge,
 this configuration can be added:
 
-	concierge.test.localDirectories=\
-	    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/kura/plugins:\
-	    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/plugins:\
-	    ...
+```INI
+concierge.test.localDirectories=\
+    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/kura/plugins:\
+    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/plugins:\
+    ...
+```
 
 #### Open bugs
 

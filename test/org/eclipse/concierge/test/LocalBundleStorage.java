@@ -65,6 +65,8 @@ public class LocalBundleStorage {
 			File foundFiles[] = dir.listFiles(filter);
 			if (foundFiles.length == 1) {
 				return foundFiles[0];
+			} else {
+				// logDebug("local bundle '" + bundleName + "' not found at " + dir);
 			}
 		}
 		return null;
@@ -75,10 +77,9 @@ public class LocalBundleStorage {
 				.get("concierge.test.remoteURLs");
 		String[] urlElements = urls.split("\n");
 		for (int i = 0; i < urlElements.length; i++) {
+			String u = urlElements[i]
+					+ (urlElements[i].endsWith("/") ? "" : "/") + bundleName;
 			try {
-				String u = urlElements[i]
-						+ (urlElements[i].endsWith("/") ? "" : "/")
-						+ bundleName;
 				URL url = new URL(u);
 				InputStream is = url.openStream();
 				is.close();
@@ -87,6 +88,7 @@ public class LocalBundleStorage {
 				// ignore
 			} catch (IOException e) {
 				// ignore, bundle not found under URL
+				// logDebug("remote bundle '" + bundleName + "' not found at " + u);
 			}
 		}
 		return null;
@@ -155,6 +157,8 @@ public class LocalBundleStorage {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+					} else {
+						logDebug("bundle '" + bundleName + "' not found ");
 					}
 
 					return bundleName;

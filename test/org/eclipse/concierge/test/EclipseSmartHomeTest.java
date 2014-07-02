@@ -159,7 +159,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.apache.commons.logging_1.1.1.v201101211721.jar",
 					"org.apache.commons.httpclient_3.1.0.v201012070820.jar",
 					"org.apache.commons.net_3.2.0.v201305141515.jar",
-					"org.eclipse.osgi.services_3.3.100.v20130513-1956.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.http.servlet_1.1.300.v20120522-1841.jar",
 					"org.eclipse.jetty.osgi.httpservice_8.1.14.v20131031.jar",
 					B_ESH("org.eclipse.smarthome.io.net"),
@@ -177,6 +177,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					B_ESH("org.eclipse.smarthome.io.servicediscovery"),
 
 					// o.e.s.model.core and deps
+					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar",
 					B_ESH("org.eclipse.smarthome.model.core"),
 			// TODO Caused by: java.lang.NoClassDefFoundError: Could not
 			// initialize class org.eclipse.emf.ecore.EPackage$Registry

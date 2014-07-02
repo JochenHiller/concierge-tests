@@ -55,7 +55,7 @@ public class LocalBundleStorageTest {
 		LocalBundleStorage inst = LocalBundleStorage.getInstance();
 		String s = inst.findRemoteBundle("javax.xml_1.3.4.v201005080400.jar");
 		Assert.assertEquals(
-				"http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/plugins/javax.xml_1.3.4.v201005080400.jar",
+				"http://download.eclipse.org/eclipse/updates/4.4/R-4.4-201406061215/plugins/javax.xml_1.3.4.v201005080400.jar",
 				s);
 	}
 

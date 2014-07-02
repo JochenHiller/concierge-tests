@@ -27,8 +27,9 @@ import org.osgi.framework.Bundle;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EclipseKuraTest extends AbstractConciergeTestCase {
 
-	private static final String asBuild(String bundleName) {
-		return bundleName + "_2.10.0.v20140514-1158" + ".jar";
+	private static final String B_KURA(String bundleName) {
+		return bundleName + "_0.2.0-SNAPSHOT.v201407012209" + ".jar";
+
 	}
 
 	@Override
@@ -232,12 +233,12 @@ public class EclipseKuraTest extends AbstractConciergeTestCase {
 
 			final String[] equinoxBundleNames = new String[] {
 					"osgi.core-condpermadmin-5.0.0.jar",
-					"org.eclipse.osgi.services_3.3.100.v20130513-1956.jar",
-					"org.eclipse.equinox.supplement_1.5.0.v20130812-2109.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
-					"org.eclipse.equinox.console_1.0.100.v20130429-0953.jar",
-					"org.eclipse.equinox.ds_1.4.101.v20130813-1853.jar" };
+					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar" };
 			final Bundle[] equinoxBundles = installBundles(equinoxBundleNames);
 			equinoxBundles[0].start();
 			assertBundleResolved(equinoxBundles[0]);
@@ -260,59 +261,58 @@ public class EclipseKuraTest extends AbstractConciergeTestCase {
 					"org.eclipse.soda.dk.comm_1.2.0.jar",
 					"osgi.cmpn_4.3.0.201111022214.jar",
 					"org.eclipse.equinox.io_1.0.400.v20120522-2049.jar",
-					"org.eclipse.kura.api_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.api"),
 
 					// o.e.kura.core and deps
 					"mqtt-client_0.4.0.jar",
 					"org.hsqldb.hsqldb_2.3.0.jar",
-					"org.eclipse.kura.core_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core"),
 
 					// o.e.kura.core.cloud and deps
 					"org.apache.servicemix.bundles.protobuf-java_2.4.1.1.jar",
-					"org.eclipse.kura.core.cloud_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core.cloud"),
 
 					// o.e.kura.core.comm and deps
-					"org.eclipse.kura.core.comm_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core.comm"),
 
 					// o.e.kura.core.configuration and deps
-					"org.eclipse.kura.core.configuration_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core.configuration"),
 
 					// o.e.k.core.crypto and deps
-					"org.eclipse.kura.core.crypto_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core.crypto"),
 
 					// o.e.kura.core.deployment and deps
 					"org.apache.commons.io_2.4.0.jar",
-					"org.eclipse.kura.deployment.agent_0.2.0-SNAPSHOT.v201406112356.jar",
-					"org.eclipse.kura.core.deployment_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.deployment.agent"),
+					B_KURA("org.eclipse.kura.core.deployment"),
 
 					// o.e.kura.core.net and deps
-					"org.eclipse.kura.core.net_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.core.net"),
 
 					// o.e.kura.linux
 					"org.apache.commons.net_3.1.0.v201205071737.jar",
-					"org.eclipse.kura.linux.clock_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.linux.clock"),
 
 					// o.e.kura.linux.command and deps
-					"org.eclipse.kura.linux.command_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.linux.command"),
 
 					// o.e.kura.net.admin and deps
-					"org.eclipse.kura.linux.net_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.linux.net"),
 					// TODO does fail with osgi.util.tracker, Concierge issue?
-					// "org.eclipse.kura.net.admin_0.2.0-SNAPSHOT.v201406112356.jar"
+					// B_KURA("org.eclipse.kura.net.admin")
 
 					// o.e.kura.linux.position
-					"org.eclipse.kura.linux.position_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.linux.position"),
 
 					// o.e.kura.linux.usb
 					"javax.usb.common_1.0.2.jar",
-					"org.eclipse.kura.linux.usb_0.2.0-SNAPSHOT.v201406112356.jar",
-
+					B_KURA("org.eclipse.kura.linux.usb"),
 					// o.e.kura.linux.watchdog
-					"org.eclipse.kura.linux.watchdog_0.2.0-SNAPSHOT.v201406112356.jar",
+					B_KURA("org.eclipse.kura.linux.watchdog"),
 
 					// o.e.kura.web
 					"org.apache.commons.fileupload_1.2.2.v20111214-1400.jar",
-					"org.eclipse.kura.web_0.2.0-SNAPSHOT.v201406112356.jar",
+			// B_KURA("org.eclipse.kura.web"),
 			//
 			};
 

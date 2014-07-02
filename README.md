@@ -19,9 +19,48 @@ All the code will be contributed to the Eclipse Concierge project when Gerrit is
 	cd concierge-tests
 	./copy-to-concierge.sh
 
-## Overview of Tests
+## Overview of testing framework
+
+The tests are based on this general concepts:
+
+* Tests are simple JUnit 4 bqsed unit tests
+* The OSGi Concierge framework will be started via Concierge based FrameworLauncher
+* An AbstractConciergeTestCase base class will provide helping methods for simple testing
+* All used 3rd party bundles will be retrieved from their corresponding repositories in Internet
+* For performance reasons, these bundles will be locally cached
+  * The default folder is ./target/localCache
+* The repos can be configured in file "concierge-test.properties"
+* Tests can be running using a simple shell for interactive testing
+  * just implement the method stayInShell returning true
+  * the bundle from ./test/plugins/shell-1.0.0.jar will be used
+* Unit tests will be running in an order by specifying @FixMethodOrder(MethodSorters.NAME_ASCENDING) on test classes
+* The ConciergeTestSuite will run all tests
+* Actually the tests are focused on installation and resolving bundles. In most cases there are no tests for checking whether the bundle is really working
+* specific bundles will be added to ./target/<your-dir> where there are no online bundles available
+* The 
+
+
+## Overview of Failed Tests
+
+* FrameworkLaunchArgsTest
+  * test11SystemPackagesTrailingComma: will fail with ArrayIndexOutOfBoundsException when property ends with a ","
+  * test13SystemPackagesExtraTrailingComma: will fail with ArrayIndexOutOfBoundsException when property ends with a ","
+* EclipseEquinoxTest
+  * test04EquinoxDS: will fail as o.e.equinox.console has unresolvable dependencies
+  * test04EquinoxRegistry: will fail as o.e.equinox.console has unresolvable dependencies
+* EclipseSmartHome
+  * test10EclipseSmartHome:
+* EclipseKuraTest
+  * test01Log4j: will fail as fragment can not be resolved.
+    * See bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
+  * test02Slf4j: will fail as fragment can not be resolved.
+    * See bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
+  * test10EclipseKura: will  fail as fragment can not be resolved.
+    * See bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
 
 ### Eclipse SmartHome running on Concierge
+
+TODO
 
 ### Eclipse Kura running on Concierge
 
@@ -47,23 +86,25 @@ See https://github.com/eclipse/kura for details how to build.
 3. Add the directory with unpacked files to file test/concierge-test.properties
 
 This will extend the paths to be searched for bundles to lookup into Kura distribution.
+If we assume that kura is on same directory level as org.eclipse.concierge,
+this configuration can be added:
 
 	concierge.test.localDirectories=\
-	    <your-dir>/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/kura/plugins:\
-	    <your-dir>/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/plugins:\
+	    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/kura/plugins:\
+	    ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/plugins:\
 	    ...
 
 #### Open bugs
 
 * Eclipse Kura dependencies over the OSGI R5 Core Specifications
-https://bugs.eclipse.org/bugs/show_bug.cgi?id=433624
+  * Overall issued to track Kura/Concierge port
+  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=433624
 * Added bug and patch for Concierge when handling log4j and its fragment
-https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
+  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
 * Added a bug for Kura: SODA COMM bundle relies on Equinox specific configuration
-https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725
+  * See ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725~~ (resolved)
 * Added bug for Kura to rely on Apache Felix SCR import packages which makes a hard dependency to an OSGi DS implementation
-https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729
-
+  * See ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729~~ (resolved)
 
 ## References for Concierge
 
@@ -71,3 +112,10 @@ For more details see
 
 * http://projects.eclipse.org/projects/rt.concierge
 * git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
+
+## TODO
+
+* Download all bundles when remote URL is a p2-repo
+* Add wildcard capability to installBundle to avoid to specify the version
+  * Shall use the latest found version of a bundle
+* Extend xargs launcher obout wildcard support for simpler startup scripts

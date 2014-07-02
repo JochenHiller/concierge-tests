@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
@@ -27,6 +26,11 @@ import org.osgi.framework.Bundle;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 
+	@Override
+	protected boolean stayInShell() {
+		return false;
+	}
+
 	/**
 	 * Just load OSGi services compendium.
 	 */
@@ -38,7 +42,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
 
-			final String bundleName = "org.eclipse.osgi.services_3.3.100.v20130513-1956.jar";
+			final String bundleName = "org.eclipse.osgi.services_3.4.0.v20140312-2051.jar";
 			final Bundle bundle = installAndStartBundle(bundleName);
 			assertBundleResolved(bundle);
 		} finally {
@@ -55,13 +59,13 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			// the value of this property does not matter. If the property is
 			// NOT set this test will work
-			launchArgs.put("org.osgi.framework.system.packages.extras",
+			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"com.example.some.package");
 			launchArgs.put("org.eclipse.concierge.debug", "true");
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
 
-			final String bundleName = "org.eclipse.osgi.services_3.3.100.v20130513-1956.jar";
+			final String bundleName = "org.eclipse.osgi.services_3.4.0.v20140312-2051.jar";
 			final Bundle bundle = installAndStartBundle(bundleName);
 			assertBundleResolved(bundle);
 		} finally {
@@ -109,14 +113,13 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 * But it fails with missing requirements:
 	 * 
 	 * <pre>
-	 * COULD NOT RESOLVE REQUIREMENT BundleRequirement{Import-Package org.eclipse.osgi.framework.console} CANDIDATES WERE []
-	 * COULD NOT RESOLVE REQUIREMENT BundleRequirement{Import-Package org.eclipse.osgi.service.resolver} CANDIDATES WERE []
+	 * BundleRequirement{Import-Package org.eclipse.osgi.framework.console}
+	 * BundleRequirement{Import-Package org.eclipse.osgi.report.resolution; version="[1.0,2.0)"}]
+	 * BundleRequirement{Import-Package org.osgi.framework.namespace;version="1.1.0"}]
+	 * - requires patch in Concierge, specifies 1.0
 	 * </pre>
-	 * 
-	 * This code would have to be added to Equinox-Supplement.
 	 */
 	@Test
-	@Ignore
 	public void test04EquinoxDS() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.eclipse.concierge.debug", "true");
@@ -124,13 +127,14 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 		try {
 			startFramework(launchArgs);
 			final String[] bundleNames = new String[] {
-					"osgi.core-condpermadmin-5.0.0.jar",
-					"org.eclipse.osgi.services_3.3.100.v20130513-1956.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
-					"org.eclipse.equinox.console_1.0.100.v20130429-0953.jar",
-					"org.eclipse.equinox.ds_1.4.101.v20130813-1853.jar" };
+					// required by Equinox Console, is not optional
+					"osgi.core-condpermadmin-5.0.0.jar",
+					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar" };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
 		} finally {
@@ -151,7 +155,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 		try {
 			startFramework(launchArgs);
 			final String[] bundleNames = new String[] {
-					"org.eclipse.osgi.services_3.3.100.v20130513-1956.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.eclipse.equinox.event_1.3.100.v20140115-1647.jar" };
@@ -172,6 +176,55 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			final String[] bundleNames = new String[] {
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar" };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * This test will fail due to console issue.
+	 * 
+	 * <pre>
+	 * org.osgi.framework.BundleException: Resolution failed [
+	 * BundleRequirement{Import-Package org.eclipse.osgi.framework.console}, 
+	 * BundleRequirement{Import-Package org.eclipse.osgi.report.resolution; version="[1.0,2.0)"}, 
+	 * BundleRequirement{Import-Package org.eclipse.osgi.service.environment}, 
+	 * BundleRequirement{Import-Package org.eclipse.osgi.util}, 
+	 * BundleRequirement{Import-Package org.osgi.framework.namespace;version="1.1.0"}]
+	 * - fix in Concierge
+	 * </pre>
+	 * 
+	 * When console plugin will NOT be included, the registry bundle complains:
+	 * 
+	 * <pre>
+	 *  ERROR in org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader@3cb201fd:
+	 *  java.lang.NoClassDefFoundError: org/eclipse/osgi/framework/console/CommandProvider
+	 *  ...	 
+	 *  Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.CommandProvider
+	 *  ...
+	 * </pre>
+	 */
+	@Test
+	public void test07EquinoxRegistry() throws Exception {
+		final Map<String, String> launchArgs = new HashMap<String, String>();
+		launchArgs.put("org.osgi.framework.system.packages.extra",
+				"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
+		launchArgs.put("org.eclipse.concierge.debug", "true");
+		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+		try {
+			startFramework(launchArgs);
+			final String[] bundleNames = new String[] {
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
+					// required by Equinox Console, is not optional
+					"osgi.core-condpermadmin-5.0.0.jar",
+					// "org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
+					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar" };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
 		} finally {

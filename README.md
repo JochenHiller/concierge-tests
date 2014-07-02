@@ -12,13 +12,14 @@ All the code will be contributed to the Eclipse Concierge project when Gerrit is
 git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
 ```
 	
-1. Check out Concierge tests
+2. Check out Concierge tests
 
 ```Shell
 git clone https://github.com/JochenHiller/concierge-tests.git
 ```
 	
-1. Copy all files from concierge-tests to Concierge project (as tests will be running with Concierge project)
+3. Copy all files from concierge-tests to Concierge project (as tests will be running with Concierge project).
+It will assume that both projects are checked out in same directory level.
 
 ```Shell
 cd concierge-tests
@@ -29,20 +30,28 @@ cd concierge-tests
 
 The tests are based on this general concepts:
 
-* Tests are simple JUnit 4 bqsed unit tests
-* The OSGi Concierge framework will be started via Concierge based FrameworLauncher
+* Tests are simple JUnit 4 based unit tests
+* The OSGi Concierge framework will be started via Concierge based FrameworkLauncher
 * An AbstractConciergeTestCase base class will provide helping methods for simple testing
+  * start/stop the framework
+  * install and start bundles
+  * check for resolved bundles
+  * add support for calling code in context of a bundle classloader
 * All used 3rd party bundles will be retrieved from their corresponding repositories in Internet
 * For performance reasons, these bundles will be locally cached
-  * The default folder is ./target/localCache
-* The repos can be configured in file "concierge-test.properties"
+  * The default folder is `./target/localCache`
+* The repos can be configured in file `concierge-test.properties`
 * Tests can be running using a simple shell for interactive testing
-  * just implement the method stayInShell returning true
-  * the bundle from ./test/plugins/shell-1.0.0.jar will be used
-* Unit tests will be running in an order by specifying @FixMethodOrder(MethodSorters.NAME_ASCENDING) on test classes
-* The ConciergeTestSuite will run all tests
+  * just implement the method `stayInShell` returning true
+  * the bundle from `./test/plugins/shell-1.0.0.jar` will be used
+* Unit tests will be running in an order by specifying `@FixMethodOrder(MethodSorters.NAME_ASCENDING)` on test classes
+* The `ConciergeTestSuite` will run all tests
 * Actually the tests are focused on installation and resolving bundles. In most cases there are no tests for checking whether the bundle is really working
-* Specific bundles will be added to ./target/<your-dir> where there are no online bundles available
+* Specific bundles will be added to `./target/<your-dir>` where there are no online bundles available
+* "Virtual" Bundles can be installed from test case to avoid duplicate code managemet
+  * Manifest file can be specified as properties
+  * Code can be executed via reflection in bundle classloader
+  * see EMF tests as a sample how to do that
 
 ## Overview of Failed Tests
 

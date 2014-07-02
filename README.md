@@ -57,12 +57,21 @@ The tests are based on this general concepts:
 
 * FrameworkLaunchArgsTest
   * test11SystemPackagesTrailingComma: will fail with ArrayIndexOutOfBoundsException when property ends with a ","
+    * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784
+    * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438786
   * test13SystemPackagesExtraTrailingComma: will fail with ArrayIndexOutOfBoundsException when property ends with a ","
+    * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784
+    * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438786
 * EclipseEquinoxTest
   * test04EquinoxDS: will fail as o.e.equinox.console has unresolvable dependencies
-  * test04EquinoxRegistry: will fail as o.e.equinox.console has unresolvable dependencies
+  * test04EquinoxRegistry: 
+    * will fail as o.e.equinox.console has unresolvable dependencies
+    * Will fail as plugin.propeties can not be loaded
+      * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781
+    * will fail as org.osgi.framework.namespace has v1.0 in Concierge, and 1.1 is expected
+      * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783
 * EclipseSmartHome
-  * test10EclipseSmartHome:
+  * test10EclipseSmartHome: TODO
 * EclipseKuraTest
   * test01Log4j: will fail as fragment can not be resolved.
     * See bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724
@@ -138,3 +147,4 @@ For more details see
 * Add wildcard capability to installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
 * Extend xargs launcher obout wildcard support for simpler startup scripts
+* Eclipse SmartHome test for o.e.sh.model.core with split packages

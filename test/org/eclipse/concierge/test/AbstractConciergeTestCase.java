@@ -97,6 +97,15 @@ public abstract class AbstractConciergeTestCase {
 		}
 		return bundles;
 	}
+	
+	protected void startBundles(Bundle[] bundles)
+			throws BundleException {
+		for (int i = 0; i < bundles.length; i++) {
+			if (!isFragmentBundle(bundles[i])) {
+				bundles[i].start();
+			}
+		}
+	}
 
 	protected Bundle[] installAndStartBundles(final String[] bundleNames)
 			throws BundleException {

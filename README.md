@@ -55,6 +55,8 @@ The tests are based on this general concepts:
 
 ## Overview of Failed Tests
 
+* ClassCastException in Concierge.storeProfile()
+  * see https://bugs.eclipse.org/bugs/show_bug.cgi?id=439184
 * FrameworkLaunchArgsTest
   * test11SystemPackagesTrailingComma: will fail with ArrayIndexOutOfBoundsException when property ends with a ","
     * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784
@@ -63,13 +65,16 @@ The tests are based on this general concepts:
     * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784
     * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438786
 * EclipseEquinoxTest
+  * test04EquinoxDS: package condpermadmin is missing in Concierge
+    * equinox.console will require condpermadmin: Why?
+      * https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182
+  * test04EquinoxDS: will fail as org.osgi.framework.namespace has v1.0 in Concierge, and 1.1 is expected
+    * see https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180, bug in Equinox console bundle
+    * see bug for Concierge, which will be rejected: https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783
   * test04EquinoxDS: will fail as o.e.equinox.console has unresolvable dependencies
-  * test04EquinoxRegistry: 
-    * will fail as o.e.equinox.console has unresolvable dependencies
+  * test05EquinoxRegistry: same as DS
     * Will fail as plugin.propeties can not be loaded
       * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781
-    * will fail as org.osgi.framework.namespace has v1.0 in Concierge, and 1.1 is expected
-      * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783
 * EclipseSmartHome
   * test10EclipseSmartHome: TODO
 * EclipseKuraTest
@@ -148,3 +153,42 @@ For more details see
   * Shall use the latest found version of a bundle
 * Extend xargs launcher obout wildcard support for simpler startup scripts
 * Eclipse SmartHome test for o.e.sh.model.core with split packages
+
+
+## Equinox protocol
+
+* Clone Equinox bundles repo
+  * git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git -b R4_4_maintenance
+* Xtext
+  * git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Maintenance
+
+  
+Root exception:
+java.lang.NullPointerException
+	at org.eclipse.core.internal.runtime.ResourceTranslator.getResourceBundle(ResourceTranslator.java:69)
+	at org.eclipse.core.internal.runtime.ResourceTranslator.getResourceBundle(ResourceTranslator.java:61)
+	at org.eclipse.core.internal.registry.osgi.EclipseBundleListener.addBundle(EclipseBundleListener.java:174)
+	at org.eclipse.core.internal.registry.osgi.EclipseBundleListener.processBundles(EclipseBundleListener.java:90)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.onStart(RegistryStrategyOSGI.java:224)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.<init>(ExtensionRegistry.java:725)
+	at org.eclipse.core.runtime.RegistryFactory.createRegistry(RegistryFactory.java:58)
+	at org.eclipse.core.internal.registry.osgi.Activator.startRegistry(Activator.java:137)
+	at org.eclipse.core.internal.registry.osgi.Activator.start(Activator.java:56)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:771)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:764)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:721)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:936)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:319)
+	at org.eclipse.osgi.container.Module.doStart(Module.java:571)
+	at org.eclipse.osgi.container.Module.start(Module.java:439)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1562)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+  

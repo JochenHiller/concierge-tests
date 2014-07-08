@@ -104,7 +104,7 @@ public class SplitStringTest {
 		assertEquals(res.length, 3);
 		// with trailing separator
 		res = Utils.splitString("p1,p2,p3,", ',');
-		assertEquals(res.length, 4);
+		assertEquals(res.length, 3);
 	}
 	
 	// simple test against String.split which does not support quotes and

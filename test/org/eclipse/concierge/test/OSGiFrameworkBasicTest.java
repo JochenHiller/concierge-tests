@@ -19,21 +19,15 @@ import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
 
 /**
- * Test which tries to install a bundle which has a
- * 
- * <pre>
- * Require-Bundle: system.bundle
- * </pre>
- * 
- * directive in MANIFEST.MF.
+ * Test which tries to install some bundles with basic assumptions.
  * 
  * @author Jochen Hiller
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class RequireBundleSystemBundleTest extends AbstractConciergeTestCase {
+public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 
 	@Test
-	public void test01InstallManifestWithRequireBundleSystemBundle()
+	public void test01InstallAndStartManifestWithRequireBundleSystemBundle()
 			throws Exception {
 		startFramework();
 		final Map<String, String> manifestEntries = new HashMap<String, String>();
@@ -48,7 +42,24 @@ public class RequireBundleSystemBundleTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test02InstallAndStartJavaXmlJarFile() throws Exception {
+	public void test02InstallAndStartManifestWithImportPackageOSGiNamespae()
+			throws Exception {
+		startFramework();
+		final Map<String, String> manifestEntries = new HashMap<String, String>();
+		manifestEntries.put("Bundle-Version", "1.0.0");
+		manifestEntries.put("Import-Package",
+				"org.osgi.framework.namespace;version=\"[1.0,2.0)\"");
+		final Bundle bundle = installBundle(
+				"concierge.test.test02InstallManifestWithNamespae",
+				manifestEntries);
+		bundle.start();
+		assertBundleActive(bundle);
+		stopFramework();
+	}
+
+	@Test
+	public void test10InstallAndStartJavaXmlJarFileWithRequireBundleSystemBundle()
+			throws Exception {
 		startFramework();
 		// See OSGi core spec, 10.2.3.7: getSymbolicName()
 		// Returns the symbolic name of this Framework. The symbolic name is

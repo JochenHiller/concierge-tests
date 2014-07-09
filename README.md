@@ -145,50 +145,20 @@ For more details see
 
 * http://projects.eclipse.org/projects/rt.concierge
 * git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
+* Clone Equinox bundles repo
+  * git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git -b R4_4_maintenance
+* Clonse Xtext repo
+  * git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Maintenance
 
 ## TODO
 
+* Use Xtext online repo (check Hudson builds)
+* Equinox console is not running of CommandProvider is missing
+* Equinox registry test case
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
 * Extend xargs launcher obout wildcard support for simpler startup scripts
 * Eclipse SmartHome test for o.e.sh.model.core with split packages
-
-
-## Equinox protocol
-
-* Clone Equinox bundles repo
-  * git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git -b R4_4_maintenance
-* Xtext
-  * git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Maintenance
-
-  
-Root exception:
-java.lang.NullPointerException
-	at org.eclipse.core.internal.runtime.ResourceTranslator.getResourceBundle(ResourceTranslator.java:69)
-	at org.eclipse.core.internal.runtime.ResourceTranslator.getResourceBundle(ResourceTranslator.java:61)
-	at org.eclipse.core.internal.registry.osgi.EclipseBundleListener.addBundle(EclipseBundleListener.java:174)
-	at org.eclipse.core.internal.registry.osgi.EclipseBundleListener.processBundles(EclipseBundleListener.java:90)
-	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.onStart(RegistryStrategyOSGI.java:224)
-	at org.eclipse.core.internal.registry.ExtensionRegistry.<init>(ExtensionRegistry.java:725)
-	at org.eclipse.core.runtime.RegistryFactory.createRegistry(RegistryFactory.java:58)
-	at org.eclipse.core.internal.registry.osgi.Activator.startRegistry(Activator.java:137)
-	at org.eclipse.core.internal.registry.osgi.Activator.start(Activator.java:56)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:771)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:764)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:721)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:936)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:319)
-	at org.eclipse.osgi.container.Module.doStart(Module.java:571)
-	at org.eclipse.osgi.container.Module.start(Module.java:439)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1562)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
-	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
-	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
-
-  
+* Provide a way how EMF (and other bundles) can be used from workspace for testing
+  (as requested by Ed Merks)

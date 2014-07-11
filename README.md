@@ -57,8 +57,9 @@ dependencies, in most cases dependencies to Equinox.
 ### Identified bugs in Concierge
 
 * [Google](http://www.google.com)
-* [Require-Bundle: system.bundle directive is not working:](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
-* ["Require-Bundle: system.bundle" directive is not working:](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
+* [Require-Bundle: system.bundle directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
+* ["Require-Bundle: system.bundle" directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
+* ["Require-Bundle: system.bundle" directive is not working](~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~)
  
 
 

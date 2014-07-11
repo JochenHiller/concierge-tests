@@ -10,7 +10,7 @@ All the code will be contributed to the Eclipse Concierge project when Gerrit is
 ```Shell
 git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
 ```
-2.. Check out Concierge tests 
+2. Check out Concierge tests 
 ```Shell
 git clone https://github.com/JochenHiller/concierge-tests.git
 ```
@@ -71,17 +71,16 @@ dependencies, in most cases dependencies to Equinox.
   
 From Harini Siresena:  
   
-* Framework system packages incorrectly specifies util.tracker bundle version
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884~~ (Closed)
+* ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
 
 ### Identified bugs in other bundles
 
 * Equinox
   * Equinox Console bundle
-    * [Equinox.console will require condpermadmin which is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182) (Open)
-    * [org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
+    * [#439182 Equinox.console will require condpermadmin which is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182) (Open)
+    * [#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
-    * [Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
+    * [#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
     * for further work: use concierge-patch-console bundle as intermediate solution, test case will work now
   * Equinox Registry
     * Will fail as plugin.properties can not be loaded
@@ -182,20 +181,20 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.
 	... 41 more
 ```
 * EMF
-  * ~~[EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
+  * ~~[#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
     * Note: the bundle will raise exceptions during installation. Until now there are just some teste which check 
       whether an EMF example can be used within right classloader.
     * TODO investigate why exceptions will be thrown from EMF
     * TODO provide a more easy way for testing as requested by Ed
 * Xtext
-  * ~~[Xtext will not run on other OSGi frameworks, e.g. Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434490)~~
+  * ~~[#434490 Xtext will not run on other OSGi frameworks, e.g. Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434490)~~
     * Note: Tests are only about install/resolve, no real functional tests
 * Eclipse Kura
   * Tests are until now OK, but not yet completed
   * Identified and close bugs in Concierge:
-    * ~~[BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724)~~ (Closed)
-    * ~~[Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=43672)~~ (Closed)
-    * ~~[Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
+    * ~~[#436724 BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724)~~ (Closed)
+    * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
+    * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
 * EclipseSmartHome
   * TODO
 

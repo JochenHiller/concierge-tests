@@ -56,36 +56,18 @@ dependencies, in most cases dependencies to Equinox.
 
 ### Identified bugs in Concierge
 
-* [Google](http://www.google.com)
-* [Require-Bundle: system.bundle directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
-* ["Require-Bundle: system.bundle" directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
-* ~~["Require-Bundle: system.bundle" directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)~~ (Closed)
- 
-
-
-* ["Require-Bundle: system.bundle" directive is not working](~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~) (Closed)
-* Fragment will not be resolved when having Require-Bundle header included
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=432100~~ (Closed)
-* Running Concierge multiple times will result in problems with URL stream handler
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=434670~~ (Closed)
-* BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724~~ (Closed)
-* org.osgi.framework.namespace has wrong version in System bundle
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected)
-* Utils.splitString will fail with arg "" (empty string)
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784~~ (Closed)
-* Concierge.exportSystemBundlePackages will fail with trailing comma
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438786~~ (Closed)
-* ClassCastException in Concierge.storeProfile()
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=439184~~ (Closed)
-* OSGi bootdelegation is not supported
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=433345~~ (Closed)
-* org.eclipse.osgi.services can NOT be resolved when systempackages property is specified	2014-04-25
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346~~ (Rejected)
-* Loading of localized files in bundle will fail due to wrong path
-  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781 (Open)
-* org.osgi.service.condpermadmin package is missing in Concierge
-  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182 (Open)
+* [#431172 "Require-Bundle: system.bundle" directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172) (Closed)
+* [#432100 Fragment will not be resolved when having Require-Bundle header included](https://bugs.eclipse.org/bugs/show_bug.cgi?id=432100) (Closed)
+* [#434670 Running Concierge multiple times will result in problems with URL stream handler](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434670) (Closed)
+* [#436724 BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724) (Closed)
+* [#438783 org.osgi.framework.namespace has wrong version in System bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783) (Rejected)
+* [#438784 Utils.splitString will fail with arg "" (empty string)](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438784) (Closed)
+* [#438786 Concierge.exportSystemBundlePackages will fail with trailing comma](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438786) (Closed)
+* [#439184 ClassCastException in Concierge.storeProfile()](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439184) (Closed)
+* [#433345 OSGi bootdelegation is not supported](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433345) (Closed)
+* [#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346) (Rejected)
+* [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
+* [#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182) (Open)
   
 From Harini Siresena:  
   

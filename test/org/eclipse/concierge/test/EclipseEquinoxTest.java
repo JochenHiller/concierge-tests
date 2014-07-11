@@ -101,75 +101,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 		}
 	}
 
-	/**
-	 * Equinox DS requires bundles some bundles.
-	 * <ul>
-	 * <li>Equinox-Supplement</li>
-	 * <li>Equinox-Console -> Felix Runtime</li>
-	 * <li>DS -> CondPermAdmin, PermissionAdmin (which is NOT in Concierge,
-	 * added per separate JAR file)</li>
-	 * </ul>
-	 * 
-	 * But it fails with missing requirements:
-	 * 
-	 * <pre>
-	 * BundleRequirement{Import-Package org.eclipse.osgi.framework.console}
-	 * BundleRequirement{Import-Package org.eclipse.osgi.report.resolution; version="[1.0,2.0)"}]
-	 * BundleRequirement{Import-Package org.osgi.framework.namespace;version="1.1.0"}]
-	 * - requires patch in Concierge, specifies 1.0
-	 * </pre>
-	 */
 	@Test
-	public void test04EquinoxDS() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-		try {
-
-			startFramework(launchArgs);
-
-			final String[] bundleNames = new String[] {
-					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
-					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
-					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
-					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
-					// required by Equinox Console, is not optional
-					"osgi.core-condpermadmin-5.0.0.jar",
-					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
-					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
-			assertBundlesResolved(bundles);
-		} finally {
-			stopFramework();
-		}
-	}
-
-	/**
-	 * Equinox Event requires bundles Equinox-Util and Equinox-Supplement.
-	 * 
-	 * TODO test does work alone, does fail in test suite
-	 */
-	@Test
-	public void test05EquinoxEvent() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-		try {
-			startFramework(launchArgs);
-			final String[] bundleNames = new String[] {
-					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
-					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
-					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
-					"org.eclipse.equinox.event_1.3.100.v20140115-1647.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
-			assertBundlesResolved(bundles);
-		} finally {
-			stopFramework();
-		}
-	}
-
-	@Test
-	public void test06EquinoxCommon() throws Exception {
+	public void test04EquinoxCommon() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.eclipse.concierge.debug", "true");
 		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
@@ -186,18 +119,44 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	}
 
 	/**
-	 * This test will fail due to console issue.
+	 * Equinox Console requires bundles some bundles.
 	 * 
 	 * <pre>
 	 * org.osgi.framework.BundleException: Resolution failed [
 	 * BundleRequirement{Import-Package org.eclipse.osgi.framework.console}, 
 	 * BundleRequirement{Import-Package org.eclipse.osgi.report.resolution; version="[1.0,2.0)"}, 
-	 * BundleRequirement{Import-Package org.eclipse.osgi.service.environment}, 
-	 * BundleRequirement{Import-Package org.eclipse.osgi.util}, 
 	 * BundleRequirement{Import-Package org.osgi.framework.namespace;version="1.1.0"}]
-	 * - fix in Concierge
 	 * </pre>
-	 * 
+	 */
+	@Test
+	public void test05EquinoxConsole() throws Exception {
+		final Map<String, String> launchArgs = new HashMap<String, String>();
+		launchArgs.put("org.eclipse.concierge.debug", "true");
+		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+		try {
+
+			startFramework(launchArgs);
+
+			final String[] bundleNames = new String[] {
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					// TODO HACK for further testing
+					"concierge-patch-console_1.0.0.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
+					// required by Equinox Console, is not optional
+					"osgi.core-condpermadmin-5.0.0.jar",
+					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar" };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * This test will fail due to missing resolvement of Equinox console.
+	 *
 	 * When console plugin will NOT be included, the registry bundle complains:
 	 * 
 	 * <pre>
@@ -209,7 +168,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
-	public void test07EquinoxRegistry() throws Exception {
+	public void test06EquinoxRegistry() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.osgi.framework.system.packages.extra",
 				"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
@@ -232,6 +191,9 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					// TODO HACK for further testing
+					"concierge-patch-console_1.0.0.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
 					// required by Equinox Console, is not optional
@@ -247,4 +209,59 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			stopFramework();
 		}
 	}
+
+	/**
+	 * Equinox Event requires bundles Equinox-Util and Equinox-Supplement.
+	 * 
+	 * TODO test does work alone, does fail in test suite
+	 */
+	@Test
+	public void test10EquinoxEvent() throws Exception {
+		final Map<String, String> launchArgs = new HashMap<String, String>();
+		launchArgs.put("org.eclipse.concierge.debug", "true");
+		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+		try {
+			startFramework(launchArgs);
+			final String[] bundleNames = new String[] {
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.eclipse.equinox.event_1.3.100.v20140115-1647.jar" };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * Equinox DS requires Equinox console, will fail due to missing
+	 * resolvements.
+	 */
+	@Test
+	public void test11EquinoxDS() throws Exception {
+		final Map<String, String> launchArgs = new HashMap<String, String>();
+		launchArgs.put("org.eclipse.concierge.debug", "true");
+		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+		try {
+
+			startFramework(launchArgs);
+
+			final String[] bundleNames = new String[] {
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					// TODO HACK for further testing
+					// "concierge-patch-console_1.0.0.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					// "org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
+					// "osgi.core-condpermadmin-5.0.0.jar",
+					//"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar" };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
 }

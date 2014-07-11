@@ -81,10 +81,9 @@ From Harini Siresena:
     * [#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
     * [#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
-    * for further work: use concierge-patch-console bundle as intermediate solution, test case will work now
+    * TODO further work: use concierge-patch-console bundle as intermediate solution, test case will work now
   * Equinox Registry
-    * Will fail as plugin.properties can not be loaded
-      * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781 (Open)
+    * [Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
     * TODO workaround for console first
       * TODO just working on that, will fail with provider already set
 ```Java
@@ -126,8 +125,9 @@ Caused by: org.eclipse.core.runtime.CoreException: Extension registry provider i
 	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:475)
 	... 29 more
 ```
-   Equinox DS
-    * for further work: use concierge-patch-console bundle as intermediate solution
+
+  * Equinox DS
+    * TODO for further work: use concierge-patch-console bundle as intermediate solution
       * TODO just working on that, will fail, see below
 ```Java
 org.osgi.framework.BundleException: Error starting bundle [org.eclipse.equinox.ds-1.4.200.v20131126-2331]
@@ -180,6 +180,7 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.
 	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.loadClass(BundleImpl.java:2332)
 	... 41 more
 ```
+
 * EMF
   * ~~[#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
     * Note: the bundle will raise exceptions during installation. Until now there are just some teste which check 

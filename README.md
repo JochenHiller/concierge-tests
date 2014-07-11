@@ -6,16 +6,16 @@ All the code will be contributed to the Eclipse Concierge project when Gerrit is
 
 ## How to use this test cases
 
-1. First check out Concierge
+1. First check out Concierge 
 ```Shell
 git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
 ```
-2. Check out Concierge tests
+2.. Check out Concierge tests 
 ```Shell
 git clone https://github.com/JochenHiller/concierge-tests.git
 ```
-3. Copy all files from concierge-tests to Concierge project (as tests will be running within Concierge project).
-It will assume that both projects are checked out in same directory level.
+3. Copy all files from concierge-tests to Concierge project (as tests will be running within Concierge project). 
+It will assume that both projects are checked out in same directory level. 
 ```Shell
 cd concierge-tests
 ./copy-to-concierge.sh
@@ -56,8 +56,7 @@ dependencies, in most cases dependencies to Equinox.
 
 ### Identified bugs in Concierge
 
-* "Require-Bundle: system.bundle" directive is not working
-  * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~ (Closed)
+* ["Require-Bundle: system.bundle" directive is not working:](~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~) (Closed)
 * Fragment will not be resolved when having Require-Bundle header included
   * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=432100~~ (Closed)
 * Running Concierge multiple times will result in problems with URL stream handler

@@ -58,10 +58,11 @@ dependencies, in most cases dependencies to Equinox.
 
 * [Google](http://www.google.com)
 * [Require-Bundle: system.bundle directive is not working:](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
+* ["Require-Bundle: system.bundle" directive is not working:](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)
  
 
 
-* ["Require-Bundle: system.bundle" directive is not working:](~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~) (Closed)
+* ["Require-Bundle: system.bundle" directive is not working](~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172~~) (Closed)
 * Fragment will not be resolved when having Require-Bundle header included
   * ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=432100~~ (Closed)
 * Running Concierge multiple times will result in problems with URL stream handler

@@ -127,8 +127,6 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 					// o.e.s.io.console plus deps
 					"com.google.guava_10.0.1.v201203051515.jar",
-					// TODO HACK for further testing
-					"concierge-patch-console_1.0.0.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
 					B_ESH("org.eclipse.smarthome.io.console"),

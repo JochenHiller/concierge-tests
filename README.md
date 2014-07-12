@@ -68,6 +68,8 @@ dependencies, in most cases dependencies to Equinox.
 * ~~[#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346)~~ (Rejected)
 * [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781)~~ (Open)
 * [#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Open)
+  * Workaround: see patch osgi-permission: make additional bundle with missing packages.
+    See file:./patches/osgi-permission/
 * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
 * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
   
@@ -82,71 +84,21 @@ From Harini Siresena:
     * [#439182 Equinox.console will require condpermadmin which is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182) (Open)
     * [#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
+      * Workaround: see patch equinox-console: change MANIFEST according.
+        See file:./patches/equinox-console/
     * [#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
-    * TODO further work: use concierge-patch-console bundle as intermediate solution, test case will work now
+      * Workaround: see patch equinox-supplement: added missing classes.
+        See file:./patches/equinox-supplement/
   * Equinox Registry
-    * [Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
-    * Bug in Concierge:
+    * Bugs in Concierge:
+      * [#438781 Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
       * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
-    * TODO workaround for console first
   * Equinox DS
-    * TODO for further work: use concierge-patch-console bundle as intermediate solution
-      * TODO just working on that, will fail, see below
-```Java
-org.osgi.framework.BundleException: Error starting bundle [org.eclipse.equinox.ds-1.4.200.v20131126-2331]
-	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:500)
-	at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:452)
-	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:409)
-	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:349)
-	at org.eclipse.concierge.test.AbstractConciergeTestCase.installAndStartBundle(AbstractConciergeTestCase.java:131)
-	at org.eclipse.concierge.test.AbstractConciergeTestCase.installAndStartBundles(AbstractConciergeTestCase.java:114)
-	at org.eclipse.concierge.test.EclipseEquinoxTest.test11EquinoxDS(EclipseEquinoxTest.java:260)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-Caused by: java.lang.NoClassDefFoundError: org/eclipse/osgi/framework/console/CommandProvider
-	at java.lang.ClassLoader.defineClass1(Native Method)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findOwnClass(BundleImpl.java:2809)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource1(BundleImpl.java:2583)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource0(BundleImpl.java:2533)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findClass(BundleImpl.java:2350)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.loadClass(BundleImpl.java:2332)
-	at java.lang.Class.getDeclaredConstructors0(Native Method)
-	at java.lang.Class.privateGetDeclaredConstructors(Class.java:2493)
-	at java.lang.Class.getConstructor0(Class.java:2803)
-	at java.lang.Class.newInstance(Class.java:345)
-	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:474)
-	... 29 more
-Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.CommandProvider
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findClass(BundleImpl.java:2353)
-	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.loadClass(BundleImpl.java:2332)
-	... 41 more
-```
+    * no problems in DS, only in dependent bundles
 
 * EMF
   * ~~[#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
-    * Note: the bundle will raise exceptions during installation. Until now there are just some teste which check 
+    * Note: the bundle will raise exceptions during installation. Until now there are just some tests which check 
       whether an EMF example can be used within right classloader.
     * TODO investigate why exceptions will be thrown from EMF
     * TODO provide a more easy way for testing as requested by Ed
@@ -162,7 +114,7 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.
 * EclipseSmartHome
   * Bug in Concierge:
     * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
-  * TODO pluginx.xml can not be parsed, maybe related to exploced jars
+  * TODO plugin.xml can not be parsed, maybe related to exploded jars
 ```
 [Sat Jul 12 10:21:43 CEST 2014] [INFO] 	RETURNED []
 Error:  Could not parse XML contribution for "org.eclipse.emf.ecore//plugin.xml". Any contributed extensions and extension points will be ignored.

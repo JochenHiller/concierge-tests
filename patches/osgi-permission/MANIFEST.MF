@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: osgi.core-permission
+Bundle-SymbolicName: osgi.core-permission
+Bundle-Version: 5.0.0.201203141902
+DynamicImport-Package: *
+Export-Package: 
+ org.osgi.service.condpermadmin;uses:="org.osgi.framework,org.osgi.service.permissionadmin";version="1.1.1",
+ org.osgi.service.permissionadmin;version="1.2"

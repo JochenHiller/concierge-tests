@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -78,5 +79,52 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 		bundle.start();
 		assertBundleActive(bundle);
 		stopFramework();
+	}
+
+	/**
+	 * This test will checks whether Activator.start()/stop() will be called
+	 * only once. Does work.
+	 */
+	@Test
+	public void test20TestNoOfCallsOfActivator() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.eclipse.concierge.debug", "true");
+			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+			startFramework(launchArgs);
+
+			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.201407121520.jar", };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+
+			RunInClassLoader runner = new RunInClassLoader(bundles[0]);
+			Object o;
+
+			// check if 1x started, 0x stopped
+			o = runner.getClassField(
+					"org.eclipse.concierge.test.support.Activator",
+					"noOfCallsOfStart");
+			Assert.assertEquals(1, ((Integer) o).intValue());
+			o = runner.getClassField(
+					"org.eclipse.concierge.test.support.Activator",
+					"noOfCallsOfStop");
+			Assert.assertEquals(0, ((Integer) o).intValue());
+
+			// now stop the bundle
+			bundles[0].stop();
+
+			// check if 1x started, 1x stopped
+			o = runner.getClassField(
+					"org.eclipse.concierge.test.support.Activator",
+					"noOfCallsOfStart");
+			Assert.assertEquals(1, ((Integer) o).intValue());
+			o = runner.getClassField(
+					"org.eclipse.concierge.test.support.Activator",
+					"noOfCallsOfStop");
+			Assert.assertEquals(1, ((Integer) o).intValue());
+
+		} finally {
+			stopFramework();
+		}
 	}
 }

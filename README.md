@@ -163,13 +163,15 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.
   * Bug in Concierge:
     * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
   * TODO pluginx.xml can not be parsed, maybe related to exploced jars
-  [Sat Jul 12 10:21:43 CEST 2014] [INFO] 	RETURNED []
+```
+[Sat Jul 12 10:21:43 CEST 2014] [INFO] 	RETURNED []
 Error:  Could not parse XML contribution for "org.eclipse.emf.ecore//plugin.xml". Any contributed extensions and extension points will be ignored.
 Error:  Could not parse XML contribution for "org.eclipse.emf.ecore.xmi//plugin.xml". Any contributed extensions and extension points will be ignored.
 Error:  Could not parse XML contribution for "org.eclipse.xtext//plugin.xml". Any contributed extensions and extension points will be ignored.
 Error:  Could not parse XML contribution for "org.eclipse.xtext.common.types//plugin.xml". Any contributed extensions and extension points will be ignored.
 Error:  Could not parse XML contribution for "org.eclipse.xtext.xbase//plugin.xml". Any contributed extensions and extension points will be ignored.
 Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
+```
   * TODO working on next tests
   
 

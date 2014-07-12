@@ -26,7 +26,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407052122" + ".jar";
+		return bundleName + "_0.7.0.201407112057" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {
@@ -114,6 +114,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.apache.felix.configadmin-1.8.0.jar",
 					"org.apache.felix.eventadmin-1.3.2.jar",
 					"org.apache.felix.scr-1.8.2.jar",
+					"com.google.guava_15.0.0.v201403281430.jar",
 
 					B_ESH("org.eclipse.smarthome.core"),
 
@@ -126,6 +127,8 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 					// o.e.s.io.console plus deps
 					"com.google.guava_10.0.1.v201203051515.jar",
+					// TODO HACK for further testing
+					"concierge-patch-console_1.0.0.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
 					B_ESH("org.eclipse.smarthome.io.console"),

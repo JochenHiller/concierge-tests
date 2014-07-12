@@ -68,6 +68,8 @@ dependencies, in most cases dependencies to Equinox.
 * ~~[#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346)~~ (Rejected)
 * [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781)~~ (Open)
 * [#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Open)
+* [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
+* [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
   
 From Harini Siresena:  
   
@@ -197,7 +199,63 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
 * EclipseSmartHome
-  * TODO
+  * TODO does fail due to problem with Equinox registry. Anyhow related to Split packages?
+```Java
+org.osgi.framework.BundleException: Error starting bundle [org.eclipse.equinox.registry-3.5.400.v20140428-1507]
+	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:500)
+	at org.eclipse.concierge.BundleImpl.activate(BundleImpl.java:452)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:409)
+	at org.eclipse.concierge.BundleImpl.start(BundleImpl.java:349)
+	at org.eclipse.concierge.test.AbstractConciergeTestCase.installAndStartBundle(AbstractConciergeTestCase.java:130)
+	at org.eclipse.concierge.test.AbstractConciergeTestCase.installAndStartBundles(AbstractConciergeTestCase.java:113)
+	at org.eclipse.concierge.test.EclipseSmartHomeTest.test10EclipseSmartHome(EclipseSmartHomeTest.java:199)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: java.lang.ClassCastException: org.eclipse.concierge.Concierge cannot be cast to org.eclipse.concierge.BundleImpl$Revision
+	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource1(BundleImpl.java:2570)
+	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource0(BundleImpl.java:2507)
+	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findClass(BundleImpl.java:2350)
+	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.loadClass(BundleImpl.java:2332)
+	at org.eclipse.core.runtime.RegistryFactory.createRegistry(RegistryFactory.java:58)
+	at org.eclipse.core.internal.registry.osgi.Activator.startRegistry(Activator.java:137)
+	at org.eclipse.core.internal.registry.osgi.Activator.start(Activator.java:56)
+	at org.eclipse.concierge.BundleImpl.activate0(BundleImpl.java:475)
+	... 29 more
+
+```
+
+    * TODO java.lang.ClassCastException: org.eclipse.concierge.Concierge cannot be cast to org.eclipse.concierge.BundleImpl$Revision
+    Problem when getProvider() returns system bundle Concierge, which is NOT a Revision
+```Java
+						final Object result = ((Revision) wire.getProvider()).classloader
+								.requireBundleLookup(pkg, name, isClass,
+										multiple, resources, visited);
+```
+     
+     
+     
+
 
 ### Eclipse Kura running on Concierge
 
@@ -235,7 +293,18 @@ concierge.test.localDirectories=\
 
 ### Eclipse SmartHome running on Concierge
 
-TODO
+Eclipse SmartHome can be tested using latest snapshot release from `http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/plugins`.
+The build number has to be changed in EclipseSmartHomeTest like that:
+
+```Java
+	private static final String B_ESH(String bundleName) {
+		return bundleName + "_0.7.0.201407112057" + ".jar";
+	}
+```
+
+Actually it fails due to problems with Equinox registry bundle.
+
+TODO workaround that
 
 ## References for Concierge
 
@@ -264,8 +333,6 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 * programmatic patch of bundles
   * patch Manifest
 * Use Xtext online repo (check Hudson builds)
-* Equinox console is not running of CommandProvider is missing
-* Equinox registry test case
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle

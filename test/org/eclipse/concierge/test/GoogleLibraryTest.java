@@ -32,10 +32,10 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 			launchArgs.put("org.eclipse.concierge.debug", "true");
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
-			final Bundle bundle = installAndStartBundle("com.google.guava_10.0.1.v201203051515.jar");
+			final Bundle bundle = installAndStartBundle("com.google.guava_15.0.0.v201403281430.jar");
 			assertBundleResolved(bundle);
 			Assert.assertEquals("com.google.guava", bundle.getSymbolicName());
-			Assert.assertEquals("10.0.1.v201203051515", bundle.getVersion()
+			Assert.assertEquals("15.0.0.v201403281430", bundle.getVersion()
 					.toString());
 		} finally {
 			stopFramework();

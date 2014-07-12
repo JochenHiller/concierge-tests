@@ -100,7 +100,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test11JavaxJars() throws Exception {
+	public void test11JavaxXMLJars() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.osgi.framework.system.packages.extra",
 				"javax.imageio,javax.imageio.metadata");
@@ -113,6 +113,43 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		final Bundle[] bundles = installAndStartBundles(bundleNames);
 		assertBundlesResolved(bundles);
 		stopFramework();
+	}
+
+	/**
+	 * This test can reproduce an error in Concierge:
+	 * 
+	 * <pre>
+	 * java.lang.ClassCastException: org.eclipse.concierge.Concierge cannot be cast to org.eclipse.concierge.BundleImpl$Revision
+	 * 	at org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader.findResource1(BundleImpl.java:2570)
+	 * </pre>
+	 * 
+	 * To debug, set a breakpoint to ClassCastException.
+	 */
+	@Test
+	public void test12JavaxXMLWireToSystemBundleFails() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			startFramework(launchArgs);
+			final String[] bundleNames = new String[] { "javax.xml_1.3.4.v201005080400.jar", };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries.put("Import-Package", "org.xml.sax");
+			final Bundle bundle = installBundle(
+					"concierge.test.test12JavaxXMLWireToSystemBundleFails",
+					manifestEntries);
+
+			// create class from SAX parser
+			RunInClassLoader runner = new RunInClassLoader(bundle);
+			Object ex = runner.createInstance("org.xml.sax.SAXException",
+					new Object[] {});
+			Assert.assertNotNull(ex);
+		} finally {
+			stopFramework();
+		}
 	}
 
 	@Test

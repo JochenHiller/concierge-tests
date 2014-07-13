@@ -63,6 +63,8 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	public void test10EclipseSmartHome() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.bootdelegation",
+					"javax.xml.parsers,org.xml.sax");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.inject,javax.imageio,javax.imageio.metadata,"

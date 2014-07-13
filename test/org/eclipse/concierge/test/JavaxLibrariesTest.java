@@ -156,8 +156,11 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	public void test13JavaxXmlSAXFacoryServiceTracker() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages.extra",
-					"org.xml.sax,javax.xml.parsers");
+			launchArgs.put("org.osgi.framework.bootdelegation",
+					"javax.xml.parsers,org.xml.sax");
+			// launchArgs
+			// .put("org.osgi.framework.system.packages.extra",
+			// "org.xml.sax,javax.xml.parsers,javax.imageio,javax.imageio.metadata");
 			launchArgs.put("org.eclipse.concierge.debug", "true");
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
@@ -165,9 +168,8 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 			// install pseudo bundle
 			final Map<String, String> manifestEntries = new HashMap<String, String>();
 			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries
-					.put("Import-Package",
-							"org.osgi.framework,org.osgi.util.tracker,javax.xml.parsers,org.xml.sax");
+			manifestEntries.put("Import-Package",
+					"org.osgi.framework,org.osgi.util.tracker");
 			final Bundle bundle = installBundle(
 					"concierge.test.test13JavaxXmlSAXFacoryServiceTracker",
 					manifestEntries);
@@ -201,6 +203,44 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 			Object res2 = runner.callMethod(xmlTracker, "getService",
 					new Object[] {});
 			Assert.assertNotNull(res2);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test14CheckSAXParserWithBootdelegation() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.bootdelegation",
+					"javax.xml.parsers,org.xml.sax");
+			launchArgs.put("org.eclipse.concierge.debug", "true");
+			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+			startFramework(launchArgs);
+
+			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.jar", };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+
+			RunInClassLoader runner = new RunInClassLoader(bundles[0]);
+			// check SAXParserFacory and SAXParser
+			Object _void = runner.callClassMethod(
+					"org.eclipse.concierge.test.support.Activator",
+					"checkSAXParserFactory", new Object[] {});
+			Assert.assertNull(_void);
+			Object factory = runner.getClassField(
+					"org.eclipse.concierge.test.support.Activator",
+					"saxParserFactory");
+			Assert.assertEquals(
+					"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+					factory.getClass().getName());
+			Object parser = runner
+					.getClassField(
+							"org.eclipse.concierge.test.support.Activator",
+							"saxParser");
+			Assert.assertEquals(
+					"com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl",
+					parser.getClass().getName());
 		} finally {
 			stopFramework();
 		}

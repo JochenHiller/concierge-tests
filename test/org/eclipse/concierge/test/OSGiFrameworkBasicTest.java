@@ -93,7 +93,7 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
 
-			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.201407121520.jar", };
+			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.jar", };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
 

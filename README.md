@@ -69,7 +69,7 @@ dependencies, in most cases dependencies to Equinox.
 * [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
 * [#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182) (Open)
   * Workaround: see patch osgi-permission: make additional bundle with missing packages.
-    See https://github.com/JochenHiller/concierge-tests/patches/osgi-permission/
+    See https://github.com/JochenHiller/concierge-tests/tree/master/patches/osgi-permission/
 * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
 * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
   
@@ -85,10 +85,10 @@ From Harini Siresena:
     * [#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
       * Workaround: see patch equinox-console: change MANIFEST according.
-        See https://github.com/JochenHiller/concierge-tests/patches/equinox-console/
+        See https://github.com/JochenHiller/concierge-tests/tree/master/patches/equinox-console/
     * [#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
       * Workaround: see patch equinox-supplement: added missing classes.
-        See https://github.com/JochenHiller/concierge-tests/patches/equinox-supplement/
+        See https://github.com/JochenHiller/concierge-tests/tree/master/patches/equinox-supplement/
   * Equinox Registry
     * Bugs in Concierge:
       * [#438781 Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)

@@ -153,6 +153,60 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
+	public void test13JavaxXmlSAXFacoryServiceTracker() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"org.xml.sax,javax.xml.parsers");
+			launchArgs.put("org.eclipse.concierge.debug", "true");
+			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+			startFramework(launchArgs);
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries
+					.put("Import-Package",
+							"org.osgi.framework,org.osgi.util.tracker,javax.xml.parsers,org.xml.sax");
+			final Bundle bundle = installBundle(
+					"concierge.test.test13JavaxXmlSAXFacoryServiceTracker",
+					manifestEntries);
+			bundle.start();
+			assertBundleActive(bundle);
+
+			RunInClassLoader runner = new RunInClassLoader(bundle);
+			// will do:
+			// xmlTracker = new ServiceTracker(Activator.getContext(),
+			// SAXParserFactory.class.getName(), null);
+			// xmlTracker.open();
+			// return (SAXParserFactory) xmlTracker.getService();
+
+			// xmlTracker = new ServiceTracker(Activator.getContext(),
+			Object xmlTracker = runner.createInstance(
+					"org.osgi.util.tracker.ServiceTracker", new String[] {
+							"org.osgi.framework.BundleContext",
+							"java.lang.String",
+							"org.osgi.util.tracker.ServiceTrackerCustomizer" },
+					new Object[] { bundle.getBundleContext(),
+							"javax.xml.parsers.SAXParserFactory", null });
+			Assert.assertEquals("org.osgi.util.tracker.ServiceTracker",
+					xmlTracker.getClass().getName());
+
+			// xmlTracker.open();
+			Object res1 = runner
+					.callMethod(xmlTracker, "open", new Object[] {});
+			Assert.assertNull(res1);
+
+			// return (SAXParserFactory) xmlTracker.getService();
+			Object res2 = runner.callMethod(xmlTracker, "getService",
+					new Object[] {});
+			Assert.assertNotNull(res2);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
 	public void test20Jackson() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();

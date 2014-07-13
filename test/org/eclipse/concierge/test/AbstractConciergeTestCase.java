@@ -302,7 +302,29 @@ public abstract class AbstractConciergeTestCase {
 			// get parameter types from args
 			final Class<?>[] parameterTypes = new Class[args.length];
 			for (int i = 0; i < args.length; i++) {
-				parameterTypes[i] = args[i].getClass();
+				if (args[i] == null) {
+					parameterTypes[i] = Object.class;
+				} else {
+					parameterTypes[i] = args[i].getClass();
+				}
+			}
+			final Constructor<?> constructor = clazz
+					.getDeclaredConstructor(parameterTypes);
+			// TODO Maybe set accessible if private?
+			final Object result = constructor.newInstance(args);
+			return result;
+		}
+
+		public Object createInstance(String className,
+				final String[] parameterTypeNames, final Object[] args)
+				throws Exception {
+			final Class<?> clazz = this.bundle.loadClass(className);
+			dumpDeclaredConstructors(clazz);
+			// get parameter types from args
+			final Class<?>[] parameterTypes = new Class[args.length];
+			for (int i = 0; i < parameterTypeNames.length; i++) {
+				parameterTypes[i] = bundle.getClass().getClassLoader()
+						.loadClass(parameterTypeNames[i]);
 			}
 			final Constructor<?> constructor = clazz
 					.getDeclaredConstructor(parameterTypes);

@@ -72,7 +72,8 @@ dependencies, in most cases dependencies to Equinox.
     See https://github.com/JochenHiller/concierge-tests/tree/master/patches/osgi-permission/
 * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
 * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
-  
+* [#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492) (Open)
+
 From Harini Siresena:  
   
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)

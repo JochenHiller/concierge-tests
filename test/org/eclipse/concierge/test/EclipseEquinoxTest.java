@@ -175,18 +175,6 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 		try {
 			startFramework(launchArgs);
 
-			// WORKAROUND: install "dummy" export packages to proceed with
-			// testing
-			// final Map<String, String> manifestEntries = new HashMap<String,
-			// String>();
-			// manifestEntries.put("Bundle-Version", "1.0.0");
-			// manifestEntries
-			// .put("Export-Package",
-			// "org.eclipse.osgi.framework.console,org.eclipse.osgi.report.resolution;version=\"1.0\",org.eclipse.osgi.service.environment,org.eclipse.osgi.util");
-			// final Bundle bundle = installBundle(
-			// "concierge.test.test07EquinoxRegistry", manifestEntries);
-			// bundle.start();
-
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",

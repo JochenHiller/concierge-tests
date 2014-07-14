@@ -79,7 +79,7 @@ From Harini Siresena:
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
 
 
-The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src .
+The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src/org/eclipse/concierge
 The code patches are marked with conditional compilation based on Concierge.PATCH_JOCHEN.
 
 ### Identified bugs in other bundles

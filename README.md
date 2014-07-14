@@ -194,13 +194,12 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 
 ## TODO
 
-* programmatic patch of bundles
-  * patch Manifest
-* Use Xtext online repo (check Hudson builds)
+* Eclipse SmartHome test for o.e.sh.model.core with split packages
+* Extend xargs launcher obout wildcard support for simpler startup scripts
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
-* Extend xargs launcher obout wildcard support for simpler startup scripts
-* Eclipse SmartHome test for o.e.sh.model.core with split packages
+* Use Xtext online repo (check Hudson builds) ==> ask Xtext where to find repo
 * Provide a way how EMF (and other bundles) can be used from workspace for testing
   (as requested by Ed Merks)
+* Create bug to EMF to adapt other bundles (like EMF-examples) to do NOT require-bundle to Equinox too

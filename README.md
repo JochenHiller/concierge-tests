@@ -113,20 +113,11 @@ From Harini Siresena:
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
 * EclipseSmartHome
-  * Bug in Concierge:
+  * Bugs in Concierge:
     * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
-  * TODO plugin.xml can not be parsed, maybe related to exploded jars
-```
-[Sat Jul 12 10:21:43 CEST 2014] [INFO] 	RETURNED []
-Error:  Could not parse XML contribution for "org.eclipse.emf.ecore//plugin.xml". Any contributed extensions and extension points will be ignored.
-Error:  Could not parse XML contribution for "org.eclipse.emf.ecore.xmi//plugin.xml". Any contributed extensions and extension points will be ignored.
-Error:  Could not parse XML contribution for "org.eclipse.xtext//plugin.xml". Any contributed extensions and extension points will be ignored.
-Error:  Could not parse XML contribution for "org.eclipse.xtext.common.types//plugin.xml". Any contributed extensions and extension points will be ignored.
-Error:  Could not parse XML contribution for "org.eclipse.xtext.xbase//plugin.xml". Any contributed extensions and extension points will be ignored.
-Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
-```
+    * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
+    * [#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492) (Open) 
   * TODO working on next tests
-  
 
 ### Eclipse Kura running on Concierge
 

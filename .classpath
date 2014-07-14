@@ -4,16 +4,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.concierge"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.console_1.1.0.v20140131-1639.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.smarthome.model.core_0.7.0.201407011422.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.frameworkadmin.equinox_1.0.500.v20131211-1531.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.osgi_3.10.0.v20140606-1445.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.osgi.services_3.4.0.v20140312-2051.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.osgi.util_3.3.0.v20131023-1243.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.util_1.0.500.v20130404-1337.jar"/>
-	<classpathentry kind="lib" path="libs/org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar"/>
-	<classpathentry kind="lib" path="libs/org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

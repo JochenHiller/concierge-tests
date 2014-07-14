@@ -89,6 +89,9 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 	public void test20TestNoOfCallsOfActivator() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
+			// needed as bundle is using these packages from runtime
+			launchArgs.put("org.osgi.framework.bootdelegation",
+					"javax.xml.parsers,org.xml.sax");
 			launchArgs.put("org.eclipse.concierge.debug", "true");
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);

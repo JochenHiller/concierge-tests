@@ -259,7 +259,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test20EclipseXText() throws Exception {
+	public void test20EclipseXtext() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs

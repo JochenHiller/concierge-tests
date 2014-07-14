@@ -173,9 +173,7 @@ The build number has to be changed in EclipseSmartHomeTest like that:
 	}
 ```
 
-Actually it fails due to problems with Equinox registry bundle.
-
-TODO workaround that
+TODO add missing bundles
 
 ## References for Concierge
 

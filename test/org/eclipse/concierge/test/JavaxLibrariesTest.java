@@ -100,7 +100,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test11JavaxXMLJars() throws Exception {
+	public void test11JavaxXmlJars() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.osgi.framework.system.packages.extra",
 				"javax.imageio,javax.imageio.metadata");
@@ -126,7 +126,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	 * To debug, set a breakpoint to ClassCastException.
 	 */
 	@Test
-	public void test12JavaxXMLWireToSystemBundleFails() throws Exception {
+	public void test12JavaxXmlWireToSystemBundleFails() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			startFramework(launchArgs);
@@ -209,7 +209,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test14CheckSAXParserWithBootdelegation() throws Exception {
+	public void test14CheckSaxParserWithBootdelegation() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("org.osgi.framework.bootdelegation",

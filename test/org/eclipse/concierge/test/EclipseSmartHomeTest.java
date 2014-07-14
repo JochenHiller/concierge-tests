@@ -37,6 +37,11 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 		return bundleName + "_2.6.1.v201406120726" + ".jar";
 	}
 
+	@Override
+	protected boolean stayInShell() {
+		return false;
+	}
+
 	@Test
 	public void test01EclipseSmartHomeIOServiceDiscovery() throws Exception {
 		try {
@@ -64,7 +69,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("org.osgi.framework.bootdelegation",
-					"javax.xml.parsers,org.xml.sax");
+					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.inject,javax.imageio,javax.imageio.metadata,"
@@ -133,10 +138,6 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
 					B_ESH("org.eclipse.smarthome.io.console"),
 
-					// o.e.s.core.scheduler plus deps incl. EMF
-					// FAKE for EMF
-					// "org.eclipse.core.runtime_3.9.0.201405081737.jar",
-
 					B_EMF("org.eclipse.emf.common"),
 					B_EMF("org.eclipse.emf.ecore"),
 					B_EMF("org.eclipse.emf.ecore.xmi"),
@@ -182,21 +183,16 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					// o.e.s.model.core and deps
 					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar",
 					B_ESH("org.eclipse.smarthome.model.core"),
-			// TODO Caused by: java.lang.NoClassDefFoundError: Could not
-			// initialize class org.eclipse.emf.ecore.EPackage$Registry
-			// B_ESH("org.eclipse.smarthome.model.item"),
-			// B_ESH("org.eclipse.smarthome.model.persistence"),
-			// B_ESH("org.eclipse.smarthome.model.rule"),
-			// B_ESH("org.eclipse.smarthome.model.script"),
-			// TODO Caused by: java.lang.NoClassDefFoundError: Could not
-			// initialize class org.eclipse.emf.ecore.EPackage$Registry
-			// B_ESH("org.eclipse.smarthome.model.sitemap"),
+					B_ESH("org.eclipse.smarthome.model.item"),
+					B_ESH("org.eclipse.smarthome.model.persistence"),
+					B_ESH("org.eclipse.smarthome.model.script"),
+					B_ESH("org.eclipse.smarthome.model.rule"),
+					B_ESH("org.eclipse.smarthome.model.sitemap"),
 
-			// o.e.s.ui and deps
-			// TODO needs model.items
-			// B_ESH("org.eclipse.smarthome.ui"),
-			// B_ESH("org.eclipse.smarthome.ui.webapp"),
-			};
+					// o.e.s.ui and deps
+					B_ESH("org.eclipse.smarthome.core.transform"),
+					B_ESH("org.eclipse.smarthome.ui"),
+					B_ESH("org.eclipse.smarthome.ui.webapp"), };
 
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);

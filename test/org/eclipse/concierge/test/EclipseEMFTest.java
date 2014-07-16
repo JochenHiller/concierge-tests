@@ -279,6 +279,8 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 					asEmfBuild("org.eclipse.emf.ecore"),
 					asEmfBuild("org.eclipse.emf.ecore.xmi"),
 					asXTextBuild("org.eclipse.xtext.util"),
+					"javax.inject_1.0.0.v20091030.jar",
+					"com.google.inject_3.0.0.v201312141243.jar",
 					asXTextBuild("org.eclipse.xtext"), };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);

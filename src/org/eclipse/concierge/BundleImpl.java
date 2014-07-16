@@ -165,6 +165,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 	 * eager activation)
 	 */
 	protected boolean lazyActivation;
+	protected boolean beingLazy = false;
 
 	protected String[] activationIncludes;
 
@@ -439,6 +440,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		this.context = framework.createBundleContext(this);
 		if ((options & Bundle.START_ACTIVATION_POLICY) > 0 && lazyActivation) {
 			if (state != STARTING) {
+				beingLazy = true;
 				state = STARTING;
 				framework.notifyBundleListeners(BundleEvent.LAZY_ACTIVATION,
 						this);
@@ -458,7 +460,11 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		// step6
 		state = STARTING;
 		// step7
+		if (Concierge.PATCH_JOCHEN) {
+			// do it NOT here
+		} else {
 		framework.notifyBundleListeners(BundleEvent.STARTING, this);
+		}
 		// step8 (part 1)
 		try {
 			context.isValid = true;
@@ -470,19 +476,27 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				if (activatorClass == null) {
 					throw new ClassNotFoundException(activatorClassName);
 				}
-				if (Concierge.PATCH_JOCHEN) {
+				// TODO disable as Tim fixed that
+				if (!Concierge.PATCH_JOCHEN) {
 					if (state == ACTIVE) {
 						// do NOT call activator twice, just as a try
 					} else {
 					currentRevision.activatorInstance = activatorClass
 							.newInstance();
 					currentRevision.activatorInstance.start(context);
+					// do it NOW
+					if (Concierge.PATCH_JOCHEN) {
+					framework.notifyBundleListeners(BundleEvent.STARTING, this);
+					} else {}
 					}
-				
 				} else {
 				currentRevision.activatorInstance = activatorClass
 						.newInstance();
 				currentRevision.activatorInstance.start(context);
+				// do it NOW
+				if (Concierge.PATCH_JOCHEN) {
+				framework.notifyBundleListeners(BundleEvent.STARTING, this);
+				}
 				}
 				// step 9
 				if (state == UNINSTALLED) {
@@ -2270,7 +2284,9 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 					&& activationList.get(0) == BundleImpl.this) {
 				activationChain.set(new ArrayList<AbstractBundle>());
 				for (int i = activationList.size() - 1; i >= 0; i--) {
-					((BundleImpl) activationList.get(i)).triggerActivation();
+					final BundleImpl toActivate = ((BundleImpl) activationList.get(i));
+					if(toActivate.beingLazy)
+						toActivate.triggerActivation();
 				}
 				activationChain.set(null);
 			}
@@ -2582,6 +2598,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 							// provider is system bundle???
 							if (wire.getProvider().getBundle().getBundleId() == 0) {
 								// if provider is system bundle: nothing to do as system bundle is yet loaded
+								System.err.println("[ERROR] JOCHEN PATCH Provider is SYSTEM BUNDLE");
 							} else {
 							final Object result = ((Revision) wire.getProvider()).classloader
 									.requireBundleLookup(pkg, name, isClass,

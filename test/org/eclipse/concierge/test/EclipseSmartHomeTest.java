@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -26,7 +27,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407112057" + ".jar";
+		return bundleName + "_0.7.0.201407162107" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {
@@ -65,14 +66,50 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
+	public void test05EclipseSmartHomeConfigCore() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.eclipse.concierge.debug", "true");
+			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
+			startFramework(launchArgs);
+
+			final String[] bundleNames = new String[] {
+					"org.slf4j.api_1.7.2.v20121108-1250.jar",
+					"com.google.guava_15.0.0.v201403281430.jar",
+					"org.apache.commons.io_2.0.1.v201105210651.jar",
+					"org.apache.commons.lang_2.6.0.v201404270220.jar",
+					"org.apache.felix.metatype-1.0.10.jar",
+					"org.apache.felix.configadmin-1.8.0.jar",
+					"org.apache.felix.scr-1.8.2.jar",
+					B_ESH("org.eclipse.smarthome.config.core"), };
+
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+
+			// TODO test does work as Activator will be called AFTER DS activate
+			// idea how to test that? Extend test.support bundle about method
+			// call list?
+			RunInClassLoader runner = new RunInClassLoader(bundles[7]);
+			Object o = runner
+					.getClassField(
+							"org.eclipse.smarthome.config.core.internal.ConfigActivator",
+							"configurationAdminTracker");
+			Assert.assertNotNull(o);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
 	public void test10EclipseSmartHome() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("org.osgi.framework.bootdelegation",
-					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
+					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,"
+							+ "javax.xml.transform,javax.script");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
-							"javax.inject,javax.imageio,javax.imageio.metadata,"
+							"javax.imageio,javax.imageio.metadata,"
 									+ "javax.net,javax.net.ssl,"
 									+ "javax.naming,javax.sql,"
 									+ "javax.security,javax.security.auth,javax.security.cert,"
@@ -97,10 +134,10 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 			assertBundlesResolved(slf4jBundles);
 
 			final String[] jettyBundleNames = new String[] {
-					"javax.xml_1.3.4.v201005080400.jar",
+					// "javax.xml_1.3.4.v201005080400.jar",
 					"javax.activation_1.1.0.v201211130549.jar",
-					"javax.xml.stream_1.0.1.v201004272200.jar",
-					"javax.xml.bind_2.2.0.v201105210648.jar",
+					// "javax.xml.stream_1.0.1.v201004272200.jar",
+					// "javax.xml.bind_2.2.0.v201105210648.jar",
 					"javax.servlet_3.0.0.v201112011016.jar",
 					"org.eclipse.jetty.util_8.1.14.v20131031.jar",
 					"org.eclipse.jetty.io_8.1.14.v20131031.jar",
@@ -148,9 +185,11 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.antlr.runtime_3.2.0.v201101311130.jar",
 					// xtext and its deps
 					B_XTEXT("org.eclipse.xtext.util"),
+					"javax.inject_1.0.0.v20091030.jar",
+					// com.google.inject inject BEFORE xtext, optional depedency
+					"com.google.inject_3.0.0.v201312141243.jar",
 					B_XTEXT("org.eclipse.xtext"),
 					"org.objectweb.asm_5.0.1.v201404251740.jar",
-					"com.google.inject_3.0.0.v201312141243.jar",
 					B_XTEXT("org.eclipse.xtext.common.types"),
 					B_XTEXT("org.eclipse.xtext.xbase.lib"),
 					B_XTEXT("org.eclipse.xtend.lib"),

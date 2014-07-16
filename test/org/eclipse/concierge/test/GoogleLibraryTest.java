@@ -32,10 +32,12 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 			launchArgs.put("org.eclipse.concierge.debug", "true");
 			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 			startFramework(launchArgs);
-			final Bundle bundle = installAndStartBundle("com.google.guava_15.0.0.v201403281430.jar");
-			assertBundleResolved(bundle);
-			Assert.assertEquals("com.google.guava", bundle.getSymbolicName());
-			Assert.assertEquals("15.0.0.v201403281430", bundle.getVersion()
+			final String[] bundleNames = new String[] { "com.google.guava_15.0.0.v201403281430.jar", };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+			Assert.assertEquals("com.google.guava",
+					bundles[0].getSymbolicName());
+			Assert.assertEquals("15.0.0.v201403281430", bundles[0].getVersion()
 					.toString());
 		} finally {
 			stopFramework();
@@ -50,14 +52,17 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		startFramework(launchArgs);
 		try {
-			final Bundle bundle = installAndStartBundle("com.google.inject_3.0.0.v201312141243.jar");
-			assertBundleResolved(bundle);
-			Assert.assertEquals("com.google.inject", bundle.getSymbolicName());
-			Assert.assertEquals("3.0.0.v201312141243", bundle.getVersion()
+			final String[] bundleNames = new String[] {
+					"javax.inject_1.0.0.v20091030.jar",
+					"com.google.inject_3.0.0.v201312141243.jar", };
+			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			assertBundlesResolved(bundles);
+			Assert.assertEquals("com.google.inject",
+					bundles[1].getSymbolicName());
+			Assert.assertEquals("3.0.0.v201312141243", bundles[1].getVersion()
 					.toString());
 		} finally {
 			stopFramework();
 		}
 	}
-
 }

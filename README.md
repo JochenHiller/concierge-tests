@@ -73,6 +73,7 @@ dependencies, in most cases dependencies to Equinox.
 * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
 * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
 * [#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492) (Open)
+* [#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751) (Open)
 
 From Harini Siresena:  
   
@@ -194,7 +195,6 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 
 ## TODO
 
-* Eclipse SmartHome test for o.e.sh.model.core with split packages
 * Extend xargs launcher obout wildcard support for simpler startup scripts
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to installBundle to avoid to specify the version

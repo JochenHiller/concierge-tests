@@ -111,6 +111,8 @@ The code patches are marked with conditional compilation based on Concierge.PATC
 * Xtext
   * ~~[#434490 Xtext will not run on other OSGi frameworks, e.g. Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434490)~~
     * Note: Tests are only about install/resolve, no real functional tests
+  * [#439758 org.eclipse.xtext should have require-bundle to com.google.inject as mandatory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439758) (Open)
+    * Workaround: adapt bundle start order to first install com.google.inject, then xtext
 * Eclipse Kura
   * Tests are until now OK, but not yet completed
   * Identified and close bugs in Concierge:

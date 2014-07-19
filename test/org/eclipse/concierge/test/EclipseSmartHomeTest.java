@@ -27,7 +27,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407162107" + ".jar";
+		return bundleName + "_0.7.0.201407181607" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {
@@ -134,6 +134,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 			assertBundlesResolved(slf4jBundles);
 
 			final String[] jettyBundleNames = new String[] {
+					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
 					// "javax.xml_1.3.4.v201005080400.jar",
 					"javax.activation_1.1.0.v201211130549.jar",
 					// "javax.xml.stream_1.0.1.v201004272200.jar",

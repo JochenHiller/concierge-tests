@@ -1071,28 +1071,6 @@ public final class Concierge extends AbstractBundle implements Framework,
 			}
 		}
 		
-		if (Concierge.PATCH_JOCHEN) {
-			// register XML factories as service
-			Dictionary<String, Object> properties = new Hashtable<String, Object>(7);
-			properties.put(Constants.SERVICE_VENDOR, headers.get(Constants.BUNDLE_VENDOR));
-			// set ranking to highest value?
-			// properties.put(Constants.SERVICE_RANKING, new Integer(Integer.MAX_VALUE));
-			Object saxParserFactory = new XMLParsingServiceFactory(true, false);
-			properties.put(Constants.SERVICE_PID, context.getBundle().getBundleId() + "." + saxParserFactory.getClass().getName());
-			context.registerService("javax.xml.parsers.SAXParserFactory", saxParserFactory, properties);
-			if (DEBUG_SERVICES) {
-				logger.log(LogService.LOG_DEBUG,
-						"Framework has registered SAXParserFactory.");
-			}
-			Object domParserFactory = new XMLParsingServiceFactory(false, false);
-			properties.put(Constants.SERVICE_PID, context.getBundle().getBundleId() + "." + domParserFactory.getClass().getName()); 
-			context.registerService("javax.xml.parsers.DocumentBuilderFactory", domParserFactory, properties);
-			if (DEBUG_SERVICES) {
-				logger.log(LogService.LOG_DEBUG,
-						"Framework has registered DocumentBuilderFactory.");
-			}
-		}
-
 		// set the URLStreamHandlerFactory
 		try {
 			conciergeURLStreamHandlerFactory.setConcierge(this);
@@ -1104,56 +1082,6 @@ public final class Concierge extends AbstractBundle implements Framework,
 		state = Bundle.STARTING;
 	}
 	
-	/**
-	 * Copied from Equinox framework from class XMLParsingServiceFactory.
-	 */
-	class XMLParsingServiceFactory implements ServiceFactory<Object> {
-		private final boolean isSax;
-		private final boolean setTccl;
-
-		public XMLParsingServiceFactory(boolean isSax, boolean setTccl) {
-			if (Concierge.PATCH_JOCHEN) { /* just a marker for change */}
-			this.isSax = isSax;
-			this.setTccl = setTccl;
-		}
-
-		public Object getService(Bundle bundle, ServiceRegistration<Object> registration) {
-			if (!setTccl || bundle == null)
-				return createService();
-			/*
-			 * Set the TCCL while creating jaxp factory instances to the
-			 * requesting bundles class loader.  This is needed to 
-			 * work around bug 285505.  There are issues if multiple 
-			 * xerces implementations are available on the bundles class path
-			 * 
-			 * The real issue is that the ContextFinder will only delegate
-			 * to the framework class loader in this case.  This class
-			 * loader forces the requesting bundle to be delegated to for
-			 * TCCL loads.
-			 */
-			final ClassLoader savedClassLoader = Thread.currentThread().getContextClassLoader();
-			try {
-				BundleWiring wiring = bundle.adapt(BundleWiring.class);
-				ClassLoader cl = wiring == null ? null : wiring.getClassLoader();
-				if (cl != null)
-					Thread.currentThread().setContextClassLoader(cl);
-				return createService();
-			} finally {
-				Thread.currentThread().setContextClassLoader(savedClassLoader);
-			}
-		}
-
-		private Object createService() {
-			if (isSax)
-				return SAXParserFactory.newInstance();
-			return DocumentBuilderFactory.newInstance();
-		}
-
-		public void ungetService(Bundle bundle, ServiceRegistration<Object> registration, Object service) {
-			// Do nothing.
-		}
-	}
-
 	private void exportSystemBundlePackages(final String[] pkgs)
 			throws BundleException {
 		for (final String pkg : pkgs) {

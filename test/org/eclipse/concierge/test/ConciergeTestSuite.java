@@ -18,7 +18,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LocalBundleStorageTest.class,
-		OSGiFrameworkBasicTest.class, Slf4jLibraryV172Test.class,
+		OSGiFrameworkBasicTest.class, ConciergeExtensionsTest.class,
+		ConciergeServicesTest.class, Slf4jLibraryV172Test.class,
 		JavaxLibrariesTest.class, FrameworkLaunchArgsTest.class,
 		GoogleLibraryTest.class, ApacheFelixServicesTest.class,
 		EclipseEquinoxTest.class, EclipseJettyTest.class, EclipseEMFTest.class,

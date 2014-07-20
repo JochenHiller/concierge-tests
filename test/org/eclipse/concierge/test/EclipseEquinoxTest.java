@@ -143,7 +143,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
 					// required by Equinox Console, is not optional
-					"osgi.core-permission-5.0.0.jar",
+					"org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
 					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar" };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
@@ -181,7 +181,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
 					// required by Equinox Console, is not optional
-					"osgi.core-permission-5.0.0.jar",
+					"org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
 					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
@@ -236,8 +236,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					// "org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
-					// "osgi.core-permission-5.0.0.jar",
-					//"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					// "org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
+					// "org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
 					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar" };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);

@@ -47,15 +47,24 @@ public abstract class AbstractConciergeTestCase {
 	protected LocalBundleStorage localBundleStorage = LocalBundleStorage
 			.getInstance();
 
+	/** Start framework with default settings. */
 	public void startFramework() throws Exception {
-		// start OSGi framework
 		final Map<String, String> launchArgs = new HashMap<String, String>();
+		// start OSGi framework in clean mode as default
+		startFrameworkClean(launchArgs);
+	}
+
+	/** Start framework with given settings but in clean mode. */
+	public void startFrameworkClean(Map<String, String> launchArgs)
+			throws Exception {
 		launchArgs.put("org.eclipse.concierge.debug", "true");
 		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		startFramework(launchArgs);
 	}
 
-	public void startFramework(Map<String, String> launchArgs) throws Exception {
+	/** Start framework with given settings. */
+	public void startFramework(final Map<String, String> launchArgs)
+			throws Exception {
 		// start OSGi framework
 		framework = new Factory().newFramework(launchArgs);
 		framework.init();
@@ -113,6 +122,16 @@ public abstract class AbstractConciergeTestCase {
 			bundles[i] = installAndStartBundle(bundleNames[i]);
 		}
 		return bundles;
+	}
+
+	/**
+	 * Install a bundle for given name.
+	 */
+	protected Bundle installBundle(final String bundleName)
+			throws BundleException {
+		final String url = this.localBundleStorage.getURLForBundle(bundleName);
+		final Bundle bundle = bundleContext.installBundle(url);
+		return bundle;
 	}
 
 	/**

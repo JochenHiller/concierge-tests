@@ -648,6 +648,16 @@ public final class Concierge extends AbstractBundle implements Framework,
 		defaultProperties.put(Constants.FRAMEWORK_OS_NAME,
 				(obj = System.getProperty("os.name")) != null ? obj
 						: "undefined");
+		if (Concierge.PATCH_JOCHEN) {
+			// Normalize to framework.processor according to OSGi R5 spec table 4.4
+			if (System.getProperty("os.name").equals("Mac OS X")) {
+				defaultProperties.put(Constants.FRAMEWORK_OS_NAME, "MacOSX");
+			} else {
+				if (System.getProperty("os.name").equals("Mac OS")) {
+					defaultProperties.put(Constants.FRAMEWORK_OS_NAME, "MacOS");
+				}
+			}
+		}
 		defaultProperties.put(Constants.FRAMEWORK_OS_VERSION,
 				(obj = System.getProperty("os.version")) != null ? obj
 						: "undefined");

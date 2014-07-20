@@ -175,8 +175,7 @@ public abstract class AbstractConciergeTestCase {
 
 	/** Checks about Bundle RESOLVED or ACTIVE state. */
 	protected void assertBundleResolved(final Bundle bundle) {
-		if ((bundle.getState() == Bundle.RESOLVED)
-				|| (bundle.getState() == Bundle.ACTIVE)) {
+		if (isBundleResolved(bundle)) {
 			// all fine
 		} else {
 			Assert.fail("Bundle " + bundle.getSymbolicName() + " needs to be "
@@ -184,6 +183,11 @@ public abstract class AbstractConciergeTestCase {
 					+ getBundleStateAsString(Bundle.ACTIVE) + " but was "
 					+ getBundleStateAsString(bundle.getState()));
 		}
+	}
+
+	/** Checks about Bundle RESOLVED or ACTIVE state. */
+	protected boolean isBundleResolved(final Bundle bundle) {
+		return ((bundle.getState() == Bundle.RESOLVED) || (bundle.getState() == Bundle.ACTIVE));
 	}
 
 	/** Checks about Bundle ACTIVE state. */

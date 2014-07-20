@@ -1881,7 +1881,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		 */
 		private boolean processNativeLibraries(final String[] nativeStrings)
 				throws BundleException {
-			int pos = -1;
+ 			int pos = -1;
 
 			boolean n = false;
 			boolean no_n = true;
@@ -1924,6 +1924,17 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 								} else {
 									n |= value
 											.equalsIgnoreCase(framework.osname);
+									if (Concierge.PATCH_JOCHEN) {
+										// support aliases for "Mac OS" and "Mac OS X"
+										if (framework.osname.equals("MacOSX")) {
+											n |= value
+													.equalsIgnoreCase("Mac OS X");
+										} else if (framework.osname.equals("MacOS")) {
+											n |= value
+													.equalsIgnoreCase("Mac OS");
+										}
+										// TODO add other alias missing in OSGi R5 spec Table 4.4
+									}
 								}
 								no_n = false;
 							} else if (criterium == Constants.BUNDLE_NATIVECODE_OSVERSION) {
@@ -1986,6 +1997,10 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 											stripTrailing(libraries[c]));
 						}
 						hasMatch = true;
+					}
+					if (Concierge.PATCH_JOCHEN) {
+						s = false;
+						no_s = true;
 					}
 					p = n = v = l = false;
 					no_p = no_n = no_v = no_l = true;

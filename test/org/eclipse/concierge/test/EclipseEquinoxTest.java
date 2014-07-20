@@ -37,10 +37,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	@Test
 	public void test01EquinoxOSGiServices() throws Exception {
 		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFramework();
 
 			final String bundleName = "org.eclipse.osgi.services_3.4.0.v20140312-2051.jar";
 			final Bundle bundle = installAndStartBundle(bundleName);
@@ -61,9 +58,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			// NOT set this test will work
 			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"com.example.some.package");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			final String bundleName = "org.eclipse.osgi.services_3.4.0.v20140312-2051.jar";
 			final Bundle bundle = installAndStartBundle(bundleName);
@@ -88,11 +83,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test03EquinoxSupplement() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-			startFramework(launchArgs);
+			startFramework();
 			final String bundleName = "org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar";
 			final Bundle bundle = installAndStartBundle(bundleName);
 			assertBundleResolved(bundle);
@@ -103,11 +95,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 
 	@Test
 	public void test04EquinoxCommon() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-			startFramework(launchArgs);
+			startFramework();
 			final String[] bundleNames = new String[] {
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar" };
@@ -130,12 +119,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test05EquinoxConsole() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-
-			startFramework(launchArgs);
+			startFramework();
 
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
@@ -167,13 +152,11 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test06EquinoxRegistry() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.osgi.framework.system.packages.extra",
-				"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-			startFramework(launchArgs);
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
+			startFrameworkClean(launchArgs);
 
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
@@ -201,11 +184,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test10EquinoxEvent() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-			startFramework(launchArgs);
+			startFramework();
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
@@ -224,12 +204,8 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test11EquinoxDS() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
 		try {
-
-			startFramework(launchArgs);
+			startFramework();
 
 			final String[] bundleNames = new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",

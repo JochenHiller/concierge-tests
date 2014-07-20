@@ -48,9 +48,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 	public void test01EclipseEMFCommonInstallAndStart() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final String[] bundleNames = new String[] { asEmfBuild("org.eclipse.emf.common"), };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
@@ -73,9 +71,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 							"javax.crypto,javax.crypto.spec,"
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final String[] bundleNames = new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"), };
@@ -102,9 +98,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final String[] bundleNames = new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"),
@@ -146,9 +140,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final String[] bundleNames = new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"),
@@ -268,9 +260,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final String[] bundleNames = new String[] {
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
 					"org.slf4j.log4j_1.7.2.v20130115-1340.jar",

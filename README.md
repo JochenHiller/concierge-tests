@@ -75,6 +75,9 @@ dependencies, in most cases dependencies to Equinox.
   * Note: as commented in bug this missing functionality is added as separate bundle to keep core code of Concierge as small as possible
 * [#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751) (Open)
 * [#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947) (Open)
+* [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
+* [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
+
 From Harini Siresena:  
   
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
@@ -114,11 +117,18 @@ The code patches are marked with conditional compilation based on Concierge.PATC
   * [#439758 org.eclipse.xtext should have require-bundle to com.google.inject as mandatory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439758) (Open)
     * Workaround: adapt bundle start order to first install com.google.inject, then xtext
 * Eclipse Kura
-  * Tests are until now OK, but not yet completed
-  * Identified and close bugs in Concierge:
+  * All Kura bundles will be installed into Concierge, no problems to install and start
+    * One issue with Felix Gogo console, runtime exception
+  * No further functional tests
+  * Identified and close bugs in Concierge and Kura bundles:
     * ~~[#436724 BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724)~~ (Closed)
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
+    * [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
+      * Fix available, see bug description
+    * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
+      * Fix available, see bug description
+
 * EclipseSmartHome
   * Bugs in Concierge:
     * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)

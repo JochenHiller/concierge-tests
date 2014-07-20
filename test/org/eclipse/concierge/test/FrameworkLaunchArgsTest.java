@@ -34,10 +34,7 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	@Test
 	public void test01GetClassFromBootdelegationMissing() throws Exception {
 		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFramework();
 			final Map<String, String> manifestEntries = new HashMap<String, String>();
 			manifestEntries.put("Bundle-Version", "1.0.0");
 			final Bundle bundle = installBundle(
@@ -70,9 +67,7 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs
 					.put("org.osgi.framework.bootdelegation", "javax.imageio");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 			final Map<String, String> manifestEntries = new HashMap<String, String>();
 			manifestEntries.put("Bundle-Version", "1.0.0");
 			final Bundle bundle = installBundle(

@@ -46,10 +46,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	@Test
 	public void test01EclipseSmartHomeIOServiceDiscovery() throws Exception {
 		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFramework();
 
 			final String[] bundleNames = new String[] {
 					// o.e.s.io.servicediscovery and deps
@@ -68,10 +65,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	@Test
 	public void test05EclipseSmartHomeConfigCore() throws Exception {
 		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFramework();
 
 			final String[] bundleNames = new String[] {
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
@@ -117,9 +111,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom," + "org.ietf.jgss");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			// start slf4j first
 			final String[] slf4jBundleNames = new String[] {

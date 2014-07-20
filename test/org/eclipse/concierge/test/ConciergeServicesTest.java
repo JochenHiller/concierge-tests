@@ -39,9 +39,7 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			// XML parsers
 			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"javax.xml.parsers");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			// install and start the Concierge service to register XML parsers
 			final Bundle xmlParserServiceBundle = installAndStartBundle("org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar");
@@ -115,9 +113,7 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			// XML parsers
 			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"javax.xml.parsers");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			final String[] bundleNames = new String[] {
 					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",

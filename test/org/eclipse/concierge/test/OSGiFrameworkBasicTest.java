@@ -22,6 +22,9 @@ import org.osgi.framework.Bundle;
 /**
  * Test which tries to install some bundles with basic assumptions.
  * 
+ * TODO add more tests and combinations for Bundle-NativeCode, for more OS/ARCH
+ * types
+ * 
  * @author Jochen Hiller
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -92,9 +95,7 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 			// needed as bundle is using these packages from runtime
 			launchArgs.put("org.osgi.framework.bootdelegation",
 					"javax.xml.parsers,org.xml.sax");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.jar", };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
@@ -129,5 +130,87 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 		} finally {
 			stopFramework();
 		}
+	}
+
+	@Test
+	public void test30BundleNativeCodeMacOSX_X86_64() throws Exception {
+		try {
+			startFramework();
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries
+					.put("Bundle-NativeCode",
+							"lib/native/someNative.so; osname=MacOSX; processor=x86_64");
+			final Bundle bundleUnderTest = installBundle(
+					"concierge.test.test30BundleNativeCodeMacOSX",
+					manifestEntries);
+			enforceResolveBundle(bundleUnderTest);
+			final boolean resolved = isBundleResolved(bundleUnderTest);
+			Assert.assertEquals(isMacOSX() && isX86_64(), resolved);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test31BundleNativeCodeMacOSX_X86_64_WithSelectionFilter()
+			throws Exception {
+		try {
+			startFramework();
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries
+					.put("Bundle-NativeCode",
+							"lib/native/someNative.so; osname=Linux; processor=ARM; selection-filter=\"(&(kura.arch=armv7_hf))\","
+									+ "lib/native/otherNative.so; osname=MacOSX; processor=x86_64");
+			final Bundle bundleUnderTest = installBundle(
+					"concierge.test.test30BundleNativeCodeMacOSX",
+					manifestEntries);
+			enforceResolveBundle(bundleUnderTest);
+			final boolean resolved = isBundleResolved(bundleUnderTest);
+			Assert.assertEquals(isMacOSX() && isX86_64(), resolved);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test32BundleNativeCodeMacOSX_X86() throws Exception {
+		try {
+			startFramework();
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries.put("Bundle-NativeCode",
+					"lib/native/someNative.so; osname=MacOSX; processor=x86");
+			final Bundle bundleUnderTest = installBundle(
+					"concierge.test.test32BundleNativeCodeMacOSX_X86",
+					manifestEntries);
+			enforceResolveBundle(bundleUnderTest);
+			final boolean resolved = isBundleResolved(bundleUnderTest);
+			Assert.assertEquals(isMacOSX() && isX86(), resolved);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	private boolean isMacOSX() {
+		String osname = System.getProperty("os.name");
+		return "Mac OS X".equals(osname);
+	}
+
+	private boolean isX86_64() {
+		String osarch = System.getProperty("os.arch");
+		return "x86_64".equals(osarch);
+	}
+
+	private boolean isX86() {
+		String osarch = System.getProperty("os.arch");
+		return "x86".equals(osarch);
 	}
 }

@@ -28,10 +28,7 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 	@Test
 	public void test01GoogleGuava() throws Exception {
 		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFramework();
 			final String[] bundleNames = new String[] { "com.google.guava_15.0.0.v201403281430.jar", };
 			final Bundle[] bundles = installAndStartBundles(bundleNames);
 			assertBundlesResolved(bundles);
@@ -48,9 +45,7 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 	public void test02GoogleInject() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
 		launchArgs.put("org.osgi.framework.system.packages", "javax.inject");
-		launchArgs.put("org.eclipse.concierge.debug", "true");
-		launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-		startFramework(launchArgs);
+		startFrameworkClean(launchArgs);
 		try {
 			final String[] bundleNames = new String[] {
 					"javax.inject_1.0.0.v20091030.jar",

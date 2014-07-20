@@ -158,9 +158,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("org.osgi.framework.system.packages",
 					"javax.imageio,javax.imageio.metadata");
-			launchArgs.put("org.eclipse.concierge.debug", "true");
-			launchArgs.put("org.osgi.framework.storage.clean", "onFirstInit");
-			startFramework(launchArgs);
+			startFrameworkClean(launchArgs);
 
 			final String[] bundleNames = new String[] {
 					"javax.xml_1.3.4.v201005080400.jar",

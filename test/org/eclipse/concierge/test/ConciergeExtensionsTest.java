@@ -43,16 +43,17 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
-	public void test01FragmentBundleOfConcierge() throws Exception {
+	public void test01FrameworkExtensionFragmentOfConcierge() throws Exception {
 		try {
 			startFramework();
 
 			// install pseudo bundle
 			final Map<String, String> manifestEntries = new HashMap<String, String>();
 			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Fragment-Host", "org.eclipse.concierge");
+			manifestEntries.put("Fragment-Host",
+					"org.eclipse.concierge; extension:=framework");
 			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test01FragmentBundleOfConcierge",
+					"concierge.test.test01FrameworkExtensionFragmentOfConcierge",
 					manifestEntries);
 			enforceResolveBundle(bundleUnderTest);
 			assertBundleResolved(bundleUnderTest);
@@ -79,16 +80,18 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 */
 
 	@Test
-	public void test02FragmentBundleOfSystemBundle() throws Exception {
+	public void test02FrameworkExtensionFragmentOfSystemBundle()
+			throws Exception {
 		try {
 			startFramework();
 
 			// install pseudo bundle
 			final Map<String, String> manifestEntries = new HashMap<String, String>();
 			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Fragment-Host", "system.bundle");
+			manifestEntries.put("Fragment-Host",
+					"system.bundle; extension:=framework");
 			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test02FragmentBundleOfSystemBundle",
+					"concierge.test.test02FrameworkExtensionFragmentOfSystemBundle",
 					manifestEntries);
 			enforceResolveBundle(bundleUnderTest);
 			assertBundleResolved(bundleUnderTest);

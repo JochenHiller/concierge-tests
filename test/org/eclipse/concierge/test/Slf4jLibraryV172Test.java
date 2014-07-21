@@ -90,11 +90,10 @@ public class Slf4jLibraryV172Test extends AbstractConciergeTestCase {
 	@Test
 	public void test03SLf4JInstallJars() throws InterruptedException,
 			BundleException {
-		final String[] bundleNames = new String[] {
+		final Bundle[] bundles = installAndStartBundles(new String[] {
 				"org.slf4j.api_1.7.2.v20121108-1250.jar",
 				"ch.qos.logback.core_1.0.7.v20121108-1250.jar",
-				"ch.qos.logback.classic_1.0.7.v20121108-1250.jar" };
-		final Bundle[] bundles = installAndStartBundles(bundleNames);
+				"ch.qos.logback.classic_1.0.7.v20121108-1250.jar" });
 		assertBundlesResolved(bundles);
 	}
 

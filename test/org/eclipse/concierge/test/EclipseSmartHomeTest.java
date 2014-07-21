@@ -67,23 +67,28 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 		try {
 			startFramework();
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
 					"com.google.guava_15.0.0.v201403281430.jar",
 					"org.apache.commons.io_2.0.1.v201105210651.jar",
 					"org.apache.commons.lang_2.6.0.v201404270220.jar",
 					"org.apache.felix.metatype-1.0.10.jar",
 					"org.apache.felix.configadmin-1.8.0.jar",
-					"org.apache.felix.scr-1.8.2.jar",
-					B_ESH("org.eclipse.smarthome.config.core"), };
-
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					// "org.apache.felix.scr-1.8.2.jar",
+					// use Equinox DS instead
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar", });
 			assertBundlesResolved(bundles);
+
+			final Bundle bundleUnderTest = installAndStartBundle(B_ESH("org.eclipse.smarthome.config.core"));
+			assertBundleResolved(bundleUnderTest);
 
 			// TODO test does work as Activator will be called AFTER DS activate
 			// idea how to test that? Extend test.support bundle about method
 			// call list?
-			RunInClassLoader runner = new RunInClassLoader(bundles[7]);
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			Object o = runner
 					.getClassField(
 							"org.eclipse.smarthome.config.core.internal.ConfigActivator",
@@ -150,7 +155,12 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.apache.felix.metatype-1.0.10.jar",
 					"org.apache.felix.configadmin-1.8.0.jar",
 					"org.apache.felix.eventadmin-1.3.2.jar",
-					"org.apache.felix.scr-1.8.2.jar",
+					// "org.apache.felix.scr-1.8.2.jar",
+					// use Equinox DS instead
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar",
 					"com.google.guava_15.0.0.v201403281430.jar",
 
 					B_ESH("org.eclipse.smarthome.core"),

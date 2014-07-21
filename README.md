@@ -77,6 +77,8 @@ dependencies, in most cases dependencies to Equinox.
 * [#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947) (Open)
 * [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
 * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
+* [#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981) (Open)
+
 
 From Harini Siresena:  
   
@@ -128,6 +130,7 @@ The code patches are marked with conditional compilation based on Concierge.PATC
       * Fix available, see bug description
     * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
       * Fix available, see bug description
+    * [#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981) (Open)
 
 * EclipseSmartHome
   * Bugs in Concierge:

@@ -97,33 +97,35 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 					"javax.xml.parsers,org.xml.sax");
 			startFrameworkClean(launchArgs);
 
-			final String[] bundleNames = new String[] { "org.eclipse.concierge.test.support_1.0.0.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			final Bundle[] bundles = installAndStartBundles(new String[] { "org.eclipse.osgi.services_3.4.0.v20140312-2051.jar", });
 			assertBundlesResolved(bundles);
 
-			RunInClassLoader runner = new RunInClassLoader(bundles[0]);
+			final Bundle bundleUnderTest = installAndStartBundle("org.eclipse.concierge.test.support_1.0.0.jar");
+			assertBundleResolved(bundleUnderTest);
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			Object o;
 
 			// check if 1x started, 0x stopped
 			o = runner.getClassField(
-					"org.eclipse.concierge.test.support.Activator",
+					"org.eclipse.concierge.test.support.Monitor",
 					"noOfCallsOfStart");
 			Assert.assertEquals(1, ((Integer) o).intValue());
 			o = runner.getClassField(
-					"org.eclipse.concierge.test.support.Activator",
+					"org.eclipse.concierge.test.support.Monitor",
 					"noOfCallsOfStop");
 			Assert.assertEquals(0, ((Integer) o).intValue());
 
 			// now stop the bundle
-			bundles[0].stop();
+			bundleUnderTest.stop();
 
 			// check if 1x started, 1x stopped
 			o = runner.getClassField(
-					"org.eclipse.concierge.test.support.Activator",
+					"org.eclipse.concierge.test.support.Monitor",
 					"noOfCallsOfStart");
 			Assert.assertEquals(1, ((Integer) o).intValue());
 			o = runner.getClassField(
-					"org.eclipse.concierge.test.support.Activator",
+					"org.eclipse.concierge.test.support.Monitor",
 					"noOfCallsOfStop");
 			Assert.assertEquals(1, ((Integer) o).intValue());
 

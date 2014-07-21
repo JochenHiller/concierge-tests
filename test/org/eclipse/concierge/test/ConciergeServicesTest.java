@@ -115,11 +115,14 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 					"javax.xml.parsers");
 			startFrameworkClean(launchArgs);
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
-					"org.eclipse.concierge.test.support_1.0.0.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.concierge.test.support_1.0.0.jar", });
 			assertBundlesResolved(bundles);
+
+			final Bundle bundleUnderTest = installAndStartBundle("org.eclipse.concierge.test.support_1.0.0.jar");
+			assertBundleResolved(bundleUnderTest);
 
 			/**
 			 * this code will essentially do:
@@ -128,30 +131,28 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			 * import org.eclipse.concierge.test.support;
 			 * 
 			 * Activator.checkSAXParserFactory();
-			 * SAXParserFactory factory = Activator.saxParserFactory;
+			 * SAXParserFactory factory = Monitor.saxParserFactory;
 			 * assertEquals("com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
 			 *     factory.getClass().getName());
-			 * SAXParser parser = Activator.saxParser;
+			 * SAXParser parser = Monitor.saxParser;
 			 * assertEquals("com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl",
 			 *     parser.getClass().getName());
 			 * </pre>
 			 */
-			RunInClassLoader runner = new RunInClassLoader(bundles[1]);
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			// check SAXParserFacory and SAXParser
 			Object _void = runner.callClassMethod(
 					"org.eclipse.concierge.test.support.Activator",
 					"checkSAXParserFactory", new Object[] {});
 			Assert.assertNull(_void);
 			Object factory = runner.getClassField(
-					"org.eclipse.concierge.test.support.Activator",
+					"org.eclipse.concierge.test.support.Monitor",
 					"saxParserFactory");
 			Assert.assertEquals(
 					"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
 					factory.getClass().getName());
-			Object parser = runner
-					.getClassField(
-							"org.eclipse.concierge.test.support.Activator",
-							"saxParser");
+			Object parser = runner.getClassField(
+					"org.eclipse.concierge.test.support.Monitor", "saxParser");
 			Assert.assertEquals(
 					"com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl",
 					parser.getClass().getName());

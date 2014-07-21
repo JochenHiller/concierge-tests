@@ -8,8 +8,22 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.suite;
 
+import org.eclipse.concierge.test.ApacheFelixServicesTest;
+import org.eclipse.concierge.test.ConciergeExtensionsTest;
+import org.eclipse.concierge.test.ConciergeServicesTest;
+import org.eclipse.concierge.test.EclipseEMFTest;
+import org.eclipse.concierge.test.EclipseEquinoxTest;
+import org.eclipse.concierge.test.EclipseJettyTest;
+import org.eclipse.concierge.test.EclipseKuraTest;
+import org.eclipse.concierge.test.EclipseSmartHomeTest;
+import org.eclipse.concierge.test.FrameworkLaunchArgsTest;
+import org.eclipse.concierge.test.GoogleLibraryTest;
+import org.eclipse.concierge.test.JavaxLibrariesTest;
+import org.eclipse.concierge.test.LocalBundleStorageTest;
+import org.eclipse.concierge.test.OSGiFrameworkBasicTest;
+import org.eclipse.concierge.test.Slf4jLibraryV172Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

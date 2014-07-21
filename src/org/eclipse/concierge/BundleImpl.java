@@ -460,11 +460,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		// step6
 		state = STARTING;
 		// step7
-		if (Concierge.PATCH_JOCHEN) {
-			// do it NOT here
-		} else {
 		framework.notifyBundleListeners(BundleEvent.STARTING, this);
-		}
 		// step8 (part 1)
 		try {
 			context.isValid = true;
@@ -476,28 +472,9 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				if (activatorClass == null) {
 					throw new ClassNotFoundException(activatorClassName);
 				}
-				// TODO disable as Tim fixed that
-				if (!Concierge.PATCH_JOCHEN) {
-					if (state == ACTIVE) {
-						// do NOT call activator twice, just as a try
-					} else {
-					currentRevision.activatorInstance = activatorClass
-							.newInstance();
-					currentRevision.activatorInstance.start(context);
-					// do it NOW
-					if (Concierge.PATCH_JOCHEN) {
-					framework.notifyBundleListeners(BundleEvent.STARTING, this);
-					} else {}
-					}
-				} else {
 				currentRevision.activatorInstance = activatorClass
 						.newInstance();
 				currentRevision.activatorInstance.start(context);
-				// do it NOW
-				if (Concierge.PATCH_JOCHEN) {
-				framework.notifyBundleListeners(BundleEvent.STARTING, this);
-				}
-				}
 				// step 9
 				if (state == UNINSTALLED) {
 					throw new BundleException(

@@ -35,7 +35,7 @@ public class EclipseJettyTest extends AbstractConciergeTestCase {
 							+ "javax.imageio,javax.imageio.metadata");
 			startFrameworkClean(launchArgs);
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"javax.xml_1.3.4.v201005080400.jar",
 					"javax.activation_1.1.0.v201211130549.jar",
 					"javax.xml.stream_1.0.1.v201004272200.jar",
@@ -45,8 +45,7 @@ public class EclipseJettyTest extends AbstractConciergeTestCase {
 					"org.eclipse.jetty.io_8.1.14.v20131031.jar",
 					"org.eclipse.jetty.http_8.1.14.v20131031.jar",
 					"org.eclipse.jetty.continuation_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.server_8.1.14.v20131031.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.eclipse.jetty.server_8.1.14.v20131031.jar" });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();

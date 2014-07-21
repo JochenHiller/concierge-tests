@@ -40,7 +40,7 @@ The tests are based on these general concepts:
   * just implement the method `MyTests.stayInShell()` returning true
   * the bundle from `./test/plugins/shell-1.0.0.jar` will be used
 * Unit tests will run in an order by specifying `@FixMethodOrder(MethodSorters.NAME_ASCENDING)` on test classes
-* The `ConciergeTestSuite` will run all tests
+* The `ConciergeTestSuite` in package `org.eclipse.concierge.suite` will run all tests
 * Actually the tests are focused on installation and resolving bundles. In most cases there are no 
 functional tests for checking whether the bundle is really working
 * Specific bundles will be added to `./target/<some-dir>` where there are no online bundles available
@@ -67,6 +67,11 @@ dependencies, in most cases dependencies to Equinox.
 * ~~[#433345 OSGi bootdelegation is not supported](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433345)~~ (Closed)
 * ~~[#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346)~~ (Rejected)
 * [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
+  * Note for testing: the test case itself does work, but on console it complains wit
+```
+[Mon Jul 21 11:56:30 CEST 2014] [INFO] 	RETURNED []
+Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
+```
 * ~~[#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Closed)
   * Note: added an extension bundle which provides the missing classes. This needs to be installed first when missing classes are needed (e.g. for Equinox console).
 * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)

@@ -29,8 +29,7 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 	public void test01GoogleGuava() throws Exception {
 		try {
 			startFramework();
-			final String[] bundleNames = new String[] { "com.google.guava_15.0.0.v201403281430.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			final Bundle[] bundles = installAndStartBundles(new String[] { "com.google.guava_15.0.0.v201403281430.jar", });
 			assertBundlesResolved(bundles);
 			Assert.assertEquals("com.google.guava",
 					bundles[0].getSymbolicName());
@@ -47,10 +46,9 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 		launchArgs.put("org.osgi.framework.system.packages", "javax.inject");
 		startFrameworkClean(launchArgs);
 		try {
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"javax.inject_1.0.0.v20091030.jar",
-					"com.google.inject_3.0.0.v201312141243.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"com.google.inject_3.0.0.v201312141243.jar", });
 			assertBundlesResolved(bundles);
 			Assert.assertEquals("com.google.inject",
 					bundles[1].getSymbolicName());

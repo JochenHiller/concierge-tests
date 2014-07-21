@@ -91,10 +91,9 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		launchArgs.put("org.osgi.framework.system.packages.extra",
 				"javax.imageio,javax.imageio.metadata,javax.net.ssl");
 		startFramework(launchArgs);
-		final String[] bundleNames = new String[] {
+		final Bundle[] bundles = installAndStartBundles(new String[] {
 				"javax.activation_1.1.0.v201211130549.jar",
-				"javax.mail_1.4.0.v201005080615.jar" };
-		final Bundle[] bundles = installAndStartBundles(bundleNames);
+				"javax.mail_1.4.0.v201005080615.jar" });
 		assertBundlesResolved(bundles);
 		stopFramework();
 	}
@@ -105,12 +104,11 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		launchArgs.put("org.osgi.framework.system.packages.extra",
 				"javax.imageio,javax.imageio.metadata");
 		startFramework(launchArgs);
-		final String[] bundleNames = new String[] {
+		final Bundle[] bundles = installAndStartBundles(new String[] {
 				"javax.xml_1.3.4.v201005080400.jar",
 				"javax.activation_1.1.0.v201211130549.jar",
 				"javax.xml.stream_1.0.1.v201004272200.jar",
-				"javax.xml.bind_2.2.0.v201105210648.jar" };
-		final Bundle[] bundles = installAndStartBundles(bundleNames);
+				"javax.xml.bind_2.2.0.v201105210648.jar" });
 		assertBundlesResolved(bundles);
 		stopFramework();
 	}
@@ -130,8 +128,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			startFramework(launchArgs);
-			final String[] bundleNames = new String[] { "javax.xml_1.3.4.v201005080400.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			final Bundle[] bundles = installAndStartBundles(new String[] { "javax.xml_1.3.4.v201005080400.jar", });
 			assertBundlesResolved(bundles);
 
 			// install pseudo bundle
@@ -160,14 +157,13 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 					"javax.imageio,javax.imageio.metadata");
 			startFrameworkClean(launchArgs);
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"javax.xml_1.3.4.v201005080400.jar",
 					"javax.activation_1.1.0.v201211130549.jar",
 					"javax.xml.stream_1.0.1.v201004272200.jar",
 					"javax.xml.bind_2.2.0.v201105210648.jar",
 					"org.codehaus.jackson.core_1.6.0.v20101005-0925.jar",
-					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar" });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();

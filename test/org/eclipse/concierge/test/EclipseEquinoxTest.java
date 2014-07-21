@@ -102,10 +102,9 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	public void test04EquinoxCommon() throws Exception {
 		try {
 			startFramework();
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
-					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar" });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -127,15 +126,14 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 		try {
 			startFramework();
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
 					// required by Equinox Console, is not optional
 					"org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
-					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar" };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar" });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -143,16 +141,15 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	}
 
 	/**
-	 * This test will fail due to missing resolvement of Equinox console.
-	 *
-	 * When console plugin will NOT be included, the registry bundle complains:
+	 * This test will work but will produce an error message in console. This
+	 * indicates that resource can not be looked up the correct way. See
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781
+	 * 
+	 * TODO add here test verification by listening to log messages
 	 * 
 	 * <pre>
-	 *  ERROR in org.eclipse.concierge.BundleImpl$Revision$BundleClassLoader@3cb201fd:
-	 *  java.lang.NoClassDefFoundError: org/eclipse/osgi/framework/console/CommandProvider
-	 *  ...	 
-	 *  Caused by: java.lang.ClassNotFoundException: org.eclipse.osgi.framework.console.CommandProvider
-	 *  ...
+	 * [Mon Jul 21 11:56:30 CEST 2014] [INFO] 	RETURNED []
+	 * Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
 	 * </pre>
 	 */
 	@Test

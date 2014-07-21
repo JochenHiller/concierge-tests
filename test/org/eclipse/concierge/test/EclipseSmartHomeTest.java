@@ -48,14 +48,12 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 		try {
 			startFramework();
 
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					// o.e.s.io.servicediscovery and deps
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
 					B_ESH("org.eclipse.smarthome.io.servicediscovery"),
 
-			};
-
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			});
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -119,18 +117,17 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 			startFrameworkClean(launchArgs);
 
 			// start slf4j first
-			final String[] slf4jBundleNames = new String[] {
+			final Bundle[] slf4jBundles = installBundles(new String[] {
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
 					"ch.qos.logback.core_1.0.7.v20121108-1250.jar",
 					"ch.qos.logback.classic_1.0.7.v20121108-1250.jar",
-					"ch.qos.logback.slf4j_1.0.7.v20121108-1250.jar" };
-			final Bundle[] slf4jBundles = installBundles(slf4jBundleNames);
+					"ch.qos.logback.slf4j_1.0.7.v20121108-1250.jar" });
 			slf4jBundles[0].start();
 			// resolve fragment, will resolve logback bundles too
 			enforceResolveBundle(slf4jBundles[3]);
 			assertBundlesResolved(slf4jBundles);
 
-			final String[] jettyBundleNames = new String[] {
+			final Bundle[] jettyBundles = installAndStartBundles(new String[] {
 					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
 					// "javax.xml_1.3.4.v201005080400.jar",
 					"javax.activation_1.1.0.v201211130549.jar",
@@ -143,8 +140,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.eclipse.jetty.continuation_8.1.14.v20131031.jar",
 					"org.eclipse.jetty.server_8.1.14.v20131031.jar",
 					"org.eclipse.jetty.security_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.servlet_8.1.14.v20131031.jar" };
-			final Bundle[] jettyBundles = installAndStartBundles(jettyBundleNames);
+					"org.eclipse.jetty.servlet_8.1.14.v20131031.jar" });
 			assertBundlesResolved(jettyBundles);
 
 			final String[] bundleNames = new String[] {

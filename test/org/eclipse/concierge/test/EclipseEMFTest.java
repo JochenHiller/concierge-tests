@@ -49,8 +49,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			startFrameworkClean(launchArgs);
-			final String[] bundleNames = new String[] { asEmfBuild("org.eclipse.emf.common"), };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			final Bundle[] bundles = installAndStartBundles(new String[] { asEmfBuild("org.eclipse.emf.common"), });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -72,10 +71,9 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
 									+ "org.xml.sax,org.xml.sax.helpers");
 			startFrameworkClean(launchArgs);
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
-					asEmfBuild("org.eclipse.emf.ecore"), };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					asEmfBuild("org.eclipse.emf.ecore"), });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -99,12 +97,11 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
 			startFrameworkClean(launchArgs);
-			final String[] bundleNames = new String[] {
+			// TODO add codegen here...
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"),
-					asEmfBuild("org.eclipse.emf.ecore.xmi"), };
-			// TODO add codegen here...
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					asEmfBuild("org.eclipse.emf.ecore.xmi"), });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -141,12 +138,11 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
 			startFrameworkClean(launchArgs);
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"),
 					asEmfBuild("org.eclipse.emf.ecore.xmi"),
-					"org.eclipse.emf.examples.library-2.5.0.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.eclipse.emf.examples.library-2.5.0.jar", });
 			assertBundlesResolved(bundles);
 
 			// Install a test bundle which is using the EMF examples bundle
@@ -261,7 +257,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 									+ "org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,"
 									+ "org.w3c.dom");
 			startFrameworkClean(launchArgs);
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
 					"org.slf4j.log4j_1.7.2.v20130115-1340.jar",
 					"org.antlr.runtime_3.2.0.v201101311130.jar",
@@ -271,8 +267,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 					asXTextBuild("org.eclipse.xtext.util"),
 					"javax.inject_1.0.0.v20091030.jar",
 					"com.google.inject_3.0.0.v201312141243.jar",
-					asXTextBuild("org.eclipse.xtext"), };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					asXTextBuild("org.eclipse.xtext"), });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();

@@ -85,19 +85,16 @@ public class SplitStringTest {
 	
 	@Test
 	public void testNull() {
-		if (Concierge.PATCH_JOCHEN) { /* marker */ }
 		final String[] res = Utils.splitString(null, ',');
 		assertEquals(res.length, 0);
 	}
 	@Test
 	public void testEmpty() {
-		if (Concierge.PATCH_JOCHEN) { /* marker */ }
 		final String[] res = Utils.splitString("", ',');
 		assertEquals(res.length, 0);
 	}
 	@Test
 	public void testTrailingSeparator() {
-		if (Concierge.PATCH_JOCHEN) { /* marker */ }
 		String[] res;
 		// no trailing separator
 		res = Utils.splitString("p1,p2,p3", ',');

@@ -36,11 +36,10 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 	public void test01ApacheFelixEventAdminService() throws Exception {
 		try {
 			startFramework();
-			final String[] bundleNames = new String[] {
+			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.apache.felix.metatype-1.0.10.jar",
 					"org.apache.felix.configadmin-1.8.0.jar",
-					"org.apache.felix.eventadmin-1.3.2.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+					"org.apache.felix.eventadmin-1.3.2.jar", });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -51,8 +50,7 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 	public void test02ApacheFelixDSService() throws Exception {
 		try {
 			startFramework();
-			final String bundleName = "org.apache.felix.scr-1.8.2.jar";
-			final Bundle bundle = installAndStartBundle(bundleName);
+			final Bundle bundle = installAndStartBundle("org.apache.felix.scr-1.8.2.jar");
 			assertBundleResolved(bundle);
 		} finally {
 			stopFramework();
@@ -63,8 +61,7 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 	public void test03ApacheFelixGogo() throws Exception {
 		try {
 			startFramework();
-			final String[] bundleNames = new String[] { "org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar", };
-			final Bundle[] bundles = installAndStartBundles(bundleNames);
+			final Bundle[] bundles = installAndStartBundles(new String[] { "org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar", });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();

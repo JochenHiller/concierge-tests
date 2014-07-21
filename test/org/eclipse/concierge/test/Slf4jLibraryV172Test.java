@@ -104,12 +104,11 @@ public class Slf4jLibraryV172Test extends AbstractConciergeTestCase {
 	 */
 	@Test
 	public void test04SLf4JGetLogbackLogger() throws Exception {
-		final String[] bundleNames = new String[] {
+		final Bundle[] bundles = installBundles(new String[] {
 				"org.slf4j.api_1.7.2.v20121108-1250.jar",
 				"ch.qos.logback.core_1.0.7.v20121108-1250.jar",
 				"ch.qos.logback.classic_1.0.7.v20121108-1250.jar",
-				"ch.qos.logback.slf4j_1.0.7.v20121108-1250.jar" };
-		final Bundle[] bundles = installBundles(bundleNames);
+				"ch.qos.logback.slf4j_1.0.7.v20121108-1250.jar" });
 		bundles[0].start();
 		assertBundleActive(bundles[0]);
 

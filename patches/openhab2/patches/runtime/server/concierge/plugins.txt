@@ -1,0 +1,5 @@
+
+
+# NICHT NOTWENDIG
+org.eclipse.osgi_3.10.0.v20140606-1445.jar
+org.eclipse.equinox.launcher_1.3.0.v20140415-2008.jar

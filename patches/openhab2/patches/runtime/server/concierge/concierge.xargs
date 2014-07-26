@@ -1,0 +1,234 @@
+# Concierge start script for Eclipse SmartHome
+
+# configure Concierge
+# -Dorg.eclipse.concierge.debug=true
+
+# -Dorg.eclipse.concierge.log.enabled=true
+# -Dorg.eclipse.concierge.log.quiet=false
+# -Dorg.eclipse.concierge.log.buffersize=100
+# -Dorg.eclipse.concierge.log.level=4 # DEBUG
+# -Dorg.eclipse.concierge.debug.bundles=true
+# -Dorg.eclipse.concierge.debug.packages=true
+# -Dorg.eclipse.concierge.debug.services=true
+# -Dorg.eclipse.concierge.debug.classloading=true
+
+
+# bundle directories
+-Ddir=./runtime/server/plugins
+-Dconcierge.dir=./runtime/server/concierge
+
+
+# OSGi properties
+-Dorg.osgi.framework.bootdelegation=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,javax.xml.transform,javax.script
+-Dorg.osgi.framework.system.packages.extra=javax.xml,javax.imageio,javax.imageio.metadata,javax.net,javax.net.ssl,javax.naming,javax.sql,javax.security,javax.security.auth,javax.security.auth.x500,javax.security.cert,javax.crypto,javax.crypto.spec,javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,org.w3c.dom,org.ietf.jgss
+
+
+# shell for testing
+# TODO disable when Gogo is working
+-istart ${concierge.dir}/shell-1.0.0.jar
+
+
+
+# missing Concierge extensions
+-istart ${concierge.dir}/org.eclipse.concierge.service.xmlparser_1.0.0*.jar
+-istart ${concierge.dir}/org.eclipse.concierge.extension.permission_1.0.0*.jar
+
+
+# slf4j, start log4j bundles, but not fragment. ch.qos.logback.slf4j will be started as fragemt automatically
+-install ${dir}/org.slf4j.api_1.7.2.v20121108-1250.jar
+-install ${dir}/ch.qos.logback.core_1.0.7.v20121108-1250.jar
+-install ${dir}/ch.qos.logback.classic_1.0.7.v20121108-1250.jar
+-install ${dir}/ch.qos.logback.slf4j_1.0.7.v20121108-1250.jar
+-start ${dir}/org.slf4j.api_1.7.2.v20121108-1250.jar
+-start ${dir}/ch.qos.logback.core_1.0.7.v20121108-1250.jar
+-start ${dir}/ch.qos.logback.classic_1.0.7.v20121108-1250.jar
+-istart ${dir}/org.slf4j.jcl_1.7.2.v20130115-1340.jar
+-istart ${dir}/org.slf4j.jul_1.7.2.v20121108-1250.jar
+-istart ${dir}/org.slf4j.log4j_1.7.2.v20130115-1340.jar
+
+
+# jetty
+-istart ${dir}/javax.xml_1.3.4.v201005080400.jar
+-istart ${dir}/javax.activation_1.1*.jar
+-istart ${dir}/javax.mail_1.4.0.v201005080615.jar
+-istart ${dir}/javax.xml.bind_2.2.0.v201105210648.jar
+-istart ${dir}/javax.xml.stream_1.0.1.v201004272200.jar
+-istart ${dir}/javax.servlet_3.1*.jar
+-istart ${dir}/org.eclipse.jetty.util_*.jar
+-istart ${dir}/org.eclipse.jetty.io_*.jar
+-istart ${dir}/org.eclipse.jetty.http_*.jar
+-istart ${dir}/org.eclipse.jetty.continuation_*.jar
+-istart ${dir}/org.eclipse.jetty.server_*.jar
+-istart ${dir}/org.eclipse.jetty.security_*.jar
+-istart ${dir}/org.eclipse.jetty.servlet_*.jar
+
+-istart ${dir}/org.eclipse.jetty.deploy_9.2.1.v20140609.jar
+-istart ${dir}/org.eclipse.jetty.osgi.boot_9.2.1.v20140609.jar
+-istart ${dir}/org.eclipse.jetty.osgi.httpservice_9.2.1.v20140609.jar
+-istart ${dir}/org.eclipse.jetty.webapp_9.2.1.v20140609.jar
+-istart ${dir}/org.eclipse.jetty.xml_9.2.1.v20140609.jar
+
+
+
+
+# o.e.sh.core and deps
+-istart ${dir}/org.apache.commons.io_2.0.1.v201105210651.jar
+-istart ${dir}/org.apache.commons.lang_2.6.0.v201404270220.jar
+#-istart ${dir}/org.apache.felix.metatype-1.0.10.jar
+#-istart ${dir}/org.apache.felix.configadmin-1.8.0.jar
+#-istart ${dir}/org.apache.felix.eventadmin-1.3.2.jar
+-istart ${dir}/org.eclipse.osgi.services_3.4.0.v20140312-2051.jar
+
+# o.e.eq.console and deps
+-istart ${dir}/org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar
+-istart ${dir}/org.apache.felix.gogo.command_0.10.0.v201209301215.jar
+-istart ${dir}/org.apache.felix.gogo.shell_0.10.0.v201212101605.jar
+-istart ${concierge.dir}/org.eclipse.equinox.console_1.1.0.v20140131-1639.jar
+
+
+
+# use patched version from Concierge dir
+-istart ${concierge.dir}/org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar
+-istart ${dir}/org.eclipse.equinox.util_1.0.500.v20130404-1337.jar
+-istart ${dir}/org.eclipse.equinox.ds_1.4.200.v20131126-2331.jar
+-istart ${dir}/com.google.guava_15.0.0.v201403281430.jar
+
+-istart ${dir}/org.eclipse.equinox.app_1.3.200.v20130910-1609.jar
+# -istart ${dir}/org.eclipse.equinox.cm_1.1.0.v20131021-1936.jar
+-istart ${dir}/org.eclipse.equinox.event_1.3.100.v20140115-1647.jar
+-istart ${dir}/org.eclipse.equinox.preferences_3.5.200.v20140224-1527.jar
+
+-istart ${dir}/org.eclipse.smarthome.core_0.7.0*.jar
+
+
+# o.e.sh.core.* and deps
+-istart ${dir}/org.eclipse.smarthome.core.autoupdate_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.core.library_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.core.persistence_0.7.0*.jar
+# o.e.sh.io.console plus deps
+-istart ${dir}/com.google.guava_15*.jar
+// take supplement from patched bundles
+-istart ${concierge.dir}/org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar
+-istart ${dir}/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar
+-istart ${dir}/org.eclipse.smarthome.io.console_0.7.0*.jar
+
+
+# o.e.sh.scheduler and deps
+-istart ${dir}/org.eclipse.emf.common_2.10*.jar
+-istart ${dir}/org.eclipse.emf.ecore_2.10*.jar
+-istart ${dir}/org.eclipse.emf.ecore.xmi_2.10*.jar
+-istart ${dir}/org.eclipse.smarthome.core.scheduler_0.7.0*.jar
+# TODO missing deps
+# -istart ${dir}/org.eclipse.emf.codegen_2.10*.jar
+# -istart ${dir}/org.eclipse.emf.codegen.ecore_2.10*.jar
+
+
+# o.e.sh.core.scriptengine plus deps
+-istart ${dir}/org.slf4j.log4j_1.7.2.v20130115-1340.jar
+-istart ${dir}/org.antlr.runtime_3.2.0.v201101311130.jar
+# xtext and its deps
+-istart ${dir}/org.eclipse.xtext.util_2.6.1*.jar
+-istart ${dir}/javax.inject_1.0.0.v20091030.jar
+# com.google.inject inject BEFORE xtext, optional dependency
+-istart ${dir}/com.google.inject_3.0.0.v201312141243.jar
+-istart ${dir}/org.eclipse.xtext_2.6.1*.jar
+-istart ${dir}/org.objectweb.asm_5.0.1.v201404251740.jar
+-istart ${dir}/org.eclipse.xtext.common.types_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext.xbase.lib_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtend.lib_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext.xbase_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext.smap_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext.util_2.6.1*.jar
+-istart ${dir}/org.eclipse.smarthome.core.scriptengine_0.7.0*.jar
+
+
+# o.e.sh.io.net
+-istart ${dir}/org.apache.commons.codec_1.6*.jar
+-istart ${dir}/org.apache.commons.exec_1.1.0.v201301240602.jar
+#-istart ${dir}/org.apache.commons.logging_1.1.1.v201101211721.jar
+-istart ${dir}/org.slf4j.jcl_1.7.2.v20130115-1340.jar
+-istart ${dir}/org.apache.commons.httpclient_3.1.0.v201012070820.jar
+-istart ${dir}/org.apache.commons.net_3.2.0.v201305141515.jar
+-istart ${dir}/org.eclipse.osgi.services_3.4.0.v20140312-2051.jar
+-istart ${dir}/org.eclipse.equinox.http.servlet_1.1*.jar
+-istart ${dir}/org.eclipse.jetty.osgi.httpservice_9*.jar
+-istart ${dir}/org.eclipse.smarthome.io.net_0.7.0*.jar
+
+
+# o.e.sh.core.transform and its deps, needs scriptengine and io.net.exec
+-istart ${dir}/org.apache.commons.collections_3.2.0.v2013030210310.jar
+-istart ${dir}/org.eclipse.smarthome.config.core_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.core.thing_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.core.transform_0.7.0*.jar
+# o.e.sh.io.monitor and deps
+-istart ${dir}/org.eclipse.smarthome.io.monitor_0.7.0*.jar
+# o.e.sh.io.servicediscovery and deps
+-istart ${dir}/org.eclipse.smarthome.io.servicediscovery_0.7.0*.jar
+
+
+# o.e.sh.model.core and deps
+-istart ${dir}/org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar
+-istart ${dir}/org.eclipse.smarthome.model.core_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.item_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.persistence_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.script_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.rule_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.sitemap_0.7.0*.jar
+
+-istart ${dir}/org.eclipse.smarthome.model.item.runtime_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.persistence.runtime_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.rule.runtime_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.script.runtime_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.sitemap.runtime_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.model.thing_0.7.0*.jar
+
+
+
+# o.e.sh.ui and deps
+-istart ${dir}/org.eclipse.smarthome.ui.icon_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.ui_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.ui.webapp_0.7.0*.jar
+
+
+
+# TODO will break when installing
+# -istart ${dir}/org.eclipse.smarthome.core.transform_0.7.0*.jar
+
+# other stuff
+-istart ${dir}/com.ibm.icu.base_52.1.0.v201404171520.jar
+-istart ${dir}/org.apache.httpcomponents.httpclient_4.2.6.v201311072007.jar
+-istart ${dir}/org.apache.httpcomponents.httpcore_4.2.5.v201311072007.jar
+-istart ${dir}/org.codehaus.jackson.core_1.6.0.v20101005-0925.jar
+-istart ${dir}/org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar
+-istart ${dir}/org.apache.felix.fileinstall_3.2.6.jar
+
+
+# openHAB 2 and deps
+-istart ${dir}/javax.ws.rs_1.1.1.v20130318-1750.jar
+# TODO can not be resolved
+-istart ${dir}/com.sun.jersey_1.17.0.v20130314-2020.jar
+-istart ${dir}/org.eclipse.smarthome.io.rest.item_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.rest.sitemap_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.rest_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.multimedia_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.transport.mqtt_0.7.0*.jar
+# TODO
+#-istart ${dir}/org.openhab.core.compat1x_2.0.0*.jar
+#-istart ${dir}/org.openhab.core_2.0.0*.jar
+#-istart ${dir}/org.openhab.io.transport.serial_2.0.0*.jar
+#-istart ${dir}/org.openhab.library.tel_2.0.0*.jar
+
+
+-istart ${dir}/org.eclipse.core.commands_3.6.100.v20140528-1422.jar
+-istart ${dir}/org.eclipse.core.contenttype_3.4.200.v20140207-1251.jar
+#-istart ${dir}/org.eclipse.core.expressions_3.4.600.v20140128-0851.jar
+#-istart ${dir}/org.eclipse.core.filesystem_1.4.100.v20140514-1614.jar
+-istart ${dir}/org.eclipse.core.jobs_3.6.0.v20140424-0053.jar
+#-istart ${dir}/org.eclipse.core.resources_3.9.0.v20140514-1307.jar
+#-istart ${dir}/org.eclipse.core.runtime_3.10.0.v20140318-2214.jar
+#-istart ${dir}/org.eclipse.core.variables_3.2.800.v20130819-1716.jar
+
+
+#-istart ${dir}/org.eclipse.jdt.debug_3.8.100.v20140522-1618
+-istart ${dir}/org.eclipse.text_3.5.300.v20130515-1451.jar
+

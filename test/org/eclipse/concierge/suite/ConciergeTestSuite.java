@@ -13,6 +13,7 @@ package org.eclipse.concierge.suite;
 import org.eclipse.concierge.test.ApacheFelixServicesTest;
 import org.eclipse.concierge.test.ConciergeExtensionsTest;
 import org.eclipse.concierge.test.ConciergeServicesTest;
+import org.eclipse.concierge.test.ConciergeXargsTest;
 import org.eclipse.concierge.test.EclipseEMFTest;
 import org.eclipse.concierge.test.EclipseEquinoxTest;
 import org.eclipse.concierge.test.EclipseJettyTest;
@@ -33,10 +34,11 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LocalBundleStorageTest.class,
 		OSGiFrameworkBasicTest.class, ConciergeExtensionsTest.class,
-		ConciergeServicesTest.class, Slf4jLibraryV172Test.class,
-		JavaxLibrariesTest.class, FrameworkLaunchArgsTest.class,
-		GoogleLibraryTest.class, ApacheFelixServicesTest.class,
-		EclipseEquinoxTest.class, EclipseJettyTest.class, EclipseEMFTest.class,
+		ConciergeServicesTest.class, ConciergeXargsTest.class,
+		Slf4jLibraryV172Test.class, JavaxLibrariesTest.class,
+		FrameworkLaunchArgsTest.class, GoogleLibraryTest.class,
+		ApacheFelixServicesTest.class, EclipseEquinoxTest.class,
+		EclipseJettyTest.class, EclipseEMFTest.class,
 		EclipseSmartHomeTest.class, EclipseKuraTest.class })
 public class ConciergeTestSuite {
 

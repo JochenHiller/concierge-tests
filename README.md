@@ -67,7 +67,7 @@ dependencies, in most cases dependencies to Equinox.
 * ~~[#433345 OSGi bootdelegation is not supported](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433345)~~ (Closed)
 * ~~[#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346)~~ (Rejected)
 * [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
-  * Note for testing: the test case itself does work, but on console it complains wit
+  * Note for testing: the test case itself does work, but on console it complains with
 ```
 [Mon Jul 21 11:56:30 CEST 2014] [INFO] 	RETURNED []
 Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
@@ -143,6 +143,11 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
     * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed) 
   * TODO working on next tests
+    * FileInstall throws NPE
+    * Jersey ClassLoader problems
+    * Equinox * bundles: deps to Equinox, or core.runtime
+    * go over all TODOs, sort them
+    * major issue: o.e.sh.core.transform, make sep. test
 
 ### Eclipse Kura running on Concierge
 
@@ -213,12 +218,22 @@ git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git -b R4_4_m
 git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Maintenance
 ```
 
+* Apache Felix
+  * Felix Website: http://felix.apache.org
+  * Source Code Repo: http://svn.apache.org/repos/asf/felix/trunk
+
 ## TODO
 
+* Fix and report problem with Jersey (com.sun.*)
+* Test FelixFileInstall, NPE will happen
 * Extend xargs launcher obout wildcard support for simpler startup scripts
+  * for multiple properties per line
+* Check Apache Gogo for reported errors/exceptions
+* Create bug for Apache Felix DS for order of activation/component
 * Download all bundles when remote URL is a p2-repo
-* Add wildcard capability to installBundle to avoid to specify the version
+* Add wildcard capability to AbstractConciergeTestCase.installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
+* Create bug in Xargs test with JavaVM crash (if reproducable)
 * Use Xtext online repo (check Hudson builds) ==> ask Xtext where to find repo
 * Provide a way how EMF (and other bundles) can be used from workspace for testing
   (as requested by Ed Merks)

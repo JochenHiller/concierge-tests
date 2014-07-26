@@ -161,6 +161,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 			startFrameworkClean(launchArgs);
 
 			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",

@@ -460,7 +460,11 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		// step6
 		state = STARTING;
 		// step7
+		if (!Concierge.PATCH_JOCHEN) {
+			// do nothing
+		} else {
 		framework.notifyBundleListeners(BundleEvent.STARTING, this);
+		}
 		// step8 (part 1)
 		try {
 			context.isValid = true;
@@ -475,6 +479,12 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				currentRevision.activatorInstance = activatorClass
 						.newInstance();
 				currentRevision.activatorInstance.start(context);
+				if (!Concierge.PATCH_JOCHEN) {
+					framework.notifyBundleListeners(BundleEvent.STARTING, this);
+				} else {
+					// do nothing
+				}
+
 				// step 9
 				if (state == UNINSTALLED) {
 					throw new BundleException(
@@ -1975,12 +1985,8 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 						}
 						hasMatch = true;
 					}
-					if (Concierge.PATCH_JOCHEN) {
-						s = false;
-						no_s = true;
-					}
-					p = n = v = l = false;
-					no_p = no_n = no_v = no_l = true;
+					p = n = v = l = s = false;
+					no_p = no_n = no_v = no_l = no_s = true;
 					libs.clear();
 				}
 			}
@@ -2491,8 +2497,9 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				// Step 1: delegate java.* to the parent class loader
 				// Step 2: delegate org.osgi.framework.bootdelegation to the
 				// parent class loader
+				if (Concierge.PATCH_JOCHEN) {} // MARKER for change below
 				if (pkg.startsWith("java.") || pkg.startsWith("sun.")
-						|| pkg.startsWith("com.sun.")
+						|| (pkg.startsWith("com.sun.") && !pkg.startsWith("com.sun.jersey.") && !pkg.startsWith("com.sun.ws."))
 						|| framework.bootdelegation(pkg)) {
 					if (isClass) {
 						return getParent().loadClass(name);

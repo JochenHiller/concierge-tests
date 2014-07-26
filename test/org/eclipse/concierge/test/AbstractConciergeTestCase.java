@@ -22,10 +22,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
+import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.Factory;
 import org.junit.Assert;
 import org.osgi.framework.Bundle;
@@ -65,11 +67,17 @@ public abstract class AbstractConciergeTestCase {
 	/** Start framework with given settings. */
 	public void startFramework(final Map<String, String> launchArgs)
 			throws Exception {
+		Framework frameworkToStart = new Factory().newFramework(launchArgs);
+		frameworkToStart.init();
+		frameworkToStart.start();
+		useFramework(frameworkToStart);
+	}
+
+	/** Start framework for a given framework. */
+	public void useFramework(final Framework frameworkToStart) throws Exception {
 		// start OSGi framework
-		framework = new Factory().newFramework(launchArgs);
-		framework.init();
-		framework.start();
-		bundleContext = framework.getBundleContext();
+		this.framework = frameworkToStart;
+		this.bundleContext = this.framework.getBundleContext();
 
 		if (stayInShell()) {
 			installAndStartBundle("./test/plugins/shell-1.0.0.jar");
@@ -77,16 +85,43 @@ public abstract class AbstractConciergeTestCase {
 	}
 
 	public void stopFramework() throws Exception {
-		if (stayInShell()) {
-			framework.waitForStop(0);
-		} else {
-			framework.stop();
-			FrameworkEvent event = framework.waitForStop(10000);
-			Assert.assertEquals(FrameworkEvent.STOPPED, event.getType());
+		// it may happen that framework has not been set
+		if (this.framework != null) {
+			if (stayInShell()) {
+				this.framework.waitForStop(0);
+			} else {
+				this.framework.stop();
+				FrameworkEvent event = framework.waitForStop(10000);
+				Assert.assertEquals(FrameworkEvent.STOPPED, event.getType());
+			}
 		}
 	}
 
 	// Utilities
+
+	/**
+	 * Gets a framework property by casting into implementation.
+	 */
+	protected String getFrameworkProperty(String propertyName) {
+		try {
+			final Concierge c = (Concierge) this.framework;
+			final Field f = c.getClass().getDeclaredField("properties");
+			f.setAccessible(true);
+			Object o = f.get(c);
+			Properties p = (Properties) o;
+			String s = (String) p.get(propertyName);
+			return s;
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * Override when a test case should use shell and wait for manual exit of

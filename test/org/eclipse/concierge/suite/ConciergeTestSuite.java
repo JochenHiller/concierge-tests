@@ -39,7 +39,7 @@ import org.junit.runners.Suite;
 		FrameworkLaunchArgsTest.class, GoogleLibraryTest.class,
 		ApacheFelixServicesTest.class, EclipseEquinoxTest.class,
 		EclipseJettyTest.class, EclipseEMFTest.class,
-		EclipseSmartHomeTest.class, EclipseKuraTest.class })
+		EclipseSmartHomeTest.class, EclipseKuraTest.class, })
 public class ConciergeTestSuite {
 
 }

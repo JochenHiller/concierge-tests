@@ -69,14 +69,14 @@ public class LocalBundleStorageTest {
 	@Test
 	public void test14GetUrlForBundle() {
 		LocalBundleStorage inst = LocalBundleStorage.getInstance();
-		String s = inst.getURLForBundle("shell-1.0.0.jar");
+		String s = inst.getUrlForBundle("shell-1.0.0.jar");
 		Assert.assertEquals("./test/plugins/shell-1.0.0.jar", s);
 	}
 
 	@Test
 	public void test15GetUrlForBundle() {
 		LocalBundleStorage inst = LocalBundleStorage.getInstance();
-		String s = inst.getURLForBundle("org.apache.felix.metatype-1.0.10.jar");
+		String s = inst.getUrlForBundle("org.apache.felix.metatype-1.0.10.jar");
 		Assert.assertEquals(
 				"./target/localCache/org.apache.felix.metatype-1.0.10.jar", s);
 	}

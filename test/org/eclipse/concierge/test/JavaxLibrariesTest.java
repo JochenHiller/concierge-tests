@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
@@ -149,20 +150,20 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	/**
+	 * TODO this test will fail with JavaVM core dump when running in test suite
+	 */
 	@Test
 	public void test12JSunJersey() throws Exception {
-		final Map<String, String> launchArgs = new HashMap<String, String>();
-//		launchArgs
-//				.put("org.osgi.framework.bootdelegation",
-//						"com.sun.jersey.core.osgi,jjavax.ws.rs,javax.ws.rs.core,avax.ws.rs.ext");
-		// launchArgs.put("org.osgi.framework.system.packages.extra",
-		// "javax.ws.rs,javax.ws.rs.core,javax.ws.rs.ext");
-		startFramework(launchArgs);
-		final Bundle[] bundles = installAndStartBundles(new String[] {
-				"javax.ws.rs_1.1.1.v20130318-1750.jar",
-				"com.sun.jersey_1.17.0.v20130314-2020.jar" });
-		assertBundlesResolved(bundles);
-		stopFramework();
+		try {
+			startFramework();
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"javax.ws.rs_1.1.1.v20130318-1750.jar",
+					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
 	}
 
 	@Test

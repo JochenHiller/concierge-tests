@@ -18,6 +18,7 @@ import java.io.PrintStream;
 import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.compat.service.XargsFileLauncher;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,6 +31,18 @@ import org.osgi.framework.BundleException;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ConciergeXargsTest extends AbstractConciergeTestCase {
+
+	@BeforeClass
+	public static void preloadRequiredBundles() throws Exception {
+		LocalBundleStorage storage = LocalBundleStorage.getInstance();
+		// will lookup, and implicitly load into cache
+		storage.getUrlForBundle("org.eclipse.osgi.services_3.4.0.v20140312-2051.jar");
+		storage.getUrlForBundle("org.eclipse.equinox.util_1.0.500.v20130404-1337.jar");
+		storage.getUrlForBundle("org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar");
+		storage.getUrlForBundle("org.eclipse.equinox.console_1.1.0.v20140131-1639.jar");
+		storage.getUrlForBundle("org.eclipse.equinox.common_3.6.200.v20130402-1505.jar");
+		storage.getUrlForBundle("org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar");
+	}
 
 	@Test
 	public void test01XArgsVariantsOK() throws Exception {
@@ -48,7 +61,7 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	}
 
 	/**
-	 * TODO consolidate multiline properties for long line property
+	 * TODO consolidate multi line properties for long line property
 	 * configurations
 	 */
 	@Test
@@ -64,67 +77,61 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 
 	@Test
 	public void test10XArgsInstallSomeBundles() throws Exception {
-		runOK("-install ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
-				1);
-		runOK("-install ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar\n"
-				+ "-install ./test/plugins/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
-				2);
-		runOK("-install ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar\n"
-				+ "-install ./test/plugins/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar\n"
-				+ "-install ./test/plugins/org.eclipse.concierge.test.support_1.0.0.jar",
-				3);
+		runOK("-install ./test/plugins/concierge.test.version_1.0.0.jar", 1);
+		runOK("-install ./test/plugins/concierge.test.version_1.0.0.jar\n"
+				+ "-install ./test/plugins/concierge.test.version_1.1.0.jar", 2);
+		runOK("-install ./test/plugins/concierge.test.version_0.1.0.jar\n"
+				+ "-install ./test/plugins/concierge.test.version_1.0.0.jar\n"
+				+ "-install ./test/plugins/concierge.test.version_1.1.0.jar", 3);
 	}
 
 	@Test
 	public void test11XArgsInstallAndStartSomeBundles() throws Exception {
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
-				1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
-				2);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.test.support_1.0.0.jar",
-				3);
+		runOK("-istart ./test/plugins/concierge.test.version_1.0.0.jar", 1,
+				true);
+		runOK("-istart ./test/plugins/concierge.test.version_1.0.0.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1.1.0.jar", 2,
+				true);
+		runOK("-istart ./test/plugins/concierge.test.version_0.1.0.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1.0.0.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1.1.0.jar", 3,
+				true);
 	}
 
 	@Test
 	public void test20XArgsInstallWithWildcard() throws Exception {
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission*.jar",
-				1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission*.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.service.xmlparser*.jar",
-				2);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission*.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.service.xmlparser*.jar\n"
-				+ "-istart ./test/plugins/org.eclipse.concierge.test.support*.jar",
-				3);
+		runOK("-istart ./test/plugins/concierge.test.version*.jar", 1, true);
+		runOK("-istart ./test/plugins/concierge.test.version_0*.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1*.jar", 2,
+				true);
+		runOK("-istart ./test/plugins/concierge.test.version_0*.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1.0*.jar\n"
+				+ "-istart ./test/plugins/concierge.test.version_1.1*.jar", 3,
+				true);
 	}
 
 	@Test
 	public void test21XArgsInstallWithWildcard() throws Exception {
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission*.jar",
-				1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission*",
-				1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension*.jar", 1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043*.jar",
-				1);
-		runOK("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar*",
-				1);
-		runOK("-istart ./test/plugins/*org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
-				1);
+		runOK("-istart ./test/plugins/concierge.test.version*.jar", 1, true);
+		runOK("-istart ./test/plugins/concierge.test.version*", 1, true);
+		runOK("-istart ./test/plugins/concierge.test.*.jar", 1, true);
+		runOK("-istart ./test/plugins/concierge.test.version_1.0.0.201407232153*.jar",
+				1, true);
+		runOK("-istart ./test/plugins/concierge.test.version_1.0.0.201407232153.jar*",
+				1, true);
+		runOK("-istart ./test/plugins/*concierge.test.version_1.0.0.201407232153.jar",
+				1, true);
 	}
 
 	@Test
 	public void test22XArgsInstallWithFailedWildcard() throws Exception {
-		runFail("-istart ./test/plugins/org.eclipse.concierge.extension.permissionABC*.jar");
-		runFail("-istart ./test/plugins/org.eclipse.concierge.extension.permission*ABC");
-		runFail("-istart ./test/plugins/org.eclipse.concierge.extensionA*B.jar");
-		runFail("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201049*.jar");
-		runFail("-istart ./test/plugins/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jarAB*");
-		runFail("-istart ./test/plugins/A*org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar");
-		runFail("-istart ./test/plugins1/org.eclipse.concierge.extension.permission*.jar");
+		runFail("-istart ./test/plugins/concierge.test.versionABC*.jar");
+		runFail("-istart ./test/plugins/concierge.test.version*ABC");
+		runFail("-istart ./test/plugins/concierge.test.versionA*B.jar");
+		runFail("-istart ./test/plugins/concierge.test.version_1.0.0.201407232154*.jar");
+		runFail("-istart ./test/plugins/concierge.test.version_1.0.0.201407232153.jarAB*");
+		runFail("-istart ./test/plugins/A*concierge.test.version_1.0.0.201407232153.jar");
+		runFail("-istart ./test/plugins1/concierge.test.version*.jar");
 	}
 
 	/**
@@ -134,10 +141,11 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	@Test
 	public void test23XArgsInstallAndStartWithLogServiceReference()
 			throws Exception {
-		// set
+		// set to use Concierge builtin logger
 		runOK("-Dorg.eclipse.concierge.log.enabled=true\n"
 				+ "-Dorg.eclipse.concierge.log.level=4\n" // DEBUG
-				+ "-istart ./test/plugins/concierge.test.version_1.0.0.jar", 1);
+				+ "-istart ./test/plugins/concierge.test.version_1.0.0.jar", 1,
+				true);
 	}
 
 	/**
@@ -172,28 +180,28 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	@Test
 	public void test30XArgsInstallWithVariable() throws Exception {
 		runOK("-Ddir=./test/plugins\n"
-				+ "-install ${dir}/org.eclipse.concierge.extension.permission*.jar");
+				+ "-install ${dir}/concierge.test.version*.jar", 1);
 		runOK("-Ddir=./test/plugins\n"
-				+ "-install ${dir}/org.eclipse.concierge.extension.permission*.jar"
-				+ "-install ${dir}/org.eclipse.concierge.service.xmlparser_1.0.0.*.jar\n"
-				+ "-install ${dir}/org.eclipse.concierge.test.support_1.0.*.jar");
+				+ "-install ${dir}/concierge.test.version_0*.jar\n"
+				+ "-install ${dir}/concierge.test.version_1.0*.jar\n"
+				+ "-install ${dir}/concierge.test.version_1.1*.jar", 3);
 	}
 
 	@Test
 	public void test31XArgsInstallAndStartWithVariable() throws Exception {
 		runOK("-Ddir=./test/plugins\n"
-				+ "-istart ${dir}/org.eclipse.concierge.extension.permission*.jar");
+				+ "-istart ${dir}/concierge.test.version*.jar", 1, true);
 		runOK("-Ddir=./test/plugins\n"
-				+ "-istart ${dir}/org.eclipse.concierge.extension.permission*.jar\n"
-				+ "-istart ${dir}/org.eclipse.concierge.service.xmlparser_1.0.0.*.jar\n"
-				+ "-istart ${dir}/org.eclipse.concierge.test.support_1.0.*.jar");
+				+ "-istart ${dir}/concierge.test.version_0*.jar\n"
+				+ "-istart ${dir}/concierge.test.version_1.0*.jar\n"
+				+ "-istart ${dir}/concierge.test.version_1.1*.jar", 3, true);
 	}
 
 	@Test
 	public void test32XArgsInstallAndStartLaterWithVariable() throws Exception {
 		runOK("-Ddir=./test/plugins\n"
-				+ "-install ${dir}/org.eclipse.concierge.extension.permission*.jar"
-				+ "-start ${dir}/org.eclipse.concierge.extension.permission*.jar");
+				+ "-install ${dir}/concierge.test.version*.jar\n"
+				+ "-start ${dir}/concierge.test.version*.jar", 1, true);
 	}
 
 	@Test
@@ -212,16 +220,21 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 				+ "-istart ${patched.dir}/org.eclipse.equinox.console_1.1.0.v20140131-1639.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar\n",
-				9);
+				9, true);
 	}
 
 	// private methods
 
 	private void runOK(String initXargs) throws Exception {
-		runOK(initXargs, -1);
+		runOK(initXargs, -1, false);
 	}
 
 	private void runOK(String initXargs, int noOfBundles) throws Exception {
+		runOK(initXargs, noOfBundles, false);
+	}
+
+	private void runOK(String initXargs, int noOfBundles,
+			boolean checkForResolved) throws Exception {
 		final XargsFileLauncher xargsLauncher = new XargsFileLauncher();
 		final File xargs = createFileFromString(initXargs);
 		try {
@@ -236,17 +249,13 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 			useFramework(framework);
 
 			Bundle[] bundles = framework.getBundleContext().getBundles();
-			assertBundlesResolved(bundles);
-
+			if (checkForResolved) {
+				assertBundlesResolved(bundles);
+			}
 		} finally {
 			xargs.delete();
 			stopFramework();
 		}
-	}
-
-	@Override
-	protected boolean stayInShell() {
-		return true;
 	}
 
 	private void runFail(String initXargs) throws Exception {

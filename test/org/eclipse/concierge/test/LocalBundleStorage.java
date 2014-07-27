@@ -66,7 +66,8 @@ public class LocalBundleStorage {
 			if (foundFiles.length == 1) {
 				return foundFiles[0];
 			} else {
-				// logDebug("local bundle '" + bundleName + "' not found at " + dir);
+				// logDebug("local bundle '" + bundleName + "' not found at " +
+				// dir);
 			}
 		}
 		return null;
@@ -88,7 +89,8 @@ public class LocalBundleStorage {
 				// ignore
 			} catch (IOException e) {
 				// ignore, bundle not found under URL
-				// logDebug("remote bundle '" + bundleName + "' not found at " + u);
+				// logDebug("remote bundle '" + bundleName + "' not found at " +
+				// u);
 			}
 		}
 		return null;
@@ -120,7 +122,7 @@ public class LocalBundleStorage {
 		}
 	}
 
-	public String getURLForBundle(final String bundleName) {
+	public String getUrlForBundle(final String bundleName) {
 		if (new File(bundleName).exists()) {
 			return bundleName;
 		} else {

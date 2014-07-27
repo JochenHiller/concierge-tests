@@ -1,13 +1,21 @@
 #!/bin/sh
 
-
-# SPEED DEVELOPMENT
-cp -R ../../concierge-tests/patches/openhab2/patches/* .
-rm -rf storage
-
-
-
 cd `dirname $0`
+
+
+# ENABLE that for development purposes, will speed up
+if [ true == true ] ; then
+  cp -R ../../concierge-tests/patches/openhab2-runtime/patches/* .
+  rm -rf storage
+fi
+
+# will download all needed files if not existing
+if [ ! -d runtime/server/concierge ] ; then
+  mkdir -p runtime/server/concierge
+  for f in concierge.xargs org.eclipse.concierge-5.0.0-SNAPSHOT.jar org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar org.eclipse.equinox.console_1.1.0.v20140131-1639.jar org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar shell-1.0.0.jar ; do
+    curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/runtime/server/concierge/$f
+  done
+fi
 
 # set path to eclipse folder. If local folder, use '.'; otherwise, use /path/to/eclipse/
 eclipsehome="runtime/server";
@@ -21,7 +29,7 @@ cp=$(find $eclipsehome -name "org.eclipse.concierge-5.0.0*.jar" | sort | tail -1
 # echo $cp
 
 # debug options
-# debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y"
+debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n"
 
 # program args
 prog_args="-Dorg.eclipse.concierge.init.xargs=./runtime/server/concierge/concierge.xargs -Dlogback.configurationFile=./runtime/etc/logback_debug.xml -DmdnsName=openhab -Dopenhab.logdir=./userdata/logs -Dsmarthome.servicecfg=./runtime/etc/services.cfg -Dsmarthome.servicepid=org.openhab -Dorg.quartz.properties=./runtime/etc/quartz.properties"

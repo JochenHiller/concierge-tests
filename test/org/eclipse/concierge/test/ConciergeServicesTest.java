@@ -10,8 +10,14 @@
  *******************************************************************************/
 package org.eclipse.concierge.test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.jar.JarFile;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -161,4 +167,29 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	/**
+	 * shell-1.0.0 is not a valid JAR file: MANIFEST.MF is at wrong place
+	 */
+	@Test
+	public void testShell100JarManifest() throws IOException {
+		// this is OK
+		File f1 = new File("./test/plugins/shell-1.0.0.jar");
+		JarFile jf1 = new JarFile(f1);
+		Manifest mf1 = jf1.getManifest();
+		Assert.assertNotNull(mf1);
+		jf1.close();
+		// this does not work when opened as stream
+		// reasons is that META-INF/MANIFEST.MF is not first entry
+		// see also
+		// http://stackoverflow.com/questions/13814891/jarinputstream-getmanifest-is-null
+		// see also http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4338238
+		// see also http://bugs.java.com/bugdatabase/view_bug.do?bug_id=5046178
+		File f2 = new File("./test/plugins/shell-1.0.0.jar");
+		FileInputStream fis2 = new FileInputStream(f2);
+		JarInputStream jis2 = new JarInputStream(fis2);
+		Manifest mf2 = jis2.getManifest();
+		Assert.assertNotNull(mf2);
+		jis2.close();
+		fis2.close();
+	}
 }

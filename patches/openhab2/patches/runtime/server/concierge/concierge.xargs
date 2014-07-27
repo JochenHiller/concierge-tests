@@ -200,7 +200,9 @@
 -istart ${dir}/org.apache.httpcomponents.httpcore_4.2.5.v201311072007.jar
 -istart ${dir}/org.codehaus.jackson.core_1.6.0.v20101005-0925.jar
 -istart ${dir}/org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar
--istart ${dir}/org.apache.felix.fileinstall_3.2.6.jar
+# TODO
+# -istart ${dir}/org.apache.felix.fileinstall_3.2.6.jar
+-istart ${concierge.dir}/org.apache.felix.fileinstall-3.4.0.jar
 
 
 # openHAB 2 and deps

@@ -136,7 +136,7 @@ public abstract class AbstractConciergeTestCase {
 		final Bundle[] bundles = new Bundle[bundleNames.length];
 		for (int i = 0; i < bundleNames.length; i++) {
 			final String url = this.localBundleStorage
-					.getURLForBundle(bundleNames[i]);
+					.getUrlForBundle(bundleNames[i]);
 			bundles[i] = bundleContext.installBundle(url);
 		}
 		return bundles;
@@ -164,7 +164,7 @@ public abstract class AbstractConciergeTestCase {
 	 */
 	protected Bundle installBundle(final String bundleName)
 			throws BundleException {
-		final String url = this.localBundleStorage.getURLForBundle(bundleName);
+		final String url = this.localBundleStorage.getUrlForBundle(bundleName);
 		final Bundle bundle = bundleContext.installBundle(url);
 		return bundle;
 	}
@@ -175,7 +175,7 @@ public abstract class AbstractConciergeTestCase {
 	 */
 	protected Bundle installAndStartBundle(final String bundleName)
 			throws BundleException {
-		final String url = this.localBundleStorage.getURLForBundle(bundleName);
+		final String url = this.localBundleStorage.getUrlForBundle(bundleName);
 		// System.err.println("installAndStartBundle: " + bundleName);
 
 		final Bundle bundle = bundleContext.installBundle(url);

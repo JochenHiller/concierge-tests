@@ -20,6 +20,11 @@ It will assume that both projects are checked out in same directory level.
 cd concierge-tests
 ./copy-to-concierge.sh
 ```
+4. Add the file `lib/commons-io-2.4.jar` to build path
+5. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
+http://download.eclipse.org/smarthome/updates-nightly/plugins/ and update the version in the
+file `EclipseSmartHomeTest.java`
+
 
 ## Overview of testing framework
 
@@ -83,10 +88,17 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
 * [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
 * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
 * [#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981) (Open)
+  * Seems that Equinox and Felix alos do not have easy working solutions.
+  * See also workarounds at e.g.
+    * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
+    * https://github.com/tux2323/jersey.sample.osgiservice
+* [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
 
-
-From Harini Siresena:  
+From Tim Verbelen:
+* [#440227 Boot delegation of com.sun.* and sun.* packages](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440227) (Open)
+  * Patch available: let com.sun.jersey.*, com.sun.ws.* packages to be loaded from BundleClassloader
   
+From Harini Siresena:
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
 
 
@@ -148,6 +160,11 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * Equinox * bundles: deps to Equinox, or core.runtime
     * go over all TODOs, sort them
     * major issue: o.e.sh.core.transform, make sep. test
+* openHAB
+  * Bug in openHAB2
+    * [#1295 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab/issues/1295) (Open)
+      * Apache Felix FileInstall needs an update to 3.4.0, as this does not require StartLevel service, which is NOT supported by Concierge
+      * Workaround: use FileInstall 3.4.0 as part of Concierge patches for openHAB2/Eclipse SmartHome
 
 ### Eclipse Kura running on Concierge
 
@@ -196,6 +213,34 @@ The build number has to be changed in EclipseSmartHomeTest like that:
 
 TODO add missing bundles
 
+#### You can run Eclipse SmartHome with Concierge this way:
+
+To run Eclipse SmartHome, you have to use an openHAB2 build, as Eclipse SmartHome
+does not have its own distribution yet.
+
+1. Get openHAB2 snapshot build from https://openhab.ci.cloudbees.com/job/openHAB2/
+```script
+$ wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
+$ wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
+```
+2. Unzip openHAB2 runtime
+```script
+$ mkdir openhab2
+$ cd openhab2
+$ unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
+```
+3. Unzip openHAB2 demo into runtime
+```script
+$ cd runtime
+$ unzip ../../distribution-2.0.0-SNAPSHOT-demo.zip
+```
+4. Download `start_concierge_debug.sh` script
+```script
+$ cd ..
+$ wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
+```
+
+
 ## References for Concierge
 
 For more details see
@@ -225,6 +270,18 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 ## TODO
 
 * Fix and report problem with Jersey (com.sun.*)
+* Add log information for resolveBundle when running into nested resolve calls (IllegalStateException)
+* org.eclipse.jetty.osgi.httpservice.boot does NOT support Concierge
+```
+18:24:24.109 WARN  o.e.j.o.b.u.BundleClassLoaderHelper[:105]- Unknown OSGi container type
+18:24:24.109 WARN  o.e.j.o.b.u.BundleClassLoaderHelper[:154]- No classloader for unknown OSGi container type
+18:24:24.117 WARN  o.e.j.deploy.DeploymentManager[:505]- Unable to reach node goal: started
+java.lang.NullPointerException: null
+	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.findClass(OSGiClassLoader.java:186)
+	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.loadClass(OSGiClassLoader.java:140)
+	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.loadClass(OSGiClassLoader.java:110)
+	at org.eclipse.jetty.util.Loader.loadClass(Loader.java:86)
+```
 * Test FelixFileInstall, NPE will happen
 * Extend xargs launcher obout wildcard support for simpler startup scripts
   * for multiple properties per line
@@ -238,3 +295,4 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 * Provide a way how EMF (and other bundles) can be used from workspace for testing
   (as requested by Ed Merks)
 * Create bug to EMF to adapt other bundles (like EMF-examples) to do NOT require-bundle to Equinox too
+* Run and test Concierge under Raspberry PI

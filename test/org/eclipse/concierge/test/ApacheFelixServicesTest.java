@@ -68,6 +68,25 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	@Test
+	public void test04ApacheFelixFileInstall() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("felix.fileinstall.poll", "5");
+			launchArgs.put("felix.fileinstall.dir", "./test/plugins");
+
+			startFrameworkClean(launchArgs);
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.apache.felix.configadmin-1.8.0.jar",
+					"org.apache.felix.fileinstall-3.4.0.jar", });
+			assertBundlesResolved(bundles);
+			// wait 10 s to get poll done 1-2x
+			Thread.sleep(10000);
+		} finally {
+			stopFramework();
+		}
+	}
+
 	/**
 	 * Equinox DS requires Equinox console, will fail due to missing
 	 * resolvements.

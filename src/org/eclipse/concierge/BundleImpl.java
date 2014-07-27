@@ -2497,9 +2497,16 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				// Step 1: delegate java.* to the parent class loader
 				// Step 2: delegate org.osgi.framework.bootdelegation to the
 				// parent class loader
-				if (Concierge.PATCH_JOCHEN) {} // MARKER for change below
+				boolean isComSunPackage;
+				if (Concierge.PATCH_JOCHEN) {
+					isComSunPackage = (pkg.startsWith("com.sun.")
+							&& !pkg.startsWith("com.sun.jersey.") && !pkg
+							.startsWith("com.sun.ws."));
+				} else {
+					isComSunPackage = pkg.startsWith("com.sun.");
+				}
 				if (pkg.startsWith("java.") || pkg.startsWith("sun.")
-						|| (pkg.startsWith("com.sun.") && !pkg.startsWith("com.sun.jersey.") && !pkg.startsWith("com.sun.ws."))
+						|| isComSunPackage
 						|| framework.bootdelegation(pkg)) {
 					if (isClass) {
 						return getParent().loadClass(name);

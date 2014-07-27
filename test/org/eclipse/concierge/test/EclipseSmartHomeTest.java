@@ -27,7 +27,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407221807" + ".jar";
+		return bundleName + "_0.7.0.201407251706" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {

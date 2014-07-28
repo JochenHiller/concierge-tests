@@ -20,7 +20,7 @@ import org.junit.Test;
 
 public class EclipseSmartHomeStartWithConcierge {
 
-	private static final String OPENHAB2_RUNTIME_PATH = "../openhab2/runtime";
+	private static final String OPENHAB2_RUNTIME_PATH = "../openhab2-runtime/runtime";
 	private static final String START_CONCIERGE_SH = "start_concierge_debug.sh";
 
 	@Test

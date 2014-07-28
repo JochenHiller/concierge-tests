@@ -68,8 +68,36 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	/**
+	 * Tests whether Apache Felix FileInstall can be installed. 3.2.6 does NOT
+	 * work, as it requires a StartLevel service, which is NOT supported by
+	 * Concierge. TODO fix the test case, this seems to work but does NOT work
+	 * in Eclipse SmartHome
+	 */
 	@Test
-	public void test04ApacheFelixFileInstall() throws Exception {
+	public void test04ApacheFelixFileInstall326() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("felix.fileinstall.poll", "5");
+			launchArgs.put("felix.fileinstall.dir", "./test/plugins");
+			startFrameworkClean(launchArgs);
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.apache.felix.configadmin-1.8.0.jar",
+					"org.apache.felix.fileinstall_3.2.6.jar", });
+			assertBundlesResolved(bundles);
+			// wait 10 s to get poll done 1-2x
+			Thread.sleep(10000);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * Tests whether Apache Felix FileInstall can be installed. FileInstall
+	 * 3.4.0 does work well.
+	 */
+	@Test
+	public void test05ApacheFelixFileInstall340() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("felix.fileinstall.poll", "5");

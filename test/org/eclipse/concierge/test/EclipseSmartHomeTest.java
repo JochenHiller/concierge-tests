@@ -27,7 +27,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407251706" + ".jar";
+		return bundleName + "_0.7.0.201407262207" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {
@@ -36,6 +36,10 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	private static final String B_XTEXT(String bundleName) {
 		return bundleName + "_2.6.1.v201406120726" + ".jar";
+	}
+
+	private static final String B_JETTY(String bundleName) {
+		return bundleName + "_9.2.1.v20140609" + ".jar";
 	}
 
 	@Override
@@ -133,14 +137,16 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"javax.activation_1.1.0.v201211130549.jar",
 					// "javax.xml.stream_1.0.1.v201004272200.jar",
 					// "javax.xml.bind_2.2.0.v201105210648.jar",
+					// TODO hmm: commons-net requires javax.servlet <3.1, jetty >=3.1
 					"javax.servlet_3.0.0.v201112011016.jar",
-					"org.eclipse.jetty.util_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.io_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.http_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.continuation_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.server_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.security_8.1.14.v20131031.jar",
-					"org.eclipse.jetty.servlet_8.1.14.v20131031.jar" });
+					"javax.servlet_3.1.0.v20140303-1611.jar",
+					B_JETTY("org.eclipse.jetty.util"),
+					B_JETTY("org.eclipse.jetty.io"),
+					B_JETTY("org.eclipse.jetty.http"),
+					B_JETTY("org.eclipse.jetty.continuation"),
+					B_JETTY("org.eclipse.jetty.server"),
+					B_JETTY("org.eclipse.jetty.security"),
+					B_JETTY("org.eclipse.jetty.servlet") });
 			assertBundlesResolved(jettyBundles);
 
 			final String[] bundleNames = new String[] {
@@ -203,7 +209,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.apache.commons.net_3.2.0.v201305141515.jar",
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.eclipse.equinox.http.servlet_1.1.300.v20120522-1841.jar",
-					"org.eclipse.jetty.osgi.httpservice_8.1.14.v20131031.jar",
+					B_JETTY("org.eclipse.jetty.osgi.httpservice"),
 					B_ESH("org.eclipse.smarthome.io.net"),
 
 					// o.e.s.core.transform and its deps, needs scriptengine and

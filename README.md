@@ -93,6 +93,8 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
     * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
     * https://github.com/tux2323/jersey.sample.osgiservice
 * [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
+* [#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504) (Open)
+* [#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505) (Open)
 
 From Tim Verbelen:
 * [#440227 Boot delegation of com.sun.* and sun.* packages](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440227) (Open)
@@ -123,7 +125,11 @@ The code patches are marked with conditional compilation based on Concierge.PATC
       * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
   * Equinox DS
     * no problems in DS, only in dependent bundles
-
+* Jetty
+  * Jetty OSGi Boot bundle
+    * [#440506 Jetty OSGi boot bundle does not support OSGi framework Eclipse Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440506) (Open)
+      * Note: there is a prebuild version of this bundle with Concierge support available at
+        https://github.com/JochenHiller/concierge-tests/blob/master/patches/openhab2/patches/runtime/server/concierge/jetty-osgi-boot-9.2.1.v20140609.jar
 * EMF
   * ~~[#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
     * Note: the bundle will raise exceptions during installation. Until now there are just some tests which check 
@@ -162,7 +168,7 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * major issue: o.e.sh.core.transform, make sep. test
 * openHAB
   * Bug in openHAB2
-    * [#1295 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab/issues/1295) (Open)
+    * [#6 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab2/issues/6) (Open)
       * Apache Felix FileInstall needs an update to 3.4.0, as this does not require StartLevel service, which is NOT supported by Concierge
       * Workaround: use FileInstall 3.4.0 as part of Concierge patches for openHAB2/Eclipse SmartHome
 
@@ -239,7 +245,7 @@ $ unzip ../../distribution-2.0.0-SNAPSHOT-demo.zip
 $ cd ..
 $ wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
 ```
-
+5. Open a browser to http://localhost:8080/smarthome.app?sitemap=demo
 
 ## References for Concierge
 
@@ -266,31 +272,25 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 * Apache Felix
   * Felix Website: http://felix.apache.org
   * Source Code Repo: http://svn.apache.org/repos/asf/felix/trunk
-
+* Jetty
+  * Sourc Code Repo: https://git.eclipse.org/r/p/jetty/org.eclipse.jetty.project
+  * Sourc Code Repo: git://git.eclipse.org/gitroot/jetty/rt.equinox.bundles.git
 ## TODO
 
-* Fix and report problem with Jersey (com.sun.*)
-* Add log information for resolveBundle when running into nested resolve calls (IllegalStateException)
-* org.eclipse.jetty.osgi.httpservice.boot does NOT support Concierge
-```
-18:24:24.109 WARN  o.e.j.o.b.u.BundleClassLoaderHelper[:105]- Unknown OSGi container type
-18:24:24.109 WARN  o.e.j.o.b.u.BundleClassLoaderHelper[:154]- No classloader for unknown OSGi container type
-18:24:24.117 WARN  o.e.j.deploy.DeploymentManager[:505]- Unable to reach node goal: started
-java.lang.NullPointerException: null
-	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.findClass(OSGiClassLoader.java:186)
-	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.loadClass(OSGiClassLoader.java:140)
-	at org.eclipse.jetty.osgi.boot.utils.OSGiClassLoader.loadClass(OSGiClassLoader.java:110)
-	at org.eclipse.jetty.util.Loader.loadClass(Loader.java:86)
-```
-* Test FelixFileInstall, NPE will happen
+* Jersey: test case for Jackson classes
 * Extend xargs launcher obout wildcard support for simpler startup scripts
-  * for multiple properties per line
+  * Finalize Xargs contribution (multi-line properties, multiple properties, -fwstart option, reformat code)
+* Implementation for com.sun.* packages
+* Add a bug when running ConciergeExtension test cases: will not cleanup correctly, which
+  results in further errors in test cases or in seldom cases to JavaVM crashs
+  Seems to be a bug related to bundle jar file which will NOT be closed in all error situations
+* Add test cases for Xargs with initLevel
+* Add log information for resolveBundle when running into nested resolve calls (IllegalStateException)
 * Check Apache Gogo for reported errors/exceptions
 * Create bug for Apache Felix DS for order of activation/component
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to AbstractConciergeTestCase.installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
-* Create bug in Xargs test with JavaVM crash (if reproducable)
 * Use Xtext online repo (check Hudson builds) ==> ask Xtext where to find repo
 * Provide a way how EMF (and other bundles) can be used from workspace for testing
   (as requested by Ed Merks)

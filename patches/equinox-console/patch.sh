@@ -14,7 +14,7 @@ rm META-INF/MANIFEST.MF
 mv META-INF/MANIFEST.MF.PATCHED META-INF/MANIFEST.MF
 if [ ! -d ../../patched ]  ; then mkdir ../../patched ; fi
 if [ -f ../../patched/$BUNDLE ]  ; then rm ../../patched/$BUNDLE ; fi
-jar cfM ../../patched/$BUNDLE .
+jar cfm ../../patched/$BUNDLE META-INF/MANIFEST.MF .
 cd ../..
 
 # cleanup

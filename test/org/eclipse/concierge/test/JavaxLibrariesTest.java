@@ -152,6 +152,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 
 	/**
 	 * TODO this test will fail with JavaVM core dump when running in test suite
+	 * TODO this test will fail when running LATER that ConciergeExtensionsTest. Why???
 	 */
 	@Test
 	public void test12JSunJersey() throws Exception {

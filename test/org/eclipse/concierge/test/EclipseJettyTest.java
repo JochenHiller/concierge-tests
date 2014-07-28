@@ -28,7 +28,7 @@ public class EclipseJettyTest extends AbstractConciergeTestCase {
 	public void test01Jetty() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages",
+			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"javax.naming,javax.net.ssl,"
 							+ "javax.security.auth,javax.security.cert,"
 							+ "javax.sql,"

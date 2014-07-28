@@ -91,6 +91,7 @@
 -istart ${dir}/org.objectweb.asm_5.0.1*.jar
 -istart ${dir}/com.google.guava_15.0.0*.jar
 -istart ${dir}/com.google.inject_3.0.0*.jar
+-istart ${dir}/com.google.gson_2.2.4*.jar
 
 
 # Felix bundles
@@ -171,6 +172,7 @@
 -istart ${dir}/org.eclipse.smarthome.core.transform_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.monitor_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.servicediscovery_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.storage.mapdb_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.model.core_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.model.item_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.model.persistence_0.7.0*.jar
@@ -204,8 +206,7 @@
 
 
 # FileInstall as last bundle to allow to install add-ons
-# TODO 3.2.6 does not work, use 3.4.0 as patch
--istart ${concierge.dir}/org.apache.felix.fileinstall-3.4.0.jar
+-istart ${dir}/org.apache.felix.fileinstall_3.4.0.jar
 
 
 # end of script

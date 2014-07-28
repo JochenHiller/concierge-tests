@@ -15,11 +15,11 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.wiring.BundleWiring;
 
 /**
  * @author Jochen Hiller
@@ -150,28 +150,11 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		}
 	}
 
-	/**
-	 * TODO this test will fail with JavaVM core dump when running in test suite
-	 * TODO this test will fail when running LATER that ConciergeExtensionsTest. Why???
-	 */
 	@Test
-	public void test12JSunJersey() throws Exception {
-		try {
-			startFramework();
-			final Bundle[] bundles = installAndStartBundles(new String[] {
-					"javax.ws.rs_1.1.1.v20130318-1750.jar",
-					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
-			assertBundlesResolved(bundles);
-		} finally {
-			stopFramework();
-		}
-	}
-
-	@Test
-	public void test20Jackson() throws Exception {
+	public void test13InstallAndStartJackson() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages",
+			launchArgs.put("org.osgi.framework.system.packages.extra",
 					"javax.imageio,javax.imageio.metadata");
 			startFrameworkClean(launchArgs);
 
@@ -188,4 +171,97 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	@Test
+	public void test13JacksonLoadClass() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"javax.imageio,javax.imageio.metadata");
+			startFrameworkClean(launchArgs);
+
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"javax.xml_1.3.4.v201005080400.jar",
+					"javax.activation_1.1.0.v201211130549.jar",
+					"javax.xml.stream_1.0.1.v201004272200.jar",
+					"javax.xml.bind_2.2.0.v201105210648.jar",
+					"org.codehaus.jackson.core_1.6.0.v20101005-0925.jar",
+					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar" });
+			assertBundlesResolved(bundles);
+
+			Bundle bundleUnderTest = bundles[5];
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Class<?> clazz = runner
+					.getClass("org.codehaus.jackson.map.JsonSerializableWithType");
+			Assert.assertNotNull(clazz);
+			Assert.assertEquals(
+					"org.codehaus.jackson.map.JsonSerializableWithType",
+					clazz.getName());
+
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * TODO this test will fail with JavaVM core dump when running in test suite
+	 * TODO this test will fail when running LATER that ConciergeExtensionsTest.
+	 * Why???
+	 */
+	@Test
+	public void test14InstallAndStartSunJersey() throws Exception {
+		try {
+			startFramework();
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"javax.ws.rs_1.1.1.v20130318-1750.jar",
+					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
+			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	/**
+	 * TODO this test will fail with JavaVM core dump when running in test suite
+	 * TODO this test will fail when running LATER that ConciergeExtensionsTest.
+	 * Why???
+	 */
+	@Test
+	public void test15SunJerseyLoadJacksonClasses() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			// launchArgs
+			// .put("org.osgi.framework.bootdelegation",
+			// "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
+			launchArgs
+					.put("org.osgi.framework.system.packages.extra",
+							"javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
+			startFrameworkClean(launchArgs);
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.codehaus.jackson.core_1.6.0.v20101005-0925.jar",
+					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar",
+					"javax.ws.rs_1.1.1.v20130318-1750.jar",
+					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
+			assertBundlesResolved(bundles);
+			Bundle bundleUnderTest = bundles[3];
+
+			System.out.println(bundleUnderTest.getHeaders());
+
+			Object o = bundleUnderTest.adapt(BundleWiring.class);
+			System.out.println(o);
+			BundleWiring w = (BundleWiring) o;
+			System.out.println(w);
+			// TODO check why jackson packages are missing
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Class<?> clazz = runner
+					.getClass("org.codehaus.jackson.map.JsonSerializableWithType");
+			Assert.assertNotNull(clazz);
+			Assert.assertEquals(
+					"org.codehaus.jackson.map.JsonSerializableWithType",
+					clazz.getName());
+		} finally {
+			stopFramework();
+		}
+	}
 }

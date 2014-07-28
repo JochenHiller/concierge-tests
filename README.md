@@ -179,19 +179,19 @@ The code patches are marked with conditional compilation based on Concierge.PATC
 See https://github.com/eclipse/kura for details how to build.
 ```Shell
 // build target platform
-$ git clone -b develop https://github.com/eclipse/kura.git
-$ cd kura/target-platform
-$ mvn clean install
+git clone -b develop https://github.com/eclipse/kura.git
+cd kura/target-platform
+mvn clean install
 // build kura core
-$ cd ../kura/
-$ mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
-$ mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
-$ mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
+cd ../kura/
+mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
+mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
+mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
 ```
 2. Unpack distribution file
 ```Shell
-$ cd distrib/target
-$ unzip kura-raspberry-pi-jars_0.2.0-SNAPSHOT.zip
+cd distrib/target
+unzip kura-raspberry-pi-jars_0.2.0-SNAPSHOT.zip
 ```
 3. Add the directory with unpacked files to file test/concierge-test.properties
 
@@ -226,24 +226,25 @@ does not have its own distribution yet.
 
 1. Get openHAB2 snapshot build from https://openhab.ci.cloudbees.com/job/openHAB2/
 ```script
-$ wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
-$ wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
+wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
+wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
 ```
 2. Unzip openHAB2 runtime
 ```script
-$ mkdir openhab2
-$ cd openhab2
-$ unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
+mkdir openhab2
+cd openhab2
+unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
 ```
 3. Unzip openHAB2 demo into runtime
 ```script
-$ cd runtime
-$ unzip ../../distribution-2.0.0-SNAPSHOT-demo.zip
+cd runtime
+unzip ../../distribution-2.0.0-SNAPSHOT-demo.zip
 ```
 4. Download `start_concierge_debug.sh` script
 ```script
-$ cd ..
-$ wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
+cd ..
+wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
+chmod u+x start_concierge_debug.sh
 ```
 5. Open a browser to http://localhost:8080/smarthome.app?sitemap=demo
 

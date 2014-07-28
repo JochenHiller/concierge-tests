@@ -43,7 +43,7 @@ public class GoogleLibraryTest extends AbstractConciergeTestCase {
 	@Test
 	public void test02GoogleInject() throws Exception {
 		final Map<String, String> launchArgs = new HashMap<String, String>();
-		launchArgs.put("org.osgi.framework.system.packages", "javax.inject");
+		launchArgs.put("org.osgi.framework.system.packages.extra", "javax.inject");
 		startFrameworkClean(launchArgs);
 		try {
 			final Bundle[] bundles = installAndStartBundles(new String[] {

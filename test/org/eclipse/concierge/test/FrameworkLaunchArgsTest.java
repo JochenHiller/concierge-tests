@@ -93,7 +93,7 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	public void test10SystemPackages() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages", "p1,p2,p3");
+			launchArgs.put("org.osgi.framework.system.packages.extra", "p1,p2,p3");
 			startFramework(launchArgs);
 		} finally {
 			stopFramework();
@@ -109,7 +109,7 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	public void test11SystemPackagesTrailingComma() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages", "p1,p2,p3,");
+			launchArgs.put("org.osgi.framework.system.packages.extra", "p1,p2,p3,");
 			startFramework(launchArgs);
 		} finally {
 			stopFramework();

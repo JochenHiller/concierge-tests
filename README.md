@@ -79,8 +79,8 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
 ```
 * ~~[#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Closed)
   * Note: added an extension bundle which provides the missing classes. This needs to be installed first when missing classes are needed (e.g. for Equinox console).
-* [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
-* [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
+* ~~[#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469)~~ (Closed)
+* ~~[#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470)~~ (Closed)
 * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed)
   * Note: as commented in bug this missing functionality is added as separate bundle to keep core code of Concierge as small as possible
 * ~~[#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751)~~ (Rejected)

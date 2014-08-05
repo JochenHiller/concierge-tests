@@ -132,7 +132,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
 					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
 					// required by Equinox Console, is not optional
-					"org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar",
+					"org.eclipse.concierge.extension.permission_1.0.0.201408052201.jar",
 					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar" });
 			assertBundlesResolved(bundles);
 		} finally {

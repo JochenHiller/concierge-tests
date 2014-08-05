@@ -60,10 +60,6 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 		runOK("  # one line\n# -Dprop=value\n", 0);
 	}
 
-	/**
-	 * TODO consolidate multi line properties for long line property
-	 * configurations
-	 */
 	@Test
 	public void test02XArgsPropertiesMultiline() throws Exception {
 		runOK("-Dprop=value");

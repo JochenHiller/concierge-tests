@@ -71,8 +71,7 @@ public class XargsFileLauncher {
 			// change: start first
 			concierge.start();
 		}
-		
-		
+
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(file)));
 
@@ -106,7 +105,8 @@ public class XargsFileLauncher {
 						}
 					});
 					if (files == null) {
-						System.err.println("NO FILES FOUND IN " + concierge.BUNDLE_LOCATION);
+						System.err.println("NO FILES FOUND IN "
+								+ concierge.BUNDLE_LOCATION);
 						break;
 					}
 
@@ -114,10 +114,11 @@ public class XargsFileLauncher {
 						if (files[i].isDirectory()) {
 							continue;
 						}
-						final BundleImpl b = (BundleImpl) context.installBundle(files[i]
-								.getName());
+						final BundleImpl b = (BundleImpl) context
+								.installBundle(files[i].getName());
 						b.setStartLevel(initLevel);
-						final Revision rev = (Revision) b.adapt(BundleRevision.class);
+						final Revision rev = (Revision) b
+								.adapt(BundleRevision.class);
 						if (!rev.isFragment()) {
 							b.start();
 						}
@@ -194,11 +195,28 @@ public class XargsFileLauncher {
 					continue;
 				} else if (token.startsWith("-D")) {
 					token = getArg(token, 2);
+					int comment = token.indexOf("#");
+					if (comment != -1) {
+						token = token.substring(0, comment).trim();
+					}
 					// get key and value
 					int pos = token.indexOf("=");
 					if (pos > -1) {
 						String key = token.substring(0, pos);
 						String value = token.substring(pos + 1);
+						// handle multiline properties
+						while (value.endsWith("\\")) {
+							token = reader.readLine();
+							comment = token.indexOf("#");
+							if (comment != -1) {
+								token = token.substring(0, comment).trim();
+							}
+							value = value.substring(0, value.length() - 1)
+									.trim() + token;
+						}
+						if (Concierge.PATCH_JOCHEN) {
+							value = replaceVariable(value, properties);
+						}
 						properties.put(key, value);
 					}
 					continue;
@@ -247,19 +265,23 @@ public class XargsFileLauncher {
 	/**
 	 * Replace all ${var} entries via its value of properties.
 	 */
-	private String replaceVariable(String s,
+	private String replaceVariable(String line,
 			final Map<String, String> properties) {
-		if (!s.matches("\\$\\{.*")) {
-			return s;
+		// search property from beginning
+		String s = line;
+		while (s.matches(".*\\$\\{.*")) {
+			final String propertyName = s.substring(s.indexOf("${") + 2,
+					s.indexOf("}"));
+			final String propertyValue = properties.get(propertyName);
+			// replace variable
+			if (propertyValue != null) {
+				line = line.replaceAll("\\$\\{" + propertyName + "\\}",
+						propertyValue);
+			}
+			// goto next property
+			s = s.substring(s.indexOf("}") + 1);
 		}
-		final String variableName = s.substring(s.indexOf("${") + 2,
-				s.indexOf("}"));
-		// replace variable
-		final String value = properties.get(variableName);
-		if (value != null) {
-			s = s.replaceAll("\\$\\{.*\\}", value);
-		}
-		return s;
+		return line;
 	}
 
 	/**

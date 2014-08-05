@@ -64,11 +64,54 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	public void test02XArgsPropertiesMultiline() throws Exception {
 		runOK("-Dprop=value");
 		Assert.assertEquals("value", getFrameworkProperty("prop"));
-		runOK("-Dprop=value1;\\value2");
-		Assert.assertEquals("value1;\\value2", getFrameworkProperty("prop"));
-		runOK("-Dprop=value1; \\ value2\\ value3");
-		Assert.assertEquals("value1; \\ value2\\ value3",
-				getFrameworkProperty("prop"));
+		runOK("-Dprop=value1;\\\n" + "value2");
+		Assert.assertEquals("value1;value2", getFrameworkProperty("prop"));
+		runOK("-Dprop=value1; \\\n" + " value2\\\n" + " value3");
+		Assert.assertEquals("value1;value2value3", getFrameworkProperty("prop"));
+	}
+
+	@Test
+	public void test03XArgsPropertiesMultilineWithComment() throws Exception {
+		runOK("-Dprop=value # comment");
+		Assert.assertEquals("value", getFrameworkProperty("prop"));
+		runOK("-Dprop=value1;\\ # comment \n" + "value2 # another comment");
+		Assert.assertEquals("value1;value2", getFrameworkProperty("prop"));
+		runOK("-Dprop=value1; \\#COMMENT\n" + " value2\\#COMMENT\n"
+				+ " value3#COMMENT");
+		Assert.assertEquals("value1;value2value3", getFrameworkProperty("prop"));
+	}
+
+	@Test
+	public void test05XArgsPropertiesReplaceProperties() throws Exception {
+		runOK("-Dprop1=value1\n" + "-Dprop2=${prop1}");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value1", getFrameworkProperty("prop2"));
+	}
+
+	@Test
+	public void test04XArgsMultiplePropertiesInOneLine() throws Exception {
+		runOK("-Dprop1=value1\n" + "-Dprop2=value2");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value2", getFrameworkProperty("prop2"));
+
+		runOK("-Dprop1=value1\n" + "-Dprop2=value2\n"
+				+ "-Dprop3=${prop1}${prop2}");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value2", getFrameworkProperty("prop2"));
+		Assert.assertEquals("value1value2", getFrameworkProperty("prop3"));
+
+		runOK("-Dprop1=value1\n" + "-Dprop2=value2\n"
+				+ "-Dprop3=${prop1}XXX${prop2}");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value2", getFrameworkProperty("prop2"));
+		Assert.assertEquals("value1XXXvalue2", getFrameworkProperty("prop3"));
+
+		runOK("-Dprop1=value1\n" + "-Dprop2=value2\n"
+				+ "-Dprop3=ABC${prop1}XXX${prop2}XYZ");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value2", getFrameworkProperty("prop2"));
+		Assert.assertEquals("ABCvalue1XXXvalue2XYZ",
+				getFrameworkProperty("prop3"));
 	}
 
 	@Test

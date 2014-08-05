@@ -22,8 +22,18 @@
 # OSGi properties needed for SmartHome
 # TODO make them better readable, line wraps
 # com.sun.xml.internal.bind.v2,com.sun.xml.internal.bind.v2.runtime,
--Dorg.osgi.framework.bootdelegation=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,javax.xml.transform,javax.script,javax.xml.stream,javax.activation,javax.xml.transform.sax,javax.xml.transform.stream,javax.xml.transform.dom,org.w3c.dom,javax.xml.namespace,javax.xml.bind,
--Dorg.osgi.framework.system.packages.extra=javax.xml.stream,javax.activation,javax.xml.transform.sax,javax.xml.transform.stream,javax.xml.transform.dom,javax.xml,javax.imageio,javax.imageio.metadata,javax.net,javax.net.ssl,javax.naming,javax.sql,javax.security,javax.security.auth,javax.security.auth.x500,javax.security.cert,javax.crypto,javax.crypto.spec,javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,org.w3c.dom,org.ietf.jgss
+-Dorg.osgi.framework.bootdelegation=\
+  javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,\
+  javax.xml.transform,javax.script,javax.xml.stream,javax.activation,javax.xml.transform.sax,\
+  javax.xml.transform.stream,javax.xml.transform.dom,org.w3c.dom,\
+  javax.xml.namespace,javax.xml.bind,
+-Dorg.osgi.framework.system.packages.extra=\
+  javax.xml.stream,javax.activation,javax.xml.transform.sax,javax.xml.transform.stream,\
+  javax.xml.transform.dom,javax.xml,javax.imageio,javax.imageio.metadata,javax.net,\
+  javax.net.ssl,javax.naming,javax.sql,javax.security,javax.security.auth,\
+  javax.security.auth.x500,javax.security.cert,javax.crypto,javax.crypto.spec,\
+  javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,\
+  org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,org.w3c.dom,org.ietf.jgss
 
 
 # configure storage directory to ./runtime/server/storage
@@ -35,8 +45,8 @@
 -istart ${concierge.dir}/shell-1.0.0.jar
 
 
-# Concierge extensions, use compendium services from Equinox
--istart ${concierge.dir}/org.eclipse.concierge.extension.permission_1.0.0*.jar
+# Concierge extensions (fragment, do NOT start), use compendium services from Equinox
+-install ${concierge.dir}/org.eclipse.concierge.extension.permission_1.0.0*.jar
 -istart ${dir}/org.eclipse.osgi.services_3.4.0*.jar
 -istart ${concierge.dir}/org.eclipse.concierge.service.xmlparser_1.0.0*.jar
 

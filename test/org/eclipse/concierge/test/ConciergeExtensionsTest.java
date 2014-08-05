@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
@@ -49,7 +48,6 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
-	@Ignore
 	public void test01FrameworkExtensionFragmentOfConcierge() throws Exception {
 		try {
 			startFramework();
@@ -91,7 +89,6 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
-	@Ignore
 	public void test02FrameworkExtensionFragmentOfSystemBundle()
 			throws Exception {
 		try {
@@ -118,19 +115,30 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * to change the extension bundle to a fragment later.
 	 */
 	@Test
-	@Ignore
 	public void test10ConciergeExtensionPermission() throws Exception {
 		try {
 			startFramework();
 
-			final Bundle bundleUnderTest = installBundle("org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar");
-			enforceResolveBundle(bundleUnderTest);
-			assertBundleResolved(bundleUnderTest);
+			final Bundle frameworkExtensionBundle = installBundle("org.eclipse.concierge.extension.permission_1.0.0.201408052201.jar");
+			enforceResolveBundle(frameworkExtensionBundle);
+			assertBundleResolved(frameworkExtensionBundle);
 
 			// check for tests: the extension must be a fragment
 			Assert.assertTrue(
 					"Check code: permission extension is not a fragment",
-					isFragmentBundle(bundleUnderTest));
+					isFragmentBundle(frameworkExtensionBundle));
+
+			// install pseudo bundle
+			final Map<String, String> manifestEntries = new HashMap<String, String>();
+			manifestEntries.put("Bundle-Version", "1.0.0");
+			manifestEntries
+					.put("Import-Package",
+							"org.osgi.service.condpermadmin, org.osgi.service.permissionadmin");
+			final Bundle bundleUnderTest = installBundle(
+					"concierge.test.test10ConciergeExtensionPermission",
+					manifestEntries);
+			enforceResolveBundle(bundleUnderTest);
+			assertBundleResolved(bundleUnderTest);
 		} finally {
 			stopFramework();
 		}

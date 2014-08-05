@@ -83,15 +83,12 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
 * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
 * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed)
   * Note: as commented in bug this missing functionality is added as separate bundle to keep core code of Concierge as small as possible
-* [#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751) (Open)
-* [#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947) (Open)
-* [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
+* ~~[#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751)~~ (Rejected)
+  * Note: raise a bug against Apache Felix DS
+* ~~[#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947)~~ (Resolved)
+* ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
 * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
-* [#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981) (Open)
-  * Seems that Equinox and Felix alos do not have easy working solutions.
-  * See also workarounds at e.g.
-    * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
-    * https://github.com/tux2323/jersey.sample.osgiservice
+* ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
 * [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
 * [#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504) (Open)
 * [#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505) (Open)
@@ -99,6 +96,10 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
 From Tim Verbelen:
 * [#440227 Boot delegation of com.sun.* and sun.* packages](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440227) (Open)
   * Patch available: let com.sun.jersey.*, com.sun.ws.* packages to be loaded from BundleClassloader
+  * Seems that Equinox and Felix also do not have easy working solutions.
+  * See also workarounds at e.g.
+    * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
+    * https://github.com/tux2323/jersey.sample.osgiservice
   
 From Harini Siresena:
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
@@ -122,7 +123,6 @@ The code patches are marked with conditional compilation based on Concierge.PATC
   * Equinox Registry
     * Bugs in Concierge:
       * [#438781 Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
-      * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
   * Equinox DS
     * no problems in DS, only in dependent bundles
 * Jetty
@@ -131,39 +131,48 @@ The code patches are marked with conditional compilation based on Concierge.PATC
       * Note: there is a prebuild version of this bundle with Concierge support available at
         https://github.com/JochenHiller/concierge-tests/blob/master/patches/openhab2/patches/runtime/server/concierge/jetty-osgi-boot-9.2.1.v20140609.jar
 * EMF
-  * ~~[#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227)~~ (Closed)
-    * Note: the bundle will raise exceptions during installation. Until now there are just some tests which check 
+  * [#328227 EMF will not run on Felix or other OSGi frameworks](https://bugs.eclipse.org/bugs/show_bug.cgi?id=328227) (To be Re-opened)
+    Note: the bundle will raise exceptions during installation. Until now there are just some tests which check 
       whether an EMF example can be used within right classloader.
-    * TODO investigate why exceptions will be thrown from EMF
+    * Note: have to re-open as due to wrong mechanism leads to NON initalizing plugin.xml's 
     * TODO provide a more easy way for testing as requested by Ed
 * Xtext
-  * ~~[#434490 Xtext will not run on other OSGi frameworks, e.g. Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434490)~~
+  * [#434490 Xtext will not run on other OSGi frameworks, e.g. Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=434490) (To be re-opened)
     * Note: Tests are only about install/resolve, no real functional tests
+    * Have to re-open as the current implementation will nothing do on Concierge
   * [#439758 org.eclipse.xtext should have require-bundle to com.google.inject as mandatory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439758) (Open)
     * Workaround: adapt bundle start order to first install com.google.inject, then xtext
 * Eclipse Kura
   * All Kura bundles will be installed into Concierge, no problems to install and start
     * One issue with Felix Gogo console, runtime exception
   * No further functional tests
-  * Identified and close bugs in Concierge and Kura bundles:
+  * Identified and closed bugs in Concierge and Kura bundles:
     * ~~[#436724 BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724)~~ (Closed)
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
-    * [#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957) (Open)
+    * ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
       * Fix available, see bug description
     * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
       * Fix available, see bug description
-    * [#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981) (Open)
+    * ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
 
 * EclipseSmartHome
   * Bugs in Concierge:
     * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
-    * [#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470) (Open)
+    * ~~[#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470)~~ (Closed)
     * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed) 
+  * Issue with Jersey
+    * Seems that Equinox and Felix also do not have easy working solutions.
+      * See also workarounds at e.g.
+      * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
+      * https://github.com/tux2323/jersey.sample.osgiservice
+  
+    * Jersey 1.17 does have OPTIONAL dependencies to Jackson, with wrong Jackson package version (1.9.2, instead of 1.6.0).
+      A workaround is to patch Jersey to make two package mandatory without package version:
+      * org.codehaus.jackson
+      * org.codehaus.jackson.map
+   * TODO Real solution: check about latest Jersey 2.x version, and dependencies to Jackson (assume no deps)
   * TODO working on next tests
-    * FileInstall throws NPE
-    * Jersey ClassLoader problems
-    * Equinox * bundles: deps to Equinox, or core.runtime
     * go over all TODOs, sort them
     * major issue: o.e.sh.core.transform, make sep. test
 * openHAB
@@ -229,22 +238,21 @@ does not have its own distribution yet.
 wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
 wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
 ```
-2. Unzip openHAB2 runtime
+2. Unzip openHAB2 runtime and demo data
 ```script
 mkdir openhab2
 cd openhab2
 unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
+unzip ../distribution-2.0.0-SNAPSHOT-demo.zip
 ```
-3. Unzip openHAB2 demo into runtime
+3. Download `start_concierge_debug.sh` script
 ```script
-cd runtime
-unzip ../../distribution-2.0.0-SNAPSHOT-demo.zip
-```
-4. Download `start_concierge_debug.sh` script
-```script
-cd ..
 wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
 chmod u+x start_concierge_debug.sh
+```
+4. Start Concierge server
+```script
+./start_concierge_debug.sh
 ```
 5. Open a browser to http://localhost:8080/smarthome.app?sitemap=demo
 
@@ -274,10 +282,21 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
   * Felix Website: http://felix.apache.org
   * Source Code Repo: http://svn.apache.org/repos/asf/felix/trunk
 * Jetty
-  * Sourc Code Repo: https://git.eclipse.org/r/p/jetty/org.eclipse.jetty.project
-  * Sourc Code Repo: git://git.eclipse.org/gitroot/jetty/rt.equinox.bundles.git
+  * Source Code Repo: https://git.eclipse.org/r/p/jetty/org.eclipse.jetty.project
+  * Source Code Repo: git://git.eclipse.org/gitroot/jetty/rt.equinox.bundles.git
+* EMF  
+  * Source Code Repo: http://git.eclipse.org/c/emf/org.eclipse.emf.git
+  * Source Code Repo: git://git.eclipse.org/gitroot/emf/org.eclipse.emf.git
+  
 ## TODO
 
+* Xtext: Activator, get rid of platform, use OSGi Service tracker instead
+* EMF-Core: Change activator to create Implementation only when Plugin is available. Otherwise 
+  make the initialization code from activator
+      protected BundleActivator createBundle()
+      {
+        return new Implementation();
+      }
 * Jersey: test case for Jackson classes
 * Extend xargs launcher obout wildcard support for simpler startup scripts
   * Finalize Xargs contribution (multi-line properties, multiple properties, -fwstart option, reformat code)

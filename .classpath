@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/javax.xml.stream_1.0.1.v201004272200.jar"/>
 	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.codehaus.jackson.core_1.6.0.v20101005-0925.jar"/>
 	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar"/>
+	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.eclipse.core.runtime_3.10.0.v20140318-2214.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

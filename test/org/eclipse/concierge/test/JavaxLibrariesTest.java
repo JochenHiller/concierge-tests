@@ -125,7 +125,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	 * To debug, set a breakpoint to ClassCastException.
 	 */
 	@Test
-	public void test12JavaxXmlWireToSystemBundleFails() throws Exception {
+	public void test12JavaxXmlWireToSystemBundle() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			startFramework(launchArgs);
@@ -211,8 +211,14 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	@Test
 	public void test14InstallAndStartSunJersey() throws Exception {
 		try {
-			startFramework();
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs
+					.put("org.osgi.framework.system.packages.extra",
+							"javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
+			startFrameworkClean(launchArgs);
 			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.codehaus.jackson.core_1.6.0.v20101005-0925.jar",
+					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar",
 					"javax.ws.rs_1.1.1.v20130318-1750.jar",
 					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
 			assertBundlesResolved(bundles);
@@ -230,9 +236,6 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	public void test15SunJerseyLoadJacksonClasses() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			// launchArgs
-			// .put("org.osgi.framework.bootdelegation",
-			// "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
@@ -240,13 +243,11 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.codehaus.jackson.core_1.6.0.v20101005-0925.jar",
 					"org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar",
-					"javax.ws.rs_1.1.1.v20130318-1750.jar",
-					"com.sun.jersey_1.17.0.v20130314-2020.jar" });
+					"javax.ws.rs_1.1.1.v20130318-1750.jar", });
 			assertBundlesResolved(bundles);
-			Bundle bundleUnderTest = bundles[3];
 
+			final Bundle bundleUnderTest = installAndStartBundle("com.sun.jersey_1.17.0.v20130314-2020.jar");
 			System.out.println(bundleUnderTest.getHeaders());
-
 			Object o = bundleUnderTest.adapt(BundleWiring.class);
 			System.out.println(o);
 			BundleWiring w = (BundleWiring) o;

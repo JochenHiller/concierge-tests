@@ -335,6 +335,11 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 					currentRevision.getSymbolicName(), this);
 			framework.location_bundles.put(location, this);
 		}
+		
+		// resolve if it is a framework extension
+		if(currentRevision.isFrameworkExtension()){
+			currentRevision.resolve(false);
+		}
 	}
 
 	/**
@@ -449,6 +454,8 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				notify();
 			}
 			return;
+		} else {
+			beingLazy = false;
 		}
 
 		activate0();
@@ -460,11 +467,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		// step6
 		state = STARTING;
 		// step7
-		if (!Concierge.PATCH_JOCHEN) {
-			// do nothing
-		} else {
 		framework.notifyBundleListeners(BundleEvent.STARTING, this);
-		}
 		// step8 (part 1)
 		try {
 			context.isValid = true;
@@ -479,12 +482,6 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				currentRevision.activatorInstance = activatorClass
 						.newInstance();
 				currentRevision.activatorInstance.start(context);
-				if (!Concierge.PATCH_JOCHEN) {
-					framework.notifyBundleListeners(BundleEvent.STARTING, this);
-				} else {
-					// do nothing
-				}
-
 				// step 9
 				if (state == UNINSTALLED) {
 					throw new BundleException(
@@ -1755,8 +1752,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		 * @category BundleRevision
 		 */
 		public List<Capability> getCapabilities(final String namespace) {
-			// FIXME
-			return new ArrayList<Capability>(getDeclaredCapabilities(namespace));
+			return Collections.unmodifiableList(new ArrayList<Capability>(getDeclaredCapabilities(namespace)));
 		}
 
 		/**
@@ -1764,9 +1760,8 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		 * @category BundleRevision
 		 */
 		public List<Requirement> getRequirements(final String namespace) {
-			// FIXME
-			return new ArrayList<Requirement>(
-					getDeclaredRequirements(namespace));
+			return Collections.unmodifiableList(new ArrayList<Requirement>(
+					getDeclaredRequirements(namespace)));
 		}
 
 		protected boolean resolve(final boolean critical)
@@ -1868,7 +1863,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 		 */
 		private boolean processNativeLibraries(final String[] nativeStrings)
 				throws BundleException {
- 			int pos = -1;
+			int pos = -1;
 
 			boolean n = false;
 			boolean no_n = true;
@@ -2499,9 +2494,11 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				// parent class loader
 				boolean isComSunPackage;
 				if (Concierge.PATCH_JOCHEN) {
+					// needs real solution, just a workaround
 					isComSunPackage = (pkg.startsWith("com.sun.")
 							&& !pkg.startsWith("com.sun.jersey.") && !pkg
-							.startsWith("com.sun.ws."));
+							.startsWith("com.sun.ws.rs.ext")) && !pkg
+							.startsWith("com.sun.research.ws.wadl");
 				} else {
 					isComSunPackage = pkg.startsWith("com.sun.");
 				}
@@ -2535,11 +2532,7 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 						final BundleCapabilityImpl cap = (BundleCapabilityImpl) delegation
 								.getCapability();
 						if (!cap.hasExcludes() || cap.filter(classOf(name))) {
-							if (delegation.getProvider() instanceof Revision) {
-								return ((Revision) delegation.getProvider()).classloader
-										.findResource1(pkg, name, isClass,
-												multiple, resources);
-							} else {
+							if (delegation.getProvider().getBundle().getBundleId() == 0) {
 								// system bundle
 								if (isClass) {
 									return framework.systemBundleClassLoader.loadClass(name);
@@ -2559,6 +2552,10 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 										return framework.systemBundleClassLoader.getResource(name);
 									}
 								}
+							} else {
+								return ((Revision) delegation.getProvider()).classloader
+										.findResource1(pkg, name, isClass,
+												multiple, resources);
 							}
 						}
 					}
@@ -2600,12 +2597,15 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 					final HashSet<Bundle> visited = new HashSet<Bundle>();
 					visited.add(BundleImpl.this);
 					for (final BundleWire wire : requireBundleWires) {
-						if (Concierge.PATCH_JOCHEN) {
-							// provider is system bundle???
-							if (wire.getProvider().getBundle().getBundleId() == 0) {
-								// if provider is system bundle: nothing to do as system bundle is yet loaded
+						if (wire.getProvider().getBundle().getBundleId() == 0) {
+							// if provider is system bundle: nothing 
+							// to do as system bundle is yet loaded
+							if (Concierge.PATCH_JOCHEN) {
 								System.err.println("[ERROR] JOCHEN PATCH Provider is SYSTEM BUNDLE");
-							} else {
+								System.err.println("[ERROR] pkg: " + pkg + " name: " + name);
+								System.err.println("[ERROR] wired to: " + wire.getProvider().getBundle());
+							}
+						} else {
 							final Object result = ((Revision) wire.getProvider()).classloader
 									.requireBundleLookup(pkg, name, isClass,
 											multiple, resources, visited);
@@ -2613,15 +2613,6 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 								return isClass ? checkActivationChain(result)
 										: result;
 							}
-							}
-						} else {
-						final Object result = ((Revision) wire.getProvider()).classloader
-								.requireBundleLookup(pkg, name, isClass,
-										multiple, resources, visited);
-						if (!multiple && result != null) {
-							return isClass ? checkActivationChain(result)
-									: result;
-						}
 						}
 					}
 				}
@@ -2861,8 +2852,14 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 							ioe.printStackTrace();
 							return null;
 						} catch (final LinkageError le) {
+							if (Concierge.PATCH_JOCHEN) {
+								// disable output later???
+								System.err.println("ERROR in " + toString() + ":");
+								le.printStackTrace();
+							} else {
 							System.err.println("ERROR in " + toString() + ":");
 							le.printStackTrace();
+							}
 							throw le;
 						}
 					}

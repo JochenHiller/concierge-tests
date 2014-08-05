@@ -67,6 +67,12 @@ public class XargsFileLauncher {
 
 		int maxLevel = 1;
 
+		if (Concierge.PATCH_JOCHEN) {
+			// change: start first
+			concierge.start();
+		}
+		
+		
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(file)));
 
@@ -100,8 +106,7 @@ public class XargsFileLauncher {
 						}
 					});
 					if (files == null) {
-						System.err.println("NO FILES FOUND IN "
-								+ concierge.BUNDLE_LOCATION);
+						System.err.println("NO FILES FOUND IN " + concierge.BUNDLE_LOCATION);
 						break;
 					}
 
@@ -109,11 +114,10 @@ public class XargsFileLauncher {
 						if (files[i].isDirectory()) {
 							continue;
 						}
-						final BundleImpl b = (BundleImpl) context
-								.installBundle(files[i].getName());
+						final BundleImpl b = (BundleImpl) context.installBundle(files[i]
+								.getName());
 						b.setStartLevel(initLevel);
-						final Revision rev = (Revision) b
-								.adapt(BundleRevision.class);
+						final Revision rev = (Revision) b.adapt(BundleRevision.class);
 						if (!rev.isFragment()) {
 							b.start();
 						}
@@ -164,8 +168,11 @@ public class XargsFileLauncher {
 			} catch (IOException ioe) {
 
 			}
-
-			concierge.start();
+			if (Concierge.PATCH_JOCHEN) {
+				// yet started
+			} else {
+				concierge.start();
+			}
 		}
 
 		return concierge;

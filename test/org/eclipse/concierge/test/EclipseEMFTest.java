@@ -80,6 +80,34 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 		}
 	}
 
+	@Test
+	public void test02EclipseEMFCoreCheckStartup() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs
+					.put("org.osgi.framework.system.packages.extra",
+							"javax.crypto,javax.crypto.spec,"
+									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
+									+ "org.xml.sax,org.xml.sax.helpers");
+			startFrameworkClean(launchArgs);
+			final Bundle[] bundles = installAndStartBundles(new String[] { asEmfBuild("org.eclipse.emf.common"), });
+			assertBundlesResolved(bundles);
+
+			Bundle bundleUnderTest = installAndStartBundle(asEmfBuild("org.eclipse.emf.ecore"));
+			assertBundleResolved(bundleUnderTest);
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Object _void = runner
+					.callClassMethod(
+							"org.eclipse.emf.ecore.plugin.EcorePlugin$ExtensionProcessor",
+							"process", new Object[] { bundleUnderTest
+									.getClass().getClassLoader() });
+			Assert.assertNull(_void);
+		} finally {
+			stopFramework();
+		}
+	}
+
 	/**
 	 * Install and start EMF common, core, core.xmi. Note: core.xmi needs more
 	 * packages to be added to system packages extra (org.xml.sax.ext,

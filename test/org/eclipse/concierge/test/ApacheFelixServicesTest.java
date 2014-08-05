@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
@@ -97,6 +98,7 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 	 * 3.4.0 does work well.
 	 */
 	@Test
+	@Ignore ("does not end")
 	public void test05ApacheFelixFileInstall340() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();

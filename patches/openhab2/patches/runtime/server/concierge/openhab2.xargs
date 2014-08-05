@@ -26,6 +26,10 @@
 -Dorg.osgi.framework.system.packages.extra=javax.xml.stream,javax.activation,javax.xml.transform.sax,javax.xml.transform.stream,javax.xml.transform.dom,javax.xml,javax.imageio,javax.imageio.metadata,javax.net,javax.net.ssl,javax.naming,javax.sql,javax.security,javax.security.auth,javax.security.auth.x500,javax.security.cert,javax.crypto,javax.crypto.spec,javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,org.w3c.dom,org.ietf.jgss
 
 
+# configure storage directory to ./runtime/server/storage
+-Dorg.eclipse.concierge.storage=./runtime/server/storage
+
+
 # Shell for testing
 # TODO disable when Felix gogo is working
 -istart ${concierge.dir}/shell-1.0.0.jar
@@ -66,8 +70,8 @@
 -istart ${dir}/javax.inject_1.0.0*.jar
 -istart ${dir}/javax.ws.rs_1.1.1*.jar
 # TODO use patched version with import package to Jackson
--istart ${dir}/com.sun.jersey_1.17.0*.jar
-# -istart ${concierge.dir}/com.sun.jersey_1.17.0*.jar
+# -istart ${dir}/com.sun.jersey_1.17.0*.jar
+-istart ${concierge.dir}/com.sun.jersey_1.17.0*.jar
 
 
 # Apache libs

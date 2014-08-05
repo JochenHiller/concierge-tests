@@ -211,12 +211,12 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 				+ "-Dpatched.dir=./target/patched\n"
 				+ "-Dorg.osgi.framework.bootdelegation=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,javax.xml.transform,javax.script\n"
 				+ "-Dorg.osgi.framework.system.packages.extra=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers\n"
+				+ "-install ${plugins.dir}/org.eclipse.concierge.extension.permission_1.0.0.201408052201.jar\n"
 				+ "-istart ${plugins.dir}/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.osgi.services_3.4.0.v20140312-2051.jar\n"
 				+ "-istart ${patched.dir}/org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.equinox.util_1.0.500.v20130404-1337.jar\n"
 				+ "-istart ${cache.dir}/org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar\n"
-				+ "-istart ${plugins.dir}/org.eclipse.concierge.extension.permission_1.0.0.201407201043.jar\n"
 				+ "-istart ${patched.dir}/org.eclipse.equinox.console_1.1.0.v20140131-1639.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar\n"
 				+ "-istart ${cache.dir}/org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar\n",

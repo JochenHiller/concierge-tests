@@ -1,0 +1,4300 @@
+Manifest-Version: 1.0
+Bundle-DocURL: http://www.oracle.com/
+Implementation-Vendor: Oracle Corporation
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Implementation-Vendor-Id: com.sun.jersey
+Bundle-SymbolicName: com.sun.jersey
+Eclipse-SourceReferences: scm:cvs:pserver:dev.eclipse.org:/cvsroot/too
+ ls:org.eclipse.orbit/com.sun.jersey;tag=v20130314-2020
+Bundle-Activator: com.sun.jersey.core.osgi.Activator
+Export-Package: com.sun.jersey.api;version="1.17.0";
+  uses:="com.sun.jersey.core.header,
+   javax.ws.rs,
+   com.sun.jersey.core.spi.factory,
+   javax.ws.rs.core",
+ com.sun.jersey.api.client;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.client.impl.async,
+   com.sun.jersey.api.client.config,
+   com.sun.jersey.core.spi.factory,
+   com.sun.jersey.client.proxy,
+   com.sun.jersey.core.util,
+   com.sun.jersey.core.spi.component.ioc,
+   javax.ws.rs.ext,
+   com.sun.jersey.api.client.filter,
+   com.sun.jersey.core.header,
+   com.sun.jersey.api.client.async,
+   com.sun.jersey.spi,
+   com.sun.jersey.spi.inject,
+   new com.sun.jersey.api.client,
+   com.sun.jersey.client.impl,
+   javax.ws.rs.core",
+ com.sun.jersey.api.client.async;version="1.17.0";uses:="com.sun.jersey.api.client",
+ com.sun.jersey.api.client.config;version="1.17.0";uses:="com.sun.jersey.core.util",
+ com.sun.jersey.api.client.filter;version="1.17.0";uses:="com.sun.jersey.api.client,javax.ws.rs.core",
+ com.sun.jersey.api.container;version="1.17.0";uses:="com.sun.jersey.api.core,com.sun.jersey.core.spi.component.ioc",
+ com.sun.jersey.api.container.filter;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.ws.rs.core",
+ com.sun.jersey.api.container.filter.servlet;version="1.17.0";uses:="com.sun.jersey.api.model,com.sun.jersey.spi.container,javax.ws.rs.core",
+ com.sun.jersey.api.container.grizzly;version="1.17.0";
+  uses:="com.sun.grizzly.tcp,
+   com.sun.jersey.api.core,
+   com.sun.grizzly.http,
+   com.sun.jersey.core.spi.component.ioc",
+ com.sun.jersey.api.container.httpserver;version="1.17.0";uses:="com.sun.net.httpserver,com.sun.jersey.api.core,com.sun.jersey.core.spi.component.ioc",
+ com.sun.jersey.api.core;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.scanning,
+   com.sun.jersey.api.model,
+   com.sun.jersey.server.impl.application,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.core.util,
+   com.sun.jersey.api.representation,
+   javax.ws.rs.core",
+ com.sun.jersey.api.core.servlet;version="1.17.0";uses:="javax.servlet,com.sun.jersey.api.core",
+ com.sun.jersey.api.json;version="1.17.0";
+  uses:="org.codehaus.jackson.map,
+   org.codehaus.jackson,
+   javax.xml.bind,
+   new com.sun.jersey.api.json",
+ com.sun.jersey.api.model;version="1.17.0",
+ com.sun.jersey.api.provider.jaxb;version="1.17.0",
+ com.sun.jersey.api.representation;version="1.17.0";uses:="com.sun.jersey.core.util",
+ com.sun.jersey.api.uri;version="1.17.0";uses:="javax.ws.rs.core",
+ com.sun.jersey.api.view;version="1.17.0",
+ com.sun.jersey.api.wadl.config;version="1.17.0";uses:="com.sun.jersey.server.wadl,com.sun.jersey.api.core",
+ com.sun.jersey.atom.rome.impl;version="1.17.0";uses:="com.sun.jersey.localization",
+ com.sun.jersey.atom.rome.impl.provider.entity;version="1.17.0";uses:="com.sun.jersey.core.provider,com.sun.syndication.feed.atom,javax.ws.rs.core",
+ com.sun.jersey.client.impl;version="1.17.0";uses:="com.sun.jersey.api.client,javax.ws.rs.core",
+ com.sun.jersey.client.impl.async;version="1.17.0";uses:="com.sun.jersey.api.client.async,com.sun.jersey.api.client",
+ com.sun.jersey.client.proxy;version="1.17.0";uses:="com.sun.jersey.api.client.async,com.sun.jersey.api.client",
+ com.sun.jersey.client.urlconnection;version="1.17.0";
+  uses:="new com.sun.jersey.client.urlconnection,
+   javax.net.ssl,
+   com.sun.jersey.api.client,
+   javax.ws.rs.core",
+ com.sun.jersey.core.header;version="1.17.0";
+  uses:="javax.ws.rs,
+   com.sun.jersey.core.header.reader,
+   com.sun.jersey.core.util,
+   javax.ws.rs.core",
+ com.sun.jersey.core.header.reader;version="1.17.0";uses:="com.sun.jersey.core.header,javax.ws.rs.core",
+ com.sun.jersey.core.impl.provider.entity;version="1.17.0";
+  uses:="com.sun.jersey.core.provider.jaxb,
+   javax.mail.internet,
+   javax.xml.transform.dom,
+   com.sun.jersey.api.representation,
+   com.sun.jersey.core.provider,
+   javax.ws.rs.ext,
+   org.w3c.dom,
+   javax.activation,
+   javax.xml.stream,
+   javax.xml.transform,
+   javax.xml.transform.stream,
+   com.sun.jersey.spi,
+   javax.xml.transform.sax,
+   com.sun.jersey.spi.inject,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.core.impl.provider.header;version="1.17.0";
+  uses:="com.sun.jersey.core.header,
+   com.sun.jersey.core.header.reader,
+   com.sun.jersey.spi,
+   javax.ws.rs.core",
+ com.sun.jersey.core.impl.provider.xml;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   javax.xml.parsers,
+   com.sun.jersey.core.util,
+   org.xml.sax,
+   javax.xml.stream,
+   javax.xml.transform,
+   javax.xml.validation,
+   com.sun.jersey.spi.inject,
+   javax.ws.rs.core",
+ com.sun.jersey.core.osgi;version="1.17.0";uses:="com.sun.jersey.core.spi.scanning,org.osgi.framework",
+ com.sun.jersey.core.provider;version="1.17.0";uses:="javax.ws.rs.ext,javax.ws.rs.core",
+ com.sun.jersey.core.provider.jaxb;version="1.17.0";
+  uses:="javax.xml.parsers,
+   com.sun.jersey.core.util,
+   com.sun.jersey.core.provider,
+   javax.ws.rs.ext,
+   javax.xml.stream,
+   javax.xml.transform.sax,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.core.reflection;version="1.17.0";uses:="com.sun.jersey.core.osgi,new com.sun.jersey.core.reflection",
+ com.sun.jersey.core.spi.component;version="1.17.0";uses:="com.sun.jersey.core.spi.factory,com.sun.jersey.spi.inject",
+ com.sun.jersey.core.spi.component.ioc;version="1.17.0";uses:="com.sun.jersey.core.spi.component,com.sun.jersey.spi.inject",
+ com.sun.jersey.core.spi.factory;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.core.util,
+   javax.ws.rs.ext,
+   com.sun.jersey.core.header,
+   new com.sun.jersey.core.spi.factory,
+   com.sun.jersey.spi,
+   com.sun.jersey.spi.inject,
+   javax.ws.rs.core",
+ com.sun.jersey.core.spi.scanning;version="1.17.0";uses:="com.sun.jersey.core.util",
+ com.sun.jersey.core.spi.scanning.uri;version="1.17.0";uses:="com.sun.jersey.core.spi.scanning,new com.sun.jersey.core.spi.scanning.uri,com.sun.jersey.core.util",
+ com.sun.jersey.core.util;version="1.17.0";uses:="javax.xml.parsers,javax.ws.rs.core",
+ com.sun.jersey.fastinfoset.impl.provider.entity;version="1.17.0";
+  uses:="com.sun.jersey.core.provider.jaxb,
+   javax.xml.stream,
+   javax.xml.bind,
+   javax.ws.rs.ext,
+   javax.ws.rs.core",
+ com.sun.jersey.impl;version="1.17.0";uses:="com.sun.jersey.localization",
+ com.sun.jersey.json.impl;version="1.17.0";
+  uses:="com.sun.jersey.api.json,
+   javax.xml.bind.annotation.adapters,
+   org.w3c.dom,
+   javax.xml.namespace,
+   org.xml.sax,
+   javax.xml.bind.attachment,
+   javax.xml.stream,
+   javax.xml.transform,
+   javax.xml.validation,
+   javax.xml.bind,
+   com.sun.jersey.localization",
+ com.sun.jersey.json.impl.provider.entity;version="1.17.0";
+  uses:="com.sun.jersey.core.provider.jaxb,
+   com.sun.jersey.api.json,
+   org.codehaus.jackson.jaxrs,
+   org.codehaus.jettison.json,
+   com.sun.jersey.core.util,
+   com.sun.jersey.core.provider,
+   javax.ws.rs.ext,
+   javax.xml.stream,
+   com.sun.jersey.spi,
+   com.sun.jersey.spi.inject,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.json.impl.reader;version="1.17.0";
+  uses:="javax.xml.stream,
+   com.sun.jersey.api.json,
+   org.codehaus.jackson,
+   javax.xml.bind,
+   org.codehaus.jackson.type,
+   javax.xml.namespace",
+ com.sun.jersey.json.impl.writer;version="1.17.0";
+  uses:="javax.xml.stream,
+   com.sun.jersey.api.json,
+   org.codehaus.jackson,
+   javax.xml.bind,
+   javax.xml.namespace",
+ com.sun.jersey.localization;version="1.17.0",
+ com.sun.jersey.server.impl;version="1.17.0";
+  uses:="javax.naming,
+   com.sun.jersey.core.header,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.application;version="1.17.0";
+  uses:="com.sun.jersey.server.impl.wadl,
+   com.sun.jersey.core.util,
+   com.sun.jersey.server.impl.component,
+   com.sun.jersey.spi.dispatch,
+   com.sun.jersey.spi.uri.rules,
+   com.sun.jersey.server.wadl,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.spi,
+   com.sun.jersey.spi.inject,
+   com.sun.jersey.server.impl,
+   javax.ws.rs.core,
+   com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.server.spi.component,
+   com.sun.jersey.core.spi.factory,
+   com.sun.jersey.core.spi.component.ioc,
+   javax.ws.rs.ext,
+   com.sun.jersey.server.impl.model,
+   new com.sun.jersey.server.impl.application,
+   com.sun.jersey.spi.monitoring,
+   com.sun.jersey.server.impl.uri,
+   com.sun.jersey.server.impl.inject,
+   javax.xml.bind,
+   com.sun.jersey.api.uri",
+ com.sun.jersey.server.impl.cdi;version="1.17.0";
+  uses:="javax.naming,
+   com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   javax.ws.rs,
+   javax.enterprise.inject.spi,
+   com.sun.jersey.core.spi.component.ioc,
+   javax.enterprise.context.spi,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.inject,
+   com.sun.jersey.spi.container.servlet",
+ com.sun.jersey.server.impl.component;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.server.spi.component,
+   com.sun.jersey.api.core,
+   com.sun.jersey.server.impl.inject",
+ com.sun.jersey.server.impl.container;version="1.17.0";uses:="com.sun.jersey.spi.container",
+ com.sun.jersey.server.impl.container.filter;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core",
+ com.sun.jersey.server.impl.container.grizzly;version="1.17.0";
+  uses:="com.sun.grizzly.tcp.http11,
+   com.sun.grizzly.tcp,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.container.httpserver;version="1.17.0";uses:="com.sun.net.httpserver,com.sun.jersey.api.core,com.sun.jersey.spi.container",
+ com.sun.jersey.server.impl.container.servlet;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.server.spi.component,
+   com.sun.jersey.core.spi.component.ioc,
+   javax.servlet,
+   new com.sun.jersey.server.impl.container.servlet,
+   com.sun.jersey.spi.template,
+   com.sun.jersey.api.view,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.servlet.jsp.tagext,
+   com.sun.jersey.spi.inject,
+   com.sun.jersey.server.impl.inject,
+   javax.persistence,
+   com.sun.jersey.spi.container.servlet,
+   javax.servlet.http",
+ com.sun.jersey.server.impl.ejb;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   javax.ejb,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.core.spi.component.ioc,
+   javax.ws.rs.ext,
+   com.sun.jersey.spi.dispatch,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.inject;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.core.spi.factory,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.inject",
+ com.sun.jersey.server.impl.managedbeans;version="1.17.0";uses:="com.sun.jersey.core.spi.component,com.sun.jersey.api.core,com.sun.jersey.core.spi.component.ioc",
+ com.sun.jersey.server.impl.model;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.server.impl.container.filter,
+   javax.ws.rs,
+   com.sun.jersey.server.impl.wadl,
+   com.sun.jersey.api.container,
+   com.sun.jersey.server.impl.model.method,
+   com.sun.jersey.server.impl.uri,
+   com.sun.jersey.spi.monitoring,
+   com.sun.jersey.spi.uri.rules,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.server.impl.inject,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.model.method;version="1.17.0";
+  uses:="com.sun.jersey.server.impl.container.filter,
+   com.sun.jersey.api.model,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   javax.ws.rs.core,
+   com.sun.jersey.api.uri,
+   com.sun.jersey.spi.dispatch",
+ com.sun.jersey.server.impl.model.method.dispatch;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.server.impl.model.parameter.multivalued,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.server.impl.inject,
+   com.sun.jersey.spi.dispatch",
+ com.sun.jersey.server.impl.model.parameter;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   javax.ws.rs,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.server.impl.model.parameter.multivalued,
+   com.sun.jersey.spi.inject,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.model.parameter.multivalued;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.api.container,
+   javax.ws.rs.ext,
+   com.sun.jersey.spi,
+   com.sun.jersey.spi.inject,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.modelapi.annotation;version="1.17.0";uses:="com.sun.jersey.api.model,javax.ws.rs,javax.ws.rs.core",
+ com.sun.jersey.server.impl.modelapi.validation;version="1.17.0";uses:="com.sun.jersey.api.model",
+ com.sun.jersey.server.impl.monitoring;version="1.17.0";uses:="com.sun.jersey.core.spi.component,com.sun.jersey.spi.monitoring",
+ com.sun.jersey.server.impl.provider;version="1.17.0";uses:="com.sun.jersey.core.spi.factory,javax.ws.rs.core",
+ com.sun.jersey.server.impl.resource;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.server.spi.component,
+   com.sun.jersey.api.core,
+   com.sun.jersey.core.spi.component.ioc,
+   com.sun.jersey.server.impl.inject",
+ com.sun.jersey.server.impl.template;version="1.17.0";
+  uses:="com.sun.jersey.core.spi.component,
+   com.sun.jersey.api.view,
+   com.sun.jersey.spi.template,
+   com.sun.jersey.spi.uri.rules,
+   javax.ws.rs.ext,
+   com.sun.jersey.server.impl.model.method,
+   javax.ws.rs.core",
+ com.sun.jersey.server.impl.uri;version="1.17.0";uses:="com.sun.jersey.api.uri",
+ com.sun.jersey.server.impl.uri.rules;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.spi.monitoring,
+   com.sun.jersey.spi.uri.rules,
+   com.sun.jersey.server.impl.model.method,
+   com.sun.jersey.api.uri",
+ com.sun.jersey.server.impl.uri.rules.automata;version="1.17.0";uses:="com.sun.jersey.spi.uri.rules,com.sun.jersey.api.uri",
+ com.sun.jersey.server.impl.wadl;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.research.ws.wadl,
+   com.sun.jersey.server.impl.uri,
+   com.sun.jersey.server.wadl,
+   com.sun.jersey.core.spi.factory,
+   com.sun.jersey.api.core,
+   javax.ws.rs.ext,
+   javax.xml.bind,
+   com.sun.jersey.server.impl.model.method,
+   javax.ws.rs.core",
+ com.sun.jersey.server.probes;version="1.17.0",
+ com.sun.jersey.server.spi.component;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   com.sun.jersey.api.core,
+   com.sun.jersey.server.impl.inject,
+   com.sun.jersey.core.spi.component.ioc",
+ com.sun.jersey.server.wadl;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.research.ws.wadl,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.server.wadl.generators;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.research.ws.wadl,
+   javax.xml.namespace,
+   javax.xml.transform,
+   com.sun.jersey.server.wadl,
+   javax.xml.bind,
+   javax.ws.rs.core",
+ com.sun.jersey.server.wadl.generators.resourcedoc;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.research.ws.wadl,
+   com.sun.jersey.server.wadl.generators.resourcedoc.model,
+   com.sun.jersey.server.wadl,
+   javax.ws.rs.core",
+ com.sun.jersey.server.wadl.generators.resourcedoc.model;version="1.17.0";uses:="javax.xml.namespace",
+ com.sun.jersey.server.wadl.generators.resourcedoc.xhtml;version="1.17.0";uses:="javax.xml.bind,javax.xml.namespace",
+ com.sun.jersey.spi;version="1.17.0";uses:="javax.ws.rs.ext,javax.ws.rs.core",
+ com.sun.jersey.spi.container;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.core.spi.component,
+   javax.ws.rs,
+   com.sun.jersey.api.container,
+   com.sun.jersey.core.util,
+   com.sun.jersey.core.spi.component.ioc,
+   com.sun.jersey.api.representation,
+   javax.ws.rs.ext,
+   com.sun.jersey.spi.dispatch,
+   com.sun.jersey.core.header,
+   com.sun.jersey.spi.monitoring,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi,
+   com.sun.jersey.server.impl.inject,
+   javax.ws.rs.core",
+ com.sun.jersey.spi.container.servlet;version="1.17.0";
+  uses:="javax.servlet,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.inject,
+   javax.ws.rs.core,
+   javax.servlet.http",
+ com.sun.jersey.spi.dispatch;version="1.17.0";uses:="com.sun.jersey.api.core",
+ com.sun.jersey.spi.inject;version="1.17.0";uses:="com.sun.jersey.core.spi.component,new com.sun.jersey.spi.inject",
+ com.sun.jersey.spi.monitoring;version="1.17.0";uses:="com.sun.jersey.api.model,com.sun.jersey.spi.container,javax.ws.rs.ext",
+ com.sun.jersey.spi.resource;version="1.17.0",
+ com.sun.jersey.spi.scanning;version="1.17.0";uses:="com.sun.jersey.core.spi.scanning",
+ com.sun.jersey.spi.scanning.servlet;version="1.17.0";uses:="com.sun.jersey.core.spi.scanning,javax.servlet,com.sun.jersey.core.util",
+ com.sun.jersey.spi.service;version="1.17.0",
+ com.sun.jersey.spi.template;version="1.17.0";uses:="com.sun.jersey.api.view,com.sun.jersey.api.container,javax.ws.rs.core",
+ com.sun.jersey.spi.uri.rules;version="1.17.0";
+  uses:="com.sun.jersey.api.model,
+   com.sun.jersey.api.core,
+   com.sun.jersey.spi.container,
+   com.sun.jersey.api.uri",
+ com.sun.research.ws.wadl;version="1.17.0";uses:="javax.xml.namespace",
+ com.sun.ws.rs.ext;version="1.17.0";uses:="com.sun.jersey.core.spi.factory,javax.ws.rs.core"
+Bundle-Version: 1.17.0.v20130314-2020
+Eclipse-BuddyPolicy: registered
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Name: %Bundle-Name
+Bundle-License: http://glassfish.java.net/public/CDDL+GPL_1_1.html, ht
+ tp://glassfish.java.net/public/CDDL+GPL_1_1.html
+Eclipse-ExtensibleAPI: true
+Implementation-Title: jersey-bundle
+Implementation-Version: 1.12
+Import-Package: com.sun.grizzly.http;version="[1.9,2)";resolution:=optional,
+ com.sun.grizzly.http.servlet;version="[1.9,2)";resolution:=optional,
+ com.sun.grizzly.standalone;version="[1.9,2)";resolution:=optional,
+ com.sun.grizzly.tcp;version="[1.9,2)";resolution:=optional,
+ com.sun.grizzly.tcp.http11;version="[1.9,2)";resolution:=optional,
+ com.sun.grizzly.util.buf;version="[1.9,2)";resolution:=optional,
+ com.sun.jersey.api,
+ com.sun.jersey.api.client,
+ com.sun.jersey.api.client.async,
+ com.sun.jersey.api.client.config,
+ com.sun.jersey.api.client.filter,
+ com.sun.jersey.api.container,
+ com.sun.jersey.api.container.filter,
+ com.sun.jersey.api.container.filter.servlet,
+ com.sun.jersey.api.container.grizzly,
+ com.sun.jersey.api.container.httpserver,
+ com.sun.jersey.api.core,
+ com.sun.jersey.api.core.servlet,
+ com.sun.jersey.api.json,
+ com.sun.jersey.api.model,
+ com.sun.jersey.api.provider.jaxb,
+ com.sun.jersey.api.representation,
+ com.sun.jersey.api.uri,
+ com.sun.jersey.api.view,
+ com.sun.jersey.api.wadl.config,
+ com.sun.jersey.atom.rome.impl,
+ com.sun.jersey.atom.rome.impl.provider.entity,
+ com.sun.jersey.client.impl,
+ com.sun.jersey.client.impl.async,
+ com.sun.jersey.client.proxy,
+ com.sun.jersey.client.urlconnection,
+ com.sun.jersey.core.header,
+ com.sun.jersey.core.header.reader,
+ com.sun.jersey.core.impl.provider.entity,
+ com.sun.jersey.core.impl.provider.header,
+ com.sun.jersey.core.impl.provider.xml,
+ com.sun.jersey.core.osgi,
+ com.sun.jersey.core.provider,
+ com.sun.jersey.core.provider.jaxb,
+ com.sun.jersey.core.reflection,
+ com.sun.jersey.core.spi.component,
+ com.sun.jersey.core.spi.component.ioc,
+ com.sun.jersey.core.spi.factory,
+ com.sun.jersey.core.spi.scanning,
+ com.sun.jersey.core.spi.scanning.uri,
+ com.sun.jersey.core.util,
+ com.sun.jersey.fastinfoset.impl.provider.entity,
+ com.sun.jersey.impl,
+ com.sun.jersey.json.impl,
+ com.sun.jersey.json.impl.provider.entity,
+ com.sun.jersey.json.impl.reader,
+ com.sun.jersey.json.impl.writer,
+ com.sun.jersey.localization,
+ com.sun.jersey.server.impl,
+ com.sun.jersey.server.impl.application,
+ com.sun.jersey.server.impl.cdi,
+ com.sun.jersey.server.impl.component,
+ com.sun.jersey.server.impl.container,
+ com.sun.jersey.server.impl.container.filter,
+ com.sun.jersey.server.impl.container.grizzly,
+ com.sun.jersey.server.impl.container.httpserver,
+ com.sun.jersey.server.impl.container.servlet,
+ com.sun.jersey.server.impl.ejb,
+ com.sun.jersey.server.impl.inject,
+ com.sun.jersey.server.impl.managedbeans,
+ com.sun.jersey.server.impl.model,
+ com.sun.jersey.server.impl.model.method,
+ com.sun.jersey.server.impl.model.method.dispatch,
+ com.sun.jersey.server.impl.model.parameter,
+ com.sun.jersey.server.impl.model.parameter.multivalued,
+ com.sun.jersey.server.impl.modelapi.annotation,
+ com.sun.jersey.server.impl.modelapi.validation,
+ com.sun.jersey.server.impl.monitoring,
+ com.sun.jersey.server.impl.provider,
+ com.sun.jersey.server.impl.resource,
+ com.sun.jersey.server.impl.template,
+ com.sun.jersey.server.impl.uri,
+ com.sun.jersey.server.impl.uri.rules,
+ com.sun.jersey.server.impl.uri.rules.automata,
+ com.sun.jersey.server.impl.wadl,
+ com.sun.jersey.server.probes,
+ com.sun.jersey.server.spi.component,
+ com.sun.jersey.server.wadl,
+ com.sun.jersey.server.wadl.generators,
+ com.sun.jersey.server.wadl.generators.resourcedoc,
+ com.sun.jersey.server.wadl.generators.resourcedoc.model,
+ com.sun.jersey.server.wadl.generators.resourcedoc.xhtml,
+ com.sun.jersey.spi,
+ com.sun.jersey.spi.container,
+ com.sun.jersey.spi.container.servlet,
+ com.sun.jersey.spi.dispatch,
+ com.sun.jersey.spi.inject,
+ com.sun.jersey.spi.monitoring,
+ com.sun.jersey.spi.resource,
+ com.sun.jersey.spi.scanning,
+ com.sun.jersey.spi.scanning.servlet,
+ com.sun.jersey.spi.service,
+ com.sun.jersey.spi.template,
+ com.sun.jersey.spi.uri.rules,
+ com.sun.net.httpserver;resolution:=optional,
+ com.sun.syndication.feed;resolution:=optional,
+ com.sun.syndication.feed.atom;resolution:=optional,
+ com.sun.syndication.io;resolution:=optional,
+ com.sun.xml.bind.v2.model.core;resolution:=optional,
+ com.sun.xml.bind.v2.model.runtime;resolution:=optional,
+ com.sun.xml.bind.v2.runtime;resolution:=optional,
+ com.sun.xml.bind.v2.runtime.property;resolution:=optional,
+ com.sun.xml.bind.v2.runtime.unmarshaller;resolution:=optional,
+ com.sun.xml.fastinfoset.stax;resolution:=optional,
+ javax.activation;resolution:=optional,
+ javax.annotation;version="[1.1,2)";resolution:=optional,
+ javax.annotation.security;version="[1.1,2)";resolution:=optional,
+ javax.ejb;version="[3.1,4)";resolution:=optional,
+ javax.enterprise.context;version="[1.0,2)";resolution:=optional,
+ javax.enterprise.context.spi;version="[1.0,2)";resolution:=optional,
+ javax.enterprise.event;version="[1.0,2)";resolution:=optional,
+ javax.enterprise.inject;version="[1.0,2)";resolution:=optional,
+ javax.enterprise.inject.spi;version="[1.0,2)";resolution:=optional,
+ javax.enterprise.util;version="[1.0,2)";resolution:=optional,
+ javax.imageio;resolution:=optional,
+ javax.imageio.spi;resolution:=optional,
+ javax.imageio.stream;resolution:=optional,
+ javax.inject;version="[1.0,2)";resolution:=optional,
+ javax.interceptor;version="[3.1,4)";resolution:=optional,
+ javax.mail;resolution:=optional,
+ javax.mail.internet;resolution:=optional,
+ javax.mail.util;resolution:=optional,
+ javax.naming;resolution:=optional,
+ javax.net.ssl;resolution:=optional,
+ javax.persistence;resolution:=optional,
+ javax.servlet;version="[2.6.0,4.0.0)";resolution:=optional,
+ javax.servlet.annotation;version="[2.6.0,4.0.0)";resolution:=optional,
+ javax.servlet.http;version="[2.6.0,4.0.0)";resolution:=optional,
+ javax.servlet.jsp;resolution:=optional,
+ javax.servlet.jsp.tagext;resolution:=optional,
+ javax.ws.rs;version="1.1",
+ javax.ws.rs.core;version="1.1",
+ javax.ws.rs.ext;version="1.1",
+ javax.xml.bind;resolution:=optional,
+ javax.xml.bind.annotation;resolution:=optional,
+ javax.xml.bind.annotation.adapters;resolution:=optional,
+ javax.xml.bind.attachment;resolution:=optional,
+ javax.xml.namespace;resolution:=optional,
+ javax.xml.parsers;resolution:=optional,
+ javax.xml.stream;resolution:=optional,
+ javax.xml.transform;resolution:=optional,
+ javax.xml.transform.dom;resolution:=optional,
+ javax.xml.transform.sax;resolution:=optional,
+ javax.xml.transform.stream;resolution:=optional,
+ javax.xml.validation;resolution:=optional,
+ org.codehaus.jackson,
+ org.codehaus.jackson.jaxrs;version="[1.9,2)";resolution:=optional,
+ org.codehaus.jackson.map,
+ org.codehaus.jackson.type;version="[1.9,2)";resolution:=optional,
+ org.codehaus.jettison.badgerfish;version="[1.1,2)";resolution:=optional,
+ org.codehaus.jettison.json;version="[1.1,2)";resolution:=optional,
+ org.codehaus.jettison.mapped;version="[1.1,2)";resolution:=optional,
+ org.eclipse.persistence.descriptors;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.internal.descriptors;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.internal.oxm;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.internal.queries;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.jaxb;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.mappings;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.mappings.converters;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.mappings.foundation;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.oxm;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.oxm.mappings;version="[2.3,3)";resolution:=optional,
+ org.eclipse.persistence.sessions;version="[2.3,3)";resolution:=optional,
+ org.jdom;resolution:=optional,
+ org.jdom.input;resolution:=optional,
+ org.jdom.output;resolution:=optional,
+ org.objectweb.asm;version="[3.1.0,4.0.0)";resolution:=optional,
+ org.osgi.framework;version="[1.7.0,2.0.0)";resolution:=optional,
+ org.w3c.dom;resolution:=optional,
+ org.xml.sax;resolution:=optional,
+ org.xml.sax.helpers;resolution:=optional
+Bundle-ManifestVersion: 2
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory$Singleton.c
+ lass
+SHA1-Digest: C3U06K0BFuFRzW7x03kgjfsrOkA=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derFactory.class
+SHA1-Digest: g4nc+ExN1KvLAmbp3yZ7mqCzzjQ=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper.class
+SHA1-Digest: S1MmrUYajZ+/5hGwknJFmX+YdLI=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONObjectProvider.clas
+ s
+SHA1-Digest: PxXafoCmGOv3wK0joFdzSIRMzFU=
+
+Name: com/sun/jersey/client/urlconnection/HttpURLConnectionFactory.cla
+ ss
+SHA1-Digest: Vs1N+o74rLGh280xM80WQBe8D48=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$1.class
+SHA1-Digest: VayBUaK2zZagWEO6CSWW8cXp5o0=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$ServiceIteratorProvider
+ .class
+SHA1-Digest: Bbn1fjZM1rWYoVWrXT3J1yOS0Ho=
+
+Name: com/sun/jersey/core/header/AcceptableLanguageTag.class
+SHA1-Digest: N50PoyBeJTfcR1pi4r/aA0M0g/o=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$19.cla
+ ss
+SHA1-Digest: ZN7KrJL+EkuyZEaBRdDGmlqL74g=
+
+Name: com/sun/jersey/core/spi/component/ProviderFactory.class
+SHA1-Digest: 7IX+S/lATRVpE6bCJHRSUsQlBOA=
+
+Name: com/sun/jersey/json/impl/reader/StaxLocation.class
+SHA1-Digest: YhrP6Kbyb3IL+tDA7AWzJZqUwO4=
+
+Name: com/sun/jersey/spi/container/ContainerRequestFilter.class
+SHA1-Digest: tm2IP6nAdwMaHlkssV7CstPCHb4=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProviderFactory.class
+SHA1-Digest: 5UCl2zkJHMQNkGuD0aj5VEU34B8=
+
+Name: com/sun/jersey/spi/container/ContainerNotifier.class
+SHA1-Digest: K0nH4gLz7kO8jIZsqz/cuQ5axZ4=
+
+Name: com/sun/jersey/core/impl/provider/header/LinkHeaderProvider.clas
+ s
+SHA1-Digest: IqwdLitVnF/iTlTQ/K0kIJ0CAu4=
+
+Name: com/sun/jersey/server/impl/uri/rules/AtomicMatchingPatterns$Sing
+ leEntryIterator.class
+SHA1-Digest: vUQ1gssZHi5/KWbSMonElb60Vq4=
+
+Name: com/sun/jersey/core/spi/component/ComponentScope.class
+SHA1-Digest: MfiDYCzvmYrvuWXPhg8Tz5vnarI=
+
+Name: com/sun/jersey/api/json/JSONJAXBContext$1.class
+SHA1-Digest: BeXQWVwjOKSr/jPAAnUgM4JHCQE=
+
+Name: com/sun/jersey/api/client/filter/HTTPDigestAuthFilter$QOP.class
+SHA1-Digest: bq25FO/gAxCfUr1unjGhtKuyMew=
+
+Name: com/sun/jersey/server/impl/uri/rules/HttpMethodRule.class
+SHA1-Digest: 6i3s0kiuokGaGpyHnE66YbcYy10=
+
+Name: com/sun/jersey/spi/container/ContainerProvider.class
+SHA1-Digest: park+P1M4/0UKD5p7VRFut2knbE=
+
+Name: com/sun/jersey/server/impl/uri/PathTemplate.class
+SHA1-Digest: 2BGc3e6kXYaWMpAW6pvBka8ADJg=
+
+Name: com/sun/jersey/api/client/filter/GZIPContentEncodingFilter.class
+SHA1-Digest: S6sI6BmKs626PEcQjYy4Gxd5FCM=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/AutomataMatchingUr
+ iTemplateRules$SearchState.class
+SHA1-Digest: zPBFO9wql5Cbb6eaVORH5fB2NjA=
+
+Name: com/sun/jersey/core/spi/scanning/uri/JarZipSchemeScanner.class
+SHA1-Digest: U56x8KVicJTgyj+OQayowvhKO3g=
+
+Name: com/sun/jersey/json/impl/writer/JacksonStringMergingGenerator.cl
+ ass
+SHA1-Digest: rVjV05b5Eiq2dd2Yv4msKgyQjD0=
+
+Name: com/sun/jersey/spi/inject/ConstrainedToType.class
+SHA1-Digest: Tvv2NqpJE2AP/lQLT+qZrQtSqlY=
+
+Name: com/sun/jersey/core/impl/provider/header/MediaTypeProvider.class
+SHA1-Digest: /8Srk1Xe5Ar4mkjrWt2QahJUAmA=
+
+Name: com/sun/jersey/core/impl/provider/xml/LazySingletonContextProvid
+ er$1.class
+SHA1-Digest: hMwQF8vmr6Y0cZrTG1GbGKeSmLk=
+
+Name: com/sun/jersey/server/impl/VariantSelector$4.class
+SHA1-Digest: SFcOaIRWfL0Rvcgr9r7PZp56Bz0=
+
+Name: com/sun/jersey/core/impl/provider/header/WriterUtil.class
+SHA1-Digest: eZICNt9De7Onoro/g0KqW7GGeNI=
+
+Name: com/sun/jersey/api/client/UniformInterface.class
+SHA1-Digest: e9iC+K49rabqzApBzTb+YEvb12c=
+
+Name: com/sun/jersey/api/model/ResourceModelIssue.class
+SHA1-Digest: +Pi0qbXzWhJLSuyzPo/ON2n+pOw=
+
+Name: com/sun/jersey/core/header/GrammarUtil.class
+SHA1-Digest: IE3M5L6qgFdewtruOjQsi3QtGhg=
+
+Name: com/sun/jersey/core/spi/scanning/uri/UriSchemeScanner.class
+SHA1-Digest: 8uhsQsGsrHFDq0Ar2bo7C/m4Jlw=
+
+Name: com/sun/jersey/server/impl/InitialContextHelper.class
+SHA1-Digest: pRE8rV2b9+z4askrgBPpQmwFADw=
+
+Name: com/sun/jersey/server/impl/application/ExceptionMapperFactory.cl
+ ass
+SHA1-Digest: y2BDSk5u4SiOfG2ZiLKSrGDnA6M=
+
+Name: com/sun/jersey/core/provider/EntityHolder.class
+SHA1-Digest: 4Mt3z4bviIpkRxXENnTBG7e2Lak=
+
+Name: com/sun/jersey/api/client/filter/ConnectionListenerFilter$Adapte
+ r.class
+SHA1-Digest: VILz6neNVSsbgtHJab4vsbSKwWk=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$6$1.cl
+ ass
+SHA1-Digest: +dYeqH+PA8D/2Z6WXwU4yvckaS8=
+
+Name: com/sun/jersey/spi/container/ContainerRequest.class
+SHA1-Digest: gYhUCBU9Tmpr4HybUIXKO4Hk1oo=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/NamedVal
+ ueType.class
+SHA1-Digest: rpySl/Zddt0Mp48FVzvVM5V9tz4=
+
+Name: com/sun/jersey/client/impl/async/FutureClientResponseListener.cl
+ ass
+SHA1-Digest: 3831a8PaVjvCseP/M2A66M2y1no=
+
+Name: com/sun/jersey/core/impl/provider/entity/DataSourceProvider.clas
+ s
+SHA1-Digest: HGsEy4duCNXAIe8YNK4qxsyWFec=
+
+Name: META-INF/services/com.sun.jersey.spi.StringReaderProvider
+SHA1-Digest: tdX6LFCHZH1+Zj6Ys7NGm+pwSLo=
+
+Name: com/sun/jersey/spi/uri/rules/UriRuleContext.class
+SHA1-Digest: C1XH+JtYm0UsFhxi88VkkYFyfQk=
+
+Name: com/sun/jersey/server/impl/uri/rules/UriRulesFactory.class
+SHA1-Digest: YDWD0JA1URymk3BXvKuZiiobYyA=
+
+Name: com/sun/jersey/json/impl/writer/JsonXmlStreamWriter$WriterAdapte
+ r.class
+SHA1-Digest: 55SYSL5fc8EmmANToDdbGeYVWps=
+
+Name: com/sun/jersey/api/client/RequestWriter$RequestEntityWriterListe
+ ner.class
+SHA1-Digest: 4AqdLw3nEK+EtvZe/fh7bH+PG88=
+
+Name: com/sun/jersey/server/impl/BuildId.class
+SHA1-Digest: hnkBTwDg2c2bhPM28gNBgkucSeQ=
+
+Name: com/sun/research/ws/wadl/Representation.class
+SHA1-Digest: ZzceFJbllwzGx/XQg0b7UTHXKOk=
+
+Name: com/sun/jersey/core/impl/provider/xml/ThreadLocalSingletonContex
+ tProvider$2.class
+SHA1-Digest: N2atVvUfQ5PXOwqLPf1eFKPk7D8=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$Compon
+ entProcessorFactoryImpl.class
+SHA1-Digest: 9RJJWGMvBhOV5Qz3U1IYIb8upaA=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedMethodImpl.class
+SHA1-Digest: ifaE6AQwPJgOybPGlEIJcMaUP44=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationContext.cla
+ ss
+SHA1-Digest: XteDMm2XOqp+BkKFdp/Uk/fmhAs=
+
+Name: com/sun/jersey/spi/container/ResourceFilter.class
+SHA1-Digest: AV8oz0vRo2IKX3UVpFjBZEn6/O8=
+
+Name: com/sun/jersey/server/impl/model/parameter/FormParamInjectablePr
+ ovider.class
+SHA1-Digest: sFlS9RjGEGYAmyVKH9gdpCGTlHc=
+
+Name: com/sun/jersey/server/impl/inject/InjectableValuesProvider.class
+SHA1-Digest: f4OcqHavMRIJxsinkNHcna7mQI4=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$TypeFromStringEnum.class
+SHA1-Digest: 3W63Eth6aYlKU9eg2dFAIZKXL5U=
+
+Name: com/sun/jersey/impl/spi.properties
+SHA1-Digest: 9Vf4RzlPIiIUMmqDlE8fIRoO+QU=
+
+Name: com/sun/jersey/server/impl/ejb/EJBRequestDispatcherProvider.clas
+ s
+SHA1-Digest: DZmyyUVLBmGB+bO68GWByg4Skec=
+
+Name: com/sun/jersey/core/impl/provider/xml/XMLStreamReaderContextProv
+ ider.class
+SHA1-Digest: mI+ZH3txo5CbN693sVXRy1i04V8=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/AutomataMatchingUr
+ iTemplateRules.class
+SHA1-Digest: I+kJydko5rCG5jtfVYbl5sJXybg=
+
+Name: com/sun/jersey/api/client/Client$ContextInjectableProvider.class
+SHA1-Digest: rvaZXrGigNkNLByWXfBjOHF9YIE=
+
+Name: com/sun/jersey/server/impl/VariantSelector.class
+SHA1-Digest: hPBVVSe8B2DzcMGMZSmGkXyOjt4=
+
+Name: com/sun/jersey/api/core/TraceInformation.class
+SHA1-Digest: 5JHO6U5lj3cdXaRAEeBXayWb4oU=
+
+Name: com/sun/jersey/spi/monitoring/GlassfishMonitoringProvider.class
+SHA1-Digest: ic6Joo7WDiOeP36RYKmZENJPPW8=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/xhtml/Elements
+ .class
+SHA1-Digest: WkTOG8CsDuYeK5W0CIHpgXad+lA=
+
+Name: com/sun/jersey/core/spi/scanning/ScannerListener.class
+SHA1-Digest: q6cn3HeQSG8hCWnmFZq8318mh9E=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedFieldImpl.class
+SHA1-Digest: pDxu3yMkyWFEHWE+x+ZaSYkJQco=
+
+Name: com/sun/jersey/server/impl/uri/rules/RightHandPathRule.class
+SHA1-Digest: 0QifwG17mT8DNBquso89wWuPG14=
+
+Name: com/sun/jersey/core/spi/component/ComponentConstructor$Construct
+ orComparator.class
+SHA1-Digest: C8LUOn+sP+JEJU4aFWGheYxz9K4=
+
+Name: com/sun/jersey/api/client/RequestWriter$RequestEntityWriter.clas
+ s
+SHA1-Digest: N0B12YplkYtibUuZi/K4D0blgWQ=
+
+Name: com/sun/jersey/api/model/PathValue.class
+SHA1-Digest: MeiiRDtmJn5asPQwIWqlaAjLLn0=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/Resource
+ DocType.class
+SHA1-Digest: Ei+U8z9EuHh58DZqPYi6KdEY7hU=
+
+Name: com/sun/jersey/server/impl/container/filter/NormalizeFilter.clas
+ s
+SHA1-Digest: JAixR47OJSO/BH/G7DDQBdkvoSU=
+
+Name: com/sun/jersey/server/impl/model/parameter/HttpContextInjectable
+ Provider$HttpContextRequestInjectable.class
+SHA1-Digest: 55BN9SwiTFhDJ8Rpb5onVYdTTI4=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$1.class
+SHA1-Digest: Tm2n6nt+Z2EdGB+mIwGsrlSZHHk=
+
+Name: com/sun/jersey/api/client/filter/ReportingInputStream.class
+SHA1-Digest: zwtwPHIfAvK8RnCJEqI4wUbdDQU=
+
+Name: com/sun/jersey/core/spi/scanning/uri/VfsSchemeScanner.class
+SHA1-Digest: XF9QnlAnwtj2el1N0FKjohGyDbE=
+
+Name: com/sun/jersey/api/core/ResourceContext.class
+SHA1-Digest: 1FTHMC457rkAm38eqca6WXKnAss=
+
+Name: com/sun/jersey/api/core/HttpRequestContext.class
+SHA1-Digest: 2pNjidFw21nVY8Qc9RnT8eopyCg=
+
+Name: com/sun/jersey/api/uri/UriPattern$1.class
+SHA1-Digest: CHSxQoeN8+z8duRVGdMh7ugTs3o=
+
+Name: com/sun/jersey/spi/container/ParamQualifier.class
+SHA1-Digest: Tm/rxgBVJkLvbOpK5TLMX70PxeU=
+
+Name: com/sun/jersey/api/json/JSONUnmarshaller.class
+SHA1-Digest: ybc2rMi6rr0u/3kXUjOq4VqIuvA=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedImpl.class
+SHA1-Digest: 6HSzi7vyqfvDdx4cyI64ArvLX7k=
+
+Name: com/sun/jersey/api/ParamException$CookieParamException.class
+SHA1-Digest: hpEKUv8Y0ZvUYIdWuzBwpqvocCk=
+
+Name: com/sun/jersey/server/impl/container/servlet/RequestDispatcherWr
+ apper.class
+SHA1-Digest: xCGlWp5bCt17OI3MBmJOUt0YdSQ=
+
+Name: com/sun/jersey/server/impl/model/parameter/PathParamInjectablePr
+ ovider.class
+SHA1-Digest: emPzYoSafiAuxLGwVJq3ScBhnPU=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/xhtml/ObjectFa
+ ctory.class
+SHA1-Digest: YC/+zWg/uWZB0Nyb/+CNyuLRVRs=
+
+Name: com/sun/jersey/api/container/httpserver/HttpServerFactory.class
+SHA1-Digest: muRli7UpAGLCzUiCMyRtS+cMlT0=
+
+Name: com/sun/jersey/api/Responses.class
+SHA1-Digest: 3yagi6ZKbW8LFWnzpLTJhq29+Ws=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/ObjectFa
+ ctory.class
+SHA1-Digest: 4Cgd7R5OZtDPuvvjOq3nhfn7Qqs=
+
+Name: com/sun/jersey/core/header/MediaTypes.class
+SHA1-Digest: 5MS9+nasyvKW+2ZYOz7uQF2+X98=
+
+Name: com/sun/jersey/spi/container/ContainerListener.class
+SHA1-Digest: eGuiaY+S5qjdShu3N+IkYfeh+Nk=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$1.clas
+ s
+SHA1-Digest: lDaPMO4FlQM6OGMQKvJgZ+SVA+c=
+
+Name: com/sun/jersey/server/impl/container/servlet/JSPTemplateProcesso
+ r.class
+SHA1-Digest: ssYhdbfjBONrgRd0tikUa4lINeY=
+
+Name: com/sun/jersey/api/client/AsyncViewResource$1.class
+SHA1-Digest: 3iZz1RgGLQKeMwe/7slYcXeJqvA=
+
+Name: com/sun/jersey/spi/container/servlet/WebServletConfig.class
+SHA1-Digest: oYKuK2phIRhPgzAHaAHPZqiHr6s=
+
+Name: com/sun/research/ws/wadl/HTTPMethods.class
+SHA1-Digest: K1gFIvYiO/4y15NqckOVi5anGKo=
+
+Name: com/sun/jersey/api/uri/UriTemplateParser.class
+SHA1-Digest: BJ1Qr27d1GEA8SgVLrXI2vnE920=
+
+Name: com/sun/jersey/spi/scanning/AnnotationScannerListener$1.class
+SHA1-Digest: OsM3cof0xQaTMPAHRsNlCNnalGY=
+
+Name: com/sun/jersey/spi/container/servlet/ServletContainer$InternalWe
+ bComponent.class
+SHA1-Digest: E+HYPHHXCHO+KinqJv8jhvyVyBs=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$2.class
+SHA1-Digest: /ozfyXS7scm6Dd3Fwrhd6NHMCdg=
+
+Name: com/sun/jersey/server/impl/ejb/EJBComponentProviderFactoryInitil
+ izer.class
+SHA1-Digest: kga0szx1k0tb4E8GIwz38orLNCM=
+
+Name: com/sun/jersey/core/spi/component/ComponentContext.class
+SHA1-Digest: BgKimtq+pZJRKUH1RZZTUEcoYA4=
+
+Name: com/sun/jersey/json/impl/provider/entity/JacksonProviderProxy.cl
+ ass
+SHA1-Digest: hQdr4yGdzbII9b0qo6oGxmHw6vQ=
+
+Name: com/sun/jersey/api/client/filter/HTTPBasicAuthFilter.class
+SHA1-Digest: CBa7SZzcVKjkYFjsxeZ/aGkCUvw=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceMethod$1.class
+SHA1-Digest: mkdhYJv7Nf9v8eF9rVVHHQKkGuw=
+
+Name: com/sun/jersey/core/spi/scanning/PackageNamesScanner$ResourcesPr
+ ovider.class
+SHA1-Digest: 4pd6eivlj66f5wjwCGqE3o4ETHc=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieNodeValue$Sing
+ leEntryIterator.class
+SHA1-Digest: ITQTNVJKzXrJJ0J9gPK80E03rfI=
+
+Name: com/sun/jersey/spi/MessageBodyWorkers.class
+SHA1-Digest: VOvy7wqdz1uzIQdMirXX2BE/wOc=
+
+Name: com/sun/jersey/json/impl/BufferingInputOutputStream.class
+SHA1-Digest: fEYSUDBSy+MIjfTXoAXdItzUn9g=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$StringConstructor$1.class
+SHA1-Digest: s7iUZCnDuMvNA09ebNtHIgyBNaM=
+
+Name: com/sun/jersey/json/impl/MoxyXmlStructure$XPathNodeWrapper.class
+SHA1-Digest: 7goJdWv3gGFwk/gdJYSHfWDle7w=
+
+Name: com/sun/jersey/server/impl/container/servlet/ServletAdaptor$1$1.
+ class
+SHA1-Digest: zXrVl6ulvh5dHnEAf4a6El5ajFU=
+
+Name: com/sun/jersey/server/impl/container/httpserver/HttpHandlerConta
+ iner.class
+SHA1-Digest: YbdjhpVxzWi5h6cat/jrCn+67k0=
+
+Name: com/sun/jersey/core/impl/provider/xml/SecureSAXParserFactory$Wra
+ ppingSAXParser.class
+SHA1-Digest: eB79nzG5KQXICpFAz/Upvls4ykA=
+
+Name: com/sun/jersey/core/util/Closing.class
+SHA1-Digest: HbrP4N2cY1f4cFkrp737dYXRmdY=
+
+Name: com/sun/jersey/server/impl/cdi/AbstractBean.class
+SHA1-Digest: 4Pl3AKGFKLfFVrbcpza+q83U6As=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$17$1.c
+ lass
+SHA1-Digest: ztAwS9pjt512WvWfJwGyyPEinqg=
+
+Name: com/sun/jersey/api/container/filter/UriConnegFilter.class
+SHA1-Digest: SjcvY5f1HQapU6YrkkGVoaCz8u4=
+
+Name: com/sun/jersey/core/impl/provider/xml/SecureSAXParserFactory$1.c
+ lass
+SHA1-Digest: vUZVrFka7iAb/mUE2RMosoqDdro=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$5.class
+SHA1-Digest: fuHU2OBYwjX5dcPclGcsHFYvJMU=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractListElementProvider.cl
+ ass
+SHA1-Digest: VVkFop6VhXJDfo1EeXEA2/CEPuk=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$6.clas
+ s
+SHA1-Digest: Qb7iAEpKqHeyfU3z9n9UWPHlOYQ=
+
+Name: META-INF/services/com.sun.jersey.spi.container.ContainerRequestF
+ ilter
+SHA1-Digest: xIhwG1cVJAZ8lEiU7LpApQkWh9Q=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$20$1.c
+ lass
+SHA1-Digest: JfjIa/oGGl+rA4ecmU7VUGfuqNE=
+
+Name: com/sun/jersey/api/client/AsyncViewResource$Builder.class
+SHA1-Digest: 7u2rM8tgN0WRQCdprimehaX92HE=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$ContextAnnotationLit
+ eral.class
+SHA1-Digest: dxSqcEVlYc+DWnOYRpz7Wg1WIb0=
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory$SingletonPr
+ oxied.class
+SHA1-Digest: ucvJstLX1UsyVM/ehApDbTANfWI=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentConstructor
+ $ConstructorComparator.class
+SHA1-Digest: yxKDdmo4f+Ru9pQDEn81ksogATs=
+
+Name: com/sun/jersey/json/impl/JaxbRiXmlStructure.class
+SHA1-Digest: eapgL/a+4vvrSyW5MkcnO4PF5q4=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$7.class
+SHA1-Digest: QZ/ybjG+/YiOq70rXqsL9ucUGG0=
+
+Name: com/sun/jersey/core/spi/component/AnnotatedContext.class
+SHA1-Digest: mEV8HfxANXdRe2N7EpVyX9hcKus=
+
+Name: com/sun/jersey/core/reflection/MethodList$1.class
+SHA1-Digest: 5oABUQ5+eMlz3afj7onXfLmQmAo=
+
+Name: com/sun/jersey/json/impl/writer/DefaultXmlStreamWriter.class
+SHA1-Digest: MCICpLUaWpVGU3Stfmk/IxeC9+U=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLJAXBElementProvider.
+ class
+SHA1-Digest: EHC+jfs8mnMZWthBFA6SpaU1X7o=
+
+Name: com/sun/jersey/server/impl/uri/rules/SequentialMatchingPatterns$
+ XInterator.class
+SHA1-Digest: pMH1/YcA0eYdN0kLVoAN75Wv4yo=
+
+Name: META-INF/taglib.tld
+SHA1-Digest: ukdE4jEsS8JnuoYwwZzQEK3KPNE=
+
+Name: com/sun/jersey/server/impl/model/parameter/PathParamInjectablePr
+ ovider$PathParamInjectable.class
+SHA1-Digest: snUHeyaUgfK90u2h8fn8KSDcyqw=
+
+Name: META-INF/services/com.sun.jersey.spi.inject.InjectableProvider
+SHA1-Digest: Vo2OIHnKFPLao5QHwmqMix8X4+8=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/WadlPara
+ mType.class
+SHA1-Digest: j2jPok0UyWOBTgJnnnNH8SmclYg=
+
+Name: com/sun/jersey/core/impl/provider/header/CookieProvider.class
+SHA1-Digest: /fe6WRTXE8joB/zZGV+ABFGgrOs=
+
+Name: com/sun/jersey/core/spi/factory/ResponseImpl.class
+SHA1-Digest: UUxo079AfCykp4Hzb8sR13qGc5M=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/AbstractS
+ tringReaderExtractor.class
+SHA1-Digest: eazkcg8py5v/StGmzUQnALF/JHo=
+
+Name: com/sun/jersey/core/impl/provider/entity/MimeMultipartProvider.c
+ lass
+SHA1-Digest: de4yFxHs7HkiknGldaS5P6f5lZM=
+
+Name: com/sun/jersey/spi/container/WebApplicationFactory.class
+SHA1-Digest: 1aXahPBLAq0qpBSxaV9zZfKkN6k=
+
+Name: com/sun/jersey/api/core/TraceInformation$TraceHeaderListener.cla
+ ss
+SHA1-Digest: 9dYVM4orSM7kUB71Q3LuLGn2pec=
+
+Name: com/sun/jersey/core/spi/factory/ResponseImpl$1.class
+SHA1-Digest: J5e0aQJhzEvVX6mC2XBCvqR3jpM=
+
+Name: com/sun/jersey/server/impl/cdi/CDIComponentProviderFactory$2.cla
+ ss
+SHA1-Digest: Uk2z8aln8MVdfPNa6GVdHwlLKEI=
+
+Name: com/sun/jersey/api/client/Client$3.class
+SHA1-Digest: yuU1eNnP+EY8iNEy7qPmHEz4ZUY=
+
+Name: com/sun/jersey/core/spi/scanning/uri/BundleSchemeScanner.class
+SHA1-Digest: /t4EAmHRuf6mlKgj/if2wu0Zl30=
+
+Name: com/sun/jersey/core/impl/provider/header/CacheControlProvider.cl
+ ass
+SHA1-Digest: RZPAf7w1IUIo3P17/S2PN93PjTQ=
+
+Name: com/sun/jersey/server/impl/component/IoCResourceFactory$PerReque
+ stWrapper.class
+SHA1-Digest: 2MvO0wyykAUiW/01nJgQjMg6zdQ=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONObjectProvider$Gene
+ ral.class
+SHA1-Digest: cs08shvABxK8dv5EbU2P29TtRgc=
+
+Name: com/sun/jersey/json/impl/reader/JsonXmlEvent.class
+SHA1-Digest: K2VD4RuxmnjEIhOoqE2g2/cgOKw=
+
+Name: com/sun/jersey/core/util/LazyVal.class
+SHA1-Digest: rvZVxy2tOTS+pqHUVria1sjYdPo=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainer$1.
+ class
+SHA1-Digest: 512W1Ww6Q8AY2mYcYhZAYkoMm8Y=
+
+Name: com/sun/jersey/spi/container/ContainerResponse$CommittingOutputS
+ tream.class
+SHA1-Digest: DmTSlhwg8CFxjdRuYI9ssZfdPa4=
+
+Name: com/sun/jersey/core/impl/provider/entity/DocumentProvider.class
+SHA1-Digest: 5fMAu5wO8TXCJpGgUu1jSKGOVVY=
+
+Name: com/sun/jersey/server/wadl/WadlBuilder.class
+SHA1-Digest: 3edLN3oFL1v9EVegc/aDtsg9RRc=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$5$1.cl
+ ass
+SHA1-Digest: 3CmdQqJnSOy5Nkfc1lkuV3fJm3Y=
+
+Name: com/sun/jersey/spi/inject/Errors$Closure.class
+SHA1-Digest: M/ToPpv/a6O4HXVmRyqw4DuJd4Y=
+
+Name: com/sun/jersey/core/reflection/MethodList$6.class
+SHA1-Digest: /LmCo6d6SfUdPfaoBEpOo4K1bMo=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$2.class
+SHA1-Digest: V472pXsaj11FiLOz5cUYFmJ5iJA=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$12.cla
+ ss
+SHA1-Digest: B/te5RFvOn+aBxEREE1CDv0lgPo=
+
+Name: com/sun/jersey/core/spi/component/ComponentInjector.class
+SHA1-Digest: DeuE232rKuy5BJUFXDw/ECKr7Ec=
+
+Name: com/sun/jersey/server/impl/cdi/ProviderBasedBean.class
+SHA1-Digest: 1XAsmVYj2KegQEPyuyrqvdmm3kY=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory.
+ class
+SHA1-Digest: VmwehcAYX4O+Xxumu9LrjLEh3/A=
+
+Name: com/sun/jersey/api/client/filter/LoggingFilter$LoggingOutputStre
+ am.class
+SHA1-Digest: kkE9XlnkCwJVX7gaRDG1Gg+o8lM=
+
+Name: com/sun/jersey/spi/template/TemplateContextException.class
+SHA1-Digest: vteV6dufiwT/RnGClq0Pd1vfnqw=
+
+Name: com/sun/jersey/spi/inject/Errors$ErrorMessagesException.class
+SHA1-Digest: ZpEIPovfhnC710K4t8zBHtCNUHg=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONListElementProvider
+ $General.class
+SHA1-Digest: D3zOTXuwP+gSio7if8kK0UFW/50=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$1.class
+SHA1-Digest: qrM2NY7cQkpQH7EEWdTN72qeB7w=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory$PerRequest
+ Instantiated.class
+SHA1-Digest: qOWcjiuUHbP3VGFusJ7e5OP4l80=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/xhtml/XhtmlVal
+ ueType.class
+SHA1-Digest: Lk7SImV0FKndijTRli1u3PS7Wa0=
+
+Name: com/sun/jersey/client/urlconnection/URLConnectionClientHandler.c
+ lass
+SHA1-Digest: nqskamjsq2G31IYVJqtaipapPhU=
+
+Name: META-INF/services/com.sun.jersey.spi.container.ContainerResponse
+ Filter
+SHA1-Digest: 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+Name: com/sun/jersey/server/impl/model/ResourceUriRules.class
+SHA1-Digest: M1FOtVLpBhBrh8kiRerddEhTdXc=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory$
+ AggregatedRequestListener.class
+SHA1-Digest: foP4mX0S0vHfXtETIE+PXrpfjxc=
+
+Name: com/sun/jersey/api/uri/UriComponent.class
+SHA1-Digest: 3TM2yogVqilmsYFKcZmT6KAbMxA=
+
+Name: com/sun/jersey/api/model/AbstractResource.class
+SHA1-Digest: yu2dTflfu1llR0nAs9TSwhJxx1g=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$23.cla
+ ss
+SHA1-Digest: T7PqTXD5HqNuQmgaUetQu/UjIjE=
+
+Name: com/sun/jersey/server/impl/build.properties
+SHA1-Digest: v0PDSy3c4M2L+ZqkyCiNBqNLyGw=
+
+Name: com/sun/jersey/api/NotFoundException.class
+SHA1-Digest: RgD0CTOZSuAlSd2hu/Qln2Lc5Fo=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$2.class
+SHA1-Digest: hWILFIU8CzltktlS5WcgVyGw5fE=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONRootElementProvider
+ .class
+SHA1-Digest: VeTDYExm2fklasLfOZxMOzed4tk=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Multivalu
+ edParameterExtractorFactory.class
+SHA1-Digest: epJjvod/Fx0659pPP+Jb47zMdOs=
+
+Name: com/sun/jersey/core/header/MediaTypes$2.class
+SHA1-Digest: Jf5oVUucitBC/mEyvJnN36QPoew=
+
+Name: com/sun/jersey/json/impl/reader/XmlEventProvider.class
+SHA1-Digest: bORIace5GYTZhi8U1CyqS55I8cc=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$TypeFromString.class
+SHA1-Digest: igx991ctK+JPY9VqTEYevC2ABBk=
+
+Name: com/sun/jersey/core/spi/scanning/FilesScanner$1.class
+SHA1-Digest: LASMmNtUhqZL9U/axRKpWrMPSW4=
+
+Name: com/sun/jersey/server/impl/container/servlet/JerseyServletContai
+ nerInitializer.class
+SHA1-Digest: 64u3aY/rU5nlgv28X4pw+vDw8Rs=
+
+Name: com/sun/jersey/core/spi/scanning/uri/FileSchemeScanner$1.class
+SHA1-Digest: nBmbVLvIvgH4dM7j5isCqK84s3s=
+
+Name: com/sun/jersey/json/impl/writer/JsonEncoder.class
+SHA1-Digest: l6Crfgv5fOmLKqEmN2TxHf43WSI=
+
+Name: com/sun/jersey/api/ParamException$URIParamException.class
+SHA1-Digest: 4p1FpPqZ1eirpfWeLLUfGvFSeAI=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentInjector.cl
+ ass
+SHA1-Digest: WkCSdn+4YXdpprc1fsT7swPG+GA=
+
+Name: com/sun/jersey/server/impl/cdi/InitializedLater.class
+SHA1-Digest: M1Nc7HqSplE7Fs4KO8xOHdwxZLE=
+
+Name: com/sun/jersey/api/model/AbstractImplicitViewMethod.class
+SHA1-Digest: CqDaoAbf807h3HBMHYOcEbymZTw=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$TypeFromString$1.class
+SHA1-Digest: D7YVvpnAW6fEVbzEXNqVlseEAfM=
+
+Name: com/sun/jersey/api/client/ClientRequest$Builder.class
+SHA1-Digest: uwemnu3oq6CgvA3oMumApo+PJCU=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCComponentProvider.class
+SHA1-Digest: 044T/n/9G3Q2VZ2jcnGLkJqxK5s=
+
+Name: com/sun/jersey/server/impl/wadl/WadlMethodFactory$WadlOptionsMet
+ hodDispatcher.class
+SHA1-Digest: nj4ApSfVutqw1S07g7J9+hzRdxM=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$17.cla
+ ss
+SHA1-Digest: Otl4nYx47bNA1l7aor4PzLBqArA=
+
+Name: com/sun/jersey/server/impl/VariantSelector$DimensionChecker.clas
+ s
+SHA1-Digest: 05hC0Hr3B0HrqmIzItlIMnvtEaM=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$DateProvider$1.class
+SHA1-Digest: JR4HjKnMfd9VlJXBK10u93fHrnc=
+
+Name: com/sun/jersey/core/spi/scanning/PackageNamesScanner.class
+SHA1-Digest: zIKvFxJSUgpNRnw+Ai+7RzZyrWU=
+
+Name: com/sun/jersey/spi/StringReader.class
+SHA1-Digest: Ijv+3WRTMskE3R8ZqCRj8cbSHaY=
+
+Name: com/sun/jersey/core/spi/component/ComponentInjector$1.class
+SHA1-Digest: wq4PSvzquHbOV7Gte0lR/ToWv5E=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory.class
+SHA1-Digest: uNqGe0oaUIrszueeIQG/IeSRh5U=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceHttpMethod.class
+SHA1-Digest: ypSHbOnMBG6aprbs6bOZamCvsBE=
+
+Name: com/sun/jersey/spi/inject/ClientSide.class
+SHA1-Digest: KzmvvaSs+Wu8DIgipgN4JVKRAFE=
+
+Name: com/sun/jersey/api/container/filter/GZIPContentEncodingFilter$Ad
+ apter.class
+SHA1-Digest: tB67zR2741th4CbTcz7HKZwOd/A=
+
+Name: META-INF/services/com.sun.jersey.server.impl.model.method.dispat
+ ch.ResourceMethodDispatchProvider
+SHA1-Digest: 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+Name: com/sun/jersey/api/JResponse$AJResponseBuilder.class
+SHA1-Digest: 5Mz2ECx0ToRAbhBmw3JWSXzLPoI=
+
+Name: com/sun/jersey/json/impl/writer/JacksonArrayWrapperGenerator$1.c
+ lass
+SHA1-Digest: DDAHk8ZfWWUwvW0x/nwkGTpk0bc=
+
+Name: com/sun/jersey/server/impl/component/ResourceFactory.class
+SHA1-Digest: ylzrV4j+Z2Jli+sDJfnvQsdHN74=
+
+Name: com/sun/jersey/json/impl/writer/JsonXmlStreamWriter.class
+SHA1-Digest: xecMZJdsqelFeG1K5qwLpfaTRkM=
+
+Name: com/sun/jersey/core/spi/factory/MessageBodyFactory$MessageBodyWr
+ iterPair.class
+SHA1-Digest: Main93Rf+k+kZ8CvTlQBzYN5OUY=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorLoader.class
+SHA1-Digest: 6tDiU25dxved2f7ilaixcPPbHwQ=
+
+Name: com/sun/jersey/localization/Localizer.class
+SHA1-Digest: L8NozlG1mJikLcLld7ctPsJ2YHo=
+
+Name: com/sun/jersey/server/impl/VariantSelector$2.class
+SHA1-Digest: pYQmH2f+2of5hSeb5G/acF8Bgh8=
+
+Name: com/sun/jersey/server/impl/component/IoCResourceFactory.class
+SHA1-Digest: J1mQoX2XPjdp2mbpmUrq0TE61xE=
+
+Name: com/sun/jersey/impl/ApiMessages.class
+SHA1-Digest: 79RjThTrjBcNBqPhuREs7V6H3l0=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringExtractor$SortedSetString.class
+SHA1-Digest: A0bkWbly4i16zK3zuGyjy5pL4eQ=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/Annotati
+ onDocType.class
+SHA1-Digest: 39Qf7CYDd0gQVtqsPRz91bXrT+Q=
+
+Name: com/sun/jersey/api/client/ClientResponse$Status.class
+SHA1-Digest: fOZ7FfrOat5AYbZU+m3CYHtm1Bg=
+
+Name: com/sun/jersey/core/impl/provider/entity/SourceProvider$SourceWr
+ iter.class
+SHA1-Digest: bpyNCi025b+8rCO31E+LBEHAqNA=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$PredefinedBean.class
+SHA1-Digest: GSY51H/9Hrd7NFJTd1y7O2FIClQ=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorJAXBGrammarGe
+ nerator$3.class
+SHA1-Digest: QMjDS0eEj680SPUcKeOu/UUxHYM=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$EntrySet.class
+SHA1-Digest: 7okk8bhZpu2cDB5RUV7BzBn8fJA=
+
+Name: com/sun/jersey/api/container/filter/ResourceDebuggingFilterFacto
+ ry$ResourceMethodFilter.class
+SHA1-Digest: KjQJFZ9PK5AwG+oPpQG2Yr/QW/8=
+
+Name: com/sun/jersey/core/spi/component/ComponentConstructor.class
+SHA1-Digest: mnXRFhH89QPqB/oKOu2MMwgSrt0=
+
+Name: com/sun/jersey/spi/container/ContainerResponseFilter.class
+SHA1-Digest: RbnNoApVVP5JFlwdFFhRzAzzNn4=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$HashIterator.class
+SHA1-Digest: 6JbwnsLM5CbRk46QIcgBWA7LJQc=
+
+Name: com/sun/jersey/json/impl/writer/JsonXmlStreamWriter$DummyWriterA
+ dapter.class
+SHA1-Digest: JK0kms+Yi1X8/wSoYkt4ts1zli0=
+
+Name: com/sun/research/ws/wadl/ObjectFactory.class
+SHA1-Digest: JwcENXs4uo6mmzoye/OnOC5dW9s=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainer$Wr
+ iter.class
+SHA1-Digest: woQz0zzdyjkbZu2iL6pf6jTpCMA=
+
+Name: com/sun/jersey/core/impl/provider/entity/BaseFormProvider.class
+SHA1-Digest: xJ4cny1jwLCeMePByeqChstXmSM=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$4.class
+SHA1-Digest: o59rtg2YDVF6M4gEcd2lyPshnLc=
+
+Name: com/sun/jersey/api/json/JSONJAXBContext.class
+SHA1-Digest: MA6w6DRX2es+zycKHLK4gC1RfpQ=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$16$1.c
+ lass
+SHA1-Digest: /miDiqGi83ZhkJcMyMfrbqHO7v8=
+
+Name: com/sun/jersey/server/impl/uri/rules/SubLocatorRule$1.class
+SHA1-Digest: Cxwqv9NgmpHduuHhj3ST7u52Un8=
+
+Name: com/sun/jersey/core/util/StringKeyStringValueIgnoreCaseMultivalu
+ edMap.class
+SHA1-Digest: z9l62k4gGwrvjFTFjU26+vvOcQE=
+
+Name: com/sun/jersey/api/container/filter/LoggingFilter.class
+SHA1-Digest: cDUUYjmoooFOJW4y2pAE9s1/XWo=
+
+Name: com/sun/jersey/spi/dispatch/RequestDispatcher.class
+SHA1-Digest: R7BT1je4FbL5jbe0lvtsGtamT2A=
+
+Name: META-INF/jersey-module-version
+SHA1-Digest: sOj2dM4/Aq8RcGcb5drJZ5EKRlY=
+
+Name: com/sun/jersey/server/impl/ejb/EJBExceptionMapper.class
+SHA1-Digest: W92YqJ/9ch3Ag7tn04KJKE7jY4Y=
+
+Name: com/sun/jersey/json/impl/writer/JacksonArrayWrapperGenerator$Sta
+ te.class
+SHA1-Digest: MmGfaFae5GbI5FteUY7Ab5wvme0=
+
+Name: com/sun/jersey/api/client/filter/ConnectionListenerFilter.class
+SHA1-Digest: 5M5acfBzY7eN9xxOupPMBlK8B0w=
+
+Name: com/sun/jersey/spi/container/SubjectSecurityContext.class
+SHA1-Digest: vX+NKDXnHnuWZQkztOnOGoXgxFI=
+
+Name: com/sun/jersey/api/client/AsyncViewUniformInterface.class
+SHA1-Digest: m+UIte7PsEci3LP753aofDrLrCc=
+
+Name: com/sun/jersey/server/impl/model/parameter/CookieParamInjectable
+ Provider.class
+SHA1-Digest: dUE0U967bJhz2V/NpnmJq/8a4Zo=
+
+Name: com/sun/jersey/core/spi/component/ProviderServices$ProviderClass
+ .class
+SHA1-Digest: o34z49ObM9iCWD99Hyrr8tn4aFo=
+
+Name: com/sun/jersey/server/impl/model/parameter/PathParamInjectablePr
+ ovider$PathParamPathSegmentInjectable.class
+SHA1-Digest: NjMgqj9mjj2e3Dd18xJSjafBwwQ=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$InjectAnnotationLite
+ ral.class
+SHA1-Digest: UHCNPf3qB27ZMtxxFiAWIgSyCgA=
+
+Name: com/sun/jersey/api/core/DefaultResourceConfig.class
+SHA1-Digest: FGWjAZ2pJ5TT70wPEux9gF5xwIk=
+
+Name: com/sun/jersey/core/spi/component/ProviderFactory$SingletonCompo
+ nentProvider.class
+SHA1-Digest: 7rOg6hbMT/Nko38k1OO06pVnMN4=
+
+Name: com/sun/jersey/json/impl/reader/JsonXmlStreamReader$1.class
+SHA1-Digest: bI90Ak+MU5rghL0bFuzCgN/B+Q0=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProviderFactory$Managed
+ Singleton.class
+SHA1-Digest: XI+Dr2VskJDWLFOuCvVcv2MXCdk=
+
+Name: com/sun/jersey/core/spi/factory/MessageBodyFactory.class
+SHA1-Digest: nPl8opw21XKRbssDprgbXHZ7XUY=
+
+Name: com/sun/jersey/server/impl/application/RootResourceUriRules.clas
+ s
+SHA1-Digest: VMgXN73qWKLk2Hs1DICvhJv1Zg0=
+
+Name: com/sun/jersey/server/impl/cdi/CDIComponentProviderFactory.class
+SHA1-Digest: XE9XAtM4i/P6l3Y4AcJu5g4Khmc=
+
+Name: com/sun/jersey/server/impl/model/HttpHelper.class
+SHA1-Digest: hYhX+ead1Xdvc2tjzCKbTw5H1no=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieNode.class
+SHA1-Digest: CFDMtHbzpIau53hAg0L7weP2oao=
+
+Name: com/sun/jersey/core/impl/provider/entity/Inflector.class
+SHA1-Digest: MNwIsaL97TJKeJpozsmSOGCVtaY=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProviderFactory$FullyMa
+ nagedSingleton.class
+SHA1-Digest: GJyynMdkQ5wv3n+qTR1AT4X2cDc=
+
+Name: com/sun/jersey/core/spi/factory/MessageBodyFactory$1.class
+SHA1-Digest: 2eqSdYUuiHf6zhFt4gMJLkHeTtI=
+
+Name: com/sun/jersey/server/impl/application/RootResourceUriRules$1.cl
+ ass
+SHA1-Digest: 6lahB2k85nA01JRq6rWho6u7448=
+
+Name: com/sun/jersey/server/impl/uri/rules/HttpMethodRule$ResourceMeth
+ odListPair.class
+SHA1-Digest: Quvhjxy38Kl+xOrsQ6NXe3Y65AE=
+
+Name: com/sun/jersey/server/impl/monitoring/GlassFishMonitoringInitial
+ izer.class
+SHA1-Digest: 4jFJUhkgLclOBt/1+JzXHazGiLQ=
+
+Name: com/sun/jersey/spi/container/JavaMethodInvokerFactory$1.class
+SHA1-Digest: ntgrTjPUY3oISTt0kO6ZgpFXI/I=
+
+Name: com/sun/jersey/server/impl/VariantSelector$VariantHolder.class
+SHA1-Digest: CbssH2L/tsUJ7dxyuuLYTNQI3Ss=
+
+Name: com/sun/jersey/api/core/TraceInformation$1.class
+SHA1-Digest: BWSDaXHtEwe8LY88nDljml2TVSU=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Multivalu
+ edParameterExtractor.class
+SHA1-Digest: kBN2RqrkT1ZSjodXXZ3ODUXayrI=
+
+Name: com/sun/jersey/json/impl/provider/entity/JacksonProviderProxy$Pr
+ ovidersInjectableProviderContext.class
+SHA1-Digest: zRQqOG2Xq3Ri9dONJwBtnXXbf1s=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$4$1.cl
+ ass
+SHA1-Digest: q9k0H00wYtFK7BBkDtOjI+wfWdk=
+
+Name: com/sun/jersey/spi/scanning/servlet/WebAppResourcesScanner$2.cla
+ ss
+SHA1-Digest: htBUkMMOWsklA3S4CbTA8PgDOdU=
+
+Name: com/sun/jersey/api/json/JSONJAXBContext$JSONNotation.class
+SHA1-Digest: fD9mx/OEsG/OHQNUPh8Mvwfxc4I=
+
+Name: com/sun/jersey/api/ParamException$HeaderParamException.class
+SHA1-Digest: HIza5bUiFG+s8/xUVY2YX4rBGUo=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/HttpReqResDispa
+ tchProvider.class
+SHA1-Digest: 30keAQXF2gts++Da3A3wSCq+Nrc=
+
+Name: com/sun/jersey/api/container/filter/ResourceDebuggingFilterFacto
+ ry.class
+SHA1-Digest: SLquQd8rm5b3F+DgH5P9lCTcWtk=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieNodeValue$Empt
+ yIterator.class
+SHA1-Digest: tTIbZ9VxH2LeLTsHQf0dvVBoSUA=
+
+Name: com/sun/jersey/server/impl/container/filter/FilterFactory.class
+SHA1-Digest: bdkoqqZh/Aw3gqxvedL4ZQlI5OI=
+
+Name: com/sun/jersey/json/impl/reader/JsonXmlStreamReader.class
+SHA1-Digest: EcTNrv9xGoLqZw/ihbDmGRoic4Q=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$1.class
+SHA1-Digest: AlFWwG4RpFADt0O6iELzoTi7EiE=
+
+Name: com/sun/jersey/api/client/Client$ComponentProcessorFactoryImpl.c
+ lass
+SHA1-Digest: vWOxFNH1NIyBKWy6kkRPlMH70qo=
+
+Name: com/sun/jersey/api/client/filter/OnStartConnectionListener.class
+SHA1-Digest: IUb9YS2L79DzfFtBJbYwU5YlZ2E=
+
+Name: com/sun/jersey/api/core/ResourceConfig$TypeParser.class
+SHA1-Digest: gIfx86dkMr01dJ9Khn1dR5EU/zM=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/HttpReqResDispa
+ tchProvider$HttpReqResDispatcher.class
+SHA1-Digest: 0CiuguInw5PohgK4BK9uSES3cl4=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$Pair.class
+SHA1-Digest: sXSgAI1fAC3VPxTnFUK0vKFNczo=
+
+Name: com/sun/jersey/core/impl/provider/entity/SourceProvider$DOMSourc
+ eReader.class
+SHA1-Digest: w9cdqplnfbDP7bgDOagRCuilIxU=
+
+Name: com/sun/jersey/spi/inject/ConstrainedTo.class
+SHA1-Digest: 4zveFydq0yxuCeJ9N8A0Ig0jOg8=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReaderImpl.class
+SHA1-Digest: hVw52qbfioRBM5UZWDIb0sFbeIc=
+
+Name: com/sun/jersey/api/model/AbstractSubResourceMethod.class
+SHA1-Digest: hM6T5tbOblZSa7kL5/yqXvjvsDA=
+
+Name: com/sun/jersey/spi/StringReader$ValidateDefaultValue.class
+SHA1-Digest: Yuyhel+04WolXhO2cgdp9zNCgRQ=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieNodeValue$Arra
+ yIterator.class
+SHA1-Digest: cXdqRWJoRlXdCQCMmo1KifZ9i1A=
+
+Name: com/sun/jersey/core/header/reader/CookiesParser$MutableCookie.cl
+ ass
+SHA1-Digest: nj0GS5wSjiH1vbN1BtfuEzno8HQ=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory.c
+ lass
+SHA1-Digest: a4bWAJ6exRWT7G1htO/drJl9n2s=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/Represen
+ tationDocType.class
+SHA1-Digest: W2sHlZJtVcOcR6tLY2Ylm1iudHg=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$Dispat
+ chingListenerProxy.class
+SHA1-Digest: N7OO+QCEPqafkR0ovCpLu4bkizc=
+
+Name: com/sun/jersey/spi/container/WebApplicationProvider.class
+SHA1-Digest: 0J8Jp0fQyz5nvz1XroTKgI3mCkQ=
+
+Name: com/sun/jersey/core/impl/provider/entity/Inflector$Replacer.clas
+ s
+SHA1-Digest: h994/fkw/MF4fwmZCuCzjCoLlEU=
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory$SingletonIn
+ stantiated.class
+SHA1-Digest: GP5Tnm06Qvnn4UF/hoOj5k/IrDs=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$3.class
+SHA1-Digest: 6np94ujNlI6tzu/NIJEyuYDk+g0=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$4.clas
+ s
+SHA1-Digest: T8sqpw9HR0OlBJd4N+J0MiVNq4I=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentProviderFac
+ tory.class
+SHA1-Digest: RPYx7IM9iflLDAeMpy3HrNQS7R0=
+
+Name: com/sun/jersey/api/client/filter/GZIPContentEncodingFilter$Adapt
+ er.class
+SHA1-Digest: uYuuPMUuLF97MypD9Rtdg+H1acE=
+
+Name: com/sun/jersey/server/impl/container/servlet/Include.class
+SHA1-Digest: pC0VrWyJOnQfMkZSSwjV8ISPXkI=
+
+Name: com/sun/jersey/api/client/AsyncUniformInterface.class
+SHA1-Digest: nLJgGWlj/jJAYvNBYmhFK67YstE=
+
+Name: com/sun/research/ws/wadl/package-info.class
+SHA1-Digest: fZRUktR8DV+HK0ziqgF2f+QVqs0=
+
+Name: com/sun/jersey/spi/container/ContainerResponse.class
+SHA1-Digest: KCaoQK5Y4eYlBIeDXVwMBkL5IYE=
+
+Name: com/sun/jersey/json/impl/writer/JsonXmlStreamWriter$StringWriter
+ Adapter.class
+SHA1-Digest: 012Za+H0DCGJHzPXJxmCms3jGhY=
+
+Name: com/sun/jersey/server/impl/uri/PathPattern$1.class
+SHA1-Digest: 6LVWn6Q1pkaqAoBbMcaH6ASfMIo=
+
+Name: com/sun/jersey/api/view/Viewable.class
+SHA1-Digest: O+GecOl8PgyevYDyiQJlN4irBz4=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$5.class
+SHA1-Digest: lQbrDWiUlrvjedShJuvPWzyxofw=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$AbstractStringReader.class
+SHA1-Digest: Px7N6y57sLHNv//xywd4yTj5ObM=
+
+Name: com/sun/jersey/api/uri/UriTemplate$1.class
+SHA1-Digest: 6/XDc7D8RShMtGTVJ+sHE3Vv4U8=
+
+Name: com/sun/research/ws/wadl/Response.class
+SHA1-Digest: JHS0bE0CWUl8gD80i04cSSNTahI=
+
+Name: com/sun/jersey/atom/rome/impl/provider/entity/AtomFeedProvider.c
+ lass
+SHA1-Digest: 2Fsa9sBgwpTD9Qh1qpDhTPqZCUg=
+
+Name: com/sun/jersey/spi/container/ResourceMethodCustomInvokerDispatch
+ Factory.class
+SHA1-Digest: nDD3l9eeYbEByvwoPzrBN7nsb20=
+
+Name: com/sun/jersey/spi/container/ContainerResponseWriter.class
+SHA1-Digest: leoFyapHfOnykUIDp+rJ6WWVUYU=
+
+Name: com/sun/jersey/server/impl/ejb/EJBComponentProviderFactory.class
+SHA1-Digest: sDDczI2uP+5f04kRReLmVjKe85E=
+
+Name: com/sun/jersey/server/impl/uri/rules/ResourceClassRule.class
+SHA1-Digest: 1Mfd2iU3OU7YQebFtHGjafgTWgs=
+
+Name: com/sun/jersey/server/impl/uri/rules/SubLocatorRule.class
+SHA1-Digest: Kd2ee7oDNCr6wBZ0+yOhhl6v03U=
+
+Name: com/sun/jersey/json/impl/reader/MappedNotationEventProvider.clas
+ s
+SHA1-Digest: bluRvMBee5K0r8mmZ+Bo6TMLMt4=
+
+Name: com/sun/jersey/core/util/FeaturesAndProperties.class
+SHA1-Digest: 8EOK+PTtFUB+1o+Hc3Viwz9kVys=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONJAXBElementProvider
+ $General.class
+SHA1-Digest: LyLN7YPPgjqa4Sjh3INDrYW2sqQ=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$Writer.class
+SHA1-Digest: sDU1Bv9pcuJkCPprmkf1oQail7o=
+
+Name: com/sun/jersey/spi/container/ResourceFilters.class
+SHA1-Digest: KyplFuuVB0npautbFxtjchkWMIY=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders.class
+SHA1-Digest: LM3vtFHfdCvJhCntl3RkscItEAs=
+
+Name: com/sun/jersey/api/client/filter/HTTPDigestAuthFilter$1.class
+SHA1-Digest: WxKNHguMtM5e7TXy212WSHmei0Q=
+
+Name: com/sun/jersey/api/core/Traceable.class
+SHA1-Digest: ymM3hn3kDeiOXuNjxCrbLLfqgTM=
+
+Name: com/sun/jersey/core/spi/component/ProviderFactory$Destroyable.cl
+ ass
+SHA1-Digest: VRxIVCovVszUCZSk0Fg5TYEa4sQ=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$EntityParamInInvoker.class
+SHA1-Digest: bqgQxojomkDaT/g8gEpw9m7O+FU=
+
+Name: com/sun/jersey/json/impl/writer/JsonXmlStreamWriter$ProcessingSt
+ ate.class
+SHA1-Digest: xgobvNUDH8YIoGDVH0ts59Qc2Nc=
+
+Name: com/sun/jersey/server/impl/ThreadLocalHttpContext.class
+SHA1-Digest: YbYM517n+GXwD0bzzC+o0utIoMA=
+
+Name: com/sun/jersey/spi/container/JavaMethodInvoker.class
+SHA1-Digest: aoRuGJgbNnFhxP8oH826YxCe5MU=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$8.class
+SHA1-Digest: O0dHKjG5N+qNUhB+MDjUSFTPtMQ=
+
+Name: com/sun/jersey/api/client/Client$1.class
+SHA1-Digest: MrQ+Qw7+tvqJoJP/2tY8riwtd4E=
+
+Name: com/sun/jersey/spi/uri/rules/UriRule.class
+SHA1-Digest: mAQ8FkmVS2ebhdaOv/Dh5eRqCAA=
+
+Name: com/sun/jersey/spi/inject/Inject.class
+SHA1-Digest: ZsB77ww6Do1HD3yL2/2F5SB6MzM=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$ValueIterator.clas
+ s
+SHA1-Digest: Ifwa+Dv0yO9VLHFeSJyKKaZAX5o=
+
+Name: com/sun/jersey/core/impl/provider/entity/FormMultivaluedMapProvi
+ der.class
+SHA1-Digest: BIla0D0J2jnNliybe68k/gHVeHE=
+
+Name: com/sun/jersey/core/spi/scanning/FilesScanner.class
+SHA1-Digest: j441UHu56Xkgo7vswOBS3CU0dKY=
+
+Name: com/sun/jersey/api/client/filter/LoggingFilter.class
+SHA1-Digest: SrQyAVeCEV7gQKwqPT23R8tszpo=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$9.clas
+ s
+SHA1-Digest: pdbBjoXl0rncrVt/SsA6SQN2Lfg=
+
+Name: com/sun/jersey/server/wadl/WadlGenerator.class
+SHA1-Digest: BLI/gM7RscP2jcjxBzFbNsSsbvg=
+
+Name: com/sun/jersey/client/urlconnection/URLConnectionClientHandler$1
+ $1.class
+SHA1-Digest: 8vghPhzqSAd5xUvVK+0F6o2tH9E=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap.class
+SHA1-Digest: deLyeNQi7dhKbLz2pk1FnZrLovA=
+
+Name: com/sun/jersey/server/impl/model/parameter/HeaderParamInjectable
+ Provider$HeaderParamInjectable.class
+SHA1-Digest: AH9rKNTErP7MNjDYY33Jlo+CQI8=
+
+Name: com/sun/jersey/api/core/PackagesResourceConfig.class
+SHA1-Digest: /HiMzn72c4EYy31NkzU28Yl1EYk=
+
+Name: com/sun/jersey/api/core/ResourceConfig$1.class
+SHA1-Digest: YbLjLfpDw9wMWibPQ/BV6IJWzkQ=
+
+Name: com/sun/jersey/api/model/AbstractMethod.class
+SHA1-Digest: GHemwH41c/n3b6RE9m4vBBuGQy0=
+
+Name: com/sun/jersey/server/impl/application/DeferredResourceConfig$1.
+ class
+SHA1-Digest: 8SHcNKWTnhYg+KYPYcJXeDgK3Pw=
+
+Name: com/sun/jersey/core/reflection/MethodList$4.class
+SHA1-Digest: F2he08RmKrncKN9S4DAty/zyQqo=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/VoidVoidDispatc
+ hProvider.class
+SHA1-Digest: hE7W8qdzAkmig6rL1fIxwuq0Rf4=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$StringConstructor.class
+SHA1-Digest: UxpWbP3J4YdPA8Ctr7aZs44iE+I=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLListElementProvider.
+ class
+SHA1-Digest: xwIukRdkFBqEGDphsZOhdcBfvQo=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$10.cla
+ ss
+SHA1-Digest: 2Jcgc+DsQON31dZZzqGnCaDN3yM=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentConstructor
+ $ConstructorInjectablePair.class
+SHA1-Digest: Ej+pk9Jpe9VnymixQQsoRLloHEw=
+
+Name: com/sun/jersey/json/impl/reader/EndDocumentEvent.class
+SHA1-Digest: Ix/trdtdR46+AK4aduJbwkz8QJs=
+
+Name: com/sun/jersey/server/wadl/generators/ApplicationDocs.class
+SHA1-Digest: bfJbb+BpI1k91n6cI4zRtKLauDQ=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/EntityParamDisp
+ atchProvider$EntityInjectable.class
+SHA1-Digest: M686JeAd3uDSXG86pBVTDBDVfns=
+
+Name: com/sun/jersey/server/impl/inject/ServerInjectableProviderFactor
+ y.class
+SHA1-Digest: ygOKOpqPO2w/T1vi/Z3mUP+4FHU=
+
+Name: com/sun/jersey/core/spi/scanning/uri/VfsSchemeScanner$1.class
+SHA1-Digest: BfyOwQ9TfOyoyvPTBntrVaGdOmU=
+
+Name: com/sun/research/ws/wadl/Request.class
+SHA1-Digest: va4GKo+TDRp1AMw6N7384k48CGk=
+
+Name: com/sun/jersey/client/proxy/ViewProxyProvider.class
+SHA1-Digest: tUk9WBEWmzetnXKorw08bA88AK0=
+
+Name: com/sun/jersey/core/header/QualitySourceMediaType.class
+SHA1-Digest: MGBhN6VXEoU+2rtZt+MiOs5yoRA=
+
+Name: com/sun/jersey/core/spi/factory/MessageBodyFactory$DistanceCompa
+ rator.class
+SHA1-Digest: 3afYZ2VdW8imU+camwHEdt4Mg1Y=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$15$1.c
+ lass
+SHA1-Digest: r3P16yiBim8EbDev+UcMOMof+x0=
+
+Name: com/sun/jersey/api/client/PartialRequestBuilder.class
+SHA1-Digest: 0HhvAc29BdJXthlwYGcpoNjLblg=
+
+Name: com/sun/jersey/fastinfoset/impl/provider/entity/FastInfosetJAXBE
+ lementProvider.class
+SHA1-Digest: DasjcHavAZMx9FlpSmd3y8X3Q/4=
+
+Name: com/sun/jersey/spi/container/AdaptingContainerRequest.class
+SHA1-Digest: Y3r7ekiOCf6W5CfWFATOCVGyCwk=
+
+Name: com/sun/jersey/spi/container/WebApplicationListener.class
+SHA1-Digest: LEb5yqED1/EI/VcUI05n239Or08=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/JAXBStrin
+ gReaderProviders$RootElementProvider.class
+SHA1-Digest: E4VUO1ItxeygUN4BFVFVedQQD/w=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$21.cla
+ ss
+SHA1-Digest: UM8kdgZJG04JHi6EclRuD7KIlXo=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorApplicationDo
+ c.class
+SHA1-Digest: h/mUxUACpYXR/BH/WZPCenj3KrE=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory$1$1.class
+SHA1-Digest: 05TH3Lf6Igl8bOeENNrkvaZAz4c=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$PatchInformation.cla
+ ss
+SHA1-Digest: 5QspQb7fm2cgW3rXFGm+Oeei64w=
+
+Name: com/sun/jersey/api/model/AbstractResourceMethod.class
+SHA1-Digest: B/9TXqthc19wrO0lT9UH4gAj/AU=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/VoidVoidDispatc
+ hProvider$VoidVoidMethodInvoker.class
+SHA1-Digest: yVXR8MsTO7rrF6lhdNWs4CUkR44=
+
+Name: com/sun/jersey/json/impl/writer/Stax2JacksonWriter$2.class
+SHA1-Digest: TLxdikN0iQcBEaxWzmg5keK6f0U=
+
+Name: com/sun/jersey/core/spi/factory/VariantListBuilderImpl.class
+SHA1-Digest: gS2IX+sLLfiiD8TJSJYm4Pdw3Kk=
+
+Name: com/sun/jersey/json/impl/MoxyXmlStructure$1.class
+SHA1-Digest: hD2luHJtC8q+6Ky1IVVPp2avBvg=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Primitive
+ ValueOfExtractor.class
+SHA1-Digest: yQAmSk8NGnlgwTCzBVKGBwRGHDY=
+
+Name: com/sun/jersey/core/impl/provider/entity/DataSourceProvider$Byte
+ ArrayDataSource.class
+SHA1-Digest: fjfpctiEml9ZyYQUZMStrdoele8=
+
+Name: com/sun/jersey/api/client/ClientRequest.class
+SHA1-Digest: NSItJWX+VkgQqmHnfeMX/p391WI=
+
+Name: com/sun/jersey/core/impl/provider/entity/SourceProvider.class
+SHA1-Digest: eno4TSTJ/hTe+R79hfdXkoNK9X8=
+
+Name: com/sun/jersey/core/osgi/OsgiRegistry.class
+SHA1-Digest: TAdcRh/4t0U+iDI8A0SjRC3HQhQ=
+
+Name: com/sun/jersey/spi/container/servlet/ServletContainer$ContextInj
+ ectableProvider.class
+SHA1-Digest: sbqwwQAuI0HYZrhSL59lpyQP8i8=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory$PerRequest
+ .class
+SHA1-Digest: Vts8Vjiic4dZxEqXOcPyI7VS8DI=
+
+Name: com/sun/jersey/spi/scanning/PathProviderScannerListener.class
+SHA1-Digest: dO6pC/1hbZ7zMkJ7MzF7Oc5TiU4=
+
+Name: com/sun/jersey/server/impl/ThreadLocalNamedInvoker.class
+SHA1-Digest: e6nqfq8p3m3AOJ+X1YI2FsRK+8w=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$5.class
+SHA1-Digest: cN+Q038TzloNxQ1NghwUDJmnheY=
+
+Name: com/sun/jersey/server/impl/uri/rules/PatternRulePair.class
+SHA1-Digest: avdxtewPTtBcK3fJejOCErYU/iA=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$15.cla
+ ss
+SHA1-Digest: fXU4VizWQaXFoQGkokbWv8/zAbk=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONJAXBElementProvider
+ $App.class
+SHA1-Digest: m15ck4O4/RNXKjqo58o32WmNSq8=
+
+Name: com/sun/research/ws/wadl/Param.class
+SHA1-Digest: j2E8kEOfvfnD0wbYBHzyFzrjmuo=
+
+Name: com/sun/jersey/core/util/Closing$Closure.class
+SHA1-Digest: pD/xUEyROGEU1NSeueRTvCu1rtA=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootObjectProvider$T
+ ext.class
+SHA1-Digest: 5x8z2blIE4b7BNXTyG8fWWbXhOE=
+
+Name: com/sun/jersey/json/impl/BaseJSONMarshaller.class
+SHA1-Digest: FFis+IV0y1kb3x4F1EB/mW4GSBk=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootObjectProvider$A
+ pp.class
+SHA1-Digest: +MbRnKickk4lp7CXO1zKx+uE7vU=
+
+Name: com/sun/jersey/api/client/WebResourceLinkHeaders.class
+SHA1-Digest: dtXY13NgqMVcHNfsD3y5a1mv3Cc=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootElementProvider$
+ App.class
+SHA1-Digest: O0M34zwXAo+6ruoMSpIcQFMk1M8=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$ListElementCr
+ eator.class
+SHA1-Digest: Pv3wEAD7DlizJcWW8wJ3JeMSYwo=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootElementProvider$
+ General.class
+SHA1-Digest: AjsQKWhYuvtqRvgLx0cp4Nrv7kI=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/Response
+ DocType.class
+SHA1-Digest: 7IwllqOZHjF9iDXEsYlcTMunbSQ=
+
+Name: com/sun/jersey/spi/uri/rules/UriRules.class
+SHA1-Digest: aZAg8myXmmu0Vc0UTyZK1+dHGiA=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractRootElementProvider.cl
+ ass
+SHA1-Digest: QJGvsyxvn/OWZoZTD9OsNEJzHtY=
+
+Name: com/sun/jersey/server/impl/template/ViewResourceMethod.class
+SHA1-Digest: ow4YHRiFoF8DTU8/WyqeChDc2Yw=
+
+Name: com/sun/jersey/core/header/HttpDateFormat$1.class
+SHA1-Digest: rt2FJZu6cBejawu3/ORIStdt0hc=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentProviderFac
+ toryClass.class
+SHA1-Digest: mqebgigV+3Q7r/CIVG8SE5Rw8Vk=
+
+Name: com/sun/jersey/server/impl/model/RulesMap.class
+SHA1-Digest: 7FatGawt4Cx4C2SymcpEVWOoVcA=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringExtractor$ListString.class
+SHA1-Digest: /zHlirskOJisQHrGdj1MD4PgTU8=
+
+Name: com/sun/jersey/impl/api.properties
+SHA1-Digest: h2ZWczymMnPJdpEkQ9lEx50ihiA=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootElementProvider$
+ Text.class
+SHA1-Digest: IhZ9YgsZGtcdUxDxtq9xzH8jsHk=
+
+Name: com/sun/jersey/server/impl/cdi/DiscoveredParameter.class
+SHA1-Digest: ZHZw2D9XuRomzJfRFRyEpzpyPe0=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorJAXBGrammarGe
+ nerator$1.class
+SHA1-Digest: Kfr9lDMBAMFNJzWX56HTXYabHYs=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$NaturalBuilder.class
+SHA1-Digest: tUEr3vSLmsXAY7ergDpEAYyOssg=
+
+Name: com/sun/jersey/core/provider/CompletableReader.class
+SHA1-Digest: 0WIP4TPd1HW+hU3X1qc04BpLtJs=
+
+Name: com/sun/jersey/api/provider/jaxb/XmlHeader.class
+SHA1-Digest: 0V++mu7ABmvk/NaTO7gHB8egnmY=
+
+Name: com/sun/jersey/json/impl/provider/entity/JacksonProviderProxy$Pr
+ ovidersInjectableProviderContext$1.class
+SHA1-Digest: xNVBqdlarZxRQFjEPkC02mqSxKE=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringReaderExtractor$SortedSetValueOf.class
+SHA1-Digest: dcV7h0+GD52nQw6hN9ksNyIo/48=
+
+Name: com/sun/jersey/server/impl/application/DeferredResourceConfig$Ap
+ plicationHolder.class
+SHA1-Digest: HuDNFIZHpy3AOg5eBdZL5M8HGDc=
+
+Name: com/sun/jersey/server/impl/modelapi/validation/BasicValidator$1.
+ class
+SHA1-Digest: rgqA5NHfnvm3w+RNrc8oHBH70k8=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorLoader$WadlGenerator
+ Control.class
+SHA1-Digest: wHkQU8dVC9UASV+ipx2WAJvy7NE=
+
+Name: com/sun/jersey/api/container/ContainerException.class
+SHA1-Digest: 2pWZWhl+OHdQBAkPVtuHh2YhLs8=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$2.class
+SHA1-Digest: 9qHbO6XasVqN/r0zgWwx/PNv/50=
+
+Name: META-INF/services/javax.servlet.ServletContainerInitializer
+SHA1-Digest: Oq1w8nwllLoqpeFp4XqjlCRNvPM=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONListElementProvider
+ $App.class
+SHA1-Digest: NLo6yPwUCFyqAp6yQkqgHD3c790=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCFullyManagedComponentPr
+ ovider.class
+SHA1-Digest: JJ3p7NOJlm7cm7A+pOpYAbS8jIw=
+
+Name: com/sun/jersey/api/client/filter/CsrfProtectionFilter.class
+SHA1-Digest: T9ExsMTnMGjRJoncNrU0sOoXJco=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$P
+ erSessonProxied.class
+SHA1-Digest: YL5kRBcVqVRYUmIL47f/bYn9YAg=
+
+Name: com/sun/jersey/api/client/RequestBuilder.class
+SHA1-Digest: mguxEdnga7NgaqNHTCgXh3NiLRw=
+
+Name: com/sun/jersey/core/header/QualityFactor.class
+SHA1-Digest: 2VNdXT38WdB+1oFrq9fqY7z/azE=
+
+Name: com/sun/jersey/api/json/JSONJAXBContext$2.class
+SHA1-Digest: KEr9A+GVa6Zn8Zyg5cGzyOy97gg=
+
+Name: com/sun/jersey/spi/container/servlet/WebConfig$ConfigType.class
+SHA1-Digest: vNsBM62PzSHNkWq9aZohuEXa3yQ=
+
+Name: com/sun/jersey/core/spi/component/ComponentProviderFactory.class
+SHA1-Digest: p5SmIAHuStZeOeGdE+f/sLKnysE=
+
+Name: com/sun/jersey/json/impl/JsonRootEatingInputStreamFilter.class
+SHA1-Digest: Hf1KmC3vbeVW1mmdjSVQx44lxo4=
+
+Name: com/sun/jersey/spi/container/ResourceMethodDispatchProvider.clas
+ s
+SHA1-Digest: DotZ6PPw7Xu0BK4iWVbc4NGsZS0=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$Event.class
+SHA1-Digest: c99bCoJuYeD7k+JpNhQ0OAMf0Wk=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedTypeImpl.class
+SHA1-Digest: zuo4wpKB7i2SvKohAxTLUDiZCZM=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONArrayProvider$App.c
+ lass
+SHA1-Digest: kc0C9Uwwl6NOfLjrUhU1/jQvkHY=
+
+Name: com/sun/jersey/spi/scanning/servlet/WebAppResourcesScanner.class
+SHA1-Digest: unM9sl2NkUdt5zwDx9ktejQXiFM=
+
+Name: com/sun/jersey/server/impl/wadl/WadlApplicationContextImpl.class
+SHA1-Digest: yXQyp+6n6rxNHN+DxVzAXQOACTc=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCInstantiatedComponentPr
+ ovider.class
+SHA1-Digest: dkFtBqQZHsoYdqEj62RsMeBsCTk=
+
+Name: com/sun/jersey/api/client/WebResource.class
+SHA1-Digest: nwtdmkhh2SpheTlgHNp+nUXoFKA=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceMethod.class
+SHA1-Digest: k3HRPpEs0sEdlJT3jAY1WDUMUuA=
+
+Name: com/sun/jersey/api/client/filter/Filterable.class
+SHA1-Digest: /AcMxjZsdv8ORmn+62FFL1SMfRE=
+
+Name: com/sun/jersey/spi/template/ViewProcessor.class
+SHA1-Digest: 1lsQsbC9NC3N5Ivb6cWi8PFJ7nU=
+
+Name: com/sun/jersey/core/spi/scanning/JarFileScanner$1.class
+SHA1-Digest: NaLcnTPMjd4TMXNo/vL3HVsuxGw=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorConfig$WadlGenerator
+ ConfigDescriptionBuilder.class
+SHA1-Digest: L3LF/SKQM0yNb2GWGc55oLbjh9c=
+
+Name: com/sun/jersey/client/proxy/ViewProxy.class
+SHA1-Digest: f6vygUhHcem1Lg7y0akcc9lO0jU=
+
+Name: com/sun/jersey/api/core/ExtendedUriInfo.class
+SHA1-Digest: uGT/QDhB+RV6kUsNYtv5/JfLIBE=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringReaderExtractor$ListValueOf.class
+SHA1-Digest: 9QW5j6NIR9sGbg70bCbMfkV/hzA=
+
+Name: META-INF/services/com.sun.jersey.spi.container.ResourceMethodCus
+ tomInvokerDispatchProvider
+SHA1-Digest: 6gKrSXbwH4tW+1S+/o06xxctmZM=
+
+Name: com/sun/jersey/json/impl/writer/JacksonRootStrippingGenerator.cl
+ ass
+SHA1-Digest: LU9B9yZwGERGUHbVIr0c6Eds550=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider.class
+SHA1-Digest: V+fWxl4G00u5kDBM1KUfdTyedBQ=
+
+Name: com/sun/jersey/api/uri/UriPattern$EmptyStringMatchResult.class
+SHA1-Digest: IBlRGQrSiynopnm8DSOW5U1hzdA=
+
+Name: com/sun/jersey/json/impl/reader/JacksonRootAddingParser.class
+SHA1-Digest: B3WXxd9VfEdD0moXW0qQ8SvW1Gg=
+
+Name: com/sun/jersey/core/spi/component/ComponentConstructor$1.class
+SHA1-Digest: 3iVhfHtU3dYJqUik/ig9qwdfwoY=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorConfigLoader.class
+SHA1-Digest: Jk84RAzpb3qkufRBvShu3VtjS00=
+
+Name: com/sun/jersey/core/spi/scanning/Scanner.class
+SHA1-Digest: PdH+8YT81WMY2roq9b4SOph4LfQ=
+
+Name: com/sun/jersey/api/ParamException$PathParamException.class
+SHA1-Digest: LmwUV8U3Fw7+ohL9znopyJzwook=
+
+Name: META-INF/maven/com.sun.jersey/jersey-bundle/pom.xml
+SHA1-Digest: Vm4t4vx9VIs+FJspzTTndFmgG+4=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/JAXBStrin
+ gReaderProviders.class
+SHA1-Digest: qrpmvpZeSCi0+JqQWYVYjO2/d/I=
+
+Name: com/sun/jersey/core/header/HttpDateFormat.class
+SHA1-Digest: dUwVqWP+uK51NJhRoRGgiippi0U=
+
+Name: com/sun/jersey/server/impl/uri/PathTemplate$PathTemplateParser.c
+ lass
+SHA1-Digest: /cceqngOKNLf1NoeVgkhXynVqwk=
+
+Name: com/sun/jersey/api/model/AbstractModelVisitor.class
+SHA1-Digest: oKNyE7o+55Wy5wkosleFtVxOIzw=
+
+Name: com/sun/jersey/api/model/Parameterized.class
+SHA1-Digest: h5rpu+e6hqnb3g+7uGhWcM02scM=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootObjectProvider$G
+ eneral.class
+SHA1-Digest: 4ZxzYOqihy9NbTqVUzP3QJ9HeXs=
+
+Name: com/sun/jersey/server/impl/wadl/WadlApplicationContextInjectionP
+ roxy.class
+SHA1-Digest: I6K4uNPkGuO42Y2tA0hGIJuUKGQ=
+
+Name: com/sun/jersey/server/impl/ThreadLocalInvoker$1.class
+SHA1-Digest: tiYlZ09Spwa97UTePXQk4QmvBjQ=
+
+Name: com/sun/jersey/api/container/filter/ResourceDebuggingFilterFacto
+ ry$AbstractRequestFilter.class
+SHA1-Digest: IQqqC969M+I/+HpF8rBrUbazxLg=
+
+Name: com/sun/jersey/api/ConflictException.class
+SHA1-Digest: cBu3/8oFqUloqgLd1lf6MlvLX3Y=
+
+Name: com/sun/jersey/core/util/Base64.class
+SHA1-Digest: Hx8nzeiZR9pW4/rjZS5tVPMk6oo=
+
+Name: com/sun/jersey/api/uri/UriTemplate.class
+SHA1-Digest: fEVaXEhBFEAewVPm4H3DETht6Sk=
+
+Name: com/sun/ws/rs/ext/RuntimeDelegateImpl.class
+SHA1-Digest: vYN3fYuDtIiGD2LnaI7V3GbiDrc=
+
+Name: com/sun/jersey/server/impl/uri/rules/HttpMethodRule$MatchStatus.
+ class
+SHA1-Digest: v1CTdxmk2aA+YuZKrLm+yBqL8eg=
+
+Name: com/sun/jersey/server/impl/model/parameter/HttpContextInjectable
+ Provider$UriInfoInjectable.class
+SHA1-Digest: VTC7vxPPqWCfDJ1Mgi8Yi4Ix2os=
+
+Name: META-INF/services/javax.ws.rs.ext.MessageBodyReader
+SHA1-Digest: AHTMLS7W0+29fJZqYPghGfuIKPQ=
+
+Name: com/sun/jersey/api/client/ViewResource$Builder.class
+SHA1-Digest: GO6PKFdiyS2Ht9qkFDN4ik9ktn0=
+
+Name: com/sun/jersey/server/impl/wadl/WadlFactory.class
+SHA1-Digest: l6560uVxIUbJd7RdFCo756PAGiQ=
+
+Name: com/sun/jersey/server/impl/modelapi/validation/BasicValidator.cl
+ ass
+SHA1-Digest: mby/vrulUcQyx+BgS+e9JQItdyw=
+
+Name: com/sun/jersey/spi/StringReaderWorkers.class
+SHA1-Digest: kppoyoFDgYDfKOmc3grpI/t3eGM=
+
+Name: com/sun/jersey/core/spi/factory/InjectableProviderFactory$1.clas
+ s
+SHA1-Digest: UfjAkGINxi9+XTHFZbmjthoffsU=
+
+Name: com/sun/jersey/spi/container/CachedEntityContainerRequest.class
+SHA1-Digest: 2P+tLIRegGeWCevjRkxXzkjv+Io=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$ContextInjecta
+ bleProvider.class
+SHA1-Digest: k/jFTqw2GVjpWe14nY2zmId66cw=
+
+Name: com/sun/jersey/api/core/HttpContext.class
+SHA1-Digest: qzayH4TP0xNgEwV0U4kdU9PNIhM=
+
+Name: com/sun/jersey/json/impl/reader/JsonFormatException.class
+SHA1-Digest: NkB15pxUwswtaH/gQMBgg5CkC+Q=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/MultipartFormDi
+ spatchProvider.class
+SHA1-Digest: 8r9HkFKQniLVeHD3APg1VwX/qYs=
+
+Name: com/sun/jersey/api/view/ImplicitProduces.class
+SHA1-Digest: +v1Mq89XwUliMA0vcVhzXSYa+aQ=
+
+Name: com/sun/jersey/api/client/filter/ContainerListener.class
+SHA1-Digest: Rm19u45Z/s1ae7s/ezWL7UPzNvs=
+
+Name: com/sun/jersey/core/header/reader/CookiesParser$MutableNewCookie
+ .class
+SHA1-Digest: EP7STBlkr+m33AuGRF/yq0x6hQ8=
+
+Name: com/sun/jersey/spi/container/AdaptingContainerResponse.class
+SHA1-Digest: MXCAwVRjdz56Or1+MxaL4IYmqiU=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$Compon
+ entProcessorFactoryImpl$1.class
+SHA1-Digest: AibsOSi8sIC6iTuq8No3HcuH3qU=
+
+Name: com/sun/jersey/core/header/LinkHeaders.class
+SHA1-Digest: 3xWw5aBjvVWo6f6o/jXbdnMa8mg=
+
+Name: com/sun/jersey/core/provider/AbstractMessageReaderWriterProvider
+ .class
+SHA1-Digest: vFYzEQD31w3KFkTeGY2SGBka2bI=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$1.class
+SHA1-Digest: PS2OVWKxNXIJS5Yz5Lv8pLP8DPY=
+
+Name: com/sun/jersey/atom/rome/impl/ImplMessages.class
+SHA1-Digest: tcl/g/ZO4oL4xO379AD7y4uOkDs=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$Entry.class
+SHA1-Digest: ZOST8dupxAIJsCB2R0vC+MWpP3I=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceHttpOptionsMetho
+ d.class
+SHA1-Digest: ldftMPt05qU85k4ttSqO+szWLSk=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/ClassDoc
+ Type.class
+SHA1-Digest: kD2nwj5H78b3L721SCubKmifjcg=
+
+Name: com/sun/jersey/core/impl/provider/header/EntityTagProvider.class
+SHA1-Digest: xbKW1QivOA+EyNnS/ES3pcGpUQk=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$1.class
+SHA1-Digest: UkNdXemmjwXitkpkSNIc9rdnBUo=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringReaderExtractor$SetValueOf.class
+SHA1-Digest: FlZK1dg4mQyI3dvjx2pz3wGyQmk=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$2.clas
+ s
+SHA1-Digest: Aii/tyLoWfAHrD6bkR7lQiS/aP4=
+
+Name: com/sun/jersey/server/wadl/generators/ObjectFactory.class
+SHA1-Digest: JS5bLs/JoCzCF26apm28BD3Pxf4=
+
+Name: com/sun/jersey/core/impl/provider/entity/SourceProvider$StreamSo
+ urceReader.class
+SHA1-Digest: WAxspYzzxbrGFbOhstny3VOM0xQ=
+
+Name: com/sun/jersey/api/client/AsyncViewResource$2.class
+SHA1-Digest: QNJES6mFOfqOo6Qy+OxeHAYZKqU=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorJAXBGrammarGe
+ nerator.class
+SHA1-Digest: 1x0BQy7ZRyGbJHmdL/1p/YgRzPY=
+
+Name: com/sun/jersey/core/impl/provider/xml/SAXParserContextProvider.c
+ lass
+SHA1-Digest: WDs2uA2LhEmM+2cPTMHjWTHXSYw=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$EntryIterator.clas
+ s
+SHA1-Digest: HpsLF3J4/OBOB8araXdDA2+ouhs=
+
+Name: com/sun/jersey/core/util/ReaderWriter.class
+SHA1-Digest: KPXWCGEndB06tk5u6T1NqVga2KI=
+
+Name: com/sun/jersey/spi/resource/PerRequest.class
+SHA1-Digest: KMpoFODH4odUr5J0cwqyaikK/TA=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieNodeValue.clas
+ s
+SHA1-Digest: cbRMFsB+iN3uWfX6HTac6uRCxUc=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONArrayProvider$Gener
+ al.class
+SHA1-Digest: 7Ymr7t70mJOfa61XpoRnqSua2A4=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProxiedComponentProvide
+ r.class
+SHA1-Digest: n0WWpGG8zwcMMJKzwqEKBxGOArU=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$3.class
+SHA1-Digest: ZWHTpVqrj9TwDITMZjxWBwgzPjg=
+
+Name: com/sun/jersey/spi/uri/rules/UriMatchResultContext.class
+SHA1-Digest: gtjpTKYukEPeyGz8TsajHi1kWTE=
+
+Name: com/sun/jersey/json/impl/DefaultJaxbXmlDocumentStructure.class
+SHA1-Digest: p865DVfcvH34pVtg62b5BeffTTo=
+
+Name: com/sun/jersey/server/impl/model/parameter/PathParamInjectablePr
+ ovider$PathParamListPathSegmentInjectable.class
+SHA1-Digest: ZPCYFhfG+AP9kkalBOEJcgEgpVQ=
+
+Name: com/sun/jersey/api/container/grizzly/GrizzlyServerFactory.class
+SHA1-Digest: 02G3lpPSPe+e2nRaQpdHAyoG2OQ=
+
+Name: com/sun/jersey/core/impl/provider/header/StringProvider.class
+SHA1-Digest: cxSQC2tDsYyYBGx+9YIOiLE/xgI=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$DateProvider.class
+SHA1-Digest: RmHUEeIowfZHLs5pO3+ArKH5S7Q=
+
+Name: com/sun/jersey/api/client/WebResource$Builder.class
+SHA1-Digest: fxzrButrThP/BYLGptzDCOizdIs=
+
+Name: com/sun/jersey/spi/container/WebApplication.class
+SHA1-Digest: Kb0SnuKmVe1MrCK8Vu7QYjV/PYE=
+
+Name: com/sun/jersey/json/impl/provider/entity/JacksonProviderProxy$1.
+ class
+SHA1-Digest: hpoM8n8ToeFFXeF7wyX64kmDBYk=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory.class
+SHA1-Digest: 7p+luB8e3+AOTe17zLRcLJvO7eo=
+
+Name: com/sun/jersey/api/uri/UriTemplateParser$StringCharacterIterator
+ .class
+SHA1-Digest: LfOjCNbfhIPZCneL2ByQTB08Xv0=
+
+Name: com/sun/jersey/api/client/RequestWriter.class
+SHA1-Digest: 3V+L2k5Ga8+WtqTL6U9BF1cESZY=
+
+Name: com/sun/jersey/server/wadl/ApplicationDescription$ExternalGramma
+ r.class
+SHA1-Digest: dXw6oQKKQJY2R943ppRAzDWhr/g=
+
+Name: com/sun/jersey/api/uri/UriComponent$Type.class
+SHA1-Digest: sD6XDqxT0nUCxNUAV39xkRhctUg=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper$1.class
+SHA1-Digest: ncN3TzpA/Rkisob5biSI5CfCCvU=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$1WadlC
+ ontextResolver.class
+SHA1-Digest: kPKc1Zq/a+4jV0i6WGBvIthHE2Q=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$VoidOutInvoker.class
+SHA1-Digest: Z/rW5m/SpR6yS+dMtFOrMe8yuuM=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$Compon
+ entProcessorImpl.class
+SHA1-Digest: Hk5cICxKtcSWwJWaSyAsTWquDBY=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$ClassA
+ nnotationKey.class
+SHA1-Digest: nFm6r3zLGjhq5NZ+qXU6mlPUeP8=
+
+Name: com/sun/jersey/spi/HeaderDelegateProvider.class
+SHA1-Digest: e58RTzDAfbmMcP3WdVr34xFS+BA=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$6.class
+SHA1-Digest: PGUDf59yRsCKH+Nm0saGfPSISho=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$AbstractLazyIterator.cl
+ ass
+SHA1-Digest: 1kcO0HGqznG2NB/MaQAFXVRO1ao=
+
+Name: com/sun/jersey/api/client/filter/ReportingOutputStream.class
+SHA1-Digest: U7vGt3MtE0sU5+CjsA4BXgS+B0Y=
+
+Name: com/sun/jersey/server/impl/model/ResourceUriRules$1.class
+SHA1-Digest: ePniQoleXJB3Z6TAS7CNsSH2dik=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$LazyClassIterator.class
+SHA1-Digest: NfuxaTVYumHCAdDrdF+xRjjtr8g=
+
+Name: com/sun/jersey/api/model/Parameter$Source.class
+SHA1-Digest: A1H0V3RZX7RubkpdbAZPkfZuecM=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$7.clas
+ s
+SHA1-Digest: eRNex/IuyamISuJg9R96chY+A70=
+
+Name: com/sun/jersey/api/client/ComponentsClientConfig.class
+SHA1-Digest: KPW1V1Y3Z3zavqMAsAEp0PgukFk=
+
+Name: com/sun/jersey/api/client/Client$4$1.class
+SHA1-Digest: AzkRAYn/Rlkrz6vJmYJr8IIDono=
+
+Name: com/sun/jersey/api/uri/UriPattern.class
+SHA1-Digest: FvE+pYJZq/CptcfBmk5nzwdSF6k=
+
+Name: com/sun/research/ws/wadl/Doc.class
+SHA1-Digest: PA/1O3XVP6eBUW4J5yf7glf2vuc=
+
+Name: com/sun/jersey/server/impl/template/TemplateFactory.class
+SHA1-Digest: 4chGeTjriFlW+saZlysfUTxaiWU=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$8.class
+SHA1-Digest: eSfS0Bpy5r/X2gdihNCuYx72P9E=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/FormDispatchPro
+ vider.class
+SHA1-Digest: spwRZ51uzK5TKtMpEJpep5NdaAQ=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorLoader$1.class
+SHA1-Digest: u4oCe7pfmpFE+8AIRsaabgaXybY=
+
+Name: com/sun/jersey/core/reflection/MethodList$2.class
+SHA1-Digest: nOMDTbNu0f0xLbkMQ1v8tus67M8=
+
+Name: com/sun/jersey/api/core/servlet/WebAppResourceConfig.class
+SHA1-Digest: EwOOISRKZyhf7HETb3uzMvDxSg0=
+
+Name: com/sun/jersey/impl/impl.properties
+SHA1-Digest: HugPEITbLqeljkcB09fWMdc6k4g=
+
+Name: com/sun/jersey/core/util/UnmodifiableMultivaluedMap.class
+SHA1-Digest: lqEj/sjuwbnjogiWcZKL2U3T2ro=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentInjector$1.
+ class
+SHA1-Digest: sLgYLNk3nctM+5M8AtF3Cep/Izw=
+
+Name: com/sun/jersey/server/impl/model/parameter/MatrixParamInjectable
+ Provider$MatrixParamInjectable.class
+SHA1-Digest: bzVRGxWg6zQkm/vIMKOLE13A4+0=
+
+Name: com/sun/jersey/api/json/JSONWithPadding.class
+SHA1-Digest: I5JBNmHK38aeUqRaOY8Y12yIPaQ=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCDestroyable.class
+SHA1-Digest: s1QvoWvQMYZjHF1lXVGhljj2yy0=
+
+Name: com/sun/jersey/api/client/filter/HTTPDigestAuthFilter.class
+SHA1-Digest: hE6GU6f5xUmpd1FfXOvHNcTav3E=
+
+Name: com/sun/jersey/json/impl/reader/XmlEventProvider$CachedJsonParse
+ r.class
+SHA1-Digest: tLZf1CO4GOtLOuDe6xRIh0KqBaU=
+
+Name: com/sun/jersey/core/impl/provider/xml/DocumentBuilderFactoryProv
+ ider.class
+SHA1-Digest: t/LE0gINMezT+R0e3YTzaMcLcg0=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$ValueIterato
+ r.class
+SHA1-Digest: SLL4e90MdTi68UTl2Fcu3O33AnQ=
+
+Name: com/sun/jersey/api/JResponse.class
+SHA1-Digest: fvBuBcB1CGr7yf8oytWb+ONL6gs=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedParameterImpl.class
+SHA1-Digest: tTuyhEdYr/OkzhwbbtPzKDnhqWs=
+
+Name: com/sun/jersey/api/JResponse$JResponseBuilder.class
+SHA1-Digest: llIBywJD1FfIroxxZuZz5Csd+UE=
+
+Name: com/sun/jersey/api/core/ApplicationAdapter.class
+SHA1-Digest: nItPOEb6olUe4U4Bdbmyq8nCwng=
+
+Name: com/sun/jersey/json/impl/JSONHelper.class
+SHA1-Digest: SE7+ePbr7DwDGZRpinwPhRXd3/c=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONWithPaddingProvider
+ .class
+SHA1-Digest: 7JrKv99MRU40juMk1tNuFnQxu/8=
+
+Name: com/sun/jersey/json/impl/writer/Stax2JacksonWriter$ProcessingInf
+ o.class
+SHA1-Digest: 17KjxHhGBrg5UnkJM8iL5hxG9wE=
+
+Name: com/sun/jersey/core/spi/factory/ResponseBuilderHeaders.class
+SHA1-Digest: NodanFZFKSsB18u5VNifskoWTqE=
+
+Name: com/sun/jersey/core/header/MatchingEntityTag.class
+SHA1-Digest: 65m9DPK7BDK67usGDLBBqmYBB2U=
+
+Name: com/sun/jersey/api/client/Client$4.class
+SHA1-Digest: k4kjdDdJzZTahgWTyt5S9GniowU=
+
+Name: com/sun/jersey/core/impl/provider/entity/StringProvider.class
+SHA1-Digest: gbP4d5XJeKxoRBI4VH+Y2R8tEEY=
+
+Name: com/sun/jersey/core/header/ContentDisposition.class
+SHA1-Digest: AqLmNBoYHjMCsgQ8IvDw3s0hGno=
+
+Name: com/sun/jersey/api/model/AbstractModelComponent.class
+SHA1-Digest: Pfaaj6rz3XAuqoh3IgE7O40R/Uo=
+
+Name: com/sun/jersey/api/model/AbstractResourceModelListener.class
+SHA1-Digest: DhRCZ71AfEdDqUPDcZWaOxLZ6DE=
+
+Name: com/sun/jersey/server/impl/application/ResourceMethodDispatcherF
+ actory.class
+SHA1-Digest: RT5RM4McKAdByVNGY9ZNm0IW4iY=
+
+Name: META-INF/services/com.sun.jersey.spi.container.WebApplicationPro
+ vider
+SHA1-Digest: 9nPSyMAu0n1IwTRNNIFnqsC+jNM=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$DefaultServiceIteratorP
+ rovider.class
+SHA1-Digest: V1UDR3mAVeXjLOs/HZbWEfjzbeY=
+
+Name: com/sun/jersey/api/container/grizzly/GrizzlyWebContainerFactory.
+ class
+SHA1-Digest: vSYjogj1dd9iqfmyJJ2HIBMO/gA=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainer$2.
+ class
+SHA1-Digest: 5WhDjH+ZxUxzLyJIPBJ4WgT0CdM=
+
+Name: com/sun/jersey/server/wadl/WadlGenerator$Resolver.class
+SHA1-Digest: IGp6YgjtJNI7yBCZGiKXbr6MDCc=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootObjectProvider.c
+ lass
+SHA1-Digest: Z4y/pz/8InC7QnTliHjzNZ+GaP0=
+
+Name: com/sun/jersey/api/client/AbstractClientRequestAdapter.class
+SHA1-Digest: XHv0LRbTGKCEQxw0Bj3/l2URHZk=
+
+Name: com/sun/jersey/api/core/ScanningResourceConfig.class
+SHA1-Digest: PYHbGt3X1JMKnP+uMlPZeET4axQ=
+
+Name: META-INF/maven/com.sun.jersey/jersey-bundle/pom.properties
+SHA1-Digest: l2/HJte/H1xeo+EMhZ0L3Rcgz0g=
+
+Name: com/sun/jersey/spi/container/ContainerResponse$1.class
+SHA1-Digest: zwb057HSMRFnXjchTgYvTLfui7g=
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory$AbstractSin
+ gleton.class
+SHA1-Digest: SQBMZAPTUizrimmdd0GzQH1jdcQ=
+
+Name: com/sun/jersey/server/impl/model/parameter/HttpContextInjectable
+ Provider$HttpContextInjectable.class
+SHA1-Digest: uUK/eN3gHZuXm5ws6TIJ4J0N348=
+
+Name: com/sun/jersey/core/reflection/MethodList$7.class
+SHA1-Digest: 3QlAWxf6R/hW/uEkXEdPF7iFdbw=
+
+Name: com/sun/jersey/server/impl/ejb/EJBInjectionInterceptor$1.class
+SHA1-Digest: nnVIc7t+wK6O4lp3o8F0KAZ8CzM=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$3.class
+SHA1-Digest: KohOBygjH5soyDsLHv5D+wn0Xtc=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Multivalu
+ edParameterExtractorProvider.class
+SHA1-Digest: 70zqlr6iDvNRCsqI/LCvUmkV7H8=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$Entry.class
+SHA1-Digest: ZZsoprRL+eo2OR3iZtLxosVbeZM=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$13.cla
+ ss
+SHA1-Digest: dtWIR96dpqrC0AEgeoxn/TWgNU8=
+
+Name: com/sun/research/ws/wadl/Resource.class
+SHA1-Digest: taQg8Miw7o7KTirFTUxi5fVe15g=
+
+Name: com/sun/jersey/api/container/filter/ResourceDebuggingFilterFacto
+ ry$SubResourceMethodFilter.class
+SHA1-Digest: 5u78FdDeTnonOSJrgVcc+f0ddF8=
+
+Name: com/sun/jersey/server/impl/cdi/SyntheticQualifier.class
+SHA1-Digest: 1GEwjI6msrklsxZyZTRB37hhU0c=
+
+Name: com/sun/jersey/core/impl/provider/header/NewCookieProvider.class
+SHA1-Digest: mbFzmk0C8ryWuJY5V0TLf+awNq8=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$2.class
+SHA1-Digest: hsuOMZALWduz+tk+n/BRYirlf58=
+
+Name: com/sun/jersey/core/util/ThrowHelper.class
+SHA1-Digest: GiQkBWsixcRzI1HKuOktr2i03RA=
+
+Name: com/sun/jersey/api/model/AbstractSetterMethod.class
+SHA1-Digest: muM/bnsoEafBfUdu98KJNyBYQJ8=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap.class
+SHA1-Digest: M5uerdPJ5svNwBgsxbU9hGk9BNI=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONLowLevelProvider.cl
+ ass
+SHA1-Digest: DBiHkb0xK9pzHvm7S0I+baUXDgg=
+
+Name: com/sun/jersey/fastinfoset/impl/provider/entity/FastInfosetListE
+ lementProvider.class
+SHA1-Digest: +t0PBokbK49METQNE8hT2dqPl6Y=
+
+Name: com/sun/jersey/api/core/ResourceConfigurator.class
+SHA1-Digest: 00VxmLcxP/awsoM1JoG7E+BVZik=
+
+Name: com/sun/jersey/spi/CloseableService.class
+SHA1-Digest: Ehc5bYdLvKacGfWDUl7p0bkZnAw=
+
+Name: com/sun/jersey/core/header/ContentDisposition$ContentDisposition
+ Builder.class
+SHA1-Digest: jX2rkDq19+Zm52aMOn92Brk19y4=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller.class
+SHA1-Digest: xE0Oqg7lRbP0PXRQ6fcbkfnWjXQ=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$1.class
+SHA1-Digest: KsFyUb3yf8uruS0BMGj2Zqgf0Pw=
+
+Name: com/sun/jersey/server/impl/template/ViewableMessageBodyWriter.cl
+ ass
+SHA1-Digest: FMN6asvXgyoEyy9cBR/IB2iQSUg=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainer.cl
+ ass
+SHA1-Digest: HrdRNaRxEhN7VXKxm00wdTTU3Qg=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$24.cla
+ ss
+SHA1-Digest: DumkNMAyVx5b+hE/QV6V5Oi71kQ=
+
+Name: com/sun/jersey/server/impl/container/filter/AnnotationResourceFi
+ lterFactory.class
+SHA1-Digest: cxKnRwd5BIzozbYBaXmeeX83wjk=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$3.class
+SHA1-Digest: 921ExYzybm1uJosonLBWVtQsui8=
+
+Name: com/sun/jersey/core/spi/scanning/JarFileScanner.class
+SHA1-Digest: uWaaubjek7lDmFkFisoObbOFnaU=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/JAXBStrin
+ gReaderProviders$RootElementProvider$1.class
+SHA1-Digest: oYvlqZ4kZ9EAO2R7ChoJl5UA2fM=
+
+Name: com/sun/jersey/server/impl/model/RulesMap$ConflictClosure.class
+SHA1-Digest: eGgmdGP8gfznB8GKXQxf6tFULfI=
+
+Name: com/sun/jersey/server/impl/inject/AbstractHttpContextInjectable.
+ class
+SHA1-Digest: a+wwlsnKWDecTMP0AWWcAC6ARHc=
+
+Name: com/sun/jersey/core/header/MediaTypes$3.class
+SHA1-Digest: z6ZkQXCGpp3qE3HCNk7PnLHa6PE=
+
+Name: com/sun/jersey/json/impl/reader/StartElementEvent.class
+SHA1-Digest: x6H3y2a4Vn5WnhHGCZSpidMZSYU=
+
+Name: com/sun/jersey/api/client/ViewUniformInterface.class
+SHA1-Digest: WRx7HWb4VcMxBuOH2tOCKJDEUOs=
+
+Name: com/sun/jersey/atom/rome/impl/impl.properties
+SHA1-Digest: c7nKZQtJlsGEogLJFX5OOonFaCA=
+
+Name: com/sun/jersey/server/impl/model/parameter/HttpContextInjectable
+ Provider$1.class
+SHA1-Digest: WlztVwiiHlP8nsIybgNk9NWCuRk=
+
+Name: com/sun/jersey/core/header/OutBoundHeaders.class
+SHA1-Digest: SFp165Aw61bAsQBHy1sf9s+Tr94=
+
+Name: com/sun/jersey/json/impl/reader/NaturalNotationEventProvider.cla
+ ss
+SHA1-Digest: z3a0sq9qsz6NQY7yXC/9T9vPKsc=
+
+Name: com/sun/jersey/json/impl/reader/JsonXmlEvent$Attribute.class
+SHA1-Digest: VvI5gV5e6Fwfr+HDlsmFQSd4wpA=
+
+Name: com/sun/jersey/server/impl/component/IoCResourceFactory$FullyMan
+ agedWrapper.class
+SHA1-Digest: aHxpCycW/RF3KSzCn0TCq6TU40U=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONArrayProvider.class
+SHA1-Digest: N7BlIElVL9/6wE/cHXoNuLm7PjI=
+
+Name: com/sun/jersey/core/spi/component/ComponentDestructor.class
+SHA1-Digest: HLKkO6mYdRLzcqbsfBaT7dXY/xA=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$18.cla
+ ss
+SHA1-Digest: RL8kd0zDM3imjM0eJjUa0oS6BFI=
+
+Name: com/sun/jersey/server/impl/uri/rules/AtomicMatchingPatterns$1.cl
+ ass
+SHA1-Digest: sjWDRi4RU634jZS1n6zSZGCC64M=
+
+Name: com/sun/jersey/json/impl/Stax2JsonFactory$1.class
+SHA1-Digest: zKZ+EKIXOqsCUFOjwQziwWgO5qQ=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl.class
+SHA1-Digest: PGkvcOOT4K7g/lyVMhznB4kVnnA=
+
+Name: com/sun/jersey/server/impl/container/WebApplicationProviderImpl.
+ class
+SHA1-Digest: AaDY1Di6a2nm4XEba5s2QczLhY8=
+
+Name: com/sun/jersey/core/util/SaxHelper.class
+SHA1-Digest: 2QPWmBxQIF0gKfn/mO3hvBG5aok=
+
+Name: com/sun/jersey/server/impl/model/parameter/QueryParamInjectableP
+ rovider$QueryParamInjectable.class
+SHA1-Digest: /kulUcWKIWljt9/8cHdIIoOxUrw=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLListElementProvider$
+ General.class
+SHA1-Digest: 9hsPufLW6yNbduVr2Me9yK50Iv8=
+
+Name: com/sun/jersey/core/util/StringIgnoreCaseKeyComparator.class
+SHA1-Digest: C8cgiiU9x6Zb4fD2UbxEHSBT9iQ=
+
+Name: com/sun/jersey/server/impl/VariantSelector$3.class
+SHA1-Digest: MKPL5bwCT1B8i2MT+lS64FPW92A=
+
+Name: com/sun/jersey/spi/container/ResourceMethodDispatchAdapter.class
+SHA1-Digest: 093Knue57GIxF9j5FbMWa8n3AZs=
+
+Name: com/sun/jersey/api/client/AsyncWebResource.class
+SHA1-Digest: 2O5Vo5tetFZWWhYEWo72mXTcBDg=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractListElementProvider$1.
+ class
+SHA1-Digest: ImxENSNUIHNfugjEzKVdcE6VOh0=
+
+Name: com/sun/jersey/core/util/KeyComparator.class
+SHA1-Digest: yYGdSpZpCvUlgvCbAlvCfEsNi9Q=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainerPro
+ vider.class
+SHA1-Digest: 6LC+AOc5boOwD47KxPAWTTAg69Q=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorJAXBGrammarGe
+ nerator$4.class
+SHA1-Digest: hvGcDOo7Du6LJ4jj5FdqctaBj3o=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLRootElementProvider.
+ class
+SHA1-Digest: WxHOeOsclhpl+sOheIY5UNr+FFw=
+
+Name: com/sun/jersey/json/impl/RootElementWrapper.class
+SHA1-Digest: 2xcgP1i0Q51RtRBylH+eLxLVQ58=
+
+Name: com/sun/jersey/server/impl/wadl/WadlMethodFactory$WadlOptionsMet
+ hod.class
+SHA1-Digest: ZD0NrVb0v8drLqyUTCmcdO0XJzo=
+
+Name: com/sun/jersey/spi/inject/Errors.class
+SHA1-Digest: 3dUuI2JGaAnMl4cdDIZdKMXbrKM=
+
+Name: com/sun/jersey/core/impl/provider/xml/ThreadLocalSingletonContex
+ tProvider$1.class
+SHA1-Digest: h469dLwlPmz2+rBA/Fmw8V/dPfY=
+
+Name: com/sun/jersey/client/impl/CopyOnWriteHashMap.class
+SHA1-Digest: 0iY4hvF2MoKgYEkdMRVyXlAF3W8=
+
+Name: com/sun/jersey/server/impl/uri/rules/HttpMethodRule$Matcher.clas
+ s
+SHA1-Digest: PMma7pTqQ16bABo0Y+FFIN1Z2Y8=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentConstructor
+ $1.class
+SHA1-Digest: 4VZyX3wL0tA99rrfcn6Yretkc2U=
+
+Name: com/sun/jersey/core/header/FormDataContentDisposition.class
+SHA1-Digest: 8rawb9lqqsDVXz8Di0DsE3Dgvvs=
+
+Name: com/sun/jersey/core/impl/provider/header/DateProvider.class
+SHA1-Digest: TIUepcOKWAavhysJMDxHDJNWlyY=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/WadlGeneratorR
+ esourceDocSupport.class
+SHA1-Digest: bCpRY4/M3o9FCzxyYYOVCmGBFfI=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringReaderExtractor.class
+SHA1-Digest: QOYzI/5fHADT4Vu6bKRIO+vBg5k=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringExt
+ ractor.class
+SHA1-Digest: 8jkhZLayQE/vru53iqIOxEXqNIo=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringExtractor.class
+SHA1-Digest: iGFQpxnqbjyDyacM0o01h/S9yxg=
+
+Name: com/sun/jersey/json/impl/JaxbJdkXmlStructure.class
+SHA1-Digest: lbi2Te7J/fE/VlfnMKiapDLUYA4=
+
+Name: com/sun/jersey/server/impl/application/CloseableServiceFactory.c
+ lass
+SHA1-Digest: F2/9XBaa8S6rEei6NzhbILxOZAU=
+
+Name: com/sun/research/ws/wadl/Resources.class
+SHA1-Digest: FkA2sOM0nnRWprWniYdkJparX04=
+
+Name: com/sun/jersey/spi/template/ResolvedViewable.class
+SHA1-Digest: 6pJIvUse1FFTtrAR0k9/wwJgp9w=
+
+Name: com/sun/jersey/core/spi/scanning/uri/JarZipSchemeScanner$1.class
+SHA1-Digest: kIfFLPaBeMkGzDuwflQRMBnGGXc=
+
+Name: com/sun/jersey/api/ParamException.class
+SHA1-Digest: wHk7iTTwAXWYZBJ7ooA1vq7JtNY=
+
+Name: com/sun/jersey/core/spi/scanning/uri/BundleSchemeScanner$1.class
+SHA1-Digest: Y/saPHE23U3z68G0A0LAo8zCOZo=
+
+Name: com/sun/jersey/server/impl/provider/RuntimeDelegateImpl.class
+SHA1-Digest: fFeUihIe0CW1u9mpxnAAtHQITmM=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderListAdapter.class
+SHA1-Digest: xri/WZ8f3TPdDSY9YDtv8fSdTPg=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProviderFactory$Instant
+ iatedSingleton.class
+SHA1-Digest: 2gAiqrTOF1IB+Aum3NpG3ZQEeB8=
+
+Name: com/sun/jersey/api/container/filter/RolesAllowedResourceFilterFa
+ ctory.class
+SHA1-Digest: Jvp9wLwzVNLSAr5pz5EB7huFdFA=
+
+Name: com/sun/jersey/spi/inject/PerRequestTypeInjectableProvider.class
+SHA1-Digest: 4LdA5UiOqCfJrfeZuE312Shvxak=
+
+Name: com/sun/jersey/core/util/StringKeyIgnoreCaseMultivaluedMap.class
+SHA1-Digest: A0IFd+Hh/cMzObDcQtBlwVjM4z0=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$ObjectOutInvoker.class
+SHA1-Digest: tq46VRMZdE/k8rByenlj3R5ixtI=
+
+Name: com/sun/jersey/json/impl/JaxbRiXmlStructure$1.class
+SHA1-Digest: GT51KLWGFUTjSTyWd0UeJfZwrHE=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$A
+ bstractPerSession.class
+SHA1-Digest: TtUdUxI7YGQ8/hJB4dTuiygKucA=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator.class
+SHA1-Digest: kckSuDmNoo4KdnNDCg2vLorBhmc=
+
+Name: com/sun/jersey/json/impl/reader/XmlEventProvider$ProcessingInfo.
+ class
+SHA1-Digest: 6pcbQ8dNUr3DHPLWjfvJDKGPFos=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCComponentProcessorFacto
+ ryInitializer.class
+SHA1-Digest: SJCZ33PItbvrOiG6XhT+QXZh8m8=
+
+Name: com/sun/jersey/api/client/config/DefaultClientConfig.class
+SHA1-Digest: AcqYw5s2g5Tz19QARDMzY+jiqJk=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory$NullConte
+ xtResolverAdapter.class
+SHA1-Digest: ILcAxHF1Xj6ZxB3PPw+icZZ8H/w=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory$
+ 1.class
+SHA1-Digest: 6f/LmDxR3WXPQKtpCNxhSI/8BGQ=
+
+Name: com/sun/jersey/core/impl/provider/entity/FileProvider.class
+SHA1-Digest: ZSI+aSaE0WaN4G6nGic9nU6U1zo=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorLoader$Callback.clas
+ s
+SHA1-Digest: 9cVdtJkKpzMqyw15ORkXk3rL3AQ=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$SyntheticQualifierAn
+ notationImpl.class
+SHA1-Digest: qg4NdhM+rs5VGzXb9FiqoMJYZes=
+
+Name: com/sun/jersey/api/model/PathAnnotated.class
+SHA1-Digest: 8S8eX9dj1Hc1gV15yKkCpk8WkIg=
+
+Name: com/sun/jersey/json/impl/reader/JacksonRootAddingParser$State.cl
+ ass
+SHA1-Digest: 4+4mNMwCYCMXxpV0VOKO0eDd+zk=
+
+Name: com/sun/jersey/server/impl/uri/rules/AtomicMatchingPatterns$Empt
+ yIterator.class
+SHA1-Digest: VJlOUWl6Ha5r+/PLwKSpPZwzXJ8=
+
+Name: com/sun/jersey/api/client/AsyncViewResource.class
+SHA1-Digest: iO+ahDVDVCBqwZV1xVtBasoVR3M=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorGrammarsSuppo
+ rt.class
+SHA1-Digest: S3bjytrtDEAWZ7JUteGqseEPVkI=
+
+Name: com/sun/jersey/json/impl/writer/Stax2JacksonWriter.class
+SHA1-Digest: VgtpiMMF4LMmxHWZwhYV9xCljMM=
+
+Name: com/sun/jersey/api/uri/UriPattern$GroupIndexMatchResult.class
+SHA1-Digest: E/1XXCMLT6Nd81j2Db6gSzI3/ak=
+
+Name: com/sun/jersey/json/impl/MoxyXmlStructure.class
+SHA1-Digest: 3rPKR7refCbiifC1+VbpigefZ1I=
+
+Name: com/sun/jersey/server/impl/uri/PathPattern.class
+SHA1-Digest: oeGP2sobBCpawFXjtTKTyBaKLHc=
+
+Name: com/sun/jersey/json/impl/writer/A2EXmlStreamWriterProxy$XmlAttri
+ bute.class
+SHA1-Digest: CFeywONeR+txziigBaE2QKuGSZ8=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper$DeclaringClassIn
+ terfacePair.class
+SHA1-Digest: OmLTFKmnzN4m7Hs9NFdTpwmJOx0=
+
+Name: com/sun/jersey/core/spi/factory/MessageBodyFactory$2.class
+SHA1-Digest: ROnnUmBfV3Y1deVPdfp+AusVqlM=
+
+Name: com/sun/jersey/server/impl/model/parameter/BaseParamInjectablePr
+ ovider.class
+SHA1-Digest: s+K0G9/+2d/xPJLIaXLdvFx8u8Y=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/RequestD
+ ocType.class
+SHA1-Digest: 6soadL+k5WVS8MIlxP089JGGdoI=
+
+Name: com/sun/jersey/server/impl/template/ViewableRule.class
+SHA1-Digest: Iq0u6hXII86JRCe0plgwuUG1rMg=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONJAXBElementProvider
+ .class
+SHA1-Digest: jbbRBK6qKbWCFu4WrZuJQTqinz0=
+
+Name: com/sun/jersey/api/model/AbstractResourceConstructor.class
+SHA1-Digest: WXYIAKuaY1aZoHYYe+cEqHH2huk=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCComponentProcessorFacto
+ ry.class
+SHA1-Digest: jJkRB2Uang0u1NS2UkNGFyxB9tc=
+
+Name: com/sun/jersey/spi/monitoring/RequestListenerAdapter.class
+SHA1-Digest: TywAmrjw54KFir/vNVENZ5IfiU8=
+
+Name: com/sun/jersey/core/impl/provider/entity/DataSourceProvider$Byte
+ ArrayDataSource$DSByteArrayOutputStream.class
+SHA1-Digest: 5i92eh491lX1l0/DBqMXDorqXQM=
+
+Name: about.html
+SHA1-Digest: 2KgQ8o95Px1merg1BQb6LWjipPw=
+
+Name: com/sun/jersey/api/ParamException$MatrixParamException.class
+SHA1-Digest: zfL8RoHXIgUZBRuRLo24+Ag/eZI=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$1.class
+SHA1-Digest: SFz/uisqsLIgqcHEpeRGgLrk65s=
+
+Name: com/sun/jersey/server/impl/uri/rules/RootResourceClassesRule.cla
+ ss
+SHA1-Digest: 3houzIJncB1s5UqerqZiBspeNXw=
+
+Name: com/sun/jersey/spi/monitoring/DispatchingListenerAdapter.class
+SHA1-Digest: zm3vN7H/k7OQEADUNhoDxouczjo=
+
+Name: com/sun/jersey/api/container/filter/servlet/RolesAllowedResource
+ FilterFactory.class
+SHA1-Digest: zLWkJWT/5v8/ZXhHNs+vojD4jcU=
+
+Name: com/sun/jersey/core/impl/provider/xml/ThreadLocalSingletonContex
+ tProvider.class
+SHA1-Digest: w9tjrdx7MiYiUemrwhFOIEWzrN4=
+
+Name: com/sun/jersey/api/core/InjectParam.class
+SHA1-Digest: uNe5TidxLE8TkZxU0hBdBX2R7P0=
+
+Name: com/sun/jersey/json/impl/reader/JsonNamespaceContext.class
+SHA1-Digest: 2ENk5oJRudPKAs+pcKvUWzKmyvY=
+
+Name: com/sun/jersey/spi/inject/Injectable.class
+SHA1-Digest: yTziwimLaFp8RUyUD1FmJ25WzU8=
+
+Name: com/sun/jersey/json/impl/JaxbXmlDocumentStructure.class
+SHA1-Digest: DfhJYYUOqyXFc9GLqszMr65T3k4=
+
+Name: com/sun/jersey/core/util/MultivaluedMapImpl.class
+SHA1-Digest: mKEwdgq4NRKt1f/yTu2eOqjMOtY=
+
+Name: com/sun/jersey/spi/container/ExceptionMapperContext.class
+SHA1-Digest: lZeKLPr8pJxgYp9GVjeFC4lPB9s=
+
+Name: com/sun/jersey/json/impl/Stax2JsonFactory.class
+SHA1-Digest: 9b8t7DpwcSb6vkIGO03Myto7o70=
+
+Name: about_files/CDDL-LICENSE.txt
+SHA1-Digest: wsNyxJhctqk147fbEoYhY1xzORQ=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/FormDispatchPro
+ vider$FormParameterProvider.class
+SHA1-Digest: 82VkgqJUVg2QGmzLsAojpfGElA0=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCManagedComponentProvide
+ r.class
+SHA1-Digest: Z+XyRM5D11iiOYyLV9tuOfT1yaA=
+
+Name: com/sun/jersey/spi/container/ResourceFilterFactory.class
+SHA1-Digest: VMcP8sboyvgJxI5xQ7bsT5cB3CM=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$EntryIterato
+ r.class
+SHA1-Digest: IXg+y9MOGVuF80HQdJMd/DgcGLg=
+
+Name: com/sun/jersey/server/impl/uri/rules/SequentialMatchingPatterns.
+ class
+SHA1-Digest: 5LeaXriAePzfodvyJWuMc469K+k=
+
+Name: com/sun/jersey/api/client/async/FutureListener.class
+SHA1-Digest: dYjky2a+N9husTUx/NlGbPHmtwc=
+
+Name: com/sun/jersey/core/header/InBoundHeaders.class
+SHA1-Digest: kWCrSILGPqjt3Y2W4x8wadrsXp8=
+
+Name: com/sun/jersey/core/impl/provider/entity/ReaderProvider.class
+SHA1-Digest: h27XnpbiQSVc4xMfyF3FxmBK2x0=
+
+Name: com/sun/jersey/api/model/AbstractField.class
+SHA1-Digest: e8gW387/5qCqCR8cFWm/jwIqHwM=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorConfigLoader$1.class
+SHA1-Digest: tr7L10iOG3vrFl3RmbmUdPi49gM=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorConfig.class
+SHA1-Digest: uiUAlaKNUZSs9XC9Y1kOW85H2xs=
+
+Name: com/sun/jersey/server/impl/managedbeans/ManagedBeanComponentProv
+ iderFactory$ManagedBeanComponentProvider.class
+SHA1-Digest: jjQ0qRm8q/8xbop7+uAAFhshrN4=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/xhtml/XhtmlEle
+ mentType.class
+SHA1-Digest: zljOo2i3qtKzyTULalbZki0hUX0=
+
+Name: com/sun/jersey/server/impl/modelapi/validation/AbstractModelVali
+ dator.class
+SHA1-Digest: G3tF97okHtlu3klERmUA/Y5tClI=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$4.class
+SHA1-Digest: KehNPP1Ys1r76q9SjhFUrtrocHQ=
+
+Name: com/sun/jersey/client/urlconnection/URLConnectionClientHandler$U
+ RLConnectionResponse.class
+SHA1-Digest: JJEFhtXcTPURWCkoJiD/Ju2Qr9E=
+
+Name: com/sun/jersey/core/reflection/AnnotatedMethod.class
+SHA1-Digest: 23SsrYMwIiTcCxHRcVZRKNW6ysc=
+
+Name: com/sun/jersey/client/urlconnection/URLConnectionClientHandler$1
+ .class
+SHA1-Digest: D8+2RgL3XKV4S1VO4qHBkld24iQ=
+
+Name: com/sun/jersey/json/impl/JaxbRiXmlStructure$NodeWrapper.class
+SHA1-Digest: Renz6UvQQc0b6dSe5SIoCOjqQk0=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$5.clas
+ s
+SHA1-Digest: FmXyxTZm1J8uPzK0JzUSFtgytg0=
+
+Name: com/sun/jersey/server/impl/cdi/CDIComponentProviderFactory$Compo
+ nentProviderDestroyable.class
+SHA1-Digest: MhAxG5unaa7NP7yVRME+07jpS1I=
+
+Name: com/sun/jersey/api/uri/UriComponent$PathSegmentImpl.class
+SHA1-Digest: VTu5HreyKvKZtL/dsnCf8Vp+rUY=
+
+Name: com/sun/jersey/api/client/RequestWriter$RequestEntityWriterImpl.
+ class
+SHA1-Digest: VVNgTpnw4ebd8eRMeSQxAcFHFRg=
+
+Name: com/sun/jersey/core/spi/component/ProviderServices$ProviderListe
+ ner.class
+SHA1-Digest: r95ed3Zb53en8PljZNNdjjmcmgQ=
+
+Name: com/sun/jersey/server/impl/uri/rules/automata/TrieArc.class
+SHA1-Digest: E34o4JWM3HsYOloiFz4Y4RMt01c=
+
+Name: com/sun/jersey/spi/container/ResourceMethodCustomInvokerDispatch
+ Provider.class
+SHA1-Digest: CDwF9nIw0OcDWyKXcu5sdWE1Vks=
+
+Name: com/sun/jersey/server/impl/uri/UriHelper.class
+SHA1-Digest: yiTPfHeeg6JP5lOeIulHV0Z0S3s=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$6.class
+SHA1-Digest: owiP2be4yE4GvYdQuDSbs+1jzLY=
+
+Name: com/sun/jersey/server/impl/model/parameter/MatrixParamInjectable
+ Provider.class
+SHA1-Digest: sUx6yY4LYLPzH93MG+gZ3KFfMb0=
+
+Name: com/sun/jersey/api/MessageException.class
+SHA1-Digest: AQglpUJ1a8FlL0xohNx3tzxr2dk=
+
+Name: META-INF/services/javax.enterprise.inject.spi.Extension
+SHA1-Digest: qRR25pQ1F8KH7F5x/vw4mCaoKlU=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$TypeOutInvoker.class
+SHA1-Digest: 3hCp9caP1JDq8960kgx3IdCxDPI=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent.class
+SHA1-Digest: 7YcpuYaMZ4J0ztMSX3tfTepvOq4=
+
+Name: com/sun/jersey/impl/SpiMessages.class
+SHA1-Digest: Je6fAqdomXiSmcV9wXCpWzWza2s=
+
+Name: com/sun/jersey/json/impl/reader/XmlEventProvider$1.class
+SHA1-Digest: jZVXLGmQCMlfvjFdB5ajwsDvcMg=
+
+Name: com/sun/jersey/core/impl/provider/entity/StreamingOutputProvider
+ .class
+SHA1-Digest: Lfa290bN68c9kjCl4stL/NeuITk=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentConstructor
+ .class
+SHA1-Digest: 8G9gi5+iPZDIO38eH8Tc+IFgsAE=
+
+Name: com/sun/jersey/api/model/AbstractResourceModelContext.class
+SHA1-Digest: J9ZeyJSM2HNmy0PEUy6F6OdrFa4=
+
+Name: com/sun/jersey/spi/inject/Errors$1.class
+SHA1-Digest: sPRCmGkRS84mem5xum5pgwdtg2g=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$WantsName.class
+SHA1-Digest: IN+oALx8WLfX6Y6Q+CmCk8P+20U=
+
+Name: com/sun/jersey/api/client/Client$ComponentProcessorFactoryImpl$1
+ .class
+SHA1-Digest: 44hWsk9dzuGNrpyjhSvJC0FuAvg=
+
+Name: com/sun/jersey/spi/monitoring/ResponseListener.class
+SHA1-Digest: /CyF2AT0xBiQY5RgkCdtimJn5NU=
+
+Name: com/sun/jersey/core/spi/scanning/uri/VfsSchemeScanner$1$1.class
+SHA1-Digest: Pvm/gGxLERgS3Haxj2gMdxLXtg4=
+
+Name: com/sun/jersey/json/impl/writer/JacksonArrayWrapperGenerator.cla
+ ss
+SHA1-Digest: 2tx7vVA3RlPoH0ZlJS1mWVjmiK8=
+
+Name: com/sun/jersey/impl/ImplMessages.class
+SHA1-Digest: wi/QgH3mDmihKyKwk/Ig168IwLw=
+
+Name: com/sun/jersey/server/wadl/WadlApplicationContext.class
+SHA1-Digest: PoqhKO/5qgQ2CbOj2r7pWX8tpU0=
+
+Name: com/sun/research/ws/wadl/ParamStyle.class
+SHA1-Digest: dCD6FnbMYz1cOG4jQTuTUvwIigM=
+
+Name: com/sun/jersey/core/impl/provider/xml/LazySingletonContextProvid
+ er.class
+SHA1-Digest: zl8ZEKjALOdEBYGmvLTS1LJNIic=
+
+Name: com/sun/jersey/spi/StringReaderProvider.class
+SHA1-Digest: GlDOX4wQo1IBzDaAQpPlR87hXxo=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$TypeValueOf.class
+SHA1-Digest: sqOTJQ64mfZeGx2tpHQp+HXkz5U=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$9.class
+SHA1-Digest: c9qAwxQyDF1RJin1ajMuC36hMkU=
+
+Name: com/sun/jersey/core/header/Token.class
+SHA1-Digest: 6WBq9iuRlE0/lrYI5mzdwjA+Qpo=
+
+Name: com/sun/jersey/server/impl/cdi/CDIComponentProviderFactory$1.cla
+ ss
+SHA1-Digest: gmeybxqErBTTvfclV4iyhpxEPFQ=
+
+Name: com/sun/jersey/api/client/Client$2.class
+SHA1-Digest: WSTe9QPRCopi5obZHypWtUKM/+A=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$1.class
+SHA1-Digest: tLglA9cVIf4nU5uKaisEfMFLDP0=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/ResourceDocAcc
+ essor.class
+SHA1-Digest: WwSdoG70BEJKDQF36DZFSoUSsdI=
+
+Name: com/sun/jersey/core/spi/factory/InjectableProviderFactory.class
+SHA1-Digest: GNAsOL0u4/oDMk1SSDMDNkXf/Q8=
+
+Name: com/sun/research/ws/wadl/Link.class
+SHA1-Digest: q44JFW1grKV17Ve3ALvznKuqTeY=
+
+Name: com/sun/jersey/api/client/CommittingOutputStream.class
+SHA1-Digest: oEC6nFY5mgRG/4C4NYf5OPab8Cs=
+
+Name: com/sun/jersey/api/core/ResourceConfig$2.class
+SHA1-Digest: jeI7L3cNv/NT6+HMl/WpqHODA3E=
+
+Name: com/sun/jersey/api/container/filter/ResourceDebuggingFilterFacto
+ ry$SubResourceLocatorFilter.class
+SHA1-Digest: NN/+Pu7RqjPbPIaPlePdzR/7uX8=
+
+Name: com/sun/jersey/spi/monitoring/RequestListener.class
+SHA1-Digest: uO7NGK+zl3bo1DJZm6FUO8a8JCQ=
+
+Name: com/sun/jersey/api/client/WebResource$1.class
+SHA1-Digest: j2sgMZiAzW2LZmuaTRMmNGHUYxA=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceHeadWrapperMetho
+ d.class
+SHA1-Digest: miXocPrujkLKHIcqVFto4mlFohs=
+
+Name: com/sun/jersey/server/impl/managedbeans/ManagedBeanComponentProv
+ iderFactory.class
+SHA1-Digest: D/gssjaCEaL8etw3SWR1Wu5Z9DE=
+
+Name: com/sun/jersey/core/reflection/MethodList$5.class
+SHA1-Digest: MefEeYalbIyjoTjvOshILZaoaO4=
+
+Name: com/sun/jersey/api/client/filter/ClientRequestContainer.class
+SHA1-Digest: CT/W7ZHXmwADMWNUij02+Xo5f/g=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$1.class
+SHA1-Digest: AXaeyQ4BErzItUlrh63dg5O9tjs=
+
+Name: META-INF/services/javax.ws.rs.ext.RuntimeDelegate
+SHA1-Digest: HIk8hRPA41q49Cy9fUfUbiwQjUU=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$11.cla
+ ss
+SHA1-Digest: pM/wvos4UVr17T/rXa2Aq+a6vzo=
+
+Name: com/sun/jersey/server/impl/model/parameter/CookieParamInjectable
+ Provider$CookieParamInjectable.class
+SHA1-Digest: QLUUu5YiqfEFvy+sP+42W1mgxSs=
+
+Name: com/sun/jersey/api/core/HttpResponseContext.class
+SHA1-Digest: iA9o42aiXj9AqwswYccZbldbz18=
+
+Name: com/sun/jersey/json/impl/JSONTransformer.class
+SHA1-Digest: r93WjJofH6EqDqwkymoObNSSn1U=
+
+Name: com/sun/jersey/spi/service/ServiceConfigurationError.class
+SHA1-Digest: 07XiAWozLMKe4oXymQfupw2AZsA=
+
+Name: com/sun/jersey/server/impl/model/ErrorHelper.class
+SHA1-Digest: fZYsrAa9fuhdwYqVW42HfI+cZmo=
+
+Name: com/sun/jersey/api/model/Parameter.class
+SHA1-Digest: LmcrUcr+sZ8ISX/TyJ9x4wAEhgE=
+
+Name: com/sun/jersey/api/representation/Form.class
+SHA1-Digest: Vmd+fG/F42GGHPIX+JdCLnGG75g=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader.class
+SHA1-Digest: hR2ld/p5gXj76i49tZPxqOYH2Hs=
+
+Name: com/sun/jersey/server/impl/container/servlet/Wrapper.class
+SHA1-Digest: Y3KxWjKkBA6SSpAuzGqC0Ueu44c=
+
+Name: com/sun/jersey/client/impl/ClientRequestImpl.class
+SHA1-Digest: IYvXlGMuq+F0UMRjLMx1mXWXyW8=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$P
+ erSesson.class
+SHA1-Digest: QnGFfKevNhl2IlY08XKdlejPRgA=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLJAXBElementProvider$
+ General.class
+SHA1-Digest: 8u64nFD7o/ctJa8KuKijgAcs3Tc=
+
+Name: com/sun/jersey/api/client/ViewResource.class
+SHA1-Digest: 2mhMivye9/pZ8onTV5sfEtu+WQM=
+
+Name: com/sun/jersey/server/impl/container/httpserver/HttpHandlerConta
+ inerProvider.class
+SHA1-Digest: dmLnxzDXxUCNchld1J6f2vxYH5A=
+
+Name: com/sun/jersey/core/header/AcceptableToken.class
+SHA1-Digest: Jl/PlC6F4nCFIj30uMN+BtDJ8cI=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$22.cla
+ ss
+SHA1-Digest: keOQ2oTcWCa/Y/lA1t0yRgy8dRk=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory$1$2.class
+SHA1-Digest: EYkcCXWn8g3GH01U5MX61N9DsKo=
+
+Name: com/sun/research/ws/wadl/Include.class
+SHA1-Digest: J/kyrzTghzb/2roqlk0+bHhw0wI=
+
+Name: com/sun/jersey/api/container/filter/CsrfProtectionFilter.class
+SHA1-Digest: Qzo+i4Zctqz+d/QPw/wloUKDdA8=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$1.class
+SHA1-Digest: sI4I/AUKtln5EtCYbUT2BzdLFII=
+
+Name: com/sun/jersey/server/impl/model/parameter/QueryParamInjectableP
+ rovider.class
+SHA1-Digest: 86k1yFJLqR6UcjgHcUk+CPP3zIM=
+
+Name: com/sun/jersey/spi/scanning/AnnotationScannerListener$AnnotatedC
+ lassVisitor.class
+SHA1-Digest: IZqbHxfgXmuTmChTf59L6KYTCTc=
+
+Name: com/sun/jersey/core/header/MediaTypes$1.class
+SHA1-Digest: eBLLKMP1ILwas2juM9R+8rVZkRk=
+
+Name: com/sun/jersey/api/client/async/ITypeListener.class
+SHA1-Digest: 9K0jz+TwHsKQbrw27jOB0NK4mL8=
+
+Name: com/sun/jersey/server/wadl/WadlGeneratorImpl$1.class
+SHA1-Digest: wJ1G8VfPRErI+PhqDzU8fzvvw40=
+
+Name: com/sun/jersey/server/impl/uri/rules/CombiningMatchingPatterns.c
+ lass
+SHA1-Digest: 8v+O16V+Eh+TLGjZGVFvgdFdVNM=
+
+Name: com/sun/jersey/api/container/filter/servlet/RolesAllowedResource
+ FilterFactory$Filter.class
+SHA1-Digest: yzC6xMnKNR2fyqjKt1xuG7/Dw4g=
+
+Name: com/sun/jersey/core/spi/component/ComponentProvider.class
+SHA1-Digest: 7EIG+Mqe8qrGR5tm0276HUjeXnE=
+
+Name: com/sun/jersey/core/header/LinkHeader$LinkHeaderBuilder.class
+SHA1-Digest: 36NGtDf96SmIlkXAvDHt1DyJd8s=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$6.class
+SHA1-Digest: XbEaG9idrprpL6/eLs4TQaSRyuE=
+
+Name: com/sun/jersey/core/reflection/MethodList$Filter.class
+SHA1-Digest: YC3wE2rMGpMUYxRXhdRKO+zJQ0Y=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$16.cla
+ ss
+SHA1-Digest: WRJpBaDJBI0fXSfl/PwKy7Pjobk=
+
+Name: com/sun/jersey/core/impl/provider/xml/SecureSAXParserFactory.cla
+ ss
+SHA1-Digest: BmJbJA5CvyaMBwAT0gMKt/Y9t8g=
+
+Name: com/sun/jersey/core/header/LanguageTag.class
+SHA1-Digest: OtuFr+GaMg2QsgpWJ3BmJ/HqYvU=
+
+Name: com/sun/jersey/core/spi/scanning/PackageNamesScanner$ResourcesPr
+ ovider$1.class
+SHA1-Digest: 7ug+xJrUCFdqXu0RDZbk87LCVcs=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$ParameterBean.class
+SHA1-Digest: F+0Y8DZepVpGhOZjWhW7S+RJ+yM=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Primitive
+ Mapper.class
+SHA1-Digest: GYFd7VAiRRXmGM739hDh5+rW8fo=
+
+Name: com/sun/jersey/api/container/MappableContainerException.class
+SHA1-Digest: fqeVb34EGSIKA5iaMvL7tQCBEu0=
+
+Name: com/sun/research/ws/wadl/Method.class
+SHA1-Digest: bmfCmbDBqX94w4iiWJYcy+y2tmo=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper$TypeClassPair.cl
+ ass
+SHA1-Digest: qXMt+EenINQmk3Ma1AxhV6GLGdQ=
+
+Name: com/sun/jersey/api/client/GenericType.class
+SHA1-Digest: vSjY0M9XaquUVABoXE/DW7GVb/4=
+
+Name: com/sun/jersey/api/model/AbstractSubResourceLocator.class
+SHA1-Digest: BwBMcsLYmVdBtx/0fAtMaybOvy0=
+
+Name: com/sun/jersey/json/impl/reader/StartDocumentEvent.class
+SHA1-Digest: LCkru96OWpWbp0bj3THT+Rnk86I=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$Contex
+ tInjectableProvider.class
+SHA1-Digest: C2tz0AY9L7VOy+T16M9Vy1WG7+8=
+
+Name: com/sun/jersey/spi/inject/SingletonTypeInjectableProvider.class
+SHA1-Digest: bIXC83mgxNl4cwN4qycLS2qxt0k=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory$1.class
+SHA1-Digest: 5V/oBzFqwW/kgEO8N2/MfujrXpE=
+
+Name: com/sun/jersey/server/impl/uri/rules/BaseRule.class
+SHA1-Digest: 0lKuWunED3h0fi2RvUDkST45TiM=
+
+Name: com/sun/jersey/server/impl/ejb/EJBComponentProviderFactory$EJBMa
+ nagedComponentProvider.class
+SHA1-Digest: aUAv7YX7zLN0BoH6xLDxZ5jSqeY=
+
+Name: com/sun/jersey/server/impl/model/parameter/HeaderParamInjectable
+ Provider.class
+SHA1-Digest: Qv/p5qZ4MusWW87EtuQHGqbAXHo=
+
+Name: com/sun/jersey/server/impl/VariantSelector$1.class
+SHA1-Digest: /vot4w4VK7uc5THTq0stv8G/Mag=
+
+Name: com/sun/jersey/core/reflection/MethodList.class
+SHA1-Digest: Py0qGtKFIJGuAF/oWyIaQvZkZFs=
+
+Name: com/sun/jersey/server/impl/managedbeans/ManagedBeanComponentProv
+ iderFactoryInitilizer.class
+SHA1-Digest: wi9AGMrLk4EMhrZbxu2dlB0LnTI=
+
+Name: com/sun/jersey/json/impl/JaxbJdkXmlStructure$1.class
+SHA1-Digest: ankcYNObYyaQUTyPnRsviGUK88A=
+
+Name: com/sun/jersey/api/uri/UriComponent$1.class
+SHA1-Digest: ItXYHMj1AOR5KS7AvlYQ5x0VA88=
+
+Name: com/sun/jersey/core/spi/component/ProviderServices.class
+SHA1-Digest: 7SZO0LUhTbAMUG7x1TbeZcrgkOY=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$HasType.class
+SHA1-Digest: smfRFQsyOZjSLroWpKOpFHKR2UY=
+
+Name: com/sun/jersey/server/impl/cdi/BeanGenerator.class
+SHA1-Digest: 51N4fn52hlYEVd1Mx9CDBaJQXws=
+
+Name: com/sun/jersey/server/wadl/generators/WadlGeneratorJAXBGrammarGe
+ nerator$2.class
+SHA1-Digest: uWRlVrxwD3yFNZaGUtP8fXbktdA=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$P
+ erSessonInstantiated.class
+SHA1-Digest: S7+PUbkdoclqQ64cwOL9PAtS+vM=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentProvider.cl
+ ass
+SHA1-Digest: GVBJ7YcKrNkbhQmYjVfjJd1oI94=
+
+Name: com/sun/jersey/api/client/ClientResponse.class
+SHA1-Digest: 0lAekHjndvPLeGwINR/mJAME2V0=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$JResponseOutInvoker.class
+SHA1-Digest: JKs1cd1O3fVezWqambuIhbp+AMA=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$LinkedHashIt
+ erator.class
+SHA1-Digest: EH/By26jEL+80B6696JaRO+ybsA=
+
+Name: com/sun/jersey/core/util/KeyComparatorLinkedHashMap$KeyIterator.
+ class
+SHA1-Digest: gXXRmkD8onVMJWrbK9jPF8aUrn8=
+
+Name: com/sun/jersey/server/impl/uri/rules/ResourceObjectRule.class
+SHA1-Digest: 8H7u0jsF6AjMvfdbNgDs3oQ+DWo=
+
+Name: com/sun/jersey/server/impl/model/ResourceMethodMap.class
+SHA1-Digest: sHzik48bHYyuVbpLQC7fMXchB+I=
+
+Name: com/sun/jersey/server/impl/cdi/BeanGenerator$1.class
+SHA1-Digest: w8j7r4WPRlhhho2QBImcpXbtyIk=
+
+Name: com/sun/jersey/core/impl/provider/header/LocaleProvider.class
+SHA1-Digest: tn/gU3JmJtv6MmGyNVNbCgMtUH8=
+
+Name: com/sun/jersey/api/core/ParentRef.class
+SHA1-Digest: as0Zia0kpPDqQvZkf5aoxD8gcNA=
+
+Name: com/sun/jersey/spi/container/servlet/WebComponent$3.class
+SHA1-Digest: ft8tKdkKrgufjpUcRn6crkiC4vc=
+
+Name: com/sun/jersey/client/urlconnection/HTTPSProperties.class
+SHA1-Digest: AfAe3vKHnwdm5uII11eHf5OKu00=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$MappedJettisonBuilder.
+ class
+SHA1-Digest: 1a+szyqjzL52Cj1/zaqFxQHbVjQ=
+
+Name: com/sun/jersey/api/ParamException$QueryParamException.class
+SHA1-Digest: zV40iv0RWM3rMkDG/zRW75NGQa4=
+
+Name: com/sun/jersey/json/impl/reader/JacksonRootAddingParser$1.class
+SHA1-Digest: +9DqK4WYMsNAgQIXTsj4tj+seSg=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLJAXBElementProvider$
+ App.class
+SHA1-Digest: npBIlWKeRGwZP1Dh8H4Yxf2P8E0=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derExtractor.class
+SHA1-Digest: Bj9foy25yyykzpPfYhRkjtqo2ZI=
+
+Name: com/sun/jersey/core/impl/provider/entity/FormProvider.class
+SHA1-Digest: CEBsTN2PLC2WgaJjpo6ekLnaD1o=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: KyT9FF7C7t86NoBoa2kZT3ZJBfw=
+
+Name: com/sun/jersey/core/header/AcceptableMediaType.class
+SHA1-Digest: kdbyass6U44aS2ThmEdSrbddisE=
+
+Name: com/sun/jersey/server/impl/uri/rules/HttpMethodRule$1.class
+SHA1-Digest: 9G3McxOr9FCMcHrU57pc8xKj7hA=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory$ContextRe
+ solverAdapter.class
+SHA1-Digest: fe4s7JbZQmLMjcBFGvtL474vSmE=
+
+Name: com/sun/jersey/api/core/ClasspathResourceConfig.class
+SHA1-Digest: +FTNWpJ+Kdw/44CSZXrXcr1qmIU=
+
+Name: com/sun/jersey/spi/container/servlet/PerSession.class
+SHA1-Digest: FoRbYaiYL+mf52SARU1e8kA4fTE=
+
+Name: com/sun/jersey/spi/container/servlet/ServletContainer.class
+SHA1-Digest: b2xzImMGqaTeXAMtxBRGS+Xub8U=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/StringRea
+ derProviders$TypeValueOf$1.class
+SHA1-Digest: 1diLoluxqaBCuS03c57Be5iNTYE=
+
+Name: META-INF/services/com.sun.jersey.spi.container.ContainerProvider
+SHA1-Digest: S8MA4Fmx3YIK68uQyfDhYA/+dt8=
+
+Name: com/sun/jersey/api/ParamException$FormParamException.class
+SHA1-Digest: pSpFBdm9G2QtzGD9htSB+xUlUv4=
+
+Name: com/sun/jersey/json/impl/JaxbProvider.class
+SHA1-Digest: Gh9pzcasT6Ls38jl3ttw3szy8mE=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCComponentProviderFactor
+ y.class
+SHA1-Digest: W2dZtOy/K5pNHZYNJs77OrwE3z0=
+
+Name: com/sun/jersey/server/impl/application/ExceptionMapperFactory$Ex
+ ceptionMapperType.class
+SHA1-Digest: v+/5j5YkU8Dz5VSrZ3WRECqYSvM=
+
+Name: com/sun/jersey/server/impl/inject/AbstractHttpContextInjectable$
+ 1.class
+SHA1-Digest: qZRxbVa+bzxBxbgk9w8dnDnkip4=
+
+Name: com/sun/jersey/core/spi/factory/AbstractRuntimeDelegate.class
+SHA1-Digest: YRhqvVfA39W28wjv+AtCFTA3Ss8=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedMemberImpl.class
+SHA1-Digest: ynX7WK/iEMJ+hQ6jUCLbSWF4Dhc=
+
+Name: com/sun/jersey/api/JResponseAsResponse.class
+SHA1-Digest: S76HHJievoVhQCI12Cm8qsNV5dY=
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory$1.class
+SHA1-Digest: 3z0Yw7T05q2UvBAfY83gTFpxmBc=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$ParamAnnotationHelper.class
+SHA1-Digest: 55vCiUw1JfO1QHpRBhMnsi0ypXg=
+
+Name: com/sun/jersey/atom/rome/impl/provider/entity/AtomEntryProvider.
+ class
+SHA1-Digest: 3PsZ4FbWM5eQjfQWEF/VmAm911g=
+
+Name: plugin.properties
+SHA1-Digest: KZYeOoF1Vofv/AFhpwn/+5RbESU=
+
+Name: com/sun/jersey/spi/container/servlet/WebFilterConfig.class
+SHA1-Digest: k4V9BdxALm5q067z4HX1vzp19j8=
+
+Name: com/sun/jersey/server/impl/component/IoCResourceFactory$Undefine
+ dWrapper.class
+SHA1-Digest: +ADNMUI/k85hq0Paa/Uh0KYPEX4=
+
+Name: com/sun/jersey/core/header/ParameterizedHeader.class
+SHA1-Digest: k3p9wO99V0zgGHCbDRRpVWOw6vQ=
+
+Name: com/sun/jersey/spi/inject/InjectableProvider.class
+SHA1-Digest: BG2fTCKT180ne5qv7EmSQiNyuuw=
+
+Name: com/sun/jersey/server/impl/wadl/WadlMethodFactory.class
+SHA1-Digest: lDJAGquO7Q+zEqWaQVhMmq0OfuM=
+
+Name: com/sun/jersey/fastinfoset/impl/provider/entity/FastInfosetRootE
+ lementProvider.class
+SHA1-Digest: i64oFkIOq2sYfSKnRgwGrnTvXNo=
+
+Name: com/sun/jersey/api/client/Client.class
+SHA1-Digest: uJItTjJSJ252P4qcp+pztkkC/Aw=
+
+Name: com/sun/jersey/core/impl/provider/entity/EntityHolderReader.clas
+ s
+SHA1-Digest: iBv/jroqGGjsUNKc60yYQi5arMU=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$19$1.c
+ lass
+SHA1-Digest: pjXOROc5fMVczYG2q8O4pKzN1zM=
+
+Name: com/sun/jersey/server/impl/template/TemplateViewProcessor.class
+SHA1-Digest: mDsBy33QFA502PXeNQ0UAZ5yJVs=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLListElementProvider$
+ App.class
+SHA1-Digest: rml7xcMhUDuqUZKe+CMvKTVv5MM=
+
+Name: com/sun/jersey/core/spi/factory/ResponseBuilderImpl.class
+SHA1-Digest: hlkCUXdE8jXrkWaxHj/XLiDa8pk=
+
+Name: com/sun/jersey/spi/template/TemplateContext.class
+SHA1-Digest: /jFvdLt27SnNuUjeoGhQTwhkiT4=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Extractor
+ ContainerException.class
+SHA1-Digest: AMWd/tQ9R+z9jBTYzYLKNA3cb+k=
+
+Name: com/sun/research/ws/wadl/ResourceType.class
+SHA1-Digest: zEzAfXd4pZ4i1Qp2dQN9NyPqp+Y=
+
+Name: com/sun/jersey/json/impl/FilteringInputStream.class
+SHA1-Digest: t/IlSAZmFCaaW1medFn5FC6o9Go=
+
+Name: com/sun/jersey/api/client/async/AsyncClientHandler.class
+SHA1-Digest: f+oDAd6w3hmCkt35XVBYfhI0raw=
+
+Name: com/sun/jersey/server/impl/model/parameter/CookieParamInjectable
+ Provider$CookieTypeParamInjectable.class
+SHA1-Digest: ANbp6cP0GST+jKBo4273OylW8zY=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/ParamDoc
+ Type.class
+SHA1-Digest: G8WLS+Wbw+iRyO1gK57w8xSGnJ8=
+
+Name: com/sun/jersey/core/spi/scanning/uri/FileSchemeScanner.class
+SHA1-Digest: u1cjX2ZzONMMPqBh0PRgOXPFDXE=
+
+Name: com/sun/jersey/json/impl/impl.properties
+SHA1-Digest: Q26K1APaqjZDKw99GYvIYSi6Dds=
+
+Name: com/sun/research/ws/wadl/Option.class
+SHA1-Digest: vZ3y2rogs3kFcMTaxLZ5C4y6+y4=
+
+Name: com/sun/jersey/core/header/reader/CookiesParser.class
+SHA1-Digest: 8pcp+q3oAxSIgUQfghZZ1hEy6k8=
+
+Name: com/sun/jersey/server/impl/model/parameter/multivalued/Collectio
+ nStringExtractor$SetString.class
+SHA1-Digest: Ln8nLdB6C4eJMCg4xa5tQu1rtd0=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$22$1.c
+ lass
+SHA1-Digest: Y9Bzid0pDCkj71E8pQlHco+NQIw=
+
+Name: com/sun/jersey/api/json/JSONMarshaller.class
+SHA1-Digest: gnry1bADkjV8OwYK4Kw+nkBHeVY=
+
+Name: com/sun/jersey/server/impl/container/servlet/ServletAdaptor.clas
+ s
+SHA1-Digest: mGipgqHvlfpBgASbYxreX8KQoFE=
+
+Name: com/sun/jersey/spi/scanning/servlet/WebAppResourcesScanner$1.cla
+ ss
+SHA1-Digest: hwoU9Nod1Zrnvh4Ze4UUKK9oLps=
+
+Name: com/sun/jersey/spi/inject/Errors$ErrorMessage.class
+SHA1-Digest: BvNTPXKI81l4o9SxbgiaT7LsFKo=
+
+Name: com/sun/jersey/core/impl/provider/entity/SourceProvider$SAXSourc
+ eReader.class
+SHA1-Digest: sRNGCEiJPmqKcipxQrYgnNMElwk=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory$PerRequest
+ Proxied.class
+SHA1-Digest: cvd3ITAuwdPfd+lv/F1kIddRY1M=
+
+Name: com/sun/jersey/core/spi/factory/InjectableProviderFactory$2.clas
+ s
+SHA1-Digest: 8MyEc4a3EeksMMr4qOP3WQfR+Oc=
+
+Name: com/sun/jersey/spi/template/TemplateProcessor.class
+SHA1-Digest: cZImrJb1HcEvGdF5gsu8xmel57A=
+
+Name: com/sun/jersey/server/impl/model/parameter/FormParamInjectablePr
+ ovider$FormParamInjectable.class
+SHA1-Digest: +SWMCBtWpE4Ipjs8qjG73ioFY9M=
+
+Name: com/sun/jersey/json/impl/reader/CharactersEvent.class
+SHA1-Digest: D5ZTO6G1vwuTBicmxQNbAn9pLTg=
+
+Name: com/sun/jersey/api/client/TerminatingClientHandler.class
+SHA1-Digest: i1/voAweMCoKd21ve5mSC85Jruo=
+
+Name: com/sun/jersey/spi/inject/ServerSide.class
+SHA1-Digest: KpNCU1ff7+NmF0HfjAsPQLNQP58=
+
+Name: com/sun/jersey/core/spi/scanning/ScannerException.class
+SHA1-Digest: r2gKN46GpS2LyVT7CWi/A/MczTI=
+
+Name: com/sun/jersey/core/impl/provider/header/URIProvider.class
+SHA1-Digest: reGePRvtzwX/spH7mTaPTSahApY=
+
+Name: com/sun/jersey/core/spi/factory/ContextResolverFactory$1.class
+SHA1-Digest: UR/eBSkV0iDUjdgc1GFFhBZpLrw=
+
+Name: com/sun/jersey/core/util/KeyComparatorHashMap$KeyIterator.class
+SHA1-Digest: SQAQ0GSoVROoL3UVkCSsHKdAtVY=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorConfig$WadlGenerator
+ ConfigImpl.class
+SHA1-Digest: 5jJnt4Tzodil6Z/KJ19Ab0zzfRE=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension.class
+SHA1-Digest: /4rClDhtJBTUddIGbdiqU853/Qs=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$2.class
+SHA1-Digest: K7LWczqJvUql26goU6SqqcwnSmo=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$1
+ .class
+SHA1-Digest: wl/pghNylD/51vjSwYl7KzsklFE=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractJAXBElementProvider.cl
+ ass
+SHA1-Digest: 9ohkMcEKhOnLbT2j1hmOUHJjHdM=
+
+Name: com/sun/jersey/spi/resource/Singleton.class
+SHA1-Digest: 9LsjTi62cO23RDnr+CnfuGTv1RE=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$3.clas
+ s
+SHA1-Digest: zxaooXxCARglSCU6UpEj6YtMbK0=
+
+Name: com/sun/jersey/api/container/filter/LoggingFilter$Adapter.class
+SHA1-Digest: EKnWnV0GrfawJ7aMSKw5DCPYya4=
+
+Name: com/sun/jersey/api/core/ResourceConfig.class
+SHA1-Digest: bHH878nUb3FoWVN1WQBunC5nE78=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$Builder.class
+SHA1-Digest: W9PmbUG5UI1tWFz9vGOeC3whFNA=
+
+Name: com/sun/jersey/json/impl/NameUtil.class
+SHA1-Digest: 0YafTl7e9m+YfyOTYv/kJyFrILA=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONListElementProvider
+ .class
+SHA1-Digest: fAXKIeugM+UZIseeFSzQ26zPgBk=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCProviderFactory$Proxied
+ SingletonWrapper.class
+SHA1-Digest: XEt/I0G3Nz7++K30SJ+gtbuBttc=
+
+Name: com/sun/jersey/core/impl/provider/entity/ByteArrayProvider.class
+SHA1-Digest: zdAVkVlJrrw+g1ekWmyWP8xJARQ=
+
+Name: com/sun/jersey/server/impl/modelapi/annotation/IntrospectionMode
+ ller$4.class
+SHA1-Digest: JQFt/kzktQKGBrwPc+rmzZJOOQ0=
+
+Name: com/sun/jersey/api/container/filter/RolesAllowedResourceFilterFa
+ ctory$Filter.class
+SHA1-Digest: TEKrNMm6xgdrYEHiTeAYNI07Rnw=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$7$1.cl
+ ass
+SHA1-Digest: mNz+svZmE+DjLEMoc545uEedeWg=
+
+Name: com/sun/jersey/server/impl/uri/rules/CombiningMatchingPatterns$X
+ Interator.class
+SHA1-Digest: k30ArgPKzCEEasXtHVkRxhV7NuI=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory$
+ AggregatedDispatchingListener.class
+SHA1-Digest: cYmcf58/9O1iBIHxWs+SsbECq2A=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$MappedBuilder.class
+SHA1-Digest: NpNL7Ax4B0FIOK6TXZYifQoozys=
+
+Name: com/sun/jersey/core/spi/component/ComponentConstructor$Construct
+ orInjectablePair.class
+SHA1-Digest: P09lHAUeDeAqQcNysYYn3QbXwh8=
+
+Name: com/sun/jersey/server/impl/resource/PerRequestFactory$AbstractPe
+ rRequest.class
+SHA1-Digest: B0UrqiHDB3zmAp/lvt1E1oY6avk=
+
+Name: META-INF/services/com.sun.jersey.spi.container.ResourceMethodDis
+ patchProvider
+SHA1-Digest: WfGD+t+v18QUD7JQY1M+p+4SZ64=
+
+Name: com/sun/jersey/server/impl/container/httpserver/HttpHandlerConta
+ iner$Writer.class
+SHA1-Digest: 1dy/S0hPWQnx3bkznYYLd6YCzFE=
+
+Name: com/sun/jersey/client/impl/async/FutureClientResponseListener$1.
+ class
+SHA1-Digest: Nz/JhMCkptSgQ+6RB9hc8R0+DD4=
+
+Name: com/sun/jersey/json/impl/ImplMessages.class
+SHA1-Digest: o0buX45WFjHSRBGRzyMToK+z3nk=
+
+Name: com/sun/research/ws/wadl/Application.class
+SHA1-Digest: S7c2IWH3Q9aWFSipOsqBtllfAPI=
+
+Name: com/sun/jersey/api/container/filter/GZIPContentEncodingFilter.cl
+ ass
+SHA1-Digest: Tes1MHMD0LH3qQg8naOUPclDS1E=
+
+Name: com/sun/jersey/core/header/LinkHeader.class
+SHA1-Digest: qO0mYhCkulvLlIf6qSpwYvdDOoc=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper$2.class
+SHA1-Digest: IjFAic6MnPGbCvTxcnNqb+pW4xI=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/FormDispatchPro
+ vider$FormEntityInjectable.class
+SHA1-Digest: heelCDcth5dLHgtPR5N+lF9B/jM=
+
+Name: com/sun/jersey/json/impl/SupportedJaxbProvider.class
+SHA1-Digest: 4YEDY8ZvVpdk5PMSZEwEoN8jb/I=
+
+Name: com/sun/jersey/server/impl/ThreadLocalInvoker.class
+SHA1-Digest: blfyUYdydiAJr7puc3TbnV4XqPM=
+
+Name: com/sun/jersey/server/impl/model/method/ResourceHttpOptionsMetho
+ d$OptionsRequestDispatcher.class
+SHA1-Digest: ruLA/2JsIiRGxW2ulrjc2gu6ROM=
+
+Name: com/sun/jersey/core/impl/provider/xml/TransformerFactoryProvider
+ .class
+SHA1-Digest: bBSsupejGGrHTuTGbAt0uoElfxE=
+
+Name: com/sun/jersey/spi/container/ReloadListener.class
+SHA1-Digest: 97V5jpCPe2uyCFBULzUBYXi9hI8=
+
+Name: com/sun/jersey/server/impl/uri/rules/TerminatingRule.class
+SHA1-Digest: Mdl7pizwu5AUYd0CviXMEzc/5vY=
+
+Name: com/sun/jersey/api/client/ClientHandlerException.class
+SHA1-Digest: DjKKDZsy8d3Xsa0MoQL9urjfOhg=
+
+Name: com/sun/jersey/spi/scanning/AnnotationScannerListener.class
+SHA1-Digest: UfbRZ2slnKAtEPwnV22waMkqk9I=
+
+Name: com/sun/jersey/core/header/reader/HttpHeaderReader$7.class
+SHA1-Digest: /VvclE2pT8ela/bBYj90h2qPtAQ=
+
+Name: com/sun/jersey/core/header/FormDataContentDisposition$FormDataCo
+ ntentDispositionBuilder.class
+SHA1-Digest: r9meJUXqke3F/YxdIDFwewYIlow=
+
+Name: META-INF/services/javax.ws.rs.ext.MessageBodyWriter
+SHA1-Digest: TstK1bRjltu/vUrcDlc1B0aEDt0=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedCallableImpl.class
+SHA1-Digest: NV+2YttGBkCkboxgrjUR4YpPlDg=
+
+Name: com/sun/jersey/json/impl/JSONMarshallerImpl.class
+SHA1-Digest: k/uEVZoc/VYKt3VZoRihp7B0lEk=
+
+Name: com/sun/jersey/localization/LocalizableMessage.class
+SHA1-Digest: Sb3e1CJlHJUDY+AztJ0Osj/QP8A=
+
+Name: com/sun/jersey/server/impl/cdi/AnnotatedConstructorImpl.class
+SHA1-Digest: j3mQteW0a1meicTsv2BxHa72MWE=
+
+Name: com/sun/jersey/core/impl/provider/entity/RenderedImageProvider.c
+ lass
+SHA1-Digest: tmE9vD0h2PEQY79l1MYG6WMX/TE=
+
+Name: com/sun/jersey/api/client/ClientHandler.class
+SHA1-Digest: wjAdt9GUTqVsyQJByPy8QpwSS8A=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$8.clas
+ s
+SHA1-Digest: m2Z5gx2ij/3cbGZfyFW+JqPctmM=
+
+Name: com/sun/jersey/server/impl/container/servlet/PerSessionFactory$S
+ essionMap.class
+SHA1-Digest: L16du+niR4tYL7w9iImQLMfyeac=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory$
+ AggregatedResponseListener.class
+SHA1-Digest: Z1vSFLIourls0kyvXTzwEV9JhcQ=
+
+Name: com/sun/jersey/json/impl/reader/EndElementEvent.class
+SHA1-Digest: PskV5rZ7gRnXQobHy7eyiYRhry4=
+
+Name: com/sun/jersey/spi/inject/InjectableProviderContext.class
+SHA1-Digest: yr+OQOg1snyuDpxe3A51khTRG/4=
+
+Name: com/sun/jersey/server/impl/model/parameter/HttpContextInjectable
+ Provider.class
+SHA1-Digest: K0S9+RFTNV/ofUItbiaSrB+wkUE=
+
+Name: com/sun/jersey/server/wadl/ApplicationDescription.class
+SHA1-Digest: DDsPe5Glnf6TEhVW7nNGFAjrwlk=
+
+Name: com/sun/jersey/spi/container/servlet/WebConfig.class
+SHA1-Digest: 94kL4XqS0t6JdKAkiQG5XnNwIU0=
+
+Name: com/sun/jersey/spi/service/ServiceFinder.class
+SHA1-Digest: kJIkwkuMfed3DNNkbaJAc7fzfFA=
+
+Name: com/sun/jersey/core/reflection/MethodList$3.class
+SHA1-Digest: 7nSEyu+qHSkWD/McCDlJlFZF55E=
+
+Name: com/sun/jersey/spi/service/ServiceFinder$LazyObjectIterator.clas
+ s
+SHA1-Digest: p2gZc4EZtgWbzykOTmiqglw7gEc=
+
+Name: com/sun/jersey/server/spi/component/ResourceComponentDestructor.
+ class
+SHA1-Digest: 5/Hs/49Yq1jO7vb+NweMsZ7pWyg=
+
+Name: com/sun/jersey/server/impl/container/servlet/ServletAdaptor$1.cl
+ ass
+SHA1-Digest: V2t+8BT6VsgzkDYTXbxKshYnZy4=
+
+Name: com/sun/jersey/api/client/filter/ClientFilter.class
+SHA1-Digest: mFO3Oo2x+q4pPDVkuNZNEmdxD8Y=
+
+Name: com/sun/jersey/api/json/JSONConfiguration$Notation.class
+SHA1-Digest: oEQfUPAdyql6RG9IAHknXJz7vkE=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONRootElementProvider
+ $App.class
+SHA1-Digest: zoMlWVJihRHC+ZFU7/b2qwQ7Wbk=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$Builder.class
+SHA1-Digest: E8ElUsP6x4KPNFDTW2YNacE6xz8=
+
+Name: com/sun/jersey/core/spi/factory/InjectableProviderFactory$MetaIn
+ jectableProvider.class
+SHA1-Digest: JLYriTxDH/gsAI8XAhjm5OzX9wg=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONRootElementProvider
+ $General.class
+SHA1-Digest: wJqEcykFEEybNFXghBWHssnUR0Y=
+
+Name: com/sun/jersey/spi/inject/InjectableProviderContext$InjectableSc
+ opePair.class
+SHA1-Digest: icIwfkGE5Z5sVkHmjBeQeyRyef4=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorLoader$CallbackList.
+ class
+SHA1-Digest: Ve3qxS7OxnuFnip2AnPsvNLLJBQ=
+
+Name: com/sun/jersey/api/client/UniformInterfaceException.class
+SHA1-Digest: hoFu4gyGcK0Ua/yVNIHweo7XrWA=
+
+Name: com/sun/jersey/api/json/JSONConfiguration.class
+SHA1-Digest: eS8OmSJTy1U+5th0wNsZanHixTk=
+
+Name: com/sun/jersey/localization/Localizable.class
+SHA1-Digest: b3CKXMTm+ny1k4NHY4KWj3PWu+A=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractListElementProvider$Ja
+ xbTypeChecker.class
+SHA1-Digest: Q0pYE3IPSbth36RIP33mUwRZu7Y=
+
+Name: com/sun/jersey/api/uri/UriTemplateParser$CharacterIterator.class
+SHA1-Digest: Y0RGhyOY1aDe31Yn9W5lPaZHAzQ=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$20.cla
+ ss
+SHA1-Digest: Rq3WXKSorxglkTxpvo5put5ZUsA=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/EntityParamDisp
+ atchProvider.class
+SHA1-Digest: RuCNm8U/5uoF8Rhp1aQj3VMwEu0=
+
+Name: com/sun/jersey/server/impl/monitoring/MonitoringProviderFactory$
+ EmptyListener.class
+SHA1-Digest: gT8DW+1DF5b6aSjnCcWLkEhjd68=
+
+Name: com/sun/research/ws/wadl/Grammars.class
+SHA1-Digest: QzVYKWywnk73W3m6YNQ4Ts7WRNA=
+
+Name: com/sun/jersey/json/impl/provider/entity/JSONObjectProvider$App.
+ class
+SHA1-Digest: VquhXgm9Nl64Iqoyodxjy3QRDuE=
+
+Name: com/sun/jersey/server/impl/cdi/Utils.class
+SHA1-Digest: GgZ/zTvdVZWJmImqrSWu8c/izu4=
+
+Name: com/sun/jersey/api/Responses$1.class
+SHA1-Digest: dCDvojDP1klgdvPDMqPJb2xsYQg=
+
+Name: com/sun/jersey/api/json/JSONConfigurated.class
+SHA1-Digest: eyU+B6fRCdKo08rdpl2A4d9qr2s=
+
+Name: com/sun/jersey/json/impl/writer/Stax2JacksonWriter$1.class
+SHA1-Digest: f8VUuqKQljjLCM3SiG5qntZJghI=
+
+Name: com/sun/jersey/server/impl/application/DeferredResourceConfig.cl
+ ass
+SHA1-Digest: NKBo2pr6zdmcMJYM8UpkFMi9Mms=
+
+Name: com/sun/jersey/server/impl/inject/ServerInjectableProviderContex
+ t.class
+SHA1-Digest: Kk1DDWbaiRoEnQ+s7wlUPQSSPcY=
+
+Name: com/sun/jersey/server/impl/ejb/EJBInjectionInterceptor.class
+SHA1-Digest: L7zgOGtqaVScNbLalRbrfUhoYzM=
+
+Name: com/sun/jersey/server/impl/wadl/WadlResource.class
+SHA1-Digest: PSzK8UIASOdSTZ2ppjSTlV+ooi8=
+
+Name: com/sun/jersey/api/client/ClientRequestAdapter.class
+SHA1-Digest: 1v+XbkDsxQGi/PwjrYmObJ23fJg=
+
+Name: com/sun/jersey/api/core/ClassNamesResourceConfig.class
+SHA1-Digest: tIu+zqZY13s85O+2eZxlE7pbCps=
+
+Name: com/sun/jersey/core/osgi/Activator.class
+SHA1-Digest: 9ZtWC7ze39AuhWY6+nrSCnJP14M=
+
+Name: com/sun/jersey/server/impl/resource/SingletonFactory.class
+SHA1-Digest: S2+JeFyRxSh9HfIK/GfSpypMpdA=
+
+Name: META-INF/services/com.sun.jersey.spi.HeaderDelegateProvider
+SHA1-Digest: eKb16MlS94QccEyLhYtyGgmWhjI=
+
+Name: com/sun/jersey/json/impl/writer/A2EXmlStreamWriterProxy.class
+SHA1-Digest: vacvuQEFMaQ3t1H5QOTy6qTJYdg=
+
+Name: com/sun/jersey/core/reflection/MethodList$8.class
+SHA1-Digest: bzrwHrFEhDVyKBfcpSMFOrVxyRM=
+
+Name: com/sun/jersey/api/uri/UriBuilderImpl.class
+SHA1-Digest: Va1ULicnAwMPU2Wo1u8f7Fz7IVY=
+
+Name: com/sun/jersey/server/wadl/generators/resourcedoc/model/MethodDo
+ cType.class
+SHA1-Digest: LwpC8e5omWGRu/hBwV/RNNm2JWo=
+
+Name: com/sun/jersey/server/impl/cdi/CDIComponentProviderFactoryInitia
+ lizer.class
+SHA1-Digest: l3FnTZEuZbh/7Vg+o+MVfSX1ucs=
+
+Name: com/sun/jersey/server/impl/uri/rules/AtomicMatchingPatterns.clas
+ s
+SHA1-Digest: KR0eAD0tuJ6B1+beA/IwR2VzZ0w=
+
+Name: com/sun/jersey/api/client/AsyncWebResource$4.class
+SHA1-Digest: GJ0yHs0LPjGum2Y1u9BhUva7kC8=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/AbstractResourc
+ eMethodDispatchProvider$ResponseOutInvoker.class
+SHA1-Digest: EymmMcKR7YEvLSKNJWKAlHZVOq4=
+
+Name: com/sun/jersey/api/client/config/ClientConfig.class
+SHA1-Digest: uOW9ikCnUetPpSjyUt6OM7YnqHA=
+
+Name: com/sun/jersey/api/container/ContainerFactory.class
+SHA1-Digest: 1zBG+96hEBe87b5C7ahPs/sI/mc=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$14.cla
+ ss
+SHA1-Digest: lGnAlXYrdh4BlTGpO61fU7ryIhM=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLJAXBElementProvider$
+ Text.class
+SHA1-Digest: lLgp0YC7hPSB5uzI3x8YEA0k4tw=
+
+Name: com/sun/jersey/api/client/async/TypeListener.class
+SHA1-Digest: nzAhXi16hysPV1BLzodutrRpsAI=
+
+Name: com/sun/jersey/core/reflection/ReflectionHelper$ClassTypePair.cl
+ ass
+SHA1-Digest: cP7dDz0xKLQYjsssguTie3VUp2s=
+
+Name: com/sun/jersey/json/impl/JaxbJdkXmlStructure$NodeWrapper.class
+SHA1-Digest: RSO4KJQettPfE7gupWD9H/xTGRU=
+
+Name: com/sun/jersey/spi/monitoring/ResponseListenerAdapter.class
+SHA1-Digest: gnLa5fX7p6H2XM5v3W2mQ0PSovU=
+
+Name: com/sun/jersey/spi/monitoring/DispatchingListener.class
+SHA1-Digest: gG7JWPEl1aiGiBs2VF0bL7YIGxE=
+
+Name: com/sun/jersey/core/provider/jaxb/AbstractJAXBProvider.class
+SHA1-Digest: mpX9ED1mmTdXo9lDFzQlu5a1YkQ=
+
+Name: com/sun/jersey/server/wadl/generators/AbstractWadlGeneratorGramm
+ arGenerator$3.class
+SHA1-Digest: wE32sHBs3Kk3ZMifcq6elCbPF0U=
+
+Name: com/sun/jersey/json/impl/MoxyXmlStructure$EntityType.class
+SHA1-Digest: nik40ego5rFXw8qSjDjWXWv8Nzw=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$18$1.c
+ lass
+SHA1-Digest: uZBxSkWz0LyNgctpAKo6Bcx3t6I=
+
+Name: com/sun/jersey/api/client/filter/HTTPDigestAuthFilter$State.clas
+ s
+SHA1-Digest: 6TGcxArq45QSehk8uJ3tF89H5MU=
+
+Name: com/sun/jersey/spi/container/JavaMethodInvokerFactory.class
+SHA1-Digest: LfWOdMmuMdWJcghkKoxbC87Vwak=
+
+Name: com/sun/jersey/server/impl/model/method/dispatch/ResourceJavaMet
+ hodDispatcher.class
+SHA1-Digest: M0sGLs+GQ21TAnVuvAfw+cAoraA=
+
+Name: com/sun/jersey/server/impl/ejb/EJBRequestDispatcherProvider$1.cl
+ ass
+SHA1-Digest: O4VMFe+jZ0aLwP6OrU+vwLB6TOw=
+
+Name: com/sun/jersey/core/impl/provider/entity/XMLListElementProvider$
+ Text.class
+SHA1-Digest: h9AF5xVDkIdZwlTA0es1OE3Bg+E=
+
+Name: com/sun/jersey/core/impl/provider/entity/InputStreamProvider.cla
+ ss
+SHA1-Digest: Qi13vLfkxina24rFovwsloK7lfg=
+
+Name: com/sun/jersey/server/impl/container/grizzly/GrizzlyContainer$Co
+ ntextInjectableProvider.class
+SHA1-Digest: gf4i14uxwt1zmN2FnVqkXngOtEE=
+
+Name: com/sun/jersey/api/client/ViewResource$1.class
+SHA1-Digest: Tfbs3ODxSEVrAz34RhNwQyXlFAw=
+
+Name: com/sun/jersey/core/util/StringKeyObjectValueIgnoreCaseMultivalu
+ edMap.class
+SHA1-Digest: rMn2IZ1Pz0J3sdYiGwwWIAy6vD0=
+
+Name: com/sun/jersey/server/wadl/WadlGeneratorImpl.class
+SHA1-Digest: jE0GhOY0wR15Y8+Mu26fR0PZ33Y=
+
+Name: com/sun/jersey/json/impl/BaseJSONUnmarshaller.class
+SHA1-Digest: UHiCK+k3BON4Z/N25KJBHjIxLms=
+
+Name: com/sun/jersey/server/impl/application/WebApplicationImpl$21$1.c
+ lass
+SHA1-Digest: gxNUWI/g14vBRpYmKZmwOpTanmU=
+
+Name: com/sun/jersey/core/header/MediaTypes$4.class
+SHA1-Digest: u6Sv3PTggyjDwg1JwZPeMOlKnWA=
+
+Name: com/sun/jersey/api/container/filter/PostReplaceFilter.class
+SHA1-Digest: phuTxGdSstjyH+yLiQyDxVT7IQ0=
+
+Name: com/sun/jersey/server/probes/UriRuleProbeProvider.class
+SHA1-Digest: nkTeEpMj/sGuFXgpb4NDkDt7zN8=
+
+Name: com/sun/jersey/core/spi/component/ioc/IoCComponentProcessor.clas
+ s
+SHA1-Digest: bwZN+r31J/nJiR0H7kAXBsM8f4A=
+
+Name: com/sun/jersey/server/impl/component/IoCResourceFactory$Singleto
+ nWrapper.class
+SHA1-Digest: 5GoyIACHoFs/HHV5NgZBQ0K96zc=
+
+Name: com/sun/jersey/api/client/filter/LoggingFilter$Adapter.class
+SHA1-Digest: /h3avusYjVbePW1pkPV1MyeUscU=
+
+Name: com/sun/jersey/api/container/filter/PostReplaceFilter$ConfigFlag
+ .class
+SHA1-Digest: PQdojnjCRetPXyh8Vr4MkHTKA9U=
+
+Name: com/sun/jersey/server/wadl/WadlGenerator$ExternalGrammarDefiniti
+ on.class
+SHA1-Digest: vUp1Eke0VK0y9DbFdvUOTotC1ZA=
+
+Name: com/sun/jersey/server/impl/cdi/CDIExtension$JNDIContextDiver.cla
+ ss
+SHA1-Digest: 0Co7ayb0k9RtwwpMh1Q/BDE/hUo=
+
+Name: com/sun/jersey/api/wadl/config/WadlGeneratorDescription.class
+SHA1-Digest: ZeB2XkuZUQZtQIB1se7VyL+TMzU=
+
+Name: com/sun/jersey/localization/LocalizableMessageFactory.class
+SHA1-Digest: iufb2lyd1WV7sl9iOIP/35L61aw=
+
+Name: com/sun/jersey/json/impl/JSONUnmarshallerImpl.class
+SHA1-Digest: uOk75uyuPP89kPfNOxy5N8gROaU=
+

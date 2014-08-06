@@ -59,7 +59,17 @@ functional tests for checking whether the bundle is really working
 The unit tests showed some bugs in Concierge and some bugs in bundles installed in Concierge due to 
 dependencies, in most cases dependencies to Equinox.
 
-### Identified bugs in Concierge
+### Open bugs in Concierge
+
+* [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
+* [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
+* [#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504) (Open)
+* [#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505) (Open)
+
+The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src/org/eclipse/concierge
+The code patches are marked with conditional compilation based on Concierge.PATCH_JOCHEN.
+
+### Closed bugs in Concierge
 
 * ~~[#431172 "Require-Bundle: system.bundle" directive is not working](https://bugs.eclipse.org/bugs/show_bug.cgi?id=431172)~~ (Closed)
 * ~~[#432100 Fragment will not be resolved when having Require-Bundle header included](https://bugs.eclipse.org/bugs/show_bug.cgi?id=432100)~~ (Closed)
@@ -71,12 +81,7 @@ dependencies, in most cases dependencies to Equinox.
 * ~~[#439184 ClassCastException in Concierge.storeProfile()](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439184)~~ (Closed)
 * ~~[#433345 OSGi bootdelegation is not supported](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433345)~~ (Closed)
 * ~~[#433346 org.eclipse.osgi.services can NOT be resolved when systempackages property is specified](https://bugs.eclipse.org/bugs/show_bug.cgi?id=433346)~~ (Rejected)
-* [#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
-  * Note for testing: the test case itself does work, but on console it complains with
-```
-[Mon Jul 21 11:56:30 CEST 2014] [INFO] 	RETURNED []
-Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plugin.xml". Any contributed extensions and extension points will be ignored.
-```
+* ~~[#438781 Loading of localized files in bundle will fail due to wrong path](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781)~~ (Closed)
 * ~~[#439182 org.osgi.service.condpermadmin package is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Closed)
   * Note: added an extension bundle which provides the missing classes. This needs to be installed first when missing classes are needed (e.g. for Equinox console).
 * ~~[#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469)~~ (Closed)
@@ -84,35 +89,21 @@ Error:  Could not parse XML contribution for "org.eclipse.equinox.registry//plug
 * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed)
   * Note: as commented in bug this missing functionality is added as separate bundle to keep core code of Concierge as small as possible
 * ~~[#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751)~~ (Rejected)
-  * Note: raise a bug against Apache Felix DS
+  * Note: TODO raise a bug against Apache Felix DS
 * ~~[#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947)~~ (Resolved)
 * ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
-* [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
 * ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
-* [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
-* [#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504) (Open)
-* [#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505) (Open)
-
-From Tim Verbelen:
-* [#440227 Boot delegation of com.sun.* and sun.* packages](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440227) (Open)
-  * Patch available: let com.sun.jersey.*, com.sun.ws.* packages to be loaded from BundleClassloader
+* ~~[#440227 Boot delegation of com.sun.* and sun.* packages](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440227)~~ (Closed)
   * Seems that Equinox and Felix also do not have easy working solutions.
   * See also workarounds at e.g.
     * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
     * https://github.com/tux2323/jersey.sample.osgiservice
-  
-From Harini Siresena:
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
-
-
-The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src/org/eclipse/concierge
-The code patches are marked with conditional compilation based on Concierge.PATCH_JOCHEN.
 
 ### Identified bugs in other bundles
 
 * Equinox
   * Equinox Console bundle
-    * ~~[#439182 Equinox.console will require condpermadmin which is missing in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439182)~~ (Closed)
     * [#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180) (Open)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
       * Workaround: see patch equinox-console: change MANIFEST according.
@@ -120,11 +111,6 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * [#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445) (Open)
       * Workaround: see patch equinox-supplement: added missing classes.
         See https://github.com/JochenHiller/concierge-tests/tree/master/patches/equinox-supplement/
-  * Equinox Registry
-    * Bugs in Concierge:
-      * [#438781 Will fail as plugin.properties can not be loaded](https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781) (Open)
-  * Equinox DS
-    * no problems in DS, only in dependent bundles
 * Jetty
   * Jetty OSGi Boot bundle
     * [#440506 Jetty OSGi boot bundle does not support OSGi framework Eclipse Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440506) (Open)

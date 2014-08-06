@@ -2492,19 +2492,22 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 				// Step 1: delegate java.* to the parent class loader
 				// Step 2: delegate org.osgi.framework.bootdelegation to the
 				// parent class loader
-				boolean isComSunPackage;
-				if (Concierge.PATCH_JOCHEN) {
-					// needs real solution, just a workaround
-					isComSunPackage = (pkg.startsWith("com.sun.")
-							&& !pkg.startsWith("com.sun.jersey.") && !pkg
-							.startsWith("com.sun.ws.rs.ext")) && !pkg
-							.startsWith("com.sun.research.ws.wadl");
-				} else {
-					isComSunPackage = pkg.startsWith("com.sun.");
-				}
-				if (pkg.startsWith("java.") || pkg.startsWith("sun.")
-						|| isComSunPackage
-						|| framework.bootdelegation(pkg)) {
+//				boolean isComSunPackage;
+//				if (Concierge.PATCH_JOCHEN) {
+//					// needs real solution, just a workaround
+//					isComSunPackage = (pkg.startsWith("com.sun.")
+//							&& !pkg.startsWith("com.sun.jersey.") && !pkg
+//							.startsWith("com.sun.ws.rs.ext")) && !pkg
+//							.startsWith("com.sun.research.ws.wadl");
+//				} else {
+//					isComSunPackage = pkg.startsWith("com.sun.");
+//				}
+//				if (pkg.startsWith("java.") || pkg.startsWith("sun.")
+//						|| isComSunPackage
+//						|| framework.bootdelegation(pkg)) {
+					
+				if (pkg.startsWith("java.") || framework.bootdelegation(pkg)) {
+		
 					if (isClass) {
 						return getParent().loadClass(name);
 					} else {
@@ -3530,18 +3533,17 @@ public class BundleImpl extends AbstractBundle implements BundleStartLevel {
 									basename.toCharArray(), 0) == 0) {
 						try {
 							// See bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=438781
-							if (Concierge.PATCH_JOCHEN) {
+							if (!Concierge.PATCH_JOCHEN) {
 								results.add(createURL(
 										toTest.getAbsolutePath()
 											.substring(toTest.getAbsolutePath().indexOf(storageLocation + File.separatorChar)
 														+(storageLocation + File.separatorChar).length())
 															, null));
 							} else {
+								final String absPath = toTest.getAbsolutePath();
 								results.add(createURL(
-										toTest.getAbsolutePath()
-											.substring(
-													(storageLocation + File.separatorChar)
-															.length()), null));
+										 absPath.substring(absPath.indexOf(storageLocation)
+										         +(storageLocation).length() + 1), null));
 							}
 						} catch (final IOException ex) {
 							// do nothing, URL will not be added to

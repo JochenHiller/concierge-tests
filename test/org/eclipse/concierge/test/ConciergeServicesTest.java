@@ -113,7 +113,7 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			// add some classes to take from boot classloader
 			// otherwise the classes are taken from wrong classloaders
 			launchArgs.put("org.osgi.framework.bootdelegation",
-					"javax.xml.parsers,org.xml.sax");
+					"com.sun.org.apache.xerces.internal.jaxp,javax.xml.parsers,org.xml.sax");
 			// add javax.xml.parsers to system extra packages
 			// needed as bundle service.xmlparser will make an import package of
 			// XML parsers

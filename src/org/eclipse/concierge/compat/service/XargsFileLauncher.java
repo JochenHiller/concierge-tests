@@ -212,7 +212,7 @@ public class XargsFileLauncher {
 								token = token.substring(0, comment).trim();
 							}
 							value = value.substring(0, value.length() - 1)
-									.trim() + token;
+									.trim() + token.trim();
 						}
 						if (Concierge.PATCH_JOCHEN) {
 							value = replaceVariable(value, properties);

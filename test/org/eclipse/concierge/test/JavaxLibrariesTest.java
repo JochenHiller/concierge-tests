@@ -212,6 +212,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	public void test14InstallAndStartSunJersey() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.bootdelegation", "sun.,");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");
@@ -236,6 +237,7 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 	public void test15SunJerseyLoadJacksonClasses() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.bootdelegation", "sun.,");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,org.w3c.dom,org.xml.sax");

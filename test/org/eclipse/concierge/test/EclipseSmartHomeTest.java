@@ -105,9 +105,10 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	public void test10EclipseSmartHome() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.bootdelegation",
-					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,"
-							+ "javax.xml.transform,javax.script");
+			launchArgs
+					.put("org.osgi.framework.bootdelegation",
+							"sun.,com.sun.org.apache.xerces.internal.jaxp,javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,"
+									+ "javax.xml.transform,javax.script");
 			launchArgs
 					.put("org.osgi.framework.system.packages.extra",
 							"javax.imageio,javax.imageio.metadata,"
@@ -137,7 +138,8 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"javax.activation_1.1.0.v201211130549.jar",
 					// "javax.xml.stream_1.0.1.v201004272200.jar",
 					// "javax.xml.bind_2.2.0.v201105210648.jar",
-					// TODO hmm: commons-net requires javax.servlet <3.1, jetty >=3.1
+					// TODO hmm: commons-net requires javax.servlet <3.1, jetty
+					// >=3.1
 					"javax.servlet_3.0.0.v201112011016.jar",
 					"javax.servlet_3.1.0.v20140303-1611.jar",
 					B_JETTY("org.eclipse.jetty.util"),

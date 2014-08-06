@@ -82,13 +82,6 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test05XArgsPropertiesReplaceProperties() throws Exception {
-		runOK("-Dprop1=value1\n" + "-Dprop2=${prop1}");
-		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
-		Assert.assertEquals("value1", getFrameworkProperty("prop2"));
-	}
-
-	@Test
 	public void test04XArgsMultiplePropertiesInOneLine() throws Exception {
 		runOK("-Dprop1=value1\n" + "-Dprop2=value2");
 		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
@@ -112,6 +105,13 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 		Assert.assertEquals("value2", getFrameworkProperty("prop2"));
 		Assert.assertEquals("ABCvalue1XXXvalue2XYZ",
 				getFrameworkProperty("prop3"));
+	}
+
+	@Test
+	public void test05XArgsPropertiesReplaceProperties() throws Exception {
+		runOK("-Dprop1=value1\n" + "-Dprop2=${prop1}");
+		Assert.assertEquals("value1", getFrameworkProperty("prop1"));
+		Assert.assertEquals("value1", getFrameworkProperty("prop2"));
 	}
 
 	@Test
@@ -248,7 +248,8 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 		runOK("-Dcache.dir=./target/localCache\n"
 				+ "-Dplugins.dir=./test/plugins\n"
 				+ "-Dpatched.dir=./target/patched\n"
-				+ "-Dorg.osgi.framework.bootdelegation=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,javax.xml.transform,javax.script\n"
+				+ "-Dorg.osgi.framework.bootdelegation=sun.,com.sun.org.apache.xerces.internal.jaxp,\\\n"
+				+ " javax.xml.parsers,org.xml.sax,org.xml.sax.helpers,javax.xml.transform,javax.script\n"
 				+ "-Dorg.osgi.framework.system.packages.extra=javax.xml.parsers,org.xml.sax,org.xml.sax.helpers\n"
 				+ "-install ${plugins.dir}/org.eclipse.concierge.extension.permission_1.0.0.201408052201.jar\n"
 				+ "-istart ${plugins.dir}/org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar\n"

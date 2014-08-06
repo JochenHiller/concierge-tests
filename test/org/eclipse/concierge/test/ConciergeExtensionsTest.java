@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.osgi.framework.Bundle;
@@ -48,6 +49,7 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
+	@Ignore
 	public void test01FrameworkExtensionFragmentOfConcierge() throws Exception {
 		try {
 			startFramework();
@@ -89,6 +91,7 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
+	@Ignore
 	public void test02FrameworkExtensionFragmentOfSystemBundle()
 			throws Exception {
 		try {
@@ -115,6 +118,7 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 	 * to change the extension bundle to a fragment later.
 	 */
 	@Test
+	@Ignore
 	public void test10ConciergeExtensionPermission() throws Exception {
 		try {
 			startFramework();

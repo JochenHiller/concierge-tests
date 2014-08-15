@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -35,16 +36,17 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	public void test01GetClassFromBootdelegationMissing() throws Exception {
 		try {
 			startFramework();
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			final Bundle bundle = installBundle(
-					"concierge.test.test01GetClassFromBootdelegationMissing",
-					manifestEntries);
-			bundle.start();
-			assertBundleResolved(bundle);
+			// Install pseudo bundle
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test01GetClassFromBootdelegationMissing")
+					.addManifestHeader("Bundle-Version", "1.0.0");
+			final Bundle bundleUnderTest = installBundle(builder);
+			bundleUnderTest.start();
+			assertBundleResolved(bundleUnderTest);
 
 			final String className = "javax.imageio.ImageTranscoder";
-			RunInClassLoader runner = new RunInClassLoader(bundle);
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			try {
 				runner.getClass(className);
 				Assert.fail("Oops, ClassNotFoundException expected");
@@ -59,7 +61,7 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	/**
 	 * This test will install a bundle which refers to a class from Java runtime
 	 * (<code>javax.imageio</code>). As this <code>javax</code> package is added
-	 * to bootdelegation, the class be used which is checked via reflection.
+	 * to boot delegation, the class be used which is checked via reflection.
 	 */
 	@Test
 	public void test02GetClassFromBootdelegationOK() throws Exception {
@@ -68,16 +70,17 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 			launchArgs
 					.put("org.osgi.framework.bootdelegation", "javax.imageio");
 			startFrameworkClean(launchArgs);
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			final Bundle bundle = installBundle(
-					"concierge.test.test02GetClassFromBootdelegationOK",
-					manifestEntries);
-			bundle.start();
-			assertBundleResolved(bundle);
+
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test02GetClassFromBootdelegationOK")
+					.addManifestHeader("Bundle-Version", "1.0.0");
+			final Bundle bundleUnderTest = installBundle(builder);
+			bundleUnderTest.start();
+			assertBundleResolved(bundleUnderTest);
 
 			final String className = "javax.imageio.ImageTranscoder";
-			RunInClassLoader runner = new RunInClassLoader(bundle);
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			Class<?> clazz = runner.getClass(className);
 			Assert.assertNotNull(clazz);
 		} finally {
@@ -93,7 +96,8 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	public void test10SystemPackages() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages.extra", "p1,p2,p3");
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"p1,p2,p3");
 			startFramework(launchArgs);
 		} finally {
 			stopFramework();
@@ -109,7 +113,8 @@ public class FrameworkLaunchArgsTest extends AbstractConciergeTestCase {
 	public void test11SystemPackagesTrailingComma() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs.put("org.osgi.framework.system.packages.extra", "p1,p2,p3,");
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"p1,p2,p3,");
 			startFramework(launchArgs);
 		} finally {
 			stopFramework();

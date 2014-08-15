@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -75,34 +76,6 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 					asEmfBuild("org.eclipse.emf.common"),
 					asEmfBuild("org.eclipse.emf.ecore"), });
 			assertBundlesResolved(bundles);
-		} finally {
-			stopFramework();
-		}
-	}
-
-	@Test
-	public void test02EclipseEMFCoreCheckStartup() throws Exception {
-		try {
-			final Map<String, String> launchArgs = new HashMap<String, String>();
-			launchArgs
-					.put("org.osgi.framework.system.packages.extra",
-							"javax.crypto,javax.crypto.spec,"
-									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
-									+ "org.xml.sax,org.xml.sax.helpers");
-			startFrameworkClean(launchArgs);
-			final Bundle[] bundles = installAndStartBundles(new String[] { asEmfBuild("org.eclipse.emf.common"), });
-			assertBundlesResolved(bundles);
-
-			Bundle bundleUnderTest = installAndStartBundle(asEmfBuild("org.eclipse.emf.ecore"));
-			assertBundleResolved(bundleUnderTest);
-
-			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
-			Object _void = runner
-					.callClassMethod(
-							"org.eclipse.emf.ecore.plugin.EcorePlugin$ExtensionProcessor",
-							"process", new Object[] { bundleUnderTest
-									.getClass().getClassLoader() });
-			Assert.assertNull(_void);
 		} finally {
 			stopFramework();
 		}
@@ -174,23 +147,23 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 			assertBundlesResolved(bundles);
 
 			// Install a test bundle which is using the EMF examples bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Import-Package",
-			// "org.eclipse.emf.common.util, "
-			// "org.eclipse.emf.ecore.resource.impl, "
-					"org.eclipse.emf.ecore.xmi.impl, "
-							+ "org.eclipse.emf.examples.extlibrary");
-			final Bundle testBundle = installBundle(
-					"concierge.test.testEclipseEMFCommonInstallAndWork",
-					manifestEntries);
-			enforceResolveBundle(testBundle);
-			assertBundleResolved(testBundle);
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.testEclipseEMFCommonInstallAndWork")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Import-Package",
+					// "org.eclipse.emf.common.util, "
+					// "org.eclipse.emf.ecore.resource.impl, "
+							"org.eclipse.emf.ecore.xmi.impl, "
+									+ "org.eclipse.emf.examples.extlibrary");
+			final Bundle bundleUnderTest = installBundle(builder);
+			enforceResolveBundle(bundleUnderTest);
+			assertBundleResolved(bundleUnderTest);
 
 			// run in class loader of examples bundle
 			// checkIfEMFIsWorking(bundles[3]);
 			// TODO should run in test bundle too later
-			checkIfEMFIsWorking(testBundle);
+			checkIfEMFIsWorking(bundleUnderTest);
 		} finally {
 			stopFramework();
 		}
@@ -275,7 +248,60 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test20EclipseXtext() throws Exception {
+	public void test20EclipseEMFCoreCheckStartup() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs
+					.put("org.osgi.framework.system.packages.extra",
+							"javax.crypto,javax.crypto.spec,"
+									+ "javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,"
+									+ "org.xml.sax,org.xml.sax.helpers");
+			startFrameworkClean(launchArgs);
+
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.util_1.0.500.v20130404-1337.jar",
+					"org.apache.felix.gogo.runtime_0.10.0.v201209301036.jar",
+					// required by Equinox Console, is not optional
+					"org.eclipse.concierge.extension.permission_1.0.0.201408052201.jar",
+					"org.eclipse.equinox.console_1.1.0.v20140131-1639.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
+					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar",
+					asEmfBuild("org.eclipse.emf.common"), });
+			assertBundlesResolved(bundles);
+
+			Bundle emfBundle = installAndStartBundle("org.eclipse.emf.ecore_2.10.1.201408112208.jar");
+			assertBundleResolved(emfBundle);
+
+			// Install a test bundle which is using the EMF examples bundle
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test02EclipseEMFCoreCheckStartup")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Import-Package",
+							"org.eclipse.core.runtime;registry=split;");
+			final Bundle bundleUnderTest = installBundle(builder);
+			bundleUnderTest.start();
+			assertBundleResolved(bundleUnderTest);
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Object o = runner
+					.getService("org.eclipse.core.runtime.IExtensionRegistry");
+			Assert.assertNotNull(o);
+			Object extensions = runner.callMethod(o, "getExtensions",
+					new Object[] { "org.eclipse.core.resources" });
+			Assert.assertNotNull(extensions);
+			System.out.println(extensions);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test30EclipseXtext() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs

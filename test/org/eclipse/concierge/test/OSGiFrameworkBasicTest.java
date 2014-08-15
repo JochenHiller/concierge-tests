@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -34,14 +35,15 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 	public void test01InstallAndStartManifestWithRequireBundleSystemBundle()
 			throws Exception {
 		startFramework();
-		final Map<String, String> manifestEntries = new HashMap<String, String>();
-		manifestEntries.put("Bundle-Version", "1.0.0");
-		manifestEntries.put("Require-Bundle", "system.bundle");
-		final Bundle bundle = installBundle(
-				"concierge.test.test01InstallManifestWithRequireBundleSystemBundle",
-				manifestEntries);
-		bundle.start();
-		assertBundleActive(bundle);
+
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName(
+				"concierge.test.test01InstallManifestWithRequireBundleSystemBundle")
+				.addManifestHeader("Bundle-Version", "1.0.0")
+				.addManifestHeader("Require-Bundle", "system.bundle");
+		final Bundle bundleUnderTest = installBundle(builder);
+		bundleUnderTest.start();
+		assertBundleActive(bundleUnderTest);
 		stopFramework();
 	}
 
@@ -49,15 +51,15 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 	public void test02InstallAndStartManifestWithImportPackageOSGiNamespae()
 			throws Exception {
 		startFramework();
-		final Map<String, String> manifestEntries = new HashMap<String, String>();
-		manifestEntries.put("Bundle-Version", "1.0.0");
-		manifestEntries.put("Import-Package",
-				"org.osgi.framework.namespace;version=\"[1.0,2.0)\"");
-		final Bundle bundle = installBundle(
-				"concierge.test.test02InstallManifestWithNamespae",
-				manifestEntries);
-		bundle.start();
-		assertBundleActive(bundle);
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName(
+				"concierge.test.test02InstallManifestWithNamespae")
+				.addManifestHeader("Bundle-Version", "1.0.0")
+				.addManifestHeader("Import-Package",
+						"org.osgi.framework.namespace;version=\"[1.0,2.0)\"");
+		final Bundle bundleUnderTest = installBundle(builder);
+		bundleUnderTest.start();
+		assertBundleActive(bundleUnderTest);
 		stopFramework();
 	}
 
@@ -140,14 +142,13 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 			startFramework();
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries
-					.put("Bundle-NativeCode",
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test30BundleNativeCodeMacOSX")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Bundle-NativeCode",
 							"lib/native/someNative.so; osname=MacOSX; processor=x86_64");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test30BundleNativeCodeMacOSX",
-					manifestEntries);
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			final boolean resolved = isBundleResolved(bundleUnderTest);
 			Assert.assertEquals(isMacOSX() && isX86_64(), resolved);
@@ -163,15 +164,15 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 			startFramework();
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries
-					.put("Bundle-NativeCode",
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test30BundleNativeCodeMacOSX")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader(
+							"Bundle-NativeCode",
 							"lib/native/someNative.so; osname=Linux; processor=ARM; selection-filter=\"(&(kura.arch=armv7_hf))\","
 									+ "lib/native/otherNative.so; osname=MacOSX; processor=x86_64");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test30BundleNativeCodeMacOSX",
-					manifestEntries);
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			final boolean resolved = isBundleResolved(bundleUnderTest);
 			Assert.assertEquals(isMacOSX() && isX86_64(), resolved);
@@ -186,13 +187,13 @@ public class OSGiFrameworkBasicTest extends AbstractConciergeTestCase {
 			startFramework();
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Bundle-NativeCode",
-					"lib/native/someNative.so; osname=MacOSX; processor=x86");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test32BundleNativeCodeMacOSX_X86",
-					manifestEntries);
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test32BundleNativeCodeMacOSX_X86")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Bundle-NativeCode",
+							"lib/native/someNative.so; osname=MacOSX; processor=x86");
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			final boolean resolved = isBundleResolved(bundleUnderTest);
 			Assert.assertEquals(isMacOSX() && isX86(), resolved);

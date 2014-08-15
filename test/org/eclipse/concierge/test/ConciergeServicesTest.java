@@ -19,6 +19,7 @@ import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -52,13 +53,13 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			assertBundleActive(xmlParserServiceBundle);
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Import-Package",
-					"org.osgi.framework,org.osgi.util.tracker");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test01JavaxXmlSAXFactoryServiceTracker",
-					manifestEntries);
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test01JavaxXmlSAXFactoryServiceTracker")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Import-Package",
+							"org.osgi.framework,org.osgi.util.tracker");
+			final Bundle bundleUnderTest = installBundle(builder);
 			bundleUnderTest.start();
 			assertBundleActive(bundleUnderTest);
 
@@ -112,8 +113,9 @@ public class ConciergeServicesTest extends AbstractConciergeTestCase {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			// add some classes to take from boot classloader
 			// otherwise the classes are taken from wrong classloaders
-			launchArgs.put("org.osgi.framework.bootdelegation",
-					"com.sun.org.apache.xerces.internal.jaxp,javax.xml.parsers,org.xml.sax");
+			launchArgs
+					.put("org.osgi.framework.bootdelegation",
+							"com.sun.org.apache.xerces.internal.jaxp,javax.xml.parsers,org.xml.sax");
 			// add javax.xml.parsers to system extra packages
 			// needed as bundle service.xmlparser will make an import package of
 			// XML parsers

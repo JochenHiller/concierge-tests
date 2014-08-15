@@ -29,12 +29,15 @@ import java.util.jar.Manifest;
 
 import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.Factory;
+import org.eclipse.concierge.test.util.LocalBundleStorage;
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkEvent;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.framework.wiring.FrameworkWiring;
@@ -242,7 +245,7 @@ public abstract class AbstractConciergeTestCase {
 	 * bundle will be generared as JarOutputStream and installed from
 	 * corresponding InpuStream.
 	 */
-	protected Bundle installBundle(final String bundleName,
+	protected Bundle _installBundle(final String bundleName,
 			final Map<String, String> headers) throws IOException,
 			BundleException {
 		// copy MANIFEST to a jar file in memory
@@ -266,6 +269,19 @@ public abstract class AbstractConciergeTestCase {
 		final InputStream is = new ByteArrayInputStream(out.toByteArray());
 		final Bundle b = bundleContext.installBundle(bundleName, is);
 		out.close();
+		return b;
+	}
+
+	protected Bundle installBundle(SyntheticBundleBuilder builder)
+			throws BundleException {
+		Bundle b = this.installBundle(builder.getBundleSymbolicName(),
+				builder.asInputStream());
+		return b;
+	}
+
+	protected Bundle installBundle(String bundleName, InputStream is)
+			throws BundleException {
+		final Bundle b = bundleContext.installBundle(bundleName, is);
 		return b;
 	}
 
@@ -314,6 +330,14 @@ public abstract class AbstractConciergeTestCase {
 		public Class<?> getClass(final String className) throws Exception {
 			final Class<?> clazz = this.bundle.loadClass(className);
 			return clazz;
+		}
+
+		public Object getService(final String className) {
+			Object service = null;
+			ServiceReference<?> sref = this.bundle.getBundleContext()
+					.getServiceReference(className);
+			service = this.bundle.getBundleContext().getService(sref);
+			return service;
 		}
 
 		public Object getClassField(final String className,

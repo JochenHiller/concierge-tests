@@ -11,12 +11,11 @@
 package org.eclipse.concierge.test;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.compat.service.XargsFileLauncher;
+import org.eclipse.concierge.test.util.LocalBundleStorage;
+import org.eclipse.concierge.test.util.TestUtils;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -276,7 +275,7 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	private void runOK(String initXargs, int noOfBundles,
 			boolean checkForResolved) throws Exception {
 		final XargsFileLauncher xargsLauncher = new XargsFileLauncher();
-		final File xargs = createFileFromString(initXargs);
+		final File xargs = TestUtils.createFileFromString(initXargs, "xargs");
 		try {
 			final Concierge framework = xargsLauncher.processXargsFile(xargs);
 
@@ -300,7 +299,7 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 
 	private void runFail(String initXargs) throws Exception {
 		final XargsFileLauncher xargsLauncher = new XargsFileLauncher();
-		final File xargs = createFileFromString(initXargs);
+		final File xargs = TestUtils.createFileFromString(initXargs, "xargs");
 		try {
 			xargsLauncher.processXargsFile(xargs);
 			Assert.fail("Oops, this test should fail with bundle can not be installed exception");
@@ -315,7 +314,7 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 	private void runWithCheck(String initXargs, String bundleLocation)
 			throws Exception {
 		final XargsFileLauncher xargsLauncher = new XargsFileLauncher();
-		final File xargs = createFileFromString(initXargs);
+		final File xargs = TestUtils.createFileFromString(initXargs, "xargs");
 		try {
 			final Concierge framework = xargsLauncher.processXargsFile(xargs);
 			final Bundle b = framework.getBundleContext().getBundle(
@@ -328,16 +327,4 @@ public class ConciergeXargsTest extends AbstractConciergeTestCase {
 			stopFramework();
 		}
 	}
-
-	private File createFileFromString(final String initXargs)
-			throws IOException {
-		final File file = File.createTempFile("concierge-", ".xargs");
-		final FileOutputStream fos = new FileOutputStream(file);
-		final PrintStream ps = new PrintStream(fos);
-		ps.println(initXargs);
-		ps.close();
-		fos.close();
-		return file;
-	}
-
 }

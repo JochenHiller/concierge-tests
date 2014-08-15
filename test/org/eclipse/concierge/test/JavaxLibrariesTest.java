@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -133,15 +134,14 @@ public class JavaxLibrariesTest extends AbstractConciergeTestCase {
 			assertBundlesResolved(bundles);
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Import-Package", "org.xml.sax");
-			final Bundle bundle = installBundle(
-					"concierge.test.test12JavaxXMLWireToSystemBundleFails",
-					manifestEntries);
-
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test12JavaxXMLWireToSystemBundleFails")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Import-Package", "org.xml.sax");
+			final Bundle bundleUnderTest = installBundle(builder);
 			// create class from SAX parser
-			RunInClassLoader runner = new RunInClassLoader(bundle);
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 			Object ex = runner.createInstance("org.xml.sax.SAXException",
 					new Object[] {});
 			Assert.assertNotNull(ex);

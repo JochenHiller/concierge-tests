@@ -1,4 +1,4 @@
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.util;
 
 import java.io.File;
 import java.io.FileFilter;

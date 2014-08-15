@@ -253,11 +253,15 @@ For more details see
 ```Shell
 git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.framework.git -b R4_4_maintenance
 ```
-
 * Equinox bundles repo: git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git
   * Checkout luna branch
 ```Shell
 git clone git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git -b R4_4_maintenance
+``` 
+* Eclipse Platform bundles repo: git://git.eclipse.org/gitroot/platform/eclipse.platform.runtime.git
+  * Checkout luna branch
+```Shell
+git clone git://git.eclipse.org/gitroot/platform/eclipse.platform.runtime.git -b R4_4_maintenance
 ``` 
 * Xtext repo: git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git
 ```Shell

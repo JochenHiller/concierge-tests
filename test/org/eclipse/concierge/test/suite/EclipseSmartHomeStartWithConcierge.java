@@ -8,14 +8,14 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.suite;
+package org.eclipse.concierge.test.suite;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.apache.commons.io.FileUtils;
+import org.eclipse.concierge.test.util.TestUtils;
 import org.junit.Test;
 
 public class EclipseSmartHomeStartWithConcierge {
@@ -59,7 +59,7 @@ public class EclipseSmartHomeStartWithConcierge {
 	private void copyPatches(String src, String dest) throws IOException {
 		File srcDir = new File(src);
 		File destDir = new File(dest);
-		FileUtils.copyDirectory(srcDir, destDir);
+		TestUtils.copyDirectory(srcDir, destDir);
 		File shellScript = new File(dest + "/start_concierge_debug.sh");
 		shellScript.setExecutable(true);
 	}

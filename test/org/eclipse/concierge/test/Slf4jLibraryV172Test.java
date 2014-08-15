@@ -11,9 +11,8 @@
 package org.eclipse.concierge.test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,15 +41,16 @@ public class Slf4jLibraryV172Test extends AbstractConciergeTestCase {
 	@Test
 	public void test01InstallManifestOnly() throws InterruptedException,
 			BundleException, IOException {
-		final Map<String, String> manifestEntries = new HashMap<String, String>();
-		manifestEntries.put("Bundle-Version", "1.0.0");
-		final Bundle bundle = installBundle(
-				"concierge.test.testInstallManifestOnly", manifestEntries);
-		enforceResolveBundle(bundle);
-		assertBundleResolved(bundle);
+
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("concierge.test.testInstallManifestOnly")
+				.addManifestHeader("Bundle-Version", "1.0.0");
+		final Bundle bundleUnderTest = installBundle(builder);
+		enforceResolveBundle(bundleUnderTest);
+		assertBundleResolved(bundleUnderTest);
 		// now start
-		bundle.start();
-		assertBundleActive(bundle);
+		bundleUnderTest.start();
+		assertBundleActive(bundleUnderTest);
 	}
 
 	/**
@@ -66,16 +66,15 @@ public class Slf4jLibraryV172Test extends AbstractConciergeTestCase {
 		assertBundleResolved(bundle);
 
 		// install a bundle which imports org.slf4j package. Must be resolved
-		final Map<String, String> manifestEntries = new HashMap<String, String>();
-		manifestEntries.put("Bundle-Version", "1.0.0");
-		manifestEntries.put("Import-Package", "org.slf4j");
-		final Bundle usingBundle = installBundle(
-				"concierge.test.testSLf4JGetNOPLogger", manifestEntries);
-
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("concierge.test.testSLf4JGetNOPLogger")
+				.addManifestHeader("Bundle-Version", "1.0.0")
+				.addManifestHeader("Import-Package", "org.slf4j");
+		final Bundle bundleUnderTest = installBundle(builder);
 		// make calls into classloader of installed bundle
 		// Logger logger = org.slf4j.LoggerFactory.getLogger("someCategory");
 		// logger.info("Logger Test");
-		RunInClassLoader runner = new RunInClassLoader(usingBundle);
+		RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
 		Object logger = runner.callClassMethod("org.slf4j.LoggerFactory",
 				"getLogger", new Object[] { "someCategory" });
 		runner.callMethod(logger, "info", new Object[] { "Logger Test" });
@@ -113,12 +112,12 @@ public class Slf4jLibraryV172Test extends AbstractConciergeTestCase {
 		assertBundleActive(bundles[0]);
 
 		// install a test bundle
-		final Map<String, String> manifestEntries = new HashMap<String, String>();
-		manifestEntries.put("Bundle-Version", "1.0.0");
-		manifestEntries.put("Import-Package", "org.slf4j");
-		final Bundle usingBundle = installBundle(
-				"concierge.test.testSLf4JGetLogbackLogger", manifestEntries);
-		usingBundle.start();
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("concierge.test.testSLf4JGetLogbackLogger")
+				.addManifestHeader("Bundle-Version", "1.0.0")
+				.addManifestHeader("Import-Package", "org.slf4j");
+		final Bundle bundleUnderTest = installBundle(builder);
+		bundleUnderTest.start();
 
 		// when fragment will be resolved, the required bundles has also to be
 		// resolved by framework

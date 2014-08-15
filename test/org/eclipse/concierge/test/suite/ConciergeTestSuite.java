@@ -8,8 +8,11 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.suite;
+package org.eclipse.concierge.test.suite;
 
+import org.eclipse.concierge.MultiMapTest;
+import org.eclipse.concierge.SplitStringTest;
+import org.eclipse.concierge.compat.service.XargsFileLauncherTest;
 import org.eclipse.concierge.test.ApacheFelixServicesTest;
 import org.eclipse.concierge.test.ConciergeExtensionsTest;
 import org.eclipse.concierge.test.ConciergeServicesTest;
@@ -22,9 +25,10 @@ import org.eclipse.concierge.test.EclipseSmartHomeTest;
 import org.eclipse.concierge.test.FrameworkLaunchArgsTest;
 import org.eclipse.concierge.test.GoogleLibraryTest;
 import org.eclipse.concierge.test.JavaxLibrariesTest;
-import org.eclipse.concierge.test.LocalBundleStorageTest;
 import org.eclipse.concierge.test.OSGiFrameworkBasicTest;
 import org.eclipse.concierge.test.Slf4jLibraryV172Test;
+import org.eclipse.concierge.test.util.LocalBundleStorageTest;
+import org.eclipse.concierge.test.util.SyntheticBundleBuilderTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -33,6 +37,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ LocalBundleStorageTest.class,
+		SyntheticBundleBuilderTest.class, MultiMapTest.class,
+		SplitStringTest.class, XargsFileLauncherTest.class,
 		OSGiFrameworkBasicTest.class, ConciergeExtensionsTest.class,
 		JavaxLibrariesTest.class, ConciergeServicesTest.class,
 		ConciergeXargsTest.class, Slf4jLibraryV172Test.class,

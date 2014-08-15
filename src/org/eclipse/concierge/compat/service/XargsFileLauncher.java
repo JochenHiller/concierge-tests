@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.concierge.BundleImpl;
 import org.eclipse.concierge.BundleImpl.Revision;
@@ -195,22 +197,18 @@ public class XargsFileLauncher {
 					continue;
 				} else if (token.startsWith("-D")) {
 					token = getArg(token, 2);
-					int comment = token.indexOf("#");
-					if (comment != -1) {
-						token = token.substring(0, comment).trim();
-					}
 					// get key and value
 					int pos = token.indexOf("=");
 					if (pos > -1) {
 						String key = token.substring(0, pos);
 						String value = token.substring(pos + 1);
-						// handle multiline properties
+						// handle multi line properties
 						while (value.endsWith("\\")) {
 							token = reader.readLine();
-							comment = token.indexOf("#");
-							if (comment != -1) {
-								token = token.substring(0, comment).trim();
-							}
+							// filter out comment and trim string
+							token = getArg(token, 0);
+							// append trimmed value without backslash plus next
+							// line
 							value = value.substring(0, value.length() - 1)
 									.trim() + token.trim();
 						}
@@ -262,32 +260,38 @@ public class XargsFileLauncher {
 		return pos > -1 ? str.substring(0, pos).trim() : str.trim();
 	}
 
+	// package scope for testing support
+
+	/** Regex pattern for finding ${property} variable. */
+	static final String regex = "\\$\\{([^}]*)\\}";
+	/** Precompiler pattern for regex. */
+	static final Pattern pattern = Pattern.compile(regex);
+
 	/**
-	 * Replace all ${var} entries via its value of properties.
+	 * Replace all ${propertyName} entries via its property value. The
+	 * implementation has been optimized to use regex pattern matcher.
 	 */
-	private String replaceVariable(String line,
+	String replaceVariable(final String line,
 			final Map<String, String> properties) {
-		// search property from beginning
-		String s = line;
-		while (s.matches(".*\\$\\{.*")) {
-			final String propertyName = s.substring(s.indexOf("${") + 2,
-					s.indexOf("}"));
-			final String propertyValue = properties.get(propertyName);
-			// replace variable
+		final Matcher matcher = pattern.matcher(line);
+		String replacedLine = line;
+		int pos = 0;
+		while (matcher.find(pos)) {
+			pos = matcher.end();
+			String variable = matcher.group();
+			String propertyName = variable.substring(2, variable.length() - 1);
+			String propertyValue = properties.get(propertyName);
 			if (propertyValue != null) {
-				line = line.replaceAll("\\$\\{" + propertyName + "\\}",
-						propertyValue);
+				replacedLine = replacedLine.replace(variable, propertyValue);
 			}
-			// goto next property
-			s = s.substring(s.indexOf("}") + 1);
 		}
-		return line;
+		return replacedLine;
 	}
 
 	/**
 	 * Resolve bundle names with wildcards included.
 	 */
-	private String resolveWildcardName(final String bundleName) {
+	String resolveWildcardName(final String bundleName) {
 		if (!bundleName.contains("*")) {
 			return bundleName;
 		}

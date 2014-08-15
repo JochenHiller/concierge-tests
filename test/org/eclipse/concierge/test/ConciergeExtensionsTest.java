@@ -10,9 +10,7 @@
  *******************************************************************************/
 package org.eclipse.concierge.test;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
@@ -55,13 +53,13 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 			startFramework();
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Fragment-Host",
-					"org.eclipse.concierge; extension:=framework");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test01FrameworkExtensionFragmentOfConcierge",
-					manifestEntries);
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test01FrameworkExtensionFragmentOfConcierge")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Fragment-Host",
+							"org.eclipse.concierge; extension:=framework");
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			assertBundleResolved(bundleUnderTest);
 		} finally {
@@ -98,13 +96,13 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 			startFramework();
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries.put("Fragment-Host",
-					"system.bundle; extension:=framework");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test02FrameworkExtensionFragmentOfSystemBundle",
-					manifestEntries);
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test02FrameworkExtensionFragmentOfSystemBundle")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Fragment-Host",
+							"system.bundle; extension:=framework");
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			assertBundleResolved(bundleUnderTest);
 		} finally {
@@ -133,14 +131,13 @@ public class ConciergeExtensionsTest extends AbstractConciergeTestCase {
 					isFragmentBundle(frameworkExtensionBundle));
 
 			// install pseudo bundle
-			final Map<String, String> manifestEntries = new HashMap<String, String>();
-			manifestEntries.put("Bundle-Version", "1.0.0");
-			manifestEntries
-					.put("Import-Package",
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test02FrameworkExtensionFragmentOfSystemBundle")
+					.addManifestHeader("Bundle-Version", "1.0.0")
+					.addManifestHeader("Import-Package",
 							"org.osgi.service.condpermadmin, org.osgi.service.permissionadmin");
-			final Bundle bundleUnderTest = installBundle(
-					"concierge.test.test10ConciergeExtensionPermission",
-					manifestEntries);
+			final Bundle bundleUnderTest = installBundle(builder);
 			enforceResolveBundle(bundleUnderTest);
 			assertBundleResolved(bundleUnderTest);
 		} finally {

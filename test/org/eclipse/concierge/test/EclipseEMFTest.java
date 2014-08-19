@@ -273,7 +273,7 @@ public class EclipseEMFTest extends AbstractConciergeTestCase {
 					asEmfBuild("org.eclipse.emf.common"), });
 			assertBundlesResolved(bundles);
 
-			Bundle emfBundle = installAndStartBundle("org.eclipse.emf.ecore_2.10.1.201408112208.jar");
+			Bundle emfBundle = installAndStartBundle("org.eclipse.emf.ecore_2.10.0.v20140514-1158.jar");
 			assertBundleResolved(emfBundle);
 
 			// Install a test bundle which is using the EMF examples bundle

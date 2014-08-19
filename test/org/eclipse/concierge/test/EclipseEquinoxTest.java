@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.concierge.test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -153,7 +155,7 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 	 * </pre>
 	 */
 	@Test
-	public void test06EquinoxRegistry() throws Exception {
+	public void test06InstallAndStartEquinoxRegistry() throws Exception {
 		try {
 			final Map<String, String> launchArgs = new HashMap<String, String>();
 			launchArgs.put("org.osgi.framework.system.packages.extra",
@@ -173,6 +175,105 @@ public class EclipseEquinoxTest extends AbstractConciergeTestCase {
 					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
 					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar" });
 			assertBundlesResolved(bundles);
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test06EquinoxRegistryGetAdapterExtensionPoint()
+			throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
+			startFrameworkClean(launchArgs);
+
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
+					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar" });
+			assertBundlesResolved(bundles);
+
+			Bundle bundleUnderTest = bundles[4];
+
+			// check if adapter extension point is visible
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Object extensionRegistry = runner
+					.getService("org.eclipse.core.runtime.IExtensionRegistry");
+			Assert.assertNotNull(extensionRegistry);
+			Assert.assertEquals(
+					"org.eclipse.core.internal.registry.ExtensionRegistry",
+					extensionRegistry.getClass().getName());
+
+			Object extensionPoint = runner.callMethod(extensionRegistry,
+					"getExtensionPoint",
+					new Object[] { "org.eclipse.core.runtime.adapters" });
+			Assert.assertNotNull(extensionPoint);
+
+			Object extensionPointIdentifier = runner.callMethod(extensionPoint,
+					"getUniqueIdentifier", new Object[] {});
+			Assert.assertNotNull(extensionPointIdentifier);
+			Assert.assertEquals("org.eclipse.core.runtime.adapters",
+					(String) extensionPointIdentifier);
+
+		} finally {
+			stopFramework();
+		}
+	}
+
+	@Test
+	public void test07EquinoxRegistryInstallPluginXml() throws Exception {
+		try {
+			final Map<String, String> launchArgs = new HashMap<String, String>();
+			launchArgs.put("org.osgi.framework.system.packages.extra",
+					"javax.xml.parsers,org.xml.sax,org.xml.sax.helpers");
+			startFrameworkClean(launchArgs);
+
+			final Bundle[] bundles = installAndStartBundles(new String[] {
+					"org.eclipse.concierge.service.xmlparser_1.0.0.201407191653.jar",
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
+					"org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar",
+					"org.eclipse.equinox.common_3.6.200.v20130402-1505.jar",
+					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar" });
+			assertBundlesResolved(bundles);
+
+			// install pseudo bundle
+			SyntheticBundleBuilder builder = SyntheticBundleBuilder
+					.newBuilder();
+			builder.bundleSymbolicName(
+					"concierge.test.test07EquinoxRegistryInstallPluginXml")
+					.singleton()
+					.bundleVersion("1.0.0")
+					.addManifestHeader("Import-Package",
+							"org.eclipse.core.runtime;registry=split, org.eclipse.core.runtime.spi")
+					.addFile("plugin.xml",
+							new File("./test/resources/plugin-01.xml"));
+			// .addFile("schema/content_handler.exsd",
+			// new File("./test/resources/content_handler.exsd"));
+
+			Bundle bundleUnderTest = installBundle(builder);
+			bundleUnderTest.start();
+			assertBundleResolved(bundleUnderTest);
+
+			RunInClassLoader runner = new RunInClassLoader(bundleUnderTest);
+			Object extensionRegistry = runner
+					.getService("org.eclipse.core.runtime.IExtensionRegistry");
+			Assert.assertNotNull(extensionRegistry);
+			Assert.assertEquals(
+					"org.eclipse.core.internal.registry.ExtensionRegistry",
+					extensionRegistry.getClass().getName());
+
+			Object extP = runner.callMethod(extensionRegistry,
+					"getExtensionPoint",
+					new Object[] { "org.eclipse.core.runtime.adapters" });
+			Assert.assertNotNull(extP);
+
+			// TODO check if extension has been registered
+			// Object ext = runner.callMethod(extensionRegistry, "getExtension",
+			// new Object[] { "org.eclipse.core.runtime.adapters" });
 		} finally {
 			stopFramework();
 		}

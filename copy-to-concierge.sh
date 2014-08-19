@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -R test target lib ../org.eclipse.concierge
+cp -R test target ../org.eclipse.concierge

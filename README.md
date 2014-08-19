@@ -20,8 +20,7 @@ It will assume that both projects are checked out in same directory level.
 cd concierge-tests
 ./copy-to-concierge.sh
 ```
-4. Add the file `lib/commons-io-2.4.jar` to build path
-5. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
+4. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
 http://download.eclipse.org/smarthome/updates-nightly/plugins/ and update the version in the
 file `EclipseSmartHomeTest.java`
 
@@ -221,19 +220,19 @@ does not have its own distribution yet.
 
 1. Get openHAB2 snapshot build from https://openhab.ci.cloudbees.com/job/openHAB2/
 ```script
-wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
-wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
+wget -q https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
+wget -q https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
 ```
 2. Unzip openHAB2 runtime and demo data
 ```script
 mkdir openhab2
 cd openhab2
 unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
-unzip ../distribution-2.0.0-SNAPSHOT-demo.zip
+unzip -o ../distribution-2.0.0-SNAPSHOT-demo.zip
 ```
 3. Download `start_concierge_debug.sh` script
 ```script
-wget https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
+wget -q https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
 chmod u+x start_concierge_debug.sh
 ```
 4. Start Concierge server

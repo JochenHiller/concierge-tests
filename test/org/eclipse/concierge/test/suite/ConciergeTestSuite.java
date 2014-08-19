@@ -21,6 +21,7 @@ import org.eclipse.concierge.test.EclipseEMFTest;
 import org.eclipse.concierge.test.EclipseEquinoxTest;
 import org.eclipse.concierge.test.EclipseJettyTest;
 import org.eclipse.concierge.test.EclipseKuraTest;
+import org.eclipse.concierge.test.EclipsePlatformTest;
 import org.eclipse.concierge.test.EclipseSmartHomeTest;
 import org.eclipse.concierge.test.FrameworkLaunchArgsTest;
 import org.eclipse.concierge.test.GoogleLibraryTest;
@@ -44,8 +45,9 @@ import org.junit.runners.Suite;
 		ConciergeXargsTest.class, Slf4jLibraryV172Test.class,
 		FrameworkLaunchArgsTest.class, GoogleLibraryTest.class,
 		ApacheFelixServicesTest.class, EclipseEquinoxTest.class,
-		EclipseJettyTest.class, EclipseEMFTest.class,
-		EclipseSmartHomeTest.class, EclipseKuraTest.class, })
+		EclipseJettyTest.class, EclipsePlatformTest.class,
+		EclipseEMFTest.class, EclipseSmartHomeTest.class,
+		EclipseKuraTest.class, })
 public class ConciergeTestSuite {
 
 }

@@ -2,7 +2,7 @@
 
 BUNDLE=org.eclipse.equinox.supplement_1.5.100.v20140428-1446.jar
 echo "Patching $BUNDLE ..."
-echo "  Add classes from Equinox OSGi framework (o.e.osgi.framework.console, o.e.osgi.report)"
+echo "  Add classes from Equinox OSGi framework (o.e.osgi.framework.console, o.e.osgi.report, o.e.osgi.service.resolver)"
 echo "  Extend MANIFEST about these packages"
 
 OSGI_FW=org.eclipse.osgi_3.10.0.v20140606-1445.jar
@@ -22,9 +22,11 @@ cd ..
 cd $BUNDLE
 cp -R ../$OSGI_FW/org/eclipse/osgi/framework/console ./org/eclipse/osgi/framework/console 
 cp -R ../$OSGI_FW/org/eclipse/osgi/report/ ./org/eclipse/osgi/report 
+cp -R ../$OSGI_FW/org/eclipse/osgi/service/resolver ./org/eclipse/osgi/service/resolver
 cat META-INF/MANIFEST.MF | sed -e 's/org.eclipse.osgi.util;version="1.1"/org.eclipse.osgi.util;version="1.1",\
  org.eclipse.osgi.framework.console;version="1.1",\
- org.eclipse.osgi.report.resolution;version="1.0"/g' >META-INF/MANIFEST.MF.PATCHED
+ org.eclipse.osgi.report.resolution;version="1.0",\
+ org.eclipse.osgi.service.resolver;version="1.6",/g' >META-INF/MANIFEST.MF.PATCHED
 
 mv META-INF/MANIFEST.MF.PATCHED META-INF/MANIFEST.MF
 

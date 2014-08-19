@@ -46,9 +46,33 @@ public class SyntheticBundleBuilder {
 		return this;
 	}
 
+	public SyntheticBundleBuilder singleton() {
+		String bsn = this.manifestHeaders.get(new Attributes.Name(
+				Constants.BUNDLE_SYMBOLICNAME));
+		bsn = bsn + ";singleton:=true";
+		this.manifestHeaders.put(new Attributes.Name(
+				Constants.BUNDLE_SYMBOLICNAME), bsn);
+		return this;
+	}
+
+	public SyntheticBundleBuilder bundleVersion(String version) {
+		this.manifestHeaders.put(new Attributes.Name(Constants.BUNDLE_VERSION),
+				version);
+		return this;
+	}
+
 	public String getBundleSymbolicName() {
 		return this.manifestHeaders.get(new Attributes.Name(
 				Constants.BUNDLE_SYMBOLICNAME));
+	}
+
+	public String getBundleVersion() {
+		String version = this.manifestHeaders.get(new Attributes.Name(
+				Constants.BUNDLE_VERSION));
+		if (version == null) {
+			return "0.0.0";
+		}
+		return version;
 	}
 
 	// public SynteticBundleBuilder manifest(String mf) {
@@ -76,9 +100,9 @@ public class SyntheticBundleBuilder {
 		return this;
 	}
 
-	public void addFile(String resPath, File f) {
+	public SyntheticBundleBuilder addFile(String resPath, File f) {
 		this.files.put(resPath, f);
-
+		return this;
 	}
 
 	public InputStream asInputStream() {
@@ -125,6 +149,20 @@ public class SyntheticBundleBuilder {
 				}
 			}
 		}
+	}
+
+	public File asFile() {
+		final InputStream is = this.asInputStream();
+		File destFile;
+		try {
+			destFile = new File("concierge-" + this.getBundleSymbolicName()
+					+ "-" + getBundleVersion() + ".jar");
+			TestUtils.copyStreamToFile(is, destFile);
+			return destFile;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

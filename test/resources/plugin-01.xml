@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+<!--
+   <extension-point id="content_handler" name="ContentHandlerRegistry_extensionpoint" schema="schema/content_handler.exsd"/>
+
+   <extension point="concierge.test.test07EquinoxRegistryInstallPluginXml.content_handler">
+      <contentHandler
+            class="org.eclipse.emf.ecore.resource.impl.PlatformContentHandlerImpl"
+            priority="2000">
+      </contentHandler>
+   </extension>
+-->
+   	<extension
+         point="org.eclipse.core.runtime.adapters">
+         <!--
+      <factory class="org.eclipse.smarthome.model.rule.ui.RulesExecutableExtensionFactory:org.eclipse.xtext.builder.smap.StratumBreakpointAdapterFactory"
+         adaptableType="org.eclipse.xtext.ui.editor.XtextEditor">
+         <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+      </factory> 
+      -->
+   </extension>
+   
+
+</plugin>

@@ -18,11 +18,43 @@ public class SyntheticBundleBuilderTest {
 	}
 
 	@Test
-	public void test10FluentInterface() throws IOException {
+	public void test02AsInputStream() throws IOException {
 		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
 		builder.bundleSymbolicName("xxx").addManifestHeader("Import-Package",
 				"org.osgi.framework");
-		Assert.assertEquals("xxx", builder.getBundleSymbolicName());
+		InputStream is = builder.asInputStream();
+		Assert.assertNotNull(is);
+		is.close();
+	}
+
+	@Test
+	public void test03AsFileWithoutVersion() throws IOException {
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("xxx").addManifestHeader("Import-Package",
+				"org.osgi.framework");
+		File f = builder.asFile();
+		f.deleteOnExit();
+		Assert.assertNotNull(f);
+		Assert.assertEquals("concierge-xxx-0.0.0.jar", f.getName());
+	}
+
+	@Test
+	public void test04AsFileWithVersion() throws IOException {
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("xxx").bundleVersion("1.0.0")
+				.addManifestHeader("Import-Package", "org.osgi.framework");
+		File f = builder.asFile();
+		f.deleteOnExit();
+		Assert.assertNotNull(f);
+		Assert.assertEquals("concierge-xxx-1.0.0.jar", f.getName());
+	}
+
+	@Test
+	public void test10FluentInterface() throws IOException {
+		SyntheticBundleBuilder builder = SyntheticBundleBuilder.newBuilder();
+		builder.bundleSymbolicName("xxx").singleton()
+				.addManifestHeader("Import-Package", "org.osgi.framework");
+		Assert.assertEquals("xxx;singleton:=true", builder.getBundleSymbolicName());
 		InputStream is = builder.asInputStream();
 		Assert.assertNotNull(is);
 		is.close();

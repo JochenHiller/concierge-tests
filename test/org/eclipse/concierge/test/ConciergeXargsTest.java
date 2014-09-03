@@ -14,6 +14,7 @@ import java.io.File;
 
 import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.compat.service.XargsFileLauncher;
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.LocalBundleStorage;
 import org.eclipse.concierge.test.util.TestUtils;
 import org.junit.Assert;

@@ -8,10 +8,11 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.integration;
 
 import java.io.IOException;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.After;
 import org.junit.Assert;

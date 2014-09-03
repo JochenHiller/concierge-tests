@@ -104,6 +104,7 @@
 -istart ${dir}/com.google.guava_15.0.0*.jar
 -istart ${dir}/com.google.inject_3.0.0*.jar
 -istart ${dir}/com.google.gson_2.2.4*.jar
+-istart ${dir}/org.jupnp_2.0.0.*.jar
 
 
 # Felix bundles
@@ -168,15 +169,15 @@
 # TODO really needed???
 # -istart ${dir}/org.eclipse.emf.codegen_2.10*.jar
 # -istart ${dir}/org.eclipse.emf.codegen.ecore_2.10*.jar
--istart ${dir}/org.eclipse.xtext.util_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext.util_2.6.*.jar
 # IMPORTANT: install/start com.google.inject inject BEFORE xtext, optional dependency is mandatory
--istart ${dir}/org.eclipse.xtext_2.6.1*.jar
--istart ${dir}/org.eclipse.xtext.common.types_2.6.1*.jar
--istart ${dir}/org.eclipse.xtext.xbase.lib_2.6.1*.jar
--istart ${dir}/org.eclipse.xtend.lib_2.6.1*.jar
--istart ${dir}/org.eclipse.xtext.xbase_2.6.1*.jar
--istart ${dir}/org.eclipse.xtext.smap_2.6.1*.jar
--istart ${dir}/org.eclipse.xtext.util_2.6.1*.jar
+-istart ${dir}/org.eclipse.xtext_2.6.*.jar
+-istart ${dir}/org.eclipse.xtext.common.types_2.6.*.jar
+-istart ${dir}/org.eclipse.xtext.xbase.lib_2.6.*.jar
+-istart ${dir}/org.eclipse.xtend.lib_2.6.*.jar
+-istart ${dir}/org.eclipse.xtext.xbase_2.6.*.jar
+-istart ${dir}/org.eclipse.xtext.smap_2.6.*.jar
+-istart ${dir}/org.eclipse.xtext.util_2.6.*.jar
 
 
 # Eclipse SmartHome bundles
@@ -188,11 +189,12 @@
 -istart ${dir}/org.eclipse.smarthome.core.scheduler_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.scriptengine_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.net_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.mdns_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.core_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.thing_0.7.0*.jar
+-istart ${dir}/org.eclipse.smarthome.config.discovery_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.transform_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.monitor_0.7.0*.jar
--istart ${dir}/org.eclipse.smarthome.io.servicediscovery_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.storage.mapdb_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.model.core_0.7.0*.jar
 -istart ${dir}/org.eclipse.smarthome.model.item_0.7.0*.jar

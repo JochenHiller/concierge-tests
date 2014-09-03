@@ -8,12 +8,14 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.integration;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase.RunInClassLoader;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

@@ -8,7 +8,7 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.integration;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,7 +18,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase.RunInClassLoader;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

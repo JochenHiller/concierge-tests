@@ -8,11 +8,12 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.integration;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 
 	/** extend bundle name with BUILD tag. */
 	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201408190907" + ".jar";
+		return bundleName + "_0.7.0.201409031706" + ".jar";
 	}
 
 	private static final String B_EMF(String bundleName) {
@@ -48,16 +49,22 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 	}
 
 	@Test
-	public void test01EclipseSmartHomeIOServiceDiscovery() throws Exception {
+	public void test01EclipseSmartHomeConfigDiscovery() throws Exception {
 		try {
 			startFramework();
 
 			final Bundle[] bundles = installAndStartBundles(new String[] {
-					// o.e.s.io.servicediscovery and deps
+					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
 					"org.slf4j.api_1.7.2.v20121108-1250.jar",
-					B_ESH("org.eclipse.smarthome.io.servicediscovery"),
-
-			});
+					"org.apache.commons.io_2.0.1.v201105210651.jar",
+					"org.apache.commons.lang_2.6.0.v201404270220.jar",
+					"com.google.guava_15.0.0.v201403281430.jar",
+					B_ESH("org.eclipse.smarthome.core"),
+					B_ESH("org.eclipse.smarthome.core.library"),
+					B_ESH("org.eclipse.smarthome.config.core"),
+					B_ESH("org.eclipse.smarthome.io.console"),
+					B_ESH("org.eclipse.smarthome.core.thing"),
+					B_ESH("org.eclipse.smarthome.config.discovery"), });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();
@@ -158,7 +165,7 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					"org.apache.commons.lang_2.6.0.v201404270220.jar",
 					"org.apache.felix.metatype-1.0.10.jar",
 					"org.apache.felix.configadmin-1.8.0.jar",
-					"org.apache.felix.eventadmin-1.3.2.jar",
+					"org.apache.felix.eventadmin-1.4.0.jar",
 					// "org.apache.felix.scr-1.8.2.jar",
 					// use Equinox DS instead
 					"org.eclipse.osgi.services_3.4.0.v20140312-2051.jar",
@@ -218,13 +225,15 @@ public class EclipseSmartHomeTest extends AbstractConciergeTestCase {
 					// io.net.exec
 					"org.apache.commons.collections_3.2.0.v2013030210310.jar",
 					B_ESH("org.eclipse.smarthome.config.core"),
+					B_ESH("org.eclipse.smarthome.core.thing"),
+
 					// B_ESH("org.eclipse.smarthome.core.transform"),
 
 					// o.e.s.io.monitor and deps
 					B_ESH("org.eclipse.smarthome.io.monitor"),
 
-					// o.e.s.io.servicediscovery and deps
-					B_ESH("org.eclipse.smarthome.io.servicediscovery"),
+					// o.e.s.config.discovery and deps
+					B_ESH("org.eclipse.smarthome.config.discovery"),
 
 					// o.e.s.model.core and deps
 					"org.eclipse.equinox.registry_3.5.400.v20140428-1507.jar",

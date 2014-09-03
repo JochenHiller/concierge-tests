@@ -8,7 +8,7 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,8 +29,6 @@ import java.util.jar.Manifest;
 
 import org.eclipse.concierge.Concierge;
 import org.eclipse.concierge.Factory;
-import org.eclipse.concierge.test.util.LocalBundleStorage;
-import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -311,7 +309,7 @@ public abstract class AbstractConciergeTestCase {
 	 * context of a bundle without need to have classes and/or compile code for
 	 * testing purposes.
 	 */
-	static class RunInClassLoader {
+	public static class RunInClassLoader {
 
 		private final Bundle bundle;
 		private boolean debug = false;

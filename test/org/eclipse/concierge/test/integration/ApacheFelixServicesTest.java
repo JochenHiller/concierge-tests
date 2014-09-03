@@ -8,7 +8,7 @@
  * Contributors:
  *     Jochen Hiller
  *******************************************************************************/
-package org.eclipse.concierge.test;
+package org.eclipse.concierge.test.integration;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
@@ -40,7 +41,7 @@ public class ApacheFelixServicesTest extends AbstractConciergeTestCase {
 			final Bundle[] bundles = installAndStartBundles(new String[] {
 					"org.apache.felix.metatype-1.0.10.jar",
 					"org.apache.felix.configadmin-1.8.0.jar",
-					"org.apache.felix.eventadmin-1.3.2.jar", });
+					"org.apache.felix.eventadmin-1.4.0.jar", });
 			assertBundlesResolved(bundles);
 		} finally {
 			stopFramework();

@@ -7,7 +7,7 @@ cd `dirname $0`
 if [ true == true ] ; then
   cp -R ../../concierge-tests/patches/openhab2/patches/* .
   rm -rf ./runtime/server/storage
-  rm ./userdata/logs/*.log
+  rm -f ./userdata/logs/*.log
 fi
 
 # will download all needed files if not existing
@@ -30,7 +30,7 @@ cp=$(find $eclipsehome -name "org.eclipse.concierge-5.0.0*.jar" | sort | tail -1
 # echo $cp
 
 # debug options
-debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y"
+debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n"
 
 # program args
 prog_args="-Dorg.eclipse.concierge.init.xargs=./runtime/server/concierge/openhab2.xargs -Dlogback.configurationFile=./runtime/etc/logback_debug.xml -DmdnsName=openhab -Dopenhab.logdir=./userdata/logs -Dsmarthome.servicecfg=./runtime/etc/services.cfg -Dsmarthome.servicepid=org.openhab -Dorg.quartz.properties=./runtime/etc/quartz.properties -Dsmarthome.userdata=./userdata"

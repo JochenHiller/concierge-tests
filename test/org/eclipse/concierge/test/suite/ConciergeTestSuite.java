@@ -13,21 +13,21 @@ package org.eclipse.concierge.test.suite;
 import org.eclipse.concierge.MultiMapTest;
 import org.eclipse.concierge.SplitStringTest;
 import org.eclipse.concierge.compat.service.XargsFileLauncherTest;
-import org.eclipse.concierge.test.ApacheFelixServicesTest;
 import org.eclipse.concierge.test.ConciergeExtensionsTest;
 import org.eclipse.concierge.test.ConciergeServicesTest;
 import org.eclipse.concierge.test.ConciergeXargsTest;
-import org.eclipse.concierge.test.EclipseEMFTest;
-import org.eclipse.concierge.test.EclipseEquinoxTest;
-import org.eclipse.concierge.test.EclipseJettyTest;
-import org.eclipse.concierge.test.EclipseKuraTest;
-import org.eclipse.concierge.test.EclipsePlatformTest;
-import org.eclipse.concierge.test.EclipseSmartHomeTest;
 import org.eclipse.concierge.test.FrameworkLaunchArgsTest;
-import org.eclipse.concierge.test.GoogleLibraryTest;
-import org.eclipse.concierge.test.JavaxLibrariesTest;
 import org.eclipse.concierge.test.OSGiFrameworkBasicTest;
-import org.eclipse.concierge.test.Slf4jLibraryV172Test;
+import org.eclipse.concierge.test.integration.ApacheFelixServicesTest;
+import org.eclipse.concierge.test.integration.EclipseEMFTest;
+import org.eclipse.concierge.test.integration.EclipseEquinoxTest;
+import org.eclipse.concierge.test.integration.EclipseJettyTest;
+import org.eclipse.concierge.test.integration.EclipseKuraTest;
+import org.eclipse.concierge.test.integration.EclipsePlatformTest;
+import org.eclipse.concierge.test.integration.EclipseSmartHomeTest;
+import org.eclipse.concierge.test.integration.GoogleLibraryTest;
+import org.eclipse.concierge.test.integration.JavaxLibrariesTest;
+import org.eclipse.concierge.test.integration.Slf4jLibraryV172Test;
 import org.eclipse.concierge.test.util.LocalBundleStorageTest;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilderTest;
 import org.junit.runner.RunWith;
@@ -40,10 +40,10 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({ LocalBundleStorageTest.class,
 		SyntheticBundleBuilderTest.class, MultiMapTest.class,
 		SplitStringTest.class, XargsFileLauncherTest.class,
-		OSGiFrameworkBasicTest.class, ConciergeExtensionsTest.class,
-		JavaxLibrariesTest.class, ConciergeServicesTest.class,
-		ConciergeXargsTest.class, Slf4jLibraryV172Test.class,
-		FrameworkLaunchArgsTest.class, GoogleLibraryTest.class,
+		ConciergeXargsTest.class, FrameworkLaunchArgsTest.class,
+		OSGiFrameworkBasicTest.class, ConciergeServicesTest.class,
+		ConciergeExtensionsTest.class, JavaxLibrariesTest.class,
+		Slf4jLibraryV172Test.class, GoogleLibraryTest.class,
 		ApacheFelixServicesTest.class, EclipseEquinoxTest.class,
 		EclipseJettyTest.class, EclipsePlatformTest.class,
 		EclipseEMFTest.class, EclipseSmartHomeTest.class,

@@ -13,6 +13,7 @@ package org.eclipse.concierge.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

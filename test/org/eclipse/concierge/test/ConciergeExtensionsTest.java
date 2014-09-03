@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.concierge.test;
 
+import org.eclipse.concierge.test.util.AbstractConciergeTestCase;
 import org.eclipse.concierge.test.util.SyntheticBundleBuilder;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

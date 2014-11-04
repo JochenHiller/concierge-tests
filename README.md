@@ -132,14 +132,12 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
     * ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
-      * Fix available, see bug description
-    * [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
-      * Fix available, see bug description
+    * ~~[#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958)~~ (Closed)
     * ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
 
 * EclipseSmartHome
   * Bugs in Concierge:
-    * [#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469) (Open)
+    * ~~[#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469)~~ (Closed)
     * ~~[#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470)~~ (Closed)
     * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed) 
   * Issue with Jersey
@@ -158,9 +156,7 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * major issue: o.e.sh.core.transform, make sep. test
 * openHAB
   * Bug in openHAB2
-    * [#6 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab2/issues/6) (Open)
-      * Apache Felix FileInstall needs an update to 3.4.0, as this does not require StartLevel service, which is NOT supported by Concierge
-      * Workaround: use FileInstall 3.4.0 as part of Concierge patches for openHAB2/Eclipse SmartHome
+    * ~~[#6 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab2/issues/6)~~ (Closed)
 
 ### Eclipse Kura running on Concierge
 

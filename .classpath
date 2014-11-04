@@ -4,14 +4,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.concierge"/>
-	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/com.sun.jersey_1.17.0.v20130314-2020.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/javax.ws.rs_1.1.1.v20130318-1750.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/javax.xml_1.3.4.v201005080400.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/javax.xml.bind_2.2.0.v201105210648.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/javax.xml.stream_1.0.1.v201004272200.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.codehaus.jackson.core_1.6.0.v20101005-0925.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.codehaus.jackson.mapper_1.6.0.v20101005-0925.jar"/>
-	<classpathentry kind="lib" path="tmp/openHAB2/distribution-2.0.0-SNAPSHOT-runtime/runtime/server/plugins/org.eclipse.core.runtime_3.10.0.v20140318-2214.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

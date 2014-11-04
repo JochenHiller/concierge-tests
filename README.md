@@ -1,26 +1,24 @@
 # Concierge-Tests
 
-This project contains test cases for the Eclipse OSGi framework Concierge.
+This project documents testing the Eclipse OSGi framework Concierge.
 It will be committed at GitHub to make it public available during development.
-All the code will be contributed to the Eclipse Concierge project when Gerrit is in place.
+Test cases which have been developed have been contributed to Concierge project meanwhile.
 
-## How to use this test cases
+## How to run these test cases
 
-1. First check out Concierge 
+0. First check out Concierge 
 ```Shell
 git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
 ```
-2. Check out Concierge tests 
-```Shell
-git clone https://github.com/JochenHiller/concierge-tests.git
-```
-3. Copy all files from concierge-tests to Concierge project (as tests will be running within Concierge project). 
-It will assume that both projects are checked out in same directory level. 
-```Shell
-cd concierge-tests
-./copy-to-concierge.sh
-```
-4. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
+
+0. Run regression test cases for Concierge 
+Run all tests in `test` folder of project `org.eclipse.concierge`.
+
+0. Run integration test cases for Concierge 
+First prepare the test environment by running the Java class `PrepareTargetFolder`
+Then run `ConciergeTestSuite` in package `org.eclipse.concierge.test.suite`
+
+0. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
 http://download.eclipse.org/smarthome/updates-nightly/plugins/ and update the version in the
 file `EclipseSmartHomeTest.java`
 
@@ -42,16 +40,18 @@ The tests are based on these general concepts:
 * The repositories can be configured in file `./test/concierge-test.properties`
 * Tests can run within a simple shell for interactive testing
   * just implement the method `MyTests.stayInShell()` returning true
-  * the bundle from `./test/plugins/shell-1.0.0.jar` will be used
-* Unit tests will run in an order by specifying `@FixMethodOrder(MethodSorters.NAME_ASCENDING)` on test classes
-* The `ConciergeTestSuite` in package `org.eclipse.concierge.suite` will run all tests
+  * the bundle from `./target/plugins/shell-1.0.0.jar` will be used
+* Unit tests will run in an order by specifying `@FixMethodOrder(MethodSorters.NAME_ASCENDING)` on 
+  test classes where required or useful
+* The `ConciergeTestSuite` in package `org.eclipse.concierge.test.suite` will run all tests
 * Actually the tests are focused on installation and resolving bundles. In most cases there are no 
 functional tests for checking whether the bundle is really working
 * Specific bundles will be added to `./target/<some-dir>` where there are no online bundles available
-* "Virtual" Bundles can be installed from test case to avoid duplicate code management
+* "Synthethic" Bundles can be installed from test case to avoid duplicate code management
   * Manifest file can be specified as properties
+  * Files can be added to bundle
   * Code can be executed via reflection in bundle classloader
-  * see EMF tests as a sample how to do that
+
 
 ## Overview of Failed Tests
 
@@ -60,10 +60,7 @@ dependencies, in most cases dependencies to Equinox.
 
 ### Open bugs in Concierge
 
-* [#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958) (Open)
 * [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
-* [#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504) (Open)
-* [#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505) (Open)
 
 The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src/org/eclipse/concierge
 The code patches are marked with conditional compilation based on Concierge.PATCH_JOCHEN.
@@ -98,6 +95,9 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
     * https://github.com/tux2323/jersey.sample.osgiservice
 * ~~[#437884 Framework system packages incorrectly specifies util.tracker bundle version](https://bugs.eclipse.org/bugs/show_bug.cgi?id=437884)~~ (Closed)
+* ~~[#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958)~~ (Closed)
+* ~~[#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504)~~ (Closed)
+* ~~[#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505)~~ (Closed)
 
 ### Identified bugs in other bundles
 

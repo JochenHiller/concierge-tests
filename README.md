@@ -233,6 +233,19 @@ chmod u+x start_concierge_debug.sh
 ```
 5. Open a browser to http://localhost:8080/smarthome.app?sitemap=demo
 
+### Eclipse SmartHome running on Concierge (Minimal version)
+
+openHAB2 provides a minimal version which does not require EMF/xText. See latest build at https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-minimal-runtime.zip
+
+Open Issues during testing:
+
+* Some bundles can NOT be resolved due to missing bundle:
+  * `org.eclipse.smarthome.core.transform`
+  * `org.eclipse.smarthome.io.multimedia`
+  * `org.eclipse.smarthome.io.net`
+  * `org.openhab.binding.sonos`
+* Installing `org.eclipse.smarthome.core.scriptengine` does not solve this issue, as this bundle introduces a dependency to `org.eclipse.emf.ecore.resource`
+
 ## References for Concierge
 
 For more details see

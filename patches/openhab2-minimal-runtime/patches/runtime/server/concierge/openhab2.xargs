@@ -15,13 +15,20 @@
 # -Dorg.eclipse.concierge.debug.classloading=true
 
 
-# base dir
+# base dir. Used for either standard script or when running in IDE
+# Use this when running from standard script "start_concierge_debug.sh"
 -Dbase.dir=.
+# Use this when running from IDE
 # -Dbase.dir=../../openhab2-minimal-runtime/openhab2/.
 
 # bundle directories
 -Ddir=${base.dir}/runtime/server/plugins
 -Dconcierge.dir=${base.dir}/runtime/server/concierge
+-Dconcierge.felix.dir=${base.dir}/runtime/server/concierge/apache-felix
+-Dconcierge.equinox.dir=${base.dir}/runtime/server/concierge/equinox-mars-r4
+-Dconcierge.jetty.dir=${base.dir}/runtime/server/concierge/jetty-9.3
+-Dconcierge.esh.dir=${base.dir}/runtime/server/concierge/eclipse-smarthome
+
 -Dfelix.fileinstall.dir=${base.dir}/addons
 
 
@@ -91,7 +98,7 @@
 -istart ${dir}/org.apache.httpcomponents.httpclient_4.2.6*.jar
 
 # use Apache ConfigAdmin instead of Equinox CM
--istart ${concierge.dir}/org.apache.felix.configadmin-1.8.0.jar
+-istart ${concierge.felix.dir}/org.apache.felix.configadmin-1.8.0.jar
 
 # Other libs
 -istart ${dir}/com.ibm.icu.base_52.1.0*.jar
@@ -118,7 +125,7 @@
 
 # Equinox bundles
 # use patched version from Concierge dir
--istart ${concierge.dir}/org.eclipse.equinox.supplement_1.6.*.jar
+-istart ${concierge.equinox.dir}/org.eclipse.equinox.supplement_1.6.*.jar
 -istart ${dir}/org.eclipse.equinox.util_1.0.500*.jar
 -istart ${dir}/org.eclipse.equinox.common_3.6.200*.jar
 -istart ${dir}/org.eclipse.equinox.ds_1.4.*.jar
@@ -131,7 +138,7 @@
 # -istart ${concierge.dir}/org.eclipse.equinox.cm_1.1.0.v20131021-1936.jar
 
 # use patched version from Concierge dir
--istart ${concierge.dir}/org.eclipse.equinox.console_1.1.*.jar
+-istart ${concierge.equinox.dir}/org.eclipse.equinox.console_1.1.*.jar
 -istart ${dir}/org.eclipse.equinox.registry_3.5.400*.jar
 
 
@@ -143,7 +150,7 @@
 -istart ${dir}/org.eclipse.jetty.http_9.2.1*.jar
 -istart ${dir}/org.eclipse.jetty.server_9.2.1*.jar
 -istart ${dir}/org.eclipse.jetty.rewrite_9.2.1*.jar
--istart ${dir}/org.openhab.io.jetty_2.0.0.201411232232.jar
+-istart ${dir}/org.openhab.io.jetty_2.0.0.*.jar
 
 -istart ${dir}/org.eclipse.jetty.continuation_9.2.1*.jar
 -istart ${dir}/org.eclipse.jetty.security_9.2.1*.jar
@@ -154,7 +161,7 @@
 -istart ${dir}/org.eclipse.jetty.webapp_9.2.1*.jar
 -istart ${dir}/org.eclipse.jetty.deploy_9.2.1*.jar
 # use patched version from Concierge dir
--istart ${concierge.dir}/jetty-osgi-boot-9.2.1.v20140609.jar
+-istart ${concierge.jetty.dir}/jetty-osgi-boot-9.2.1.v20140609.jar
 
 
 # start after HTTP service
@@ -171,10 +178,10 @@
 -istart ${dir}/org.eclipse.smarthome.config.core_0.8.0*.jar
 # use patched version
 # -istart ${dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
--istart ${concierge.dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
+-istart ${concierge.esh.dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
 # use patched version
 # -istart ${dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
--istart ${concierge.dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
+-istart ${concierge.esh.dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.mdns_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.thing_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.discovery_0.8.0*.jar
@@ -195,10 +202,7 @@
 
 # openHAB2 
 -istart ${dir}/org.openhab.core_2.0.0*.jar
--istart ${dir}/org.openhab.core_2.0.0*.jar
-# patched
-# -istart ${dir}/org.openhab.core.init_2.0.0*.jar
--istart ${concierge.dir}/org.openhab.core.init_2.0.0*.jar
+-istart ${dir}/org.openhab.core.init_2.0.0*.jar
 -istart ${dir}/org.openhab.ui.dashboard_2.0.0*.jar
 
 

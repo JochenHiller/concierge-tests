@@ -19,8 +19,28 @@ fi
 # will download all needed files if not existing
 if [ ! -d runtime/server/concierge ] ; then
   mkdir -p runtime/server/concierge
-  for f in x ; do
-    curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal/patches/runtime/server/concierge/$f
+  mkdir -p runtime/server/concierge/apache-felix
+  mkdir -p runtime/server/concierge/eclipse-smarthome
+  mkdir -p runtime/server/concierge/equinox-mars-r4
+  mkdir -p runtime/server/concierge/jetty-9.3
+  for f in \
+    apache-felix/org.apache.felix.configadmin-1.8.0.jar \
+    eclipse-smarthome/org.eclipse.smarthome.core.transform_0.8.0.201501200907.jar \
+    eclipse-smarthome/org.eclipse.smarthome.io.net_0.8.0.201501200907.jar \
+    equinox-mars-r4/org.eclipse.equinox.console_1.1.100.v20141023-1406.jar \
+    equinox-mars-r4/org.eclipse.equinox.supplement_1.6.0.v20141009-1504.jar \
+    jetty-9.3/jetty-osgi-boot-9.2.1.v20140609.jar \
+    openhab2.xargs \
+    org.eclipse.concierge-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.extension.permission-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.service.packageadmin-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.service.permission-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.service.startlevel-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.service.xmlparser-1.0.0.20150125080404.jar \
+    org.eclipse.concierge.shell-1.0.0.20150125080404.jar \
+    ; do
+    echo "Downloading $f..."
+    curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/runtime/server/concierge/$f
   done
 fi
 

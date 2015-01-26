@@ -7,11 +7,9 @@ This page describes the current status to run Eclipse SmartHome on the lightweig
 The documentation here will use
 
 * the latest openHAB-2.0.0-SNAPSHOT version, using the minimal runtime version (see https://openhab.ci.cloudbees.com/job/openHAB2/)
-* the latest Concierge  SNAPHOT version (as of 25.01.2015) (see https://hudson.eclipse.org/concierge/job/ConciergeDistribution/)
+* the latest Concierge SNAPHOT version (as of 25.01.2015) (see https://hudson.eclipse.org/concierge/job/ConciergeDistribution/)
 
 ## How to run Eclipse SmartHome/openHAB2 with Concierge
-
-To run Eclipse SmartHome, you have to use an openHAB2 build, as Eclipse SmartHome does not have its own distribution yet.
 
 0. Get openHAB 2.0.0 SNAPSHOT build from https://openhab.ci.cloudbees.com/job/openHAB2/
 
@@ -38,19 +36,31 @@ chmod u+x start_concierge_debug.sh
 
 0. Start Concierge server
 
+This script will download missing bundles from GitHub repo.
+
 ```script
 ./start_concierge_debug.sh
 ```
 
 0. Open a browser to http://localhost:8080/, and use "PaperUI" for testing
 
-## References
 
-* openHAB 2.0.0-SNAPSHOT version: https://openhab.ci.cloudbees.com/job/openHAB2/
-* Concierge SNAPSHOT version: https://hudson.eclipse.org/concierge/job/ConciergeDistribution/
+## Required patches for Eclipse SmartHome
+
+* Equinox ConfigAdmin does not work, we use Apache Felix ConfigAdmin 1.8.0 instead
+* Equinox Console does work since Equinox Mars R3. We will use version 1.1.100
+* Equinox Console requires correspding supplement bundles, does work since Equinox Mars R3. We will use version 1.6.0
+* Jetty OSGi Boot Bundle does support Concierge only from Jetty 9.3 on. Until that is available we use a patched version from Jetty 9.2.1.
 
 ## Open Issues
 
 * The condition permission admin will be used as service bundle. It would be better to use a framework extension instead
-* Bindings in "addon" folder will not be started reliable, sometime bundles are ony installed, not started
-* When manually starting bindings in INSTALLED mode, Java can hang. You have to kill the JavaVM
+* There is a problem using Equinox DS with optional components. Concierge will raise NoClassDefFoundErrors (when classes are missing) which brakes Equinox DS for some reason
+  * Workaround: org.eclipse.smarthome.{io.net|core.transform} are patched to exclude the DS descriptors for optional components
+* There is a deadlock on "BundleImpl" when using Apache Felix FileInstall and Equinox DS. The same can happen when starting bundles from console.
+  * Workaround: do not use file install, install via xargs directives
+
+## References
+
+* openHAB 2.0.0-SNAPSHOT version: https://openhab.ci.cloudbees.com/job/openHAB2/
+* Concierge SNAPSHOT version: https://hudson.eclipse.org/concierge/job/ConciergeDistribution/

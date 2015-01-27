@@ -3,12 +3,12 @@
 
 # configure Concierge
 # TODO find best configuration
-# -Dorg.eclipse.concierge.debug=true
--Dorg.eclipse.concierge.log.enabled=true
+# -Dorg.eclipse.concierge.log.enabled=true
 # -Dorg.eclipse.concierge.log.quiet=false
 # -Dorg.eclipse.concierge.log.buffersize=1000
-# 4 is DEBUG
--Dorg.eclipse.concierge.log.level=4 
+# 4=DEBUG, 3=INFO, 2=WARN, 1=ERROR, 0=NULL
+# -Dorg.eclipse.concierge.log.level=4
+# -Dorg.eclipse.concierge.debug=true
 # -Dorg.eclipse.concierge.debug.bundles=true
 # -Dorg.eclipse.concierge.debug.packages=true
 # -Dorg.eclipse.concierge.debug.services=true
@@ -27,7 +27,6 @@
 -Dconcierge.felix.dir=${base.dir}/runtime/server/concierge/apache-felix
 -Dconcierge.equinox.dir=${base.dir}/runtime/server/concierge/equinox-mars-r4
 -Dconcierge.jetty.dir=${base.dir}/runtime/server/concierge/jetty-9.3
--Dconcierge.esh.dir=${base.dir}/runtime/server/concierge/eclipse-smarthome
 
 -Dfelix.fileinstall.dir=${base.dir}/addons
 
@@ -76,6 +75,9 @@
 -istart ${dir}/org.slf4j.jcl_1.7.2*.jar
 -istart ${dir}/org.slf4j.jul_1.7.2*.jar
 -istart ${dir}/org.slf4j.log4j_1.7.2*.jar
+
+# add osgi-over-slf4j bridge
+-istart ${concierge.dir}/slf4j/osgi-over-slf4j-1.7.2.jar
 
 
 # Common javax packages
@@ -176,12 +178,8 @@
 -istart ${dir}/org.eclipse.smarthome.io.console_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.scheduler_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.core_0.8.0*.jar
-# use patched version
-# -istart ${dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
--istart ${concierge.esh.dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
-# use patched version
-# -istart ${dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
--istart ${concierge.esh.dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
+-istart ${dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.mdns_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.thing_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.discovery_0.8.0*.jar

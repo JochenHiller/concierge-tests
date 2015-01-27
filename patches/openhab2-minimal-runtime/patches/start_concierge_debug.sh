@@ -6,8 +6,8 @@ rm -f ./userdata/logs/console.log
 
 cd `dirname $0`
 
-# ENABLE that for development purposes, will speed up
-if [ true == true ] ; then
+# enable simply copy for development purposes, will speed up
+if [ -d ../../concierge-tests/patches/openhab2-minimal-runtime/patches ] ; then
   rm -rf ./runtime/server/concierge/
   cp -R ../../concierge-tests/patches/openhab2-minimal-runtime/patches/* .
   rm -rf ./userdata/storage
@@ -25,13 +25,12 @@ if [ ! -d runtime/server/concierge ] ; then
   mkdir -p runtime/server/concierge/jetty-9.3
   for f in \
     apache-felix/org.apache.felix.configadmin-1.8.0.jar \
-    eclipse-smarthome/org.eclipse.smarthome.core.transform_0.8.0.201501200907.jar \
-    eclipse-smarthome/org.eclipse.smarthome.io.net_0.8.0.201501200907.jar \
     equinox-mars-r4/org.eclipse.equinox.console_1.1.100.v20141023-1406.jar \
     equinox-mars-r4/org.eclipse.equinox.supplement_1.6.0.v20141009-1504.jar \
     jetty-9.3/jetty-osgi-boot-9.2.1.v20140609.jar \
+    slf4j/osgi-over-slf4j-1.7.2.jar \
     openhab2.xargs \
-    org.eclipse.concierge-1.0.0.20150125080404.jar \
+    org.eclipse.concierge-1.0.0.20150127222259.jar \
     org.eclipse.concierge.extension.permission-1.0.0.20150125080404.jar \
     org.eclipse.concierge.service.packageadmin-1.0.0.20150125080404.jar \
     org.eclipse.concierge.service.permission-1.0.0.20150125080404.jar \
@@ -39,8 +38,12 @@ if [ ! -d runtime/server/concierge ] ; then
     org.eclipse.concierge.service.xmlparser-1.0.0.20150125080404.jar \
     org.eclipse.concierge.shell-1.0.0.20150125080404.jar \
     ; do
-    echo "Downloading $f..."
-    curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/runtime/server/concierge/$f
+    if [ ! -f $f ] ; then
+      echo "Downloading $f..."
+      curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/runtime/server/concierge/$f
+    else
+      echo "Skipping download $f as yet available..." 
+    fi
   done
 fi
 
@@ -57,7 +60,7 @@ cp=$(find $eclipsehome -name "org.eclipse.concierge-1.0.0*.jar" | sort | tail -1
 # echo $cp
 
 # debug options
-debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n"
+debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y"
 
 # program args
 prog_args="-Dlogback.configurationFile=./runtime/etc/logback_debug.xml -DmdnsName=openhab -Dopenhab.logdir=./userdata/logs -Dsmarthome.servicecfg=./runtime/etc/services.cfg -Dsmarthome.userdata=./userdata -Dsmarthome.servicepid=org.openhab -Dsmarthome.userdata=./userdata -Dorg.quartz.properties=./runtime/etc/quartz.properties -Djetty.etc.config.urls=etc/jetty.xml,etc/jetty-ssl.xml,etc/jetty-deployer.xml,etc/jetty-https.xml,etc/jetty-selector.xml"

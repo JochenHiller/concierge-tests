@@ -55,8 +55,10 @@ This script will download missing bundles from GitHub repo.
 ## Open Issues
 
 * The condition permission admin will be used as service bundle. It would be better to use a framework extension instead
-* There is a problem using Equinox DS with optional components. Concierge will raise NoClassDefFoundErrors (when classes are missing) which brakes Equinox DS for some reason
-  * Workaround: org.eclipse.smarthome.{io.net|core.transform} are patched to exclude the DS descriptors for optional components
+* Some  bundles (org.eclipse.smarthome.io.net, org.eclipse.smarthome.core.transform, org.openhab.core) will use DS components, which does require optional classes, which are not included in minimal-runtime. This does work well, but every DS component which can not be instantiated will create some ERROR log messages. This will flood logs with ERROR messages which are not relevant.
+  * Workarounds:
+    * a) enable org.eclipse.concierge.log.enabled=true, and set loglevel to 0: org.eclipse.concierge.log.level=0
+    * b) Use osgi-over-slf4j logging bundle, and disable logging of Equinox DS (<logger name="org.eclipse.equinox.ds" level="OFF"/>)
 * There is a deadlock on "BundleImpl" when using Apache Felix FileInstall and Equinox DS. The same can happen when starting bundles from console.
   * Workaround: do not use file install, install via xargs directives
 

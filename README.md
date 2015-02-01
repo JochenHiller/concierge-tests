@@ -103,9 +103,11 @@ The code patches are marked with conditional compilation based on Concierge.PATC
 
 * Equinox
   * Equinox Console bundle
-    * ~~[#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180)~~ (Closed, since MarsM3)
+    * ~~[#439180 org.eclipse.equinox.console bundle has wrong version 1.1.0 for "Import-Package: org.osgi.framework.namespace"](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439180)~~ (Closed, since MarsR3)
       * see also ~~https://bugs.eclipse.org/bugs/show_bug.cgi?id=438783~~ (Rejected by Concierge)
-    * ~~[#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445)~~ (Closed, since MarsM3)
+    * ~~[#439445 Equinox console bundle has hard dependency to Equinox framework and not to supplement bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439445)~~ (Closed, since MarsR3)
+  * Equinox ConfigAdmin bundle
+    * ~~[#458427 [cm] Equinox ConfigAdmin requires OSGi R6, does not run in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=458427)~~ (Closed, since MarsR5)
 * Jetty
   * Jetty OSGi Boot bundle
     * [#440506 Jetty OSGi boot bundle does not support OSGi framework Eclipse Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440506) (Open)

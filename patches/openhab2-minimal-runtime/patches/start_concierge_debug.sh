@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # pipe all output to console.log file
+if [ ! -d ./userdata/logs ] ; then mkdir -p ./userdata/logs/ ; fi
 rm -f ./userdata/logs/console.log
 (
 
@@ -60,7 +61,7 @@ cp=$(find $eclipsehome -name "org.eclipse.concierge-1.0.0*.jar" | sort | tail -1
 # echo $cp
 
 # debug options
-debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y"
+debug_opts="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n"
 
 # program args
 prog_args="-Dlogback.configurationFile=./runtime/etc/logback_debug.xml -DmdnsName=openhab -Dopenhab.logdir=./userdata/logs -Dsmarthome.servicecfg=./runtime/etc/services.cfg -Dsmarthome.userdata=./userdata -Dsmarthome.servicepid=org.openhab -Dsmarthome.userdata=./userdata -Dorg.quartz.properties=./runtime/etc/quartz.properties -Djetty.etc.config.urls=etc/jetty.xml,etc/jetty-ssl.xml,etc/jetty-deployer.xml,etc/jetty-https.xml,etc/jetty-selector.xml"

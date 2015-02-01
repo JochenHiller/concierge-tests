@@ -25,7 +25,7 @@
 -Ddir=${base.dir}/runtime/server/plugins
 -Dconcierge.dir=${base.dir}/runtime/server/concierge
 -Dconcierge.felix.dir=${base.dir}/runtime/server/concierge/apache-felix
--Dconcierge.equinox.dir=${base.dir}/runtime/server/concierge/equinox-mars-r4
+-Dconcierge.equinox.dir=${base.dir}/runtime/server/concierge/equinox-mars-r5
 -Dconcierge.jetty.dir=${base.dir}/runtime/server/concierge/jetty-9.3
 
 -Dfelix.fileinstall.dir=${base.dir}/addons
@@ -48,7 +48,7 @@
   org.xml.sax,org.xml.sax.helpers,org.xml.sax.ext,org.w3c.dom,org.ietf.jgss,\
   javax.imageio.spi,javax.imageio.stream,javax.management,javax.xml.bind,javax.xml.bind.annotation,\
   javax.xml.bind.annotation.adapters,javax.xml.transform,javax.xml.validation,org.w3c.dom.bootstrap,org.w3c.dom.ls,\
-  javax.inject
+  javax.inject,
 
 
 # Shell for testing
@@ -99,8 +99,6 @@
 -istart ${dir}/org.apache.httpcomponents.httpcore_4.2.5*.jar
 -istart ${dir}/org.apache.httpcomponents.httpclient_4.2.6*.jar
 
-# use Apache ConfigAdmin instead of Equinox CM
--istart ${concierge.felix.dir}/org.apache.felix.configadmin-1.8.0.jar
 
 # Other libs
 -istart ${dir}/com.ibm.icu.base_52.1.0*.jar
@@ -130,14 +128,22 @@
 -istart ${concierge.equinox.dir}/org.eclipse.equinox.supplement_1.6.*.jar
 -istart ${dir}/org.eclipse.equinox.util_1.0.500*.jar
 -istart ${dir}/org.eclipse.equinox.common_3.6.200*.jar
--istart ${dir}/org.eclipse.equinox.ds_1.4.*.jar
+
+
+# TODO use Apache SCR instead of Equinox DS
+# There is a sync issue between Equinox DS and Apache Felix FileInstall
+# Apache SCR does work well
+# -istart ${dir}/org.eclipse.equinox.ds_1.4.*.jar
+# -istart ${concierge.felix.dir}/org.apache.felix.scr-1.8.2.jar
+
 -istart ${dir}/org.eclipse.equinox.event_1.3.*.jar
+
 # TODO cm is wrong, refer OSGi 1.8, use patched version instead
-# patched version does not work as registerService method is missing
 # -istart ${dir}/org.eclipse.equinox.cm_1.1.0.*.jar
-# -istart ${concierge.dir}/org.eclipse.equinox.cm_1.1.0.*.jar
-# -istart ${concierge.dir}/org.eclipse.equinox.cm_1.0.400.v20130327-1442.jar
-# -istart ${concierge.dir}/org.eclipse.equinox.cm_1.1.0.v20131021-1936.jar
+# use Apache ConfigAdmin instead of Equinox CM
+# -istart ${concierge.felix.dir}/org.apache.felix.configadmin-1.8.0.jar
+# use Mars R5 version, which should work
+-istart ${concierge.equinox.dir}/org.eclipse.equinox.cm_1.1.0.*.jar
 
 # use patched version from Concierge dir
 -istart ${concierge.equinox.dir}/org.eclipse.equinox.console_1.1.*.jar
@@ -167,6 +173,7 @@
 
 
 # start after HTTP service
+-Dorg.osgi.framework.system.packages.extra+=javax.xml.xpath,
 -istart ${dir}/org.jupnp_2.0.0.*.jar
 
 
@@ -205,16 +212,16 @@
 
 
 # FileInstall as last bundle to allow to install add-ons
-# -istart ${dir}/org.apache.felix.fileinstall_3.4.0.jar
+-istart ${dir}/org.apache.felix.fileinstall_3.4.0.jar
 # TODO problems with Deadlock FileInstall/DS
 # install addons manually
--istart ${base.dir}/addons/org.eclipse.smarthome.binding.hue-0.8.0-20150121.201803-81.jar
--istart ${base.dir}/addons/org.eclipse.smarthome.binding.lifx-0.8.0-20150121.201852-16.jar
--istart ${base.dir}/addons/org.eclipse.smarthome.binding.wemo-0.8.0-20150121.201844-49.jar
--istart ${base.dir}/addons/org.eclipse.smarthome.binding.yahooweather-0.8.0-20150121.201838-81.jar
--istart ${base.dir}/addons/org.openhab.binding.max-2.0.0-SNAPSHOT.jar
--istart ${base.dir}/addons/org.openhab.binding.sonos-2.0.0-SNAPSHOT.jar
--istart ${base.dir}/addons/org.openhab.ui.paperui-2.0.0-SNAPSHOT.jar
+#-istart ${base.dir}/addons/org.eclipse.smarthome.binding.hue-0.8.0-20150121.201803-81.jar
+#-istart ${base.dir}/addons/org.eclipse.smarthome.binding.lifx-0.8.0-20150121.201852-16.jar
+#-istart ${base.dir}/addons/org.eclipse.smarthome.binding.wemo-0.8.0-20150121.201844-49.jar
+#-istart ${base.dir}/addons/org.eclipse.smarthome.binding.yahooweather-0.8.0-20150121.201838-81.jar
+#-istart ${base.dir}/addons/org.openhab.binding.max-2.0.0-SNAPSHOT.jar
+#-istart ${base.dir}/addons/org.openhab.binding.sonos-2.0.0-SNAPSHOT.jar
+#-istart ${base.dir}/addons/org.openhab.ui.paperui-2.0.0-SNAPSHOT.jar
  
  
 # end of script

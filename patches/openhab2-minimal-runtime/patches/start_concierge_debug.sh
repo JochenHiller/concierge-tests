@@ -9,8 +9,10 @@ cd `dirname $0`
 
 # enable simply copy for development purposes, will speed up
 if [ -d ../../concierge-tests/patches/openhab2-minimal-runtime/patches ] ; then
+  echo "Copying all patches from ../../concierge-tests/patches/openhab2-minimal-runtime/patches..."
   rm -rf ./runtime/server/concierge/
   cp -R ../../concierge-tests/patches/openhab2-minimal-runtime/patches/* .
+  echo "Cleanup userdata (will delete configuration)..."
   rm -rf ./userdata/storage
   rm -f ./userdata/logs/openhab.log
   rm -f ./userdata/logs/events.log
@@ -21,17 +23,18 @@ fi
 if [ ! -d runtime/server/concierge ] ; then
   mkdir -p runtime/server/concierge
   mkdir -p runtime/server/concierge/apache-felix
-  mkdir -p runtime/server/concierge/eclipse-smarthome
-  mkdir -p runtime/server/concierge/equinox-mars-r4
+  mkdir -p runtime/server/concierge/equinox-mars-r5
   mkdir -p runtime/server/concierge/jetty-9.3
+  mkdir -p runtime/server/concierge/slf4j
   for f in \
-    apache-felix/org.apache.felix.configadmin-1.8.0.jar \
-    equinox-mars-r4/org.eclipse.equinox.console_1.1.100.v20141023-1406.jar \
-    equinox-mars-r4/org.eclipse.equinox.supplement_1.6.0.v20141009-1504.jar \
+    apache-felix/org.apache.felix.scr-1.8.2.jar \
+    equinox-mars-r5/org.eclipse.equinox.cm_1.1.0.v20150126-1942.jar \
+    equinox-mars-r5/org.eclipse.equinox.console_1.1.100.v20141023-1406.jar \
+    equinox-mars-r5/org.eclipse.equinox.supplement_1.6.0.v20141009-1504.jar \
     jetty-9.3/jetty-osgi-boot-9.2.1.v20140609.jar \
     slf4j/osgi-over-slf4j-1.7.2.jar \
     openhab2.xargs \
-    org.eclipse.concierge-1.0.0.20150127222259.jar \
+    org.eclipse.concierge-1.0.0.20150201125532.jar \
     org.eclipse.concierge.extension.permission-1.0.0.20150125080404.jar \
     org.eclipse.concierge.service.packageadmin-1.0.0.20150125080404.jar \
     org.eclipse.concierge.service.permission-1.0.0.20150125080404.jar \

@@ -134,7 +134,7 @@
 # There is a sync issue between Equinox DS and Apache Felix FileInstall
 # Apache SCR does work well
 # -istart ${dir}/org.eclipse.equinox.ds_1.4.*.jar
-# -istart ${concierge.felix.dir}/org.apache.felix.scr-1.8.2.jar
+-istart ${concierge.felix.dir}/org.apache.felix.scr-1.8.2.jar
 
 -istart ${dir}/org.eclipse.equinox.event_1.3.*.jar
 
@@ -215,6 +215,7 @@
 -istart ${dir}/org.apache.felix.fileinstall_3.4.0.jar
 # TODO problems with Deadlock FileInstall/DS
 # install addons manually
+# -all ${base.dir}/addons
 #-istart ${base.dir}/addons/org.eclipse.smarthome.binding.hue-0.8.0-20150121.201803-81.jar
 #-istart ${base.dir}/addons/org.eclipse.smarthome.binding.lifx-0.8.0-20150121.201852-16.jar
 #-istart ${base.dir}/addons/org.eclipse.smarthome.binding.wemo-0.8.0-20150121.201844-49.jar

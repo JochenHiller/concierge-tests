@@ -64,7 +64,6 @@ This script will download missing bundles from GitHub repo.
   * Workarounds: 
     * a) Use Apache SCR instead of Equinox DS
     * b) do not use file install, install via xargs directives
-* The Sonos Binding as Bundle-ActivationPolicy: Lazy. The bundle will NOT be started even if XML files should be parsed by Eclipse SmartHome 
 
 ## References
 

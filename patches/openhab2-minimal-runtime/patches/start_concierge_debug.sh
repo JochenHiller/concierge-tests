@@ -21,6 +21,7 @@ fi
 
 # will download all needed files if not existing
 if [ ! -d runtime/server/concierge ] ; then
+  echo "Copying all patches from GitHub..."
   mkdir -p runtime/server/concierge
   mkdir -p runtime/server/concierge/apache-felix
   mkdir -p runtime/server/concierge/equinox-mars-r5
@@ -34,17 +35,17 @@ if [ ! -d runtime/server/concierge ] ; then
     jetty-9.3/jetty-osgi-boot-9.2.1.v20140609.jar \
     slf4j/osgi-over-slf4j-1.7.2.jar \
     openhab2.xargs \
-    org.eclipse.concierge-1.0.0.20150201125532.jar \
-    org.eclipse.concierge.extension.permission-1.0.0.20150125080404.jar \
-    org.eclipse.concierge.service.packageadmin-1.0.0.20150125080404.jar \
-    org.eclipse.concierge.service.permission-1.0.0.20150125080404.jar \
-    org.eclipse.concierge.service.startlevel-1.0.0.20150125080404.jar \
-    org.eclipse.concierge.service.xmlparser-1.0.0.20150125080404.jar \
-    org.eclipse.concierge.shell-1.0.0.20150125080404.jar \
+    org.eclipse.concierge-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.extension.permission-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.service.packageadmin-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.service.permission-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.service.startlevel-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.service.xmlparser-1.0.0.20150201080451.jar \
+    org.eclipse.concierge.shell-1.0.0.20150201080451.jar \
     ; do
     if [ ! -f $f ] ; then
       echo "Downloading $f..."
-      curl -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/runtime/server/concierge/$f
+      curl -q -o runtime/server/concierge/$f https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/runtime/server/concierge/$f
     else
       echo "Skipping download $f as yet available..." 
     fi

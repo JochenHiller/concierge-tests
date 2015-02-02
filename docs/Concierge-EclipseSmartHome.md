@@ -12,6 +12,7 @@ The documentation here will use
 ## How to run Eclipse SmartHome/openHAB2 with Concierge
 
 1. Get openHAB 2.0.0 SNAPSHOT build from https://openhab.ci.cloudbees.com/job/openHAB2/
+====================================================================================
 
 ```script
 mkdir openhab2-minimal-runtime

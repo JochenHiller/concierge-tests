@@ -34,7 +34,6 @@ wget -q https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/pa
 chmod u+x start_concierge_debug.sh
 ```
 
-
 ###### 4. Start Concierge server
 
 This script will download missing bundles from GitHub repo.

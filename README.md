@@ -4,24 +4,9 @@ This project documents testing the Eclipse OSGi framework Concierge.
 It will be committed at GitHub to make it public available during development.
 Test cases which have been developed have been contributed to Concierge project meanwhile.
 
-## How to run these test cases
+## Eclipse SmartHome running on Concierge
 
-0. First check out Concierge 
-```Shell
-git clone git://git.eclipse.org/gitroot/concierge/org.eclipse.concierge.git
-```
-
-0. Run regression test cases for Concierge 
-Run all tests in `test` folder of project `org.eclipse.concierge`.
-
-0. Run integration test cases for Concierge 
-First prepare the test environment by running the Java class `PrepareTargetFolder`
-Then run `ConciergeTestSuite` in package `org.eclipse.concierge.test.suite`
-
-0. For running tests of Eclipse SmartHome: check the version of latest snapshot at 
-http://download.eclipse.org/smarthome/updates-nightly/plugins/ and update the version in the
-file `EclipseSmartHomeTest.java`
-
+See documentation at https://github.com/JochenHiller/concierge-tests/blob/master/docs/Concierge-EclipseSmartHome.md to see how to run Eclipse SmartHome on Concierge.
 
 ## Overview of testing framework
 
@@ -58,12 +43,6 @@ functional tests for checking whether the bundle is really working
 The unit tests showed some bugs in Concierge and some bugs in bundles installed in Concierge due to 
 dependencies, in most cases dependencies to Equinox.
 
-### Open bugs in Concierge
-
-* [#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492) (Open)
-
-The patched sources are in this repo too. Check source code at https://github.com/JochenHiller/concierge-tests/tree/master/src/org/eclipse/concierge
-The code patches are marked with conditional compilation based on Concierge.PATCH_JOCHEN.
 
 ### Closed bugs in Concierge
 
@@ -85,7 +64,7 @@ The code patches are marked with conditional compilation based on Concierge.PATC
 * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed)
   * Note: as commented in bug this missing functionality is added as separate bundle to keep core code of Concierge as small as possible
 * ~~[#439751 Component.activate() will be called BEFORE bundle activator will be called](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439751)~~ (Rejected)
-  * Note: TODO raise a bug against Apache Felix DS
+  * Note: Needs retesting as in newer version of Apache SCR the tests are running successful
 * ~~[#439947 NullPointerException when resolving a fragment as framework extension bundle](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439947)~~ (Resolved)
 * ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
 * ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
@@ -98,6 +77,8 @@ The code patches are marked with conditional compilation based on Concierge.PATC
 * ~~[#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958)~~ (Closed)
 * ~~[#440504 XargsFileLauncher: Concierge will be started at the end, by intention?](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440504)~~ (Closed)
 * ~~[#440505 XargsFileLauncher: support properties, support wildcards](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440505)~~ (Closed)
+* ~~[#440492 shell-1.0.0.jar is not a valid JAR file](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440492)~~ (Closed. A revised Shell bundle is now part of Concierge bundles)
+
 
 ### Identified bugs in other bundles
 
@@ -110,7 +91,7 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * ~~[#458427 [cm] Equinox ConfigAdmin requires OSGi R6, does not run in Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=458427)~~ (Closed, since MarsR5)
 * Jetty
   * Jetty OSGi Boot bundle
-    * [#440506 Jetty OSGi boot bundle does not support OSGi framework Eclipse Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440506) (Open)
+    * [#440506 Jetty OSGi boot bundle does not support OSGi framework Eclipse Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=440506) (Open, will be included in Jetty 9.3)
       * Note: there is a prebuild version of this bundle with Concierge support available at
         https://github.com/JochenHiller/concierge-tests/blob/master/patches/openhab2/patches/runtime/server/concierge/jetty-osgi-boot-9.2.1.v20140609.jar
 * EMF
@@ -130,39 +111,15 @@ The code patches are marked with conditional compilation based on Concierge.PATC
     * One issue with Felix Gogo console, runtime exception
   * No further functional tests
   * Identified and closed bugs in Concierge and Kura bundles:
-    * ~~[#436724 BundleImpl.checkConflicts fails when Resource.BundleRequirementImpl has no attributes](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436724)~~ (Closed)
     * ~~[#436725 Eclipse SODA COMM bundle relies on Equinox, does NOT run on Concierge](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436725)~~ (Closed) 
     * ~~[#436729 Bundle org.eclipse.kura.core.configuration refers to Apache Felix SCR](https://bugs.eclipse.org/bugs/show_bug.cgi?id=436729)~~ (Closed) 
-    * ~~[#439957 Bundle-NativeCode resolve will fail when selection-filter will be used](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439957)~~ (Closed)
-    * ~~[#439958 Bundle-NativeCode resolve will fail on Mac OS X](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439958)~~ (Closed)
-    * ~~[#439981 Concierge.removeFrameworkListener raise a NullPointerException](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439981)~~ (Closed)
-
-* EclipseSmartHome
-  * Bugs in Concierge:
-    * ~~[#439469 ClassCastException in BundleImpl.Revision.BundleClassLoader.findResource1](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439469)~~ (Closed)
-    * ~~[#439470 Bundle activator will be called twice](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439470)~~ (Closed)
-    * ~~[#439492 Concierge is missing pre-registered SAXParserFactory and DocumentBuilderFactory](https://bugs.eclipse.org/bugs/show_bug.cgi?id=439492)~~ (Closed) 
-  * Issue with Jersey
-    * Seems that Equinox and Felix also do not have easy working solutions.
-      * See also workarounds at e.g.
-      * http://comments.gmane.org/gmane.comp.java.jersey.user/6114
-      * https://github.com/tux2323/jersey.sample.osgiservice
-  
-    * Jersey 1.17 does have OPTIONAL dependencies to Jackson, with wrong Jackson package version (1.9.2, instead of 1.6.0).
-      A workaround is to patch Jersey to make two package mandatory without package version:
-      * org.codehaus.jackson
-      * org.codehaus.jackson.map
-   * TODO Real solution: check about latest Jersey 2.x version, and dependencies to Jackson (assume no deps)
-  * TODO working on next tests
-    * go over all TODOs, sort them
-    * major issue: o.e.sh.core.transform, make sep. test
 * openHAB
   * Bug in openHAB2
     * ~~[#6 Running openHAB2 on Concierge needs update of Felix FileInstall from 3.2.6 to 3.4.0](https://github.com/openhab/openhab2/issues/6)~~ (Closed)
 
 ### Eclipse Kura running on Concierge
 
-1. How to build Eclipse Kura
+###### 1. How to build Eclipse Kura
 
 See https://github.com/eclipse/kura for details how to build.
 ```Shell
@@ -176,12 +133,14 @@ mvn -Dmaven.test.skip=true -f manifest_pom.xml clean install
 mvn -Dmaven.test.skip=true -f pom_pom.xml -Pweb clean install
 mvn -Dmaven.test.skip=true -f pom_pom.xml clean install
 ```
-2. Unpack distribution file
+
+###### 2. Unpack distribution file
 ```Shell
 cd distrib/target
 unzip kura-raspberry-pi-jars_0.2.0-SNAPSHOT.zip
 ```
-3. Add the directory with unpacked files to file test/concierge-test.properties
+
+###### 3. Add the directory with unpacked files to file test/concierge-test.properties
 
 This will extend the paths to be searched for bundles to lookup into Kura distribution.
 If we assume that kura is on same directory level as org.eclipse.concierge,
@@ -193,60 +152,6 @@ concierge.test.localDirectories=\
     ../kura/kura/distrib/target/kura-raspberry-pi-jars_0.2.0-SNAPSHOT/plugins:\
     ...
 ```
-
-### Eclipse SmartHome running on Concierge
-
-Eclipse SmartHome can be tested using latest snapshot release from `http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/plugins`.
-The build number has to be changed in EclipseSmartHomeTest like that:
-
-```Java
-	private static final String B_ESH(String bundleName) {
-		return bundleName + "_0.7.0.201407112057" + ".jar";
-	}
-```
-
-TODO add missing bundles
-
-#### You can run Eclipse SmartHome with Concierge this way:
-
-To run Eclipse SmartHome, you have to use an openHAB2 build, as Eclipse SmartHome
-does not have its own distribution yet.
-
-1. Get openHAB2 snapshot build from https://openhab.ci.cloudbees.com/job/openHAB2/
-```script
-wget -q https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-demo.zip
-wget -q https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-runtime.zip
-```
-2. Unzip openHAB2 runtime and demo data
-```script
-mkdir openhab2
-cd openhab2
-unzip ../distribution-2.0.0-SNAPSHOT-runtime.zip
-unzip -o ../distribution-2.0.0-SNAPSHOT-demo.zip
-```
-3. Download `start_concierge_debug.sh` script
-```script
-wget -q https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2/patches/start_concierge_debug.sh
-chmod u+x start_concierge_debug.sh
-```
-4. Start Concierge server
-```script
-./start_concierge_debug.sh
-```
-5. Open a browser to http://localhost:8080/smarthome.app?sitemap=demo
-
-### Eclipse SmartHome running on Concierge (Minimal version)
-
-openHAB2 provides a minimal version which does not require EMF/xText. See latest build at https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-minimal-runtime.zip
-
-Open Issues during testing:
-
-* Some bundles can NOT be resolved due to missing bundle:
-  * `org.eclipse.smarthome.core.transform`
-  * `org.eclipse.smarthome.io.multimedia`
-  * `org.eclipse.smarthome.io.net`
-  * `org.openhab.binding.sonos`
-* Installing `org.eclipse.smarthome.core.scriptengine` does not solve this issue, as this bundle introduces a dependency to `org.eclipse.emf.ecore.resource`
 
 ## References for Concierge
 
@@ -293,17 +198,7 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
       {
         return new Implementation();
       }
-* Jersey: test case for Jackson classes
-* Extend xargs launcher obout wildcard support for simpler startup scripts
-  * Finalize Xargs contribution (multi-line properties, multiple properties, -fwstart option, reformat code)
-* Implementation for com.sun.* packages
-* Add a bug when running ConciergeExtension test cases: will not cleanup correctly, which
-  results in further errors in test cases or in seldom cases to JavaVM crashs
-  Seems to be a bug related to bundle jar file which will NOT be closed in all error situations
 * Add test cases for Xargs with initLevel
-* Add log information for resolveBundle when running into nested resolve calls (IllegalStateException)
-* Check Apache Gogo for reported errors/exceptions
-* Create bug for Apache Felix DS for order of activation/component
 * Download all bundles when remote URL is a p2-repo
 * Add wildcard capability to AbstractConciergeTestCase.installBundle to avoid to specify the version
   * Shall use the latest found version of a bundle
@@ -311,4 +206,3 @@ git clone git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git -b v2.6.x_Main
 * Provide a way how EMF (and other bundles) can be used from workspace for testing
   (as requested by Ed Merks)
 * Create bug to EMF to adapt other bundles (like EMF-examples) to do NOT require-bundle to Equinox too
-* Run and test Concierge under Raspberry PI

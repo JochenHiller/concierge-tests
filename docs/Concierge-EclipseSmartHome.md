@@ -55,12 +55,12 @@ This script will download missing bundles from GitHub repo.
 ## Open Issues
 
 * The condition permission admin will be used as service bundle. It would be better to use a framework extension instead
-* Some  bundles (org.eclipse.smarthome.io.net, org.eclipse.smarthome.core.transform, org.openhab.core) will use OSGi Declarative Services (DS) components, which does require optional classes, which are not included in minimal-runtime. This does work well, but every DS component which can not be instantiated will create some ERROR log messages. This will flood logs with ERROR messages which are not relevant.
+* Some  bundles (org.eclipse.smarthome.io.net, org.eclipse.smarthome.core.transform, org.openhab.core) will use OSGi Declarative Services (DS) components, which does require optional classes, which are not included in minimal-runtime. This does work well, but every DS component which can not be instantiated will create several ERROR log messages. This will flood logs with ERROR messages which are not relevant.
   * Workarounds:
     * a) enable org.eclipse.concierge.log.enabled=true, and set loglevel to 0: org.eclipse.concierge.log.level=0
-    * b) Use osgi-over-slf4j logging bundle, and disable logging of Equinox DS (<logger name="org.eclipse.equinox.ds" level="OFF"/>)
+    * b) Use osgi-over-slf4j logging bundle, and disable logging of Equinox DS (add snippet `<logger name="org.eclipse.equinox.ds" level="OFF"/>` to config file)
     * c) Use Apache SCR instead of Equinox DS (which does not log errors)
-* There is a synchronization issue between Equinox DS and Apache Felix FileInstall.
+* There is a synchronization issue between Equinox DS and Apache Felix FileInstall, which prevents the Sonos binding not to start correctly.
   * Workarounds: 
     * a) Use Apache SCR instead of Equinox DS
     * b) do not use file install, install via xargs directives

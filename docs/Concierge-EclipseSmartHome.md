@@ -11,7 +11,7 @@ The documentation here will use
 
 ## How to run Eclipse SmartHome/openHAB2 with Concierge
 
-##### 1. Get openHAB 2.0.0 SNAPSHOT build from https://openhab.ci.cloudbees.com/job/openHAB2/
+###### 1. Get openHAB 2.0.0 SNAPSHOT build from https://openhab.ci.cloudbees.com/job/openHAB2/
 
 ```script
 mkdir openhab2-minimal-runtime
@@ -19,7 +19,7 @@ cd openhab2-minimal-runtime
 wget https://openhab.ci.cloudbees.com/job/openHAB2/lastSuccessfulBuild/artifact/distribution/target/distribution-2.0.0-SNAPSHOT-minimal-runtime.zip
 ```
 
-2. Unzip openHAB2 distribution
+###### 2. Unzip openHAB2 distribution
 
 ```script
 mkdir openhab2
@@ -27,14 +27,15 @@ cd openhab2
 unzip ../distribution-2.0.0-SNAPSHOT-minimal-runtime.zip
 ```
 
-3. Download `start_concierge_debug.sh` script
+###### 3. Download `start_concierge_debug.sh` script
 
 ```script
 wget -q https://raw.githubusercontent.com/JochenHiller/concierge-tests/master/patches/openhab2-minimal-runtime/patches/start_concierge_debug.sh
 chmod u+x start_concierge_debug.sh
 ```
 
-4. Start Concierge server
+
+###### 4. Start Concierge server
 
 This script will download missing bundles from GitHub repo.
 
@@ -42,7 +43,7 @@ This script will download missing bundles from GitHub repo.
 ./start_concierge_debug.sh
 ```
 
-5. Open a browser to http://localhost:8080/, and use "PaperUI" for testing
+###### 5. Open a browser to http://localhost:8080/, and use "PaperUI" for testing
 
 
 ## Required patches for Eclipse SmartHome

@@ -200,15 +200,17 @@
 -istart ${dir}/org.eclipse.smarthome.storage.mapdb_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.rest_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.rest.core_0.8.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.rest.sse_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.multimedia_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.transport.upnp_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.transport.mqtt_0.8.0*.jar
 
 
-# openHAB2 
--istart ${dir}/org.openhab.core_2.0.0*.jar
--istart ${dir}/org.openhab.core.init_2.0.0*.jar
--istart ${dir}/org.openhab.ui.dashboard_2.0.0*.jar
+# openHAB2
+-istart ${dir}/org.openhab.core_2.0.0.*.jar
+-istart ${dir}/org.openhab.core.init_2.0.0.*.jar
+-istart ${dir}/org.openhab.ui.dashboard_2.0.0.*.jar
+-istart ${dir}/org.openhab.io.rest.docs_2.0.0.*.jar
 
 
 # FileInstall as last bundle to allow to install add-ons

@@ -111,9 +111,9 @@
 
 
 # Jersey
--istart ${dir}/com.eclipsesource.jaxrs.jersey-all_2.10*.jar
--istart ${dir}/com.eclipsesource.jaxrs.provider.gson_2.0.0*.jar
--istart ${dir}/com.eclipsesource.jaxrs.publisher_4.1.0*.jar
+-istart ${dir}/com.eclipsesource.jaxrs.jersey-all_2.16.*.jar
+-istart ${dir}/com.eclipsesource.jaxrs.provider.gson_2.1.*.jar
+-istart ${dir}/com.eclipsesource.jaxrs.publisher_4.2.0*.jar
 
 
 # Felix Gogo
@@ -187,9 +187,9 @@
 -istart ${dir}/org.eclipse.smarthome.config.core_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.io.net_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.transform_0.8.0*.jar
--istart ${dir}/org.eclipse.smarthome.io.mdns_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.core.thing_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.discovery_0.8.0*.jar
+-istart ${dir}/org.eclipse.smarthome.io.transport.mdns_0.8.0*.jar
 -istart ${dir}/org.eclipse.smarthome.config.dispatch_0.8.0*.jar
 # for xstream
 -Dorg.osgi.framework.bootdelegation+=javax.security.auth,
